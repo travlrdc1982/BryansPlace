@@ -448,10 +448,6 @@ body, .survey-body, .main-content {
 }
 #sc-footer a { color: #6B7F4E; text-decoration: none; }
 
-/* --- Native continue/next button (hidden - we use custom) --- */
-.nextPage, .button {
-    display: none !important;
-}
 /* --- Custom CONTINUE button --- */
 #sc-continue-btn {
     background: #6B7F4E;
@@ -679,6 +675,7 @@ body, .survey-body, .main-content {
 ]]></style>
 
 <html label="sc_page_ui"><![CDATA[
+<style>.nextPage, .button { display: none !important; }</style>
 
 <div id="sc-footer">
   Your responses are held strictly confidential.
@@ -1025,354 +1022,6 @@ setMarker('Screened-QS5')
 </term>
 
 
-<!-- ===================== ZIP CODE PROCESSING ===================== -->
-
-<exec when="init">
-def zipCodeFile(fname, zipHeader):
-  try:
-      zipCodesData = File( "%s/%s" % (gv.survey.path, fname), zipHeader)
-  except IOError:
-      zipCodesData = ""
-  return zipCodesData
-</exec>
-<suspend/>
-<exec when="init">
-ZIPCODES1 = zipCodeFile("find_duplicate.dat", "unique")
-ZIPCODES2 = zipCodeFile("find_duplicate.dat", "d2")
-ZIPCODES3 = zipCodeFile("find_duplicate.dat", "d3")
-ZIPCODES4 = zipCodeFile("find_duplicate.dat", "d4")
-ZIPCODES5 = zipCodeFile("find_duplicate.dat", "d5")
-myzip=zipCodeFile("Zipcodefile.dat", "ZIP")
-</exec>
-<suspend/>
-<radio
-  label="xzip_duplicate"
-  optional="1"
-  where="execute,survey,report">
-  <title>Hidden: ZIP duplicate check</title>
-  <exec>
-RECORD1 = ZIPCODES1.get( QZIP.val )
-RECORD2 = ZIPCODES2.get( QZIP.val )
-RECORD3 = ZIPCODES3.get( QZIP.val )
-RECORD4 = ZIPCODES4.get( QZIP.val )
-RECORD5 = ZIPCODES5.get( QZIP.val )
-if (RECORD1):
-	xzip_duplicate.val=xzip_duplicate.r1.index
-if (RECORD2):
-	xzip_duplicate.val=xzip_duplicate.r2.index
-if (RECORD3):
-	xzip_duplicate.val=xzip_duplicate.r3.index
-if (RECORD4):
-	xzip_duplicate.val=xzip_duplicate.r4.index
-if (RECORD5):
-	xzip_duplicate.val=xzip_duplicate.r5.index
-  </exec>
-  <row label="r1">Unique</row>
-  <row label="r2">Duplicate TWO</row>
-  <row label="r3">Duplicate THREE</row>
-  <row label="r4">Duplicate FOUR</row>
-  <row label="r5">Duplicate FIVE</row>
-</radio>
-<suspend/>
-<quota label="quo3" cond="xzip_duplicate.r2" overquota="noqual" sheet="Dup_TWO Quota"/>
-<suspend/>
-<quota label="quo4" cond="xzip_duplicate.r3" overquota="noqual" sheet="Dup_THREE Quota"/>
-<suspend/>
-<quota label="quo5" cond="xzip_duplicate.r4" overquota="noqual" sheet="Dup_FOUR Quota"/>
-<suspend/>
-<quota label="quo6" cond="xzip_duplicate.r5" overquota="noqual" sheet="Dup_FIVE Quota"/>
-<suspend/>
-<radio
-  label="xzip_count"
-  optional="1"
-  where="execute,survey,report">
-  <title>Hidden: ZIP duplicate counter</title>
-  <exec>
-xzip_count.val=5
-if xzip_duplicate.r1:
-	xzip_count.val=0
-elif xzip_duplicate.but(xzip_duplicate.r1).any:
-	for x in range(5):
-		if hasMarker("/*/d2_{}".format(x+1)) or hasMarker("/*/d3_{}".format(x+1)) or hasMarker("/*/d4_{}".format(x+1)) or hasMarker("/*/d5_{}".format(x+1)):
-			xzip_count.val=x
-  </exec>
-  <row label="r1">_1</row>
-  <row label="r2">_2</row>
-  <row label="r3">_3</row>
-  <row label="r4">_4</row>
-  <row label="r5">_5</row>
-  <row label="r99">_0</row>
-</radio>
-<suspend/>
-<radio
-  label="XQREGION"
-  optional="1"
-  values="order"
-  where="execute,survey,report">
-  <title>CENSUS REGION</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['region']!="":
-	XQREGION.val=XQREGION.attr("r"+str(respinfo['region'])).index
-else:
-	XQREGION.val=XQREGION.r99.index
-  </exec>
-  <row label="r1" value="1">NORTHEAST</row>
-  <row label="r2" value="2">MIDWEST</row>
-  <row label="r3" value="3">SOUTH</row>
-  <row label="r4" value="4">WEST</row>
-  <row label="r99" value="99">SYSTEM MISSING</row>
-</radio>
-<suspend/>
-<radio
-  label="XQDIVISION"
-  optional="1"
-  values="order"
-  where="execute,survey,report">
-  <title>CENSUS DIVISION</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['division'] != "":
-	XQDIVISION.val=XQDIVISION.attr("r"+str(respinfo['division'])).index
-else: XQDIVISION.val=XQDIVISION.r99.index
-  </exec>
-  <row label="r1" value="1">NEW ENGLAND</row>
-  <row label="r2" value="2">MID-ATLANTIC</row>
-  <row label="r3" value="3">EAST NORTH CENTRAL</row>
-  <row label="r4" value="4">WEST NORTH CENTRAL</row>
-  <row label="r5" value="5">SOUTH ATLANTIC</row>
-  <row label="r6" value="6">EAST SOUTH CENTRAL</row>
-  <row label="r7" value="7">WEST SOUTH CENTRAL</row>
-  <row label="r8" value="8">MOUNTAIN</row>
-  <row label="r9" value="9">PACIFIC</row>
-  <row label="r99" value="99">SYSTEM MISSING</row>
-</radio>
-<suspend/>
-<text
-  label="XQCDNO"
-  where="execute,survey,report">
-  <title>QCDNO</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['cdno'] != "":
-	XQCDNO.r1.val=respinfo['cdno']
-else:
-	XQCDNO.r99.val=1
-  </exec>
-  <row label="r1">QCDNO</row>
-  <noanswer label="r99">System Missing</noanswer>
-</text>
-<suspend/>
-<radio
-  label="XQSTATE"
-  optional="1"
-  where="execute,survey,report">
-  <title>STATE</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['state'] != "":
-	XQSTATE.val=XQSTATE.attr(respinfo['state'].upper()).index
-else:
-	XQSTATE.val=XQSTATE.r99.index
-  </exec>
-  <row label="AL">Alabama</row>
-  <row label="AK">Alaska</row>
-  <row label="AZ">Arizona</row>
-  <row label="AR">Arkansas</row>
-  <row label="CA">California</row>
-  <row label="CO">Colorado</row>
-  <row label="CT">Connecticut</row>
-  <row label="DE">Delaware</row>
-  <row label="DC">District of Columbia</row>
-  <row label="FL">Florida</row>
-  <row label="GA">Georgia</row>
-  <row label="HI">Hawaii</row>
-  <row label="ID">Idaho</row>
-  <row label="IL">Illinois</row>
-  <row label="IN">Indiana</row>
-  <row label="IA">Iowa</row>
-  <row label="KS">Kansas</row>
-  <row label="KY">Kentucky</row>
-  <row label="LA">Louisiana</row>
-  <row label="ME">Maine</row>
-  <row label="MD">Maryland</row>
-  <row label="MA">Massachusetts</row>
-  <row label="MI">Michigan</row>
-  <row label="MN">Minnesota</row>
-  <row label="MS">Mississippi</row>
-  <row label="MO">Missouri</row>
-  <row label="MT">Montana</row>
-  <row label="NE">Nebraska</row>
-  <row label="NV">Nevada</row>
-  <row label="NH">New Hampshire</row>
-  <row label="NJ">New Jersey</row>
-  <row label="NM">New Mexico</row>
-  <row label="NY">New York</row>
-  <row label="NC">North Carolina</row>
-  <row label="ND">North Dakota</row>
-  <row label="OH">Ohio</row>
-  <row label="OK">Oklahoma</row>
-  <row label="OR">Oregon</row>
-  <row label="PA">Pennsylvania</row>
-  <row label="RI">Rhode Island</row>
-  <row label="SC">South Carolina</row>
-  <row label="SD">South Dakota</row>
-  <row label="TN">Tennessee</row>
-  <row label="TX">Texas</row>
-  <row label="UT">Utah</row>
-  <row label="VT">Vermont</row>
-  <row label="VA">Virginia</row>
-  <row label="WA">Washington</row>
-  <row label="WV">West Virginia</row>
-  <row label="WI">Wisconsin</row>
-  <row label="WY">Wyoming</row>
-  <row label="GU">Guam</row>
-  <row label="r99">System Missing</row>
-</radio>
-<suspend/>
-<text
-  label="XQCD"
-  where="execute,survey,report">
-  <title>CD</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['cd'] != "":
-	XQCD.r1.val=respinfo['cd']
-else:
-	XQCD.r99.val=1
-  </exec>
-  <row label="r1">CD</row>
-  <noanswer label="r99">System Missing</noanswer>
-</text>
-<suspend/>
-<text
-  label="XQUSREP"
-  where="execute,survey,report">
-  <title>CONGRESSPERSON</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['usrep'] != "":
-	XQUSREP.r1.val=respinfo['usrep']
-else:
-	XQUSREP.r99.val=1
-  </exec>
-  <row label="r1">CONGRESSPERSON</row>
-  <noanswer label="r99">System Missing</noanswer>
-</text>
-<suspend/>
-<text
-  label="XQSEN1"
-  where="execute,survey,report">
-  <title>SENATOR 1</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['sen1'] != "":
-	XQSEN1.r1.val=respinfo['sen1']
-else:
-	XQSEN1.r99.val=1
-  </exec>
-  <row label="r1">SENATOR 1</row>
-  <noanswer label="r99">System Missing</noanswer>
-</text>
-<suspend/>
-<text
-  label="XQSEN2"
-  where="execute,survey,report">
-  <title>SENATOR 2</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and (respinfo['sen2'] != "" and respinfo['sen2'] != '0'):
-	XQSEN2.r1.val=respinfo['sen2']
-else:
-	XQSEN2.r99.val=1
-  </exec>
-  <row label="r1">SENATOR 2</row>
-  <noanswer label="r99">System Missing</noanswer>
-</text>
-<suspend/>
-<radio
-  label="XQPrimaryRUCA"
-  optional="1"
-  values="order"
-  where="execute,survey,report">
-  <title>PrimaryRUCA</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['primaryruca'] != "":
-	XQPrimaryRUCA.val=XQPrimaryRUCA.attr("r"+str(respinfo['primaryruca'])).index
-else:
-	XQPrimaryRUCA.val=XQPrimaryRUCA.r99.index
-  </exec>
-  <row label="r1" value="1">1</row>
-  <row label="r2" value="2">2</row>
-  <row label="r3" value="3">3</row>
-  <row label="r4" value="4">4</row>
-  <row label="r5" value="5">5</row>
-  <row label="r6" value="6">6</row>
-  <row label="r7" value="7">7</row>
-  <row label="r8" value="8">8</row>
-  <row label="r9" value="9">9</row>
-  <row label="r10" value="10">10</row>
-  <row label="r99" value="99">System Missing</row>
-</radio>
-<suspend/>
-<radio
-  label="XQSecondaryRUCA"
-  optional="1"
-  values="order"
-  where="execute,survey,report">
-  <title>SecondaryRUCA</title>
-  <exec>
-myval=str(QZIP.val)
-myval=myval+str(xzip_count.rows[xzip_count.val].text)
-respinfo=myzip.get(myval)
-if respinfo and respinfo['secondaryruca'] != "":
-	XQSecondaryRUCA.val=XQSecondaryRUCA.attr("r"+str(respinfo['secondaryruca'])).index
-else:
-	XQSecondaryRUCA.val=XQSecondaryRUCA.r99.index
-  </exec>
-  <row label="r1" value="1">1</row>
-  <row label="r1_1" value="101">1.1</row>
-  <row label="r2" value="2">2</row>
-  <row label="r2_1" value="201">2.1</row>
-  <row label="r3" value="3">3</row>
-  <row label="r4" value="4">4</row>
-  <row label="r4_1" value="401">4.1</row>
-  <row label="r5" value="5">5</row>
-  <row label="r5_1" value="501">5.1</row>
-  <row label="r6" value="6">6</row>
-  <row label="r7" value="7">7</row>
-  <row label="r7_1" value="701">7.1</row>
-  <row label="r7_2" value="702">7.2</row>
-  <row label="r8" value="8">8</row>
-  <row label="r8_1" value="801">8.1</row>
-  <row label="r8_2" value="802">8.2</row>
-  <row label="r9" value="9">9</row>
-  <row label="r10" value="10">10</row>
-  <row label="r10_1" value="101">10.1</row>
-  <row label="r10_2" value="102">10.2</row>
-  <row label="r10_3" value="103">10.3</row>
-  <row label="r99" value="99">System Missing</row>
-</radio>
-<suspend/>
 
 
 <!-- ===================== MAXDIFF SETUP ===================== -->
@@ -1406,13 +1055,66 @@ p.maxdiff1=[]
 </exec>
 
 <radio
+  label="XPARTY"
+  optional="1"
+  where="execute">
+  <title>Hidden: Derived Party ID (1-7)</title>
+  <exec>
+if QS5.r1:
+    XPARTY.val = XPARTY.r1.index if QS5A.r1 else XPARTY.r2.index
+elif QS5.r2:
+    XPARTY.val = XPARTY.r7.index if QS5A.r1 else XPARTY.r6.index
+elif QS5.r3 or QS5.r4:
+    if QS5B.r1:   XPARTY.val = XPARTY.r3.index
+    elif QS5B.r2: XPARTY.val = XPARTY.r5.index
+    else:          XPARTY.val = XPARTY.r4.index
+  </exec>
+  <row label="r1">Strong Republican</row>
+  <row label="r2">Not-so-strong Republican</row>
+  <row label="r3">Lean Republican</row>
+  <row label="r4">Independent/Other</row>
+  <row label="r5">Lean Democrat</row>
+  <row label="r6">Not-so-strong Democrat</row>
+  <row label="r7">Strong Democrat</row>
+</radio>
+
+<radio
   label="TYPING_MODULE"
   optional="1"
-  where="execute,survey,report">
-  <title>Final punch of the segmentation:</title>
-  <comment>Select one</comment>
+  where="execute">
+  <title>Hidden: Typing Module Assignment</title>
+  <exec>
+party = 4
+if QS5.r1:
+    party = 1 if QS5A.r1 else 2
+elif QS5.r2:
+    party = 7 if QS5A.r1 else 6
+elif QS5.r3 or QS5.r4:
+    if QS5B.r1:   party = 3
+    elif QS5B.r2: party = 5
+    else:          party = 4
+
+if QVOTE24.r1:
+    if party &lt;= 3:
+        TYPING_MODULE.val = TYPING_MODULE.r1.index
+    else:
+        TYPING_MODULE.val = TYPING_MODULE.r3.index
+elif QVOTE24.r2:
+    if party &gt;= 5:
+        TYPING_MODULE.val = TYPING_MODULE.r2.index
+    else:
+        TYPING_MODULE.val = TYPING_MODULE.r3.index
+elif QVOTE24.r3:
+    if QS5B.r1:
+        TYPING_MODULE.val = TYPING_MODULE.r1.index
+    elif QS5B.r2:
+        TYPING_MODULE.val = TYPING_MODULE.r2.index
+    else:
+        TYPING_MODULE.val = TYPING_MODULE.r2.index
+  </exec>
   <row label="r1">GOP</row>
   <row label="r2">DEM</row>
+  <row label="r3">BOTH</row>
 </radio>
 <suspend/>
 <quota label="quo12" cond="TYPING_MODULE.any" overquota="noqual" sheet="TYPING MODULE Quota"/>
@@ -1421,7 +1123,7 @@ p.maxdiff1=[]
 
 <!-- ===================== PAGE GROUP 3 — DEM MaxDiff Block ===================== -->
 
-<block label="b11" cond="TYPING_MODULE.r2">
+<block label="b11" cond="TYPING_MODULE.r2 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start DEM--</note>
   <exec when="init">
 QMD1_md = setupMaxDiffFile("DEMDesign.dat")
@@ -1887,7 +1589,7 @@ XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
 
 <!-- ===================== PAGE GROUP 3 — GOP MaxDiff Block ===================== -->
 
-<block label="b12" cond="TYPING_MODULE.r1">
+<block label="b12" cond="TYPING_MODULE.r1 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start GOP--</note>
   <exec when="init">
 QMD3_md = setupMaxDiffFile("GOPDesign.dat")
