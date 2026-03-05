@@ -82,7 +82,7 @@ body, .survey-body, .main-content {
 /* --- PRISM logo top bar --- */
 .sc-logo-bar {
     text-align: center;
-    padding: 12px 0 20px;
+    padding: 18px 0 32px;
 }
 .sc-logo-bar img {
     height: 40px;
@@ -1072,52 +1072,40 @@ body, .survey-body, .main-content {
 
 
 
-<exec cond="QS1.r2 or QS1.r99">
-vscreenout.val = str('QS1')
-setMarker('Screened-QS1')
+<exec>
+if QS1.r2 or QS1.r99:
+  vscreenout.val = str('QS1')
+  setMarker('Screened-QS1')
+if QZIP.r98:
+  vscreenout.val = str('QZIP')
+  setMarker('Screened-QZIP')
+if QAGE.r98:
+  vscreenout.val = str('QAGE')
+  setMarker('Screened-QAGE')
+if QGENDER.r98:
+  vscreenout.val = str('QGENDER')
+  setMarker('Screened-QGENDER')
+if QVOTE24.r4 or QVOTE24.r98:
+  vscreenout.val = str('QVOTE24')
+  setMarker('Screened-QVOTE24')
+if QS5.r98:
+  vscreenout.val = str('QS5')
+  setMarker('Screened-QS5')
+if QS5A.r98:
+  vscreenout.val = str('QS5A')
+  setMarker('Screened-QS5A')
+if QS5B.r98:
+  vscreenout.val = str('QS5B')
+  setMarker('Screened-QS5B')
 </exec>
+
 <term label="Term_QS1" cond="QS1.r2 or QS1.r99">QS1 - Not registered or unsure</term>
-
-<exec cond="QZIP.r98">
-vscreenout.val = str('QZIP')
-setMarker('Screened-QZIP')
-</exec>
 <term label="Term_QZIP" cond="QZIP.r98">QZIP - Prefer not to respond</term>
-
-<exec cond="QAGE.r98">
-vscreenout.val = str('QAGE')
-setMarker('Screened-QAGE')
-</exec>
 <term label="Term_QAGE" cond="QAGE.r98">QAGE - Prefer not to respond</term>
-
-<exec cond="QGENDER.r98">
-vscreenout.val = str('QGENDER')
-setMarker('Screened-QGENDER')
-</exec>
 <term label="Term_QGENDER" cond="QGENDER.r98">QGENDER - Prefer not to respond</term>
-
-<exec cond="QVOTE24.r4 or QVOTE24.r98">
-vscreenout.val = str('QVOTE24')
-setMarker('Screened-QVOTE24')
-</exec>
-<term label="Term_VOTE24" cond="QVOTE24.r4 or QVOTE24.r98">QVOTE24 - Did not vote or prefer not to respond</term>
-
-<exec cond="QS5.r98">
-vscreenout.val = str('QS5')
-setMarker('Screened-QS5')
-</exec>
+<term label="Term_QVOTE24" cond="QVOTE24.r4 or QVOTE24.r98">QVOTE24 - Did not vote or prefer not to respond</term>
 <term label="Term_QS5" cond="QS5.r98">QS5 - Prefer not to respond</term>
-
-<exec cond="QS5A.r98">
-vscreenout.val = str('QS5A')
-setMarker('Screened-QS5A')
-</exec>
 <term label="Term_QS5A" cond="QS5A.r98">QS5A - Prefer not to respond</term>
-
-<exec cond="QS5B.r98">
-vscreenout.val = str('QS5B')
-setMarker('Screened-QS5B')
-</exec>
 <term label="Term_QS5B" cond="QS5B.r98">QS5B - Prefer not to respond</term>
 
 
@@ -1151,7 +1139,7 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
 }
 
 /* --- md logo --- */
-.md-logo-bar { text-align: center; padding: 12px 0 20px; }
+.md-logo-bar { text-align: center; padding: 18px 0 32px; }
 .md-logo-bar img { height: 40px; width: auto; }
 
 /* --- md progress --- */
