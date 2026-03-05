@@ -178,9 +178,12 @@ body, .survey-body, .main-content {
 
 /* --- QS1 yes/no/not-sure buttons --- */
 .qs1-btn-group {
-    display: flex; gap: 14px;
+    display: flex; gap: 28px;
     justify-content: center; align-items: flex-start;
     flex-wrap: wrap; padding-top: 4px;
+}
+.qs1-ns {
+    margin-top: 18px;
 }
 .qs1-btn {
     display: flex; flex-direction: column;
@@ -442,9 +445,9 @@ body, .survey-body, .main-content {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
     background: #F5F2ED;
     border-top: 1px solid #E0DCD6;
-    padding: 10px 20px;
+    padding: 20px 40px;
     text-align: center;
-    font-size: 10px; color: #AAAAAA; font-family: Inter, sans-serif; line-height: 1.4;
+    font-size: 20px; color: #AAAAAA; font-family: Inter, sans-serif; line-height: 1.4;
 }
 #sc-footer a { color: #6B7F4E; text-decoration: none; }
 
@@ -763,9 +766,6 @@ body, .survey-body, .main-content {
   </div>
 
   <div class="sc-card sc-intro" id="card-intro">
-    <div class="intro-logo-wrap">
-      <img src="[rel PRISM_glyph.svg]" alt="PRISM">
-    </div>
     <p class="intro-body">
       Thanks for taking part. This survey helps us understand how people
       think about health&nbsp;care and public policy today. There are no
@@ -1290,8 +1290,8 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
 #md-footer {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
     background: #F5F2ED; border-top: 1px solid #E0DCD6;
-    padding: 10px 20px; text-align: center;
-    font-size: 10px; color: #AAA; font-family: Inter, sans-serif; line-height: 1.4;
+    padding: 20px 40px; text-align: center;
+    font-size: 20px; color: #AAA; font-family: Inter, sans-serif; line-height: 1.4;
 }
 #md-footer a { color: #6B7F4E; text-decoration: none; }
 
@@ -1436,9 +1436,6 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
 
   <!-- MaxDiff Intro -->
   <div class="md-intro" id="md-intro">
-    <div class="md-intro-logo">
-      <img src="[rel PRISM_glyph.svg]" alt="PRISM">
-    </div>
     <p class="md-intro-body">
       In this section we&#x2019;ll ask about a mix of political and social issues.
       Some questions may feel personal, and some statements you may agree with
