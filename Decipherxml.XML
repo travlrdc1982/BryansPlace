@@ -1318,6 +1318,20 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
   var defined = function(s,c){ return (c||document).querySelector(s); };
   var definedAll = function(s,c){ return [].slice.call((c||document).querySelectorAll(s)); };
 
+  /* ---- hide native Decipher questions ---- */
+  ['MD1_BEST','MD1_WORST'].forEach(function(q){
+    var el = document.getElementById('question_'+q);
+    if(el) el.classList.add('md-native-hidden');
+  });
+
+  /* ---- write back to native Decipher inputs ---- */
+  function mdSetRadio(q, val){
+    var box = document.getElementById('question_'+q);
+    if(!box) return;
+    var inp = box.querySelector('input[type="radio"][value="'+val+'"]');
+    if(inp){ inp.checked=true; try{ inp.click(); }catch(e){} }
+  }
+
   /* ---- show intro first, hide card ---- */
   var mdIntro = document.getElementById('md-intro');
   var mdCard  = document.getElementById('md-card-1');
@@ -1364,6 +1378,7 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
     row.addClass('md-row-best');
     bestRow = rowIdx;
 
+    mdSetRadio('MD1_BEST', rowIdx);
     checkMdComplete();
   });
 
@@ -1383,6 +1398,7 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
     row.addClass('md-row-worst');
     worstRow = rowIdx;
 
+    mdSetRadio('MD1_WORST', rowIdx);
     checkMdComplete();
   });
 
@@ -1507,8 +1523,21 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
 
 ]]></html>
 
-<!-- placeholder for actual MaxDiff Decipher questions — looping TBD -->
-<note>MaxDiff loop questions will be added here</note>
+<radio label="MD1_BEST" optional="1">
+  <title>Card 1 - Most like me</title>
+  <row label="r1" value="1">Tech and data can improve care</row>
+  <row label="r2" value="2">Corporate greed hurts ordinary people</row>
+  <row label="r3" value="3">Healthcare is a human right</row>
+  <row label="r4" value="4">My faith calls me to fight for the poor</row>
+</radio>
+
+<radio label="MD1_WORST" optional="1">
+  <title>Card 1 - Least like me</title>
+  <row label="r1" value="1">Tech and data can improve care</row>
+  <row label="r2" value="2">Corporate greed hurts ordinary people</row>
+  <row label="r3" value="3">Healthcare is a human right</row>
+  <row label="r4" value="4">My faith calls me to fight for the poor</row>
+</radio>
 
 <suspend/>
 
