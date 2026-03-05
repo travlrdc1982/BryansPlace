@@ -513,6 +513,17 @@ body, .survey-body, .main-content {
     var inp = box.querySelector('input[type="text"],input[type="number"]');
     if(inp){ inp.value=val; jQuery(inp).trigger('change'); }
   }
+  function setNoanswer(q, checked){
+    var box = document.getElementById('question_'+q);
+    if(!box) return;
+    var chk = box.querySelector('.noanswer input[type="checkbox"], input.noanswer[type="checkbox"], input[name*="noanswer"]');
+    if(chk){ chk.checked=checked; jQuery(chk).trigger('change').trigger('click'); }
+  }
+  function clearRadio(q){
+    var box = document.getElementById('question_'+q);
+    if(!box) return;
+    jQuery(box).find('input[type="radio"]').prop('checked', false);
+  }
 
   /* ---- card navigation ---- */
   function showCard(idx){
@@ -563,6 +574,10 @@ body, .survey-body, .main-content {
   /* QZIP - zip code digits */
   var zipD = definedAll('#card-qzip .zip-digit');
   jQuery('#card-qzip').on('input', '.zip-digit', function(){
+    if(jQuery('#zip-pna').is(':checked')){
+      jQuery('#zip-pna').prop('checked', false);
+      setNoanswer('QZIP', false);
+    }
     var idx = zipD.indexOf(this);
     if(this.value.length===1 && idx<zipD.length-1) zipD[idx+1].focus();
     jQuery(this).toggleClass('zip-filled', this.value.length>0);
@@ -577,8 +592,12 @@ body, .survey-body, .main-content {
     if(this.checked){
       jQuery(zipD).val('').prop('disabled',true).removeClass('zip-filled');
       setText('QZIP','');
+      setNoanswer('QZIP', true);
       setTimeout(advance, 350);
-    } else { jQuery(zipD).prop('disabled',false); }
+    } else {
+      jQuery(zipD).prop('disabled',false);
+      setNoanswer('QZIP', false);
+    }
   });
   jQuery('.zip-why-trigger').on('click', function(){
     jQuery('.zip-why-body').toggle();
@@ -587,6 +606,10 @@ body, .survey-body, .main-content {
   /* QAGE - age digits */
   var ageD = definedAll('#card-qage .age-digit');
   jQuery('#card-qage').on('input', '.age-digit', function(){
+    if(jQuery('#age-pna').is(':checked')){
+      jQuery('#age-pna').prop('checked', false);
+      setNoanswer('QAGE', false);
+    }
     var idx = ageD.indexOf(this);
     if(this.value.length===1 && idx<ageD.length-1) ageD[idx+1].focus();
     jQuery(this).toggleClass('age-filled', this.value.length>0);
@@ -601,35 +624,54 @@ body, .survey-body, .main-content {
     if(this.checked){
       jQuery(ageD).val('').prop('disabled',true).removeClass('age-filled');
       setNumber('QAGE','');
+      setNoanswer('QAGE', true);
       setTimeout(advance, 350);
-    } else { jQuery(ageD).prop('disabled',false); }
+    } else {
+      jQuery(ageD).prop('disabled',false);
+      setNoanswer('QAGE', false);
+    }
   });
 
   /* QGENDER - horizontal pills */
   jQuery('#gender-pills').on('click', '.gender-pill', function(){
+    jQuery('#gender-pna').prop('checked', false);
     jQuery('#gender-pills .gender-pill').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
     setRadio('QGENDER', jQuery(this).attr('data-val'));
     setTimeout(advance, 350);
   });
   jQuery('#gender-pna').on('change', function(){
-    if(this.checked){ setTimeout(advance, 350); }
+    if(this.checked){
+      jQuery('#gender-pills .gender-pill').removeClass('sc-sel');
+      setRadio('QGENDER', '98');
+      setTimeout(advance, 350);
+    } else {
+      clearRadio('QGENDER');
+    }
   });
 
   /* QVOTE24 - custom ballot */
   jQuery('#ballot-vote24').on('click', '.ballot-row, .ballot-bottom-row', function(){
+    jQuery('#vote-pna').prop('checked', false);
     jQuery('#ballot-vote24 .ballot-row, #ballot-vote24 .ballot-bottom-row').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
     setRadio('QVOTE24', jQuery(this).attr('data-val'));
     setTimeout(advance, 350);
   });
   jQuery('#vote-pna').on('change', function(){
-    if(this.checked){ setTimeout(advance, 350); }
+    if(this.checked){
+      jQuery('#ballot-vote24 .ballot-row, #ballot-vote24 .ballot-bottom-row').removeClass('sc-sel');
+      setRadio('QVOTE24', '98');
+      setTimeout(advance, 350);
+    } else {
+      clearRadio('QVOTE24');
+    }
   });
 
   /* QS5 / QS5A / QS5B - party identification */
   var partyChoice = '';
   jQuery('#card-party').on('click', '.party-main-btn', function(){
+    jQuery('#party-pna').prop('checked', false);
     jQuery('#card-party .party-main-btn').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
     var v = jQuery(this).attr('data-val');
@@ -650,25 +692,47 @@ body, .survey-body, .main-content {
     }
   });
   jQuery('#party-sub-a').on('click', '.party-sub-radio', function(){
+    jQuery('#party2-pna').prop('checked', false);
     jQuery('#party-sub-a .party-sub-radio').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
     setRadio('QS5A', jQuery(this).attr('data-val'));
     enableNext();
   });
   jQuery('#party2-pna').on('change', function(){
-    if(this.checked){ enableNext(); }
+    if(this.checked){
+      jQuery('#party-sub-a .party-sub-radio').removeClass('sc-sel');
+      setRadio('QS5A', '98');
+      enableNext();
+    } else {
+      clearRadio('QS5A');
+    }
   });
   jQuery('#party-sub-b').on('click', '.party-lean-btn', function(){
+    jQuery('#party3-pna').prop('checked', false);
     jQuery('#party-sub-b .party-lean-btn').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
     setRadio('QS5B', jQuery(this).attr('data-val'));
     enableNext();
   });
   jQuery('#party3-pna').on('change', function(){
-    if(this.checked){ enableNext(); }
+    if(this.checked){
+      jQuery('#party-sub-b .party-lean-btn').removeClass('sc-sel');
+      setRadio('QS5B', '98');
+      enableNext();
+    } else {
+      clearRadio('QS5B');
+    }
   });
   jQuery('#party-pna').on('change', function(){
-    if(this.checked){ enableNext(); }
+    if(this.checked){
+      jQuery('#card-party .party-main-btn').removeClass('sc-sel');
+      setRadio('QS5', '98');
+      jQuery('#party-sub-a').hide();
+      jQuery('#party-sub-b').hide();
+      enableNext();
+    } else {
+      clearRadio('QS5');
+    }
   });
 
   /* CONTINUE button — triggers native Decipher page submit (suspend) */
@@ -949,10 +1013,12 @@ body, .survey-body, .main-content {
 
 <text label="QZIP" optional="1" size="5" verify="zipcode">
   <title>Please enter your 5-digit ZIP Code</title>
+  <noanswer label="r98">Prefer not to respond</noanswer>
 </text>
 
 <number label="QAGE" optional="1" size="3" verify="range(18,89)">
   <title>What is your age?</title>
+  <noanswer label="r98">Prefer not to respond</noanswer>
 </number>
 
 <radio label="QGENDER" optional="1">
@@ -960,7 +1026,7 @@ body, .survey-body, .main-content {
   <row label="r1" value="1">Male</row>
   <row label="r2" value="2">Female</row>
   <row label="r3" value="3">Other</row>
-  <row label="r99" cond="0" value="99">Prefer not to answer</row>
+  <row label="r98" cond="0" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QVOTE24" optional="1">
@@ -969,6 +1035,7 @@ body, .survey-body, .main-content {
   <row label="r2" value="2">Kamala Harris (D)</row>
   <row label="r3" value="3">Someone else</row>
   <row label="r4" value="4">I did not have the chance to vote</row>
+  <row label="r98" cond="0" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QS5" optional="1">
@@ -977,12 +1044,14 @@ body, .survey-body, .main-content {
   <row label="r2" value="2">Democrat</row>
   <row label="r3" value="3">Independent</row>
   <row label="r4" value="4">Other</row>
+  <row label="r98" cond="0" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QS5A" optional="1">
   <title>Would you say you are a strong or not-so strong [pipe: QS5]?</title>
   <row label="r1" value="1">Strong</row>
   <row label="r2" value="2">Not so strong</row>
+  <row label="r98" cond="0" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QS5B" optional="1">
@@ -990,6 +1059,7 @@ body, .survey-body, .main-content {
   <row label="r1" value="1">Lean Republican</row>
   <row label="r2" value="2">Lean Democrat</row>
   <row label="r3" value="3">Neither Party</row>
+  <row label="r98" cond="0" value="98">Prefer not to respond</row>
 </radio>
 
 
@@ -1005,24 +1075,55 @@ body, .survey-body, .main-content {
 vscreenout.val = str('QS1')
 setMarker('Screened-QS1')
 </exec>
-<term label="Term_QS1" cond="QS1.r2 or QS1.r99">QS1 termination</term>
+<term label="Term_QS1" cond="QS1.r2 or QS1.r99">QS1 - Not registered or unsure</term>
 
+<exec cond="QZIP.r98">
+vscreenout.val = str('QZIP')
+setMarker('Screened-QZIP')
+</exec>
+<term label="Term_QZIP" cond="QZIP.r98">QZIP - Prefer not to respond</term>
 
+<exec cond="QAGE.r98">
+vscreenout.val = str('QAGE')
+setMarker('Screened-QAGE')
+</exec>
+<term label="Term_QAGE" cond="QAGE.r98">QAGE - Prefer not to respond</term>
 
+<exec cond="QGENDER.r98">
+vscreenout.val = str('QGENDER')
+setMarker('Screened-QGENDER')
+</exec>
+<term label="Term_QGENDER" cond="QGENDER.r98">QGENDER - Prefer not to respond</term>
 
-<exec cond="QVOTE24.r4">
+<exec cond="QVOTE24.r4 or QVOTE24.r98">
 vscreenout.val = str('QVOTE24')
 setMarker('Screened-QVOTE24')
 </exec>
-<term label="Term_VOTE24" cond="QVOTE24.r4">Did not vote</term>
+<term label="Term_VOTE24" cond="QVOTE24.r4 or QVOTE24.r98">QVOTE24 - Did not vote or prefer not to respond</term>
 
-<exec cond="QVOTE24.r3 and QS5B.r3">
+<exec cond="QS5.r98">
 vscreenout.val = str('QS5')
 setMarker('Screened-QS5')
 </exec>
-<term label="Term_PARTYID" cond="QVOTE24.r3 and QS5B.r3">
-  Voted for someone else and is Independent
-</term>
+<term label="Term_QS5" cond="QS5.r98">QS5 - Prefer not to respond</term>
+
+<exec cond="QS5A.r98">
+vscreenout.val = str('QS5A')
+setMarker('Screened-QS5A')
+</exec>
+<term label="Term_QS5A" cond="QS5A.r98">QS5A - Prefer not to respond</term>
+
+<exec cond="QS5B.r98">
+vscreenout.val = str('QS5B')
+setMarker('Screened-QS5B')
+</exec>
+<term label="Term_QS5B" cond="QS5B.r98">QS5B - Prefer not to respond</term>
+
+<exec cond="QVOTE24.r3 and QS5B.r3">
+vscreenout.val = str('PARTYID')
+setMarker('Screened-PARTYID')
+</exec>
+<term label="Term_PARTYID" cond="QVOTE24.r3 and QS5B.r3">Voted for someone else and does not lean toward either party</term>
 
 
 <!-- ===================== PAGE GROUP 3 — MaxDiff ===================== -->
