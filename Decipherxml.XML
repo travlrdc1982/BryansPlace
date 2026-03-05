@@ -737,8 +737,7 @@ body, .survey-body, .main-content {
 
   /* CONTINUE button — triggers native Decipher page submit (suspend) */
   jQuery('#sc-continue-btn').on('click', function(){
-    var nxt = jQuery('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(nxt.length){ nxt.first().click(); }
+    document.forms[0].submit();
   });
 ]]></style>
 
@@ -1404,8 +1403,7 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
 
   /* CONTINUE — submit page (suspend) */
   jQuery('#md-continue-btn').on('click', function(){
-    var nxt = jQuery('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(nxt.length){ nxt.first().click(); }
+    document.forms[0].submit();
   });
 
 ]]></style>
