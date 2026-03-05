@@ -16,7 +16,7 @@
   secure="1"
   setup="term,decLang,quota,time"
   ss:disableBackButton="1"
-  ss:enableNavigation="0"
+  ss:enableNavigation="1"
   ss:hideProgressBar="1"
   state="testing"
   version="19"
@@ -737,7 +737,9 @@ body, .survey-body, .main-content {
 
   /* CONTINUE button — triggers native Decipher page submit (suspend) */
   jQuery('#sc-continue-btn').on('click', function(){
-    document.forms[0].submit();
+    var nxt = document.querySelector('.nextPage') || document.querySelector('input[type="submit"]');
+    if(nxt){ nxt.click(); }
+    else { document.forms[0].submit(); }
   });
 ]]></style>
 
@@ -1403,7 +1405,9 @@ body, .survey-body, .main-content { background: #F5F2ED !important; }
 
   /* CONTINUE — submit page (suspend) */
   jQuery('#md-continue-btn').on('click', function(){
-    document.forms[0].submit();
+    var nxt = document.querySelector('.nextPage') || document.querySelector('input[type="submit"]');
+    if(nxt){ nxt.click(); }
+    else { document.forms[0].submit(); }
   });
 
 ]]></style>
