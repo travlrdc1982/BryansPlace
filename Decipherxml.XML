@@ -1026,7 +1026,7 @@ body, .survey-body, .main-content {
   <row label="r1" value="1">Male</row>
   <row label="r2" value="2">Female</row>
   <row label="r3" value="3">Other</row>
-  <row label="r98" cond="0" value="98">Prefer not to respond</row>
+  <row label="r98" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QVOTE24" optional="1">
@@ -1035,7 +1035,7 @@ body, .survey-body, .main-content {
   <row label="r2" value="2">Kamala Harris (D)</row>
   <row label="r3" value="3">Someone else</row>
   <row label="r4" value="4">I did not have the chance to vote</row>
-  <row label="r98" cond="0" value="98">Prefer not to respond</row>
+  <row label="r98" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QS5" optional="1">
@@ -1044,14 +1044,14 @@ body, .survey-body, .main-content {
   <row label="r2" value="2">Democrat</row>
   <row label="r3" value="3">Independent</row>
   <row label="r4" value="4">Other</row>
-  <row label="r98" cond="0" value="98">Prefer not to respond</row>
+  <row label="r98" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QS5A" optional="1">
   <title>Would you say you are a strong or not-so strong [pipe: QS5]?</title>
   <row label="r1" value="1">Strong</row>
   <row label="r2" value="2">Not so strong</row>
-  <row label="r98" cond="0" value="98">Prefer not to respond</row>
+  <row label="r98" value="98">Prefer not to respond</row>
 </radio>
 
 <radio label="QS5B" optional="1">
@@ -1059,7 +1059,7 @@ body, .survey-body, .main-content {
   <row label="r1" value="1">Lean Republican</row>
   <row label="r2" value="2">Lean Democrat</row>
   <row label="r3" value="3">Neither Party</row>
-  <row label="r98" cond="0" value="98">Prefer not to respond</row>
+  <row label="r98" value="98">Prefer not to respond</row>
 </radio>
 
 
