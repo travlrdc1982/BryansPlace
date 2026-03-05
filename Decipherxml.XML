@@ -485,17 +485,22 @@ body, .survey-body, .main-content {
   /* ---- write back to native Decipher inputs ---- */
   function setRadio(q, val){
     var box = document.getElementById('question_'+q);
-    if(!box) return;
-    /* try value attr first, then row-label format (r1, r2, r99…) */
-    var inp = box.querySelector('input[type="radio"][value="'+val+'"]')
-           || box.querySelector('input[type="radio"][value="r'+val+'"]');
+    if(!box){ console.warn('[setRadio] question_'+q+' not found'); return; }
+    /* Decipher renders input values as row labels: r1, r2, r99 … */
+    var inp = box.querySelector('input[type="radio"][value="r'+val+'"]');
     if(!inp){
-      /* fallback: nth radio by 1-based index */
+      /* fallback: nth radio by 1-based position */
       var all = box.querySelectorAll('input[type="radio"]');
       var idx = parseInt(val,10);
       if(idx>0 && idx<=all.length) inp = all[idx-1];
     }
-    if(inp){ inp.checked=true; try{ inp.click(); }catch(e){} }
+    if(inp){
+      console.log('[setRadio] '+q+' → '+inp.value);
+      inp.checked = true;
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){ inp.click(); }
+    } else {
+      console.warn('[setRadio] '+q+': no input found for val='+val);
+    }
   }
   function setText(q, val){
     var box = document.getElementById('question_'+q);
@@ -669,8 +674,12 @@ body, .survey-body, .main-content {
 
   /* CONTINUE button — triggers native Decipher page submit (suspend) */
   jQuery('#sc-continue-btn').on('click', function(){
-    var nxt = jQuery('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(nxt.length){ nxt.first().click(); }
+    /* Temporarily show the native button so click/submit works reliably */
+    var nxt = jQuery('.nextPage, .button[type="submit"], input[type="submit"]').first();
+    if(nxt.length){
+      nxt.css({'display':'block','visibility':'hidden','position':'absolute','left':'-9999px'});
+      nxt[0].click();
+    }
   });
 ]]></style>
 
@@ -1037,6 +1046,8 @@ def setupMaxDiffFile(fname, fileDelimiter="\t"):
     return d
 def setupMaxDiffItemsI(d, vt, question):
     item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
+    if vt not in d:
+        raise Exception("MaxDiff design key '%s' not found. Available keys: %s" % (vt, ", ".join(sorted(d.keys())[:20])))
     items = d[vt]
     for r in question.rows:
         if r.o.label.strip("item") not in items:
