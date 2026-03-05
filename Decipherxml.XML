@@ -1025,397 +1025,1325 @@ setMarker('Screened-QS5')
 </term>
 
 
-<!-- ===================== PAGE GROUP 3 — MaxDiff ===================== -->
+<!-- ===================== ZIP CODE PROCESSING ===================== -->
 
-<style name="respview.client.css" mode="after"><![CDATA[
-<style>
-/* --- page.group.3 — MaxDiff page --- */
+<exec when="init">
+def zipCodeFile(fname, zipHeader):
+  try:
+      zipCodesData = File( "%s/%s" % (gv.survey.path, fname), zipHeader)
+  except IOError:
+      zipCodesData = ""
+  return zipCodesData
+</exec>
+<suspend/>
+<exec when="init">
+ZIPCODES1 = zipCodeFile("find_duplicate.dat", "unique")
+ZIPCODES2 = zipCodeFile("find_duplicate.dat", "d2")
+ZIPCODES3 = zipCodeFile("find_duplicate.dat", "d3")
+ZIPCODES4 = zipCodeFile("find_duplicate.dat", "d4")
+ZIPCODES5 = zipCodeFile("find_duplicate.dat", "d5")
+myzip=zipCodeFile("Zipcodefile.dat", "ZIP")
+</exec>
+<suspend/>
+<radio
+  label="xzip_duplicate"
+  optional="1"
+  where="execute,survey,report">
+  <title>Hidden: ZIP duplicate check</title>
+  <exec>
+RECORD1 = ZIPCODES1.get( QZIP.val )
+RECORD2 = ZIPCODES2.get( QZIP.val )
+RECORD3 = ZIPCODES3.get( QZIP.val )
+RECORD4 = ZIPCODES4.get( QZIP.val )
+RECORD5 = ZIPCODES5.get( QZIP.val )
+if (RECORD1):
+	xzip_duplicate.val=xzip_duplicate.r1.index
+if (RECORD2):
+	xzip_duplicate.val=xzip_duplicate.r2.index
+if (RECORD3):
+	xzip_duplicate.val=xzip_duplicate.r3.index
+if (RECORD4):
+	xzip_duplicate.val=xzip_duplicate.r4.index
+if (RECORD5):
+	xzip_duplicate.val=xzip_duplicate.r5.index
+  </exec>
+  <row label="r1">Unique</row>
+  <row label="r2">Duplicate TWO</row>
+  <row label="r3">Duplicate THREE</row>
+  <row label="r4">Duplicate FOUR</row>
+  <row label="r5">Duplicate FIVE</row>
+</radio>
+<suspend/>
+<quota label="quo3" cond="xzip_duplicate.r2" overquota="noqual" sheet="Dup_TWO Quota"/>
+<suspend/>
+<quota label="quo4" cond="xzip_duplicate.r3" overquota="noqual" sheet="Dup_THREE Quota"/>
+<suspend/>
+<quota label="quo5" cond="xzip_duplicate.r4" overquota="noqual" sheet="Dup_FOUR Quota"/>
+<suspend/>
+<quota label="quo6" cond="xzip_duplicate.r5" overquota="noqual" sheet="Dup_FIVE Quota"/>
+<suspend/>
+<radio
+  label="xzip_count"
+  optional="1"
+  where="execute,survey,report">
+  <title>Hidden: ZIP duplicate counter</title>
+  <exec>
+xzip_count.val=5
+if xzip_duplicate.r1:
+	xzip_count.val=0
+elif xzip_duplicate.but(xzip_duplicate.r1).any:
+	for x in range(5):
+		if hasMarker("/*/d2_{}".format(x+1)) or hasMarker("/*/d3_{}".format(x+1)) or hasMarker("/*/d4_{}".format(x+1)) or hasMarker("/*/d5_{}".format(x+1)):
+			xzip_count.val=x
+  </exec>
+  <row label="r1">_1</row>
+  <row label="r2">_2</row>
+  <row label="r3">_3</row>
+  <row label="r4">_4</row>
+  <row label="r5">_5</row>
+  <row label="r99">_0</row>
+</radio>
+<suspend/>
+<radio
+  label="XQREGION"
+  optional="1"
+  values="order"
+  where="execute,survey,report">
+  <title>CENSUS REGION</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['region']!="":
+	XQREGION.val=XQREGION.attr("r"+str(respinfo['region'])).index
+else:
+	XQREGION.val=XQREGION.r99.index
+  </exec>
+  <row label="r1" value="1">NORTHEAST</row>
+  <row label="r2" value="2">MIDWEST</row>
+  <row label="r3" value="3">SOUTH</row>
+  <row label="r4" value="4">WEST</row>
+  <row label="r99" value="99">SYSTEM MISSING</row>
+</radio>
+<suspend/>
+<radio
+  label="XQDIVISION"
+  optional="1"
+  values="order"
+  where="execute,survey,report">
+  <title>CENSUS DIVISION</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['division'] != "":
+	XQDIVISION.val=XQDIVISION.attr("r"+str(respinfo['division'])).index
+else: XQDIVISION.val=XQDIVISION.r99.index
+  </exec>
+  <row label="r1" value="1">NEW ENGLAND</row>
+  <row label="r2" value="2">MID-ATLANTIC</row>
+  <row label="r3" value="3">EAST NORTH CENTRAL</row>
+  <row label="r4" value="4">WEST NORTH CENTRAL</row>
+  <row label="r5" value="5">SOUTH ATLANTIC</row>
+  <row label="r6" value="6">EAST SOUTH CENTRAL</row>
+  <row label="r7" value="7">WEST SOUTH CENTRAL</row>
+  <row label="r8" value="8">MOUNTAIN</row>
+  <row label="r9" value="9">PACIFIC</row>
+  <row label="r99" value="99">SYSTEM MISSING</row>
+</radio>
+<suspend/>
+<text
+  label="XQCDNO"
+  where="execute,survey,report">
+  <title>QCDNO</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['cdno'] != "":
+	XQCDNO.r1.val=respinfo['cdno']
+else:
+	XQCDNO.r99.val=1
+  </exec>
+  <row label="r1">QCDNO</row>
+  <noanswer label="r99">System Missing</noanswer>
+</text>
+<suspend/>
+<radio
+  label="XQSTATE"
+  optional="1"
+  where="execute,survey,report">
+  <title>STATE</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['state'] != "":
+	XQSTATE.val=XQSTATE.attr(respinfo['state'].upper()).index
+else:
+	XQSTATE.val=XQSTATE.r99.index
+  </exec>
+  <row label="AL">Alabama</row>
+  <row label="AK">Alaska</row>
+  <row label="AZ">Arizona</row>
+  <row label="AR">Arkansas</row>
+  <row label="CA">California</row>
+  <row label="CO">Colorado</row>
+  <row label="CT">Connecticut</row>
+  <row label="DE">Delaware</row>
+  <row label="DC">District of Columbia</row>
+  <row label="FL">Florida</row>
+  <row label="GA">Georgia</row>
+  <row label="HI">Hawaii</row>
+  <row label="ID">Idaho</row>
+  <row label="IL">Illinois</row>
+  <row label="IN">Indiana</row>
+  <row label="IA">Iowa</row>
+  <row label="KS">Kansas</row>
+  <row label="KY">Kentucky</row>
+  <row label="LA">Louisiana</row>
+  <row label="ME">Maine</row>
+  <row label="MD">Maryland</row>
+  <row label="MA">Massachusetts</row>
+  <row label="MI">Michigan</row>
+  <row label="MN">Minnesota</row>
+  <row label="MS">Mississippi</row>
+  <row label="MO">Missouri</row>
+  <row label="MT">Montana</row>
+  <row label="NE">Nebraska</row>
+  <row label="NV">Nevada</row>
+  <row label="NH">New Hampshire</row>
+  <row label="NJ">New Jersey</row>
+  <row label="NM">New Mexico</row>
+  <row label="NY">New York</row>
+  <row label="NC">North Carolina</row>
+  <row label="ND">North Dakota</row>
+  <row label="OH">Ohio</row>
+  <row label="OK">Oklahoma</row>
+  <row label="OR">Oregon</row>
+  <row label="PA">Pennsylvania</row>
+  <row label="RI">Rhode Island</row>
+  <row label="SC">South Carolina</row>
+  <row label="SD">South Dakota</row>
+  <row label="TN">Tennessee</row>
+  <row label="TX">Texas</row>
+  <row label="UT">Utah</row>
+  <row label="VT">Vermont</row>
+  <row label="VA">Virginia</row>
+  <row label="WA">Washington</row>
+  <row label="WV">West Virginia</row>
+  <row label="WI">Wisconsin</row>
+  <row label="WY">Wyoming</row>
+  <row label="GU">Guam</row>
+  <row label="r99">System Missing</row>
+</radio>
+<suspend/>
+<text
+  label="XQCD"
+  where="execute,survey,report">
+  <title>CD</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['cd'] != "":
+	XQCD.r1.val=respinfo['cd']
+else:
+	XQCD.r99.val=1
+  </exec>
+  <row label="r1">CD</row>
+  <noanswer label="r99">System Missing</noanswer>
+</text>
+<suspend/>
+<text
+  label="XQUSREP"
+  where="execute,survey,report">
+  <title>CONGRESSPERSON</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['usrep'] != "":
+	XQUSREP.r1.val=respinfo['usrep']
+else:
+	XQUSREP.r99.val=1
+  </exec>
+  <row label="r1">CONGRESSPERSON</row>
+  <noanswer label="r99">System Missing</noanswer>
+</text>
+<suspend/>
+<text
+  label="XQSEN1"
+  where="execute,survey,report">
+  <title>SENATOR 1</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['sen1'] != "":
+	XQSEN1.r1.val=respinfo['sen1']
+else:
+	XQSEN1.r99.val=1
+  </exec>
+  <row label="r1">SENATOR 1</row>
+  <noanswer label="r99">System Missing</noanswer>
+</text>
+<suspend/>
+<text
+  label="XQSEN2"
+  where="execute,survey,report">
+  <title>SENATOR 2</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and (respinfo['sen2'] != "" and respinfo['sen2'] != '0'):
+	XQSEN2.r1.val=respinfo['sen2']
+else:
+	XQSEN2.r99.val=1
+  </exec>
+  <row label="r1">SENATOR 2</row>
+  <noanswer label="r99">System Missing</noanswer>
+</text>
+<suspend/>
+<radio
+  label="XQPrimaryRUCA"
+  optional="1"
+  values="order"
+  where="execute,survey,report">
+  <title>PrimaryRUCA</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['primaryruca'] != "":
+	XQPrimaryRUCA.val=XQPrimaryRUCA.attr("r"+str(respinfo['primaryruca'])).index
+else:
+	XQPrimaryRUCA.val=XQPrimaryRUCA.r99.index
+  </exec>
+  <row label="r1" value="1">1</row>
+  <row label="r2" value="2">2</row>
+  <row label="r3" value="3">3</row>
+  <row label="r4" value="4">4</row>
+  <row label="r5" value="5">5</row>
+  <row label="r6" value="6">6</row>
+  <row label="r7" value="7">7</row>
+  <row label="r8" value="8">8</row>
+  <row label="r9" value="9">9</row>
+  <row label="r10" value="10">10</row>
+  <row label="r99" value="99">System Missing</row>
+</radio>
+<suspend/>
+<radio
+  label="XQSecondaryRUCA"
+  optional="1"
+  values="order"
+  where="execute,survey,report">
+  <title>SecondaryRUCA</title>
+  <exec>
+myval=str(QZIP.val)
+myval=myval+str(xzip_count.rows[xzip_count.val].text)
+respinfo=myzip.get(myval)
+if respinfo and respinfo['secondaryruca'] != "":
+	XQSecondaryRUCA.val=XQSecondaryRUCA.attr("r"+str(respinfo['secondaryruca'])).index
+else:
+	XQSecondaryRUCA.val=XQSecondaryRUCA.r99.index
+  </exec>
+  <row label="r1" value="1">1</row>
+  <row label="r1_1" value="101">1.1</row>
+  <row label="r2" value="2">2</row>
+  <row label="r2_1" value="201">2.1</row>
+  <row label="r3" value="3">3</row>
+  <row label="r4" value="4">4</row>
+  <row label="r4_1" value="401">4.1</row>
+  <row label="r5" value="5">5</row>
+  <row label="r5_1" value="501">5.1</row>
+  <row label="r6" value="6">6</row>
+  <row label="r7" value="7">7</row>
+  <row label="r7_1" value="701">7.1</row>
+  <row label="r7_2" value="702">7.2</row>
+  <row label="r8" value="8">8</row>
+  <row label="r8_1" value="801">8.1</row>
+  <row label="r8_2" value="802">8.2</row>
+  <row label="r9" value="9">9</row>
+  <row label="r10" value="10">10</row>
+  <row label="r10_1" value="101">10.1</row>
+  <row label="r10_2" value="102">10.2</row>
+  <row label="r10_3" value="103">10.3</row>
+  <row label="r99" value="99">System Missing</row>
+</radio>
+<suspend/>
 
-/* reuse page-level bg */
-body, .survey-body, .main-content { background: #F5F2ED !important; }
 
-/* hide native MaxDiff questions */
-.md-native-hidden .question-text,
-.md-native-hidden .comment,
-.md-native-hidden .instruction-text,
-.md-native-hidden .answers-list,
-.md-native-hidden .fir-row,
-.md-native-hidden .row-elements,
-.md-native-hidden .noanswer-row,
-.md-native-hidden .error { display: none !important; }
+<!-- ===================== MAXDIFF SETUP ===================== -->
 
-/* --- md root --- */
-#md-root {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 24px 16px 120px;
-    font-family: Inter, sans-serif;
-    color: #333333;
-}
+<exec when="init">
+def setupMaxDiffFile(fname, fileDelimiter="\t"):
+    try:
+        f = open("%s/%s" % (gv.survey.path, fname))
+        mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+        d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
+    except IOError:
+        d = {}
+    return d
+def setupMaxDiffItemsI(d, vt, question):
+    item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
+    items = d[vt]
+    for r in question.rows:
+        if r.o.label.strip("item") not in items:
+            r.disabled = True
+    question.rows.order = [ item_index[i] for i in items ]
+    print "*****STAFF ONLY*****"
+    print "Version_Task: %s" % vt
+    for i in range(len(items)):
+        print "Item %s: %s" % (i+1,items[i])
+        p.maxdiff1.append(items[i])
+</exec>
+<suspend/>
 
-/* --- md logo --- */
-.md-logo-bar { text-align: center; padding: 12px 0 20px; }
-.md-logo-bar img { height: 40px; width: auto; }
+<exec>
+p.maxdiff1=[]
+</exec>
 
-/* --- md progress --- */
-#md-progress-wrap {
-    position: sticky; top: 0; z-index: 200;
-    background: #F5F2ED; padding: 8px 0 4px; display: none;
-}
-#md-progress-track { height: 5px; background: #E0E0E0; border-radius: 3px; }
-#md-progress-fill {
-    height: 100%; width: 0%;
-    background: #6B7F4E; border-radius: 3px;
-    transition: width .45s cubic-bezier(.4,0,.2,1);
-}
-.md-progress-labels {
-    display: flex; justify-content: space-between;
-    margin-top: 4px; font-size: 11px; font-weight: 600;
-    letter-spacing: .05em; text-transform: uppercase; color: #888888;
-}
+<radio
+  label="TYPING_MODULE"
+  optional="1"
+  where="execute,survey,report">
+  <title>Final punch of the segmentation:</title>
+  <comment>Select one</comment>
+  <row label="r1">GOP</row>
+  <row label="r2">DEM</row>
+</radio>
+<suspend/>
+<quota label="quo12" cond="TYPING_MODULE.any" overquota="noqual" sheet="TYPING MODULE Quota"/>
+<suspend/>
 
-/* --- md intro card --- */
-.md-intro {
-    background: #F8F5F0; border: 1px solid #E0DCD6; border-radius: 10px;
-    padding: 28px 28px 26px; margin-bottom: 28px; text-align: center;
-}
-.md-intro-logo { margin-bottom: 16px; }
-.md-intro-logo img { height: 48px; width: auto; }
-.md-intro-body {
-    font-family: Fraunces, Georgia, serif;
-    font-size: 15px; color: #333333;
-    text-align: center; line-height: 1.65; margin-bottom: 26px;
-}
-.md-intro-body strong { font-weight: 700; }
-#md-start-btn {
-    display: inline-block; background: #6B7F4E; color: #fff;
-    border: none; border-radius: 24px; padding: 14px 48px;
-    font-size: 14px; font-weight: 700; letter-spacing: .1em;
-    text-transform: uppercase; cursor: pointer;
-    font-family: Inter, sans-serif;
-    transition: background .2s, transform .15s;
-}
-#md-start-btn:hover { background: #5A6B42; transform: translateY(-1px); }
 
-/* --- md card container --- */
-.md-card {
-    background: #fff; border: 1px solid #E0DCD6; border-radius: 10px;
-    padding: 22px 24px 20px; margin-bottom: 28px;
-    display: none;
-}
-.md-card.md-visible { display: block; }
-.md-card-label {
-    font-size: 11px; font-weight: 600; letter-spacing: .08em;
-    text-transform: uppercase; color: #888888; margin-bottom: 6px;
-    text-align: right;
-}
-.md-card-title {
-    font-family: Fraunces, Georgia, serif;
-    font-size: 17px; font-weight: 700; color: #333333;
-    line-height: 1.42; margin-bottom: 8px;
-}
-.md-card-instruct {
-    font-size: 13px; color: #555; text-align: center;
-    margin-bottom: 14px; line-height: 1.5;
-}
-.md-card-instruct .md-arrow-best {
-    color: #6B7F4E; font-weight: 700; margin-right: 4px;
-}
-.md-card-instruct .md-arrow-worst {
-    color: #C62828; font-weight: 700; margin-left: 4px;
-}
+<!-- ===================== PAGE GROUP 3 — DEM MaxDiff Block ===================== -->
 
-/* --- column headers --- */
-.md-col-headers {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    padding: 0 4px; margin-bottom: 6px;
-}
-.md-col-h {
-    font-size: 10px; font-weight: 800; letter-spacing: .06em;
-    text-transform: uppercase; color: #6B7F4E; text-align: center;
-    width: 60px; line-height: 1.3;
-}
-.md-col-h-worst { color: #C62828; }
+<block label="b11" cond="TYPING_MODULE.r2">
+  <note>MaxDiff Indices Template --Start DEM--</note>
+  <exec when="init">
+QMD1_md = setupMaxDiffFile("DEMDesign.dat")
+  </exec>
+  <suspend/>
+  <quota label="quo1" overquota="noqual" sheet="Dem Quota"/>
+  <suspend/>
+  <number
+   label="QMD1_Version"
+   size="3"
+   verify="range(1,100)"
+   where="execute,survey,report">
+    <title>QMD1 - MaxDiff Version</title>
+    <exec>
+for x in p.markers:
+    if "/Dem Quota/Dem_" in x:
+        QMD1_Version.val = int(x.split("_")[-1])
+        break
+    </exec>
+  </number>
+  <suspend/>
+  <exec>
+p.startTime = timeSpent()
+  </exec>
 
-/* --- statement rows --- */
-.md-row {
-    display: flex; align-items: center;
-    padding: 12px 4px; border-bottom: 1px solid #EDE9E3;
-    transition: background .15s;
-}
-.md-row:last-child { border-bottom: none; }
-
-.md-btn-col {
-    width: 60px; flex-shrink: 0;
-    display: flex; justify-content: center; align-items: center;
-}
-
-.md-statement {
-    flex: 1; text-align: center;
-    font-family: Fraunces, Georgia, serif;
-    font-size: 14px; color: #333333; line-height: 1.45;
-    padding: 0 6px;
-}
-
-/* --- big spherical radio buttons --- */
-.md-orb {
-    width: 40px; height: 40px;
-    border: 3px solid #D5D0C8; border-radius: 50%;
-    background: #fff; cursor: pointer;
-    transition: background .18s, border-color .18s, box-shadow .18s, transform .12s;
-    position: relative;
-}
-.md-orb:hover {
-    transform: scale(1.08);
-}
-.md-orb-best:hover {
-    border-color: #6B7F4E;
-    box-shadow: 0 0 0 4px rgba(107,127,78,.15);
-}
-.md-orb-worst:hover {
-    border-color: #C62828;
-    box-shadow: 0 0 0 4px rgba(198,40,40,.12);
-}
-.md-orb.md-sel-best {
-    background: #6B7F4E; border-color: #6B7F4E;
-    box-shadow: inset 0 -3px 6px rgba(0,0,0,.2), 0 2px 8px rgba(107,127,78,.3);
-}
-.md-orb.md-sel-worst {
-    background: #C62828; border-color: #C62828;
-    box-shadow: inset 0 -3px 6px rgba(0,0,0,.2), 0 2px 8px rgba(198,40,40,.25);
-}
-
-/* row highlight when selected */
-.md-row.md-row-best { background: rgba(107,127,78,.06); border-radius: 8px; }
-.md-row.md-row-worst { background: rgba(198,40,40,.04); border-radius: 8px; }
-
-/* --- md footer (shared) --- */
-#md-footer {
-    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
-    background: #F5F2ED; border-top: 1px solid #E0DCD6;
-    padding: 10px 20px; text-align: center;
-    font-size: 10px; color: #AAA; font-family: Inter, sans-serif; line-height: 1.4;
-}
-#md-footer a { color: #6B7F4E; text-decoration: none; }
-
-/* --- md continue button --- */
-#md-continue-wrap {
-    display: none; text-align: center; padding: 24px 0 16px;
-}
-#md-continue-btn {
-    background: #6B7F4E; color: #fff; border: none;
-    border-radius: 24px; padding: 14px 36px;
-    font-family: Inter, sans-serif; font-size: 14px; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase;
-    cursor: pointer; transition: background .2s, transform .15s;
-}
-#md-continue-btn:hover { background: #5A6B42; transform: translateY(-1px); }
-
-/* hide native buttons */
-.nextPage, .button { display: none !important; }
-</style>
-]]></style>
-
-<style name="respview.client.js" mode="after" wrap="ready"><![CDATA[
-
-  /* ---- MaxDiff page logic ---- */
-  var defined = function(s,c){ return (c||document).querySelector(s); };
-  var definedAll = function(s,c){ return [].slice.call((c||document).querySelectorAll(s)); };
-
-  /* ---- show intro first, hide card ---- */
-  var mdIntro = document.getElementById('md-intro');
-  var mdCard  = document.getElementById('md-card-1');
-
-  jQuery('#md-start-btn').on('click', function(){
-    jQuery('#md-intro').hide();
-    jQuery('#md-card-1').addClass('md-visible');
-    jQuery('#md-progress-wrap').show();
-  });
-
-  /* ---- MaxDiff selection logic ---- */
-  var bestRow = null;
-  var worstRow = null;
-
-  function clearMdSelections(){
-    jQuery('#md-card-1 .md-orb').removeClass('md-sel-best md-sel-worst');
-    jQuery('#md-card-1 .md-row').removeClass('md-row-best md-row-worst');
-    bestRow = null;
-    worstRow = null;
-    jQuery('#md-continue-wrap').hide();
-  }
-
-  function checkMdComplete(){
-    if(bestRow !== null && worstRow !== null){
-      jQuery('#md-continue-wrap').show();
-      var wrap = document.getElementById('md-continue-wrap');
-      if(wrap) wrap.scrollIntoView({behavior:'smooth', block:'center'});
+  <!-- DEM MaxDiff Loop: 10 items, 4 per task, 10 tasks -->
+  <loop label="QMD1_md_loop" vars="task">
+    <title>QMD1 - DEM MaxDiff Loop</title>
+    <block label="QMD1_md_block" randomize="1">
+      <radio
+     label="QDEM_[loopvar: task]"
+     adim="cols"
+     grouping="cols"
+     shuffle="rows"
+     ss:listDisplay="0"
+     ss:questionClassNames="QMD1_maxdiff"
+     unique="1">
+        <title>Select the one statement that sounds MOST like your own point of view (on the left), and the statement that sounds LEAST like you (on the right)</title>
+        <exec>
+setupMaxDiffItemsI( QMD1_md, "v%d_t%d" % (QMD1_Version.val, [loopvar: task]), QDEM_[loopvar: task])
+p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
+        </exec>
+        <col label="best"><strong>sounds MOST like me</strong></col>
+        <col label="worst"><strong>sounds LEAST like me</strong></col>
+        <row label="item1">Tech and data can improve care, but only if we stop bias, protect privacy, and provide benefits fairly.</row>
+        <row label="item2">I trust mainstream experts and prefer step-by-step fixes&#x2014;strengthening the ACA, not ripping it up.</row>
+        <row label="item3">Digital tools, AI, and start-ups can universalize care faster than big bureaucracies&#x2014;let&#x2019;s remove red tape.</row>
+        <row label="item4">Corporate greed hurts ordinary people. Government must crack down on prices, ads, and junk food.</row>
+        <row label="item5">Healthcare is a human right. We need Medicare-for-All or something very close to it.</row>
+        <row label="item6">Unions fought for good coverage. Policy should protect employer benefits and bargaining power.</row>
+        <row label="item7">Racism and inequality drive poor health. Equity must be built into every health decision and budget.</row>
+        <row label="item8">Reproductive freedom&#x2014;including abortion access&#x2014;is non-negotiable and central to health policy.</row>
+        <row label="item9">My faith calls me to fight for the poor and for broader access&#x2014;especially in under-served communities.</row>
+        <row label="item10">Climate change is a public-health emergency. Clean energy and environmental justice are health policy.</row>
+        <style mode="before" name="question.header"><![CDATA[
+<style type="text/css">
+    body, .survey-body, .main-content { background: #F5F2ED !important; }
+    .QMD1_maxdiff .question-text { display: none !important; }
+    .QMD1_maxdiff .comment { display: none !important; }
+    .QMD1_maxdiff tr.maxdiff-header-legend {
+        background-color: transparent;
     }
-  }
-
-  /* Best (MOST LIKE ME) click */
-  jQuery('#md-card-1').on('click', '.md-orb-best', function(){
-    var row = jQuery(this).closest('.md-row');
-    var rowIdx = row.attr('data-row');
-
-    /* cannot pick same row as worst */
-    if(rowIdx === worstRow) return;
-
-    /* clear previous best */
-    jQuery('#md-card-1 .md-orb-best').removeClass('md-sel-best');
-    jQuery('#md-card-1 .md-row').removeClass('md-row-best');
-
-    jQuery(this).addClass('md-sel-best');
-    row.addClass('md-row-best');
-    bestRow = rowIdx;
-
-    checkMdComplete();
-  });
-
-  /* Worst (LEAST LIKE ME) click */
-  jQuery('#md-card-1').on('click', '.md-orb-worst', function(){
-    var row = jQuery(this).closest('.md-row');
-    var rowIdx = row.attr('data-row');
-
-    /* cannot pick same row as best */
-    if(rowIdx === bestRow) return;
-
-    /* clear previous worst */
-    jQuery('#md-card-1 .md-orb-worst').removeClass('md-sel-worst');
-    jQuery('#md-card-1 .md-row').removeClass('md-row-worst');
-
-    jQuery(this).addClass('md-sel-worst');
-    row.addClass('md-row-worst');
-    worstRow = rowIdx;
-
-    checkMdComplete();
-  });
-
-  /* CONTINUE — submit page (suspend) */
-  jQuery('#md-continue-btn').on('click', function(){
-    var nxt = jQuery('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(nxt.length){ nxt.first().click(); }
-  });
-
-]]></style>
-
-<html label="md_page_ui"><![CDATA[
-
-<div id="md-footer">
-  Your responses are held strictly confidential.
-  See our <a href="#">Privacy Policy</a>
-  and commitment to research ethics and integrity.
-</div>
-
-<div id="md-root">
-
-  <div class="md-logo-bar">
-    <img src="[rel PRISM_glyph.svg]" alt="PRISM">
+    .QMD1_maxdiff tr.maxdiff-header-legend th.legend {
+        background-color: transparent;
+        font-family: Inter, sans-serif;
+        font-size: 10px; font-weight: 800;
+        letter-spacing: .06em; text-transform: uppercase;
+        padding: 8px 4px;
+    }
+    .QMD1_maxdiff tr.maxdiff-header-legend th.legend:first-child {
+        color: #6B7F4E;
+    }
+    .QMD1_maxdiff tr.maxdiff-header-legend th.legend:last-child {
+        color: #C62828;
+    }
+    .QMD1_maxdiff tr.maxdiff-row td.element {
+        text-align: center;
+        padding: 12px 4px;
+        border-bottom: 1px solid #EDE9E3;
+        vertical-align: middle;
+    }
+    .QMD1_maxdiff tr.maxdiff-row td.element input[type="radio"] {
+        width: 40px; height: 40px;
+        accent-color: #6B7F4E;
+        cursor: pointer;
+    }
+    .QMD1_maxdiff tr.maxdiff-row th.row-legend {
+        background-color: transparent;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 14px; color: #333333;
+        line-height: 1.45; text-align: center;
+        padding: 12px 6px;
+        border-bottom: 1px solid #EDE9E3;
+    }
+    .QMD1_maxdiff { max-width: 640px; margin: 0 auto; }
+    .QMD1_maxdiff table { width: 100%; border-collapse: collapse; }
+    .nextPage, .button { display: none !important; }
+</style>
+<div style="max-width:640px;margin:0 auto;padding:16px;">
+  <div style="text-align:center;padding:12px 0 20px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
   </div>
-
-  <div id="md-progress-wrap">
-    <div id="md-progress-track"><div id="md-progress-fill" style="width:33%"></div></div>
-    <div class="md-progress-labels">
-      <span>SECTION 2: POLITICAL IDENTITY</span>
-      <span>3 of 9 Questions</span>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:6px;text-align:right;">
+      Card ${p.MDcount} of ${len(QMD1_md_loop_expanded.order)}
     </div>
-  </div>
-
-  <!-- MaxDiff Intro -->
-  <div class="md-intro" id="md-intro">
-    <div class="md-intro-logo">
-      <img src="[rel PRISM_glyph.svg]" alt="PRISM">
+    <div style="font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:700;color:#333;line-height:1.42;margin-bottom:8px;">
+      From the set of short statements expressing different points of view about politics, culture and health.
     </div>
-    <p class="md-intro-body">
-      In this section we&#x2019;ll ask about a mix of political and social issues.
-      Some questions may feel personal, and some statements you may agree with
-      strongly and others not so much. Always just go with your first, honest reaction.
-    </p>
-    <p class="md-intro-body">
-      You&#x2019;ll see a series of cards, each with [four / five] statements. On each
-      card, choose the one that sounds <strong>most</strong> like you and the one that
-      sounds <strong>least</strong> like you.
-    </p>
-    <p class="md-intro-body">
-      Some statements may show up again&#x2014;that&#x2019;s intentional. There are no
-      right or wrong answers. Go with the statement that feels most true&#x2014;
-      and most familiar&#x2014;to you.
-    </p>
-    <button id="md-start-btn" type="button">ENJOY!</button>
-  </div>
-
-  <!-- MaxDiff Card 1 (static placeholder — looping TBD) -->
-  <div class="md-card" id="md-card-1">
-    <div class="md-card-label">1 of 9 Cards</div>
-    <div class="md-card-title">
-      From the set of short statements expressing different points
-      of view about politics, culture and health.
-    </div>
-    <div class="md-card-instruct">
-      <span class="md-arrow-best">&#x2B05;</span>
+    <div style="font-size:13px;color:#555;text-align:center;margin-bottom:14px;line-height:1.5;">
+      <span style="color:#6B7F4E;font-weight:700;">&#x2B05;</span>
       Select one statement that sounds MOST like your own point of view, and
       the one statement that sounds LEAST like you
-      <span class="md-arrow-worst">&#x27A1;</span>
+      <span style="color:#C62828;font-weight:700;">&#x27A1;</span>
     </div>
-
-    <!-- Column headers -->
-    <div class="md-col-headers">
-      <div class="md-col-h">MOST<br>LIKE ME</div>
-      <div style="flex:1;"></div>
-      <div class="md-col-h md-col-h-worst">LEAST<br>LIKE ME</div>
-    </div>
-
-    <!-- Statement rows -->
-    <div class="md-row" data-row="1">
-      <div class="md-btn-col"><span class="md-orb md-orb-best"></span></div>
-      <div class="md-statement">
-        Tech and data can improve care, but only if we stop bias,
-        protect privacy, and provide benefits fairly.
-      </div>
-      <div class="md-btn-col"><span class="md-orb md-orb-worst"></span></div>
-    </div>
-
-    <div class="md-row" data-row="2">
-      <div class="md-btn-col"><span class="md-orb md-orb-best"></span></div>
-      <div class="md-statement">
-        Corporate greed hurts ordinary people. Government must crack
-        down on prices, ads, and junk food.
-      </div>
-      <div class="md-btn-col"><span class="md-orb md-orb-worst"></span></div>
-    </div>
-
-    <div class="md-row" data-row="3">
-      <div class="md-btn-col"><span class="md-orb md-orb-best"></span></div>
-      <div class="md-statement">
-        Healthcare is a human right. We need Medicare-for-All or
-        something very close to it.
-      </div>
-      <div class="md-btn-col"><span class="md-orb md-orb-worst"></span></div>
-    </div>
-
-    <div class="md-row" data-row="4">
-      <div class="md-btn-col"><span class="md-orb md-orb-best"></span></div>
-      <div class="md-statement">
-        My faith calls me to fight for the poor and for broader
-        access&#x2014;especially in under-served communities.
-      </div>
-      <div class="md-btn-col"><span class="md-orb md-orb-worst"></span></div>
-    </div>
-
+]]></style>
+        <style name="question.top-legend"><![CDATA[
+\@if ec.simpleList
+    $(legends)
+\@else
+    <$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+        ${"%s%s" % (legends.split("</th>")[0],"</th>")}
+       $(left)
+        ${"%s%s" % (legends.split("</th>")[1],"</th>")}
+    </$(tag)>
+    \@if not simple
+  </tbody>
+  <tbody>
+    \@endif
+\@endif
+]]></style>
+        <style name="question.row"><![CDATA[
+\@if ec.simpleList
+    $(elements)
+\@else
+    <$(tag) class="maxdiff-row row row-elements $(style) colCount-$(colCount)">
+        ${"%s%s" % (elements.split("</td>")[0],"</td>")}
+        $(left)
+        ${"%s%s" % (elements.split("</td>")[1],"</td>")}
+    </$(tag)>
+\@endif
+]]></style>
+        <style mode="after" name="question.footer"><![CDATA[
   </div>
-
-  <div id="md-continue-wrap">
-    <button id="md-continue-btn" type="button">CONTINUE &gt;</button>
+  <div style="text-align:center;padding:24px 0 16px;">
+    <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').click();"
+            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+      CONTINUE &gt;
+    </button>
   </div>
-
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:#F5F2ED;border-top:1px solid #E0DCD6;padding:10px 20px;text-align:center;font-size:10px;color:#AAA;font-family:Inter,sans-serif;line-height:1.4;">
+    Your responses are held strictly confidential.
+    See our <a href="#" style="color:#6B7F4E;text-decoration:none;">Privacy Policy</a>
+    and commitment to research ethics and integrity.
+  </div>
 </div>
+]]></style>
+      </radio>
+      <suspend/>
+    </block>
+    <looprow label="1"><loopvar name="task">1</loopvar></looprow>
+    <looprow label="2"><loopvar name="task">2</loopvar></looprow>
+    <looprow label="3"><loopvar name="task">3</loopvar></looprow>
+    <looprow label="4"><loopvar name="task">4</loopvar></looprow>
+    <looprow label="5"><loopvar name="task">5</loopvar></looprow>
+    <looprow label="6"><loopvar name="task">6</loopvar></looprow>
+    <looprow label="7"><loopvar name="task">7</loopvar></looprow>
+    <looprow label="8"><loopvar name="task">8</loopvar></looprow>
+    <looprow label="9"><loopvar name="task">9</loopvar></looprow>
+    <looprow label="10"><loopvar name="task">10</loopvar></looprow>
+  </loop>
 
-]]></html>
+  <float
+   label="QMD1_Timer"
+   size="15"
+   where="execute,survey,report">
+    <title>QMD1 - DEM MaxDiff Timer (Minutes)</title>
+    <exec>
+QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
+    </exec>
+  </float>
+  <suspend/>
 
-<!-- placeholder for actual MaxDiff Decipher questions — looping TBD -->
-<note>MaxDiff loop questions will be added here</note>
 
+  <!-- ===================== PAGE GROUP 4 — DEM Vectors ===================== -->
+
+  <radio
+   label="VECTOR_JUSTICE"
+   type="rating"
+   values="order"
+   averages="cols"
+   optional="0">
+    <title>Tell us how much you agree or disagree with these statements</title>
+    <comment>Tap where you fall on each statement...</comment>
+    <col label="c1" value="1">Strongly Disagree</col>
+    <col label="c2" value="2">2</col>
+    <col label="c3" value="3">3</col>
+    <col label="c4" value="4">Neutral</col>
+    <col label="c5" value="5">5</col>
+    <col label="c6" value="6">6</col>
+    <col label="c7" value="7">Strongly Agree</col>
+    <row label="r1">The federal government should invest extra funds in communities of color that have suffered historic health injustices, even if it means higher taxes</row>
+  </radio>
+
+  <radio
+   label="VECTOR_INDUSTRY"
+   type="rating"
+   values="order"
+   averages="cols"
+   optional="0">
+    <title>Tell us how much you agree or disagree with these statements</title>
+    <col label="c1" value="1">Strongly Disagree</col>
+    <col label="c2" value="2">2</col>
+    <col label="c3" value="3">3</col>
+    <col label="c4" value="4">Neutral</col>
+    <col label="c5" value="5">5</col>
+    <col label="c6" value="6">6</col>
+    <col label="c7" value="7">Strongly Agree</col>
+    <row label="r1">Big corporations have too much influence over public health policies</row>
+  </radio>
+  <suspend/>
+
+
+  <!-- ===================== DEM B-W SCORING ===================== -->
+
+  <text
+   label="QMD1"
+   size="3"
+   where="execute,survey,report">
+    <title>Hidden: DEM MaxDiff B-W Matrix</title>
+    <exec>
+p.sum=[]
+groupSize = 4
+groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
+for col in range(0, 10):
+    rowsForColumn = groups[col]
+    for r in rowsForColumn:
+        rowNum = int(r)-1
+        QMD1.rows[rowNum][col].val=0
+for i in range(0,10):
+	best = "QDEM_{}".format(i+1)
+	worst = "QDEM_{}".format(i+1)
+	best1=allQuestions[best].best.val
+	worst1=allQuestions[worst].worst.val
+	QMD1.rows[best1][i].val=1
+	QMD1.rows[worst1][i].val=-1
+for i in QMD1.rows:
+	a=0
+	for j in range(10):
+		if QMD1[i][j].val!=None:
+			a1=QMD1[i][j].val
+			a+=int(a1)
+	QMD1[i].c11.val=a
+    </exec>
+    <row label="r1">Item-1</row>
+    <row label="r2">Item-2</row>
+    <row label="r3">Item-3</row>
+    <row label="r4">Item-4</row>
+    <row label="r5">Item-5</row>
+    <row label="r6">Item-6</row>
+    <row label="r7">Item-7</row>
+    <row label="r8">Item-8</row>
+    <row label="r9">Item-9</row>
+    <row label="r10">Item-10</row>
+    <col label="c1">QDEM_1</col>
+    <col label="c2">QDEM_2</col>
+    <col label="c3">QDEM_3</col>
+    <col label="c4">QDEM_4</col>
+    <col label="c5">QDEM_5</col>
+    <col label="c6">QDEM_6</col>
+    <col label="c7">QDEM_7</col>
+    <col label="c8">QDEM_8</col>
+    <col label="c9">QDEM_9</col>
+    <col label="c10">QDEM_10</col>
+    <col label="c11">Row Total</col>
+  </text>
+  <note>MaxDiff Indices Template --End DEM BW--</note>
+  <suspend/>
+
+
+  <!-- ===================== DEM Z-SCORING ===================== -->
+
+  <text
+   label="XDEM_SEG"
+   ss:listDisplay="0"
+   where="execute,survey,report">
+    <title>HIDDEN: XDEM_SEG (Z-Scores)</title>
+    <exec>
+DEM_U = [-0.60198, -0.31771, -1.69065, 0.128199, 1.596402, 0.095769, 0.370408, 0.965797, -1.03699, 0.490752]
+DEM_S = [1.590145, 1.904432, 1.809285, 1.851639, 1.958779, 1.680348, 1.76441, 1.862097, 2.16036, 1.804034]
+DEM_MAX_F = []
+
+for i in range(10):
+	XDEM_SEG.rows[i].c1.val=QMD1.rows[i].c11.val
+	DEM_MAX_F.append(float(QMD1.rows[i].c11.val))
+for i in range(10):
+	XDEM_SEG.rows[i].c2.val = DEM_U[i]
+for i in range(10):
+	XDEM_SEG.rows[i].c3.val = DEM_S[i]
+for i in range(10):
+	XDEM_SEG.rows[i].c4.val = (DEM_MAX_F[i] - DEM_U[i])/DEM_S[i]
+
+JUSTICE_U = 4.868184
+JUSTICE_S = 1.515216
+INDUSTRY_U = 5.495869
+INDUSTRY_S = 1.315719
+
+justice_raw = float(VECTOR_JUSTICE.r1.val) if VECTOR_JUSTICE.r1.val else 4.0
+industry_raw = float(VECTOR_INDUSTRY.r1.val) if VECTOR_INDUSTRY.r1.val else 4.0
+
+XDEM_SEG.r13.c1.val = justice_raw
+XDEM_SEG.r13.c2.val = JUSTICE_U
+XDEM_SEG.r13.c3.val = JUSTICE_S
+XDEM_SEG.r13.c4.val = (justice_raw - JUSTICE_U) / JUSTICE_S
+
+XDEM_SEG.r14.c1.val = industry_raw
+XDEM_SEG.r14.c2.val = INDUSTRY_U
+XDEM_SEG.r14.c3.val = INDUSTRY_S
+XDEM_SEG.r14.c4.val = (industry_raw - INDUSTRY_U) / INDUSTRY_S
+    </exec>
+    <row label="r1">Tech and data can improve care, but only if we stop bias, protect privacy, and provide benefits fairly.</row>
+    <row label="r2">I trust mainstream experts and prefer step-by-step fixes&#x2014;strengthening the ACA, not ripping it up.</row>
+    <row label="r3">Digital tools, AI, and start-ups can universalize care faster than big bureaucracies&#x2014;let&#x2019;s remove red tape.</row>
+    <row label="r4">Corporate greed hurts ordinary people. Government must crack down on prices, ads, and junk food.</row>
+    <row label="r5">Healthcare is a human right. We need Medicare-for-All or something very close to it.</row>
+    <row label="r6">Unions fought for good coverage. Policy should protect employer benefits and bargaining power.</row>
+    <row label="r7">Racism and inequality drive poor health. Equity must be built into every health decision and budget.</row>
+    <row label="r8">Reproductive freedom&#x2014;including abortion access&#x2014;is non-negotiable and central to health policy.</row>
+    <row label="r9">My faith calls me to fight for the poor and for broader access&#x2014;especially in under-served communities.</row>
+    <row label="r10">Climate change is a public-health emergency. Clean energy and environmental justice are health policy.</row>
+    <row label="r13">VECTOR_JUSTICE (ATTITUDE_EQUITY_FUNDING)</row>
+    <row label="r14">VECTOR_INDUSTRY (ATTITUDE_INFLUENCE)</row>
+    <col label="c1">PUNCH</col>
+    <col label="c2">Mean</col>
+    <col label="c3">Sigma</col>
+    <col label="c4">Z-Score</col>
+  </text>
+  <suspend/>
+
+
+  <!-- ===================== DEM CENTROID MODEL + SOFTMAX ===================== -->
+
+  <exec>
+import math
+
+def centroidDistance(resp_answers, segment_coeff):
+    return sum((a - c)**2 for a, c in zip(resp_answers, segment_coeff))
+
+def centroidAllSegments(answers, centroid_matrix):
+    num_segments = len(centroid_matrix[0])
+    d2_list = []
+    for c in range(num_segments):
+        segment_col = [row[c] for row in centroid_matrix]
+        d2_list.append(centroidDistance(answers, segment_col))
+    return d2_list
+
+p.dem_z = [float(XDEM_SEG.rows[i].c4.val) for i in range(10)]
+p.dem_z.append(float(XDEM_SEG.r13.c4.val))
+p.dem_z.append(float(XDEM_SEG.r14.c4.val))
+
+dem_centroids = [
+    [-0.5135, -0.1429, -0.3291, 0.544, 0.9293, -0.3204],
+    [-0.039, -0.8206, -0.544, 0.1583, 0.6292, 0.8164],
+    [-0.4356, -0.3798, -0.3126, 1.1914, 0.6485, -0.4382],
+    [0.4891, -0.5913, 0.7544, 0.2422, -0.1966, -0.7195],
+    [0.5194, 0.2926, 0.2316, 0.1168, -1.3929, 0.1419],
+    [-0.1269, -0.1611, 0.5696, -0.2886, -0.2956, 0.2223],
+    [0.257, 0.8708, -0.2005, -0.5704, -0.3712, -0.1654],
+    [0.4032, -0.1316, 0.0902, -0.9386, -0.1134, 0.547],
+    [-0.7075, 1.0908, -0.1312, 0.2406, 0.0411, -0.5795],
+    [0.1626, -0.2097, -0.1184, -0.7095, 0.2866, 0.5285],
+    [0.7218, 0.4355, -0.4757, -0.3332, -0.4753, 0.2212],
+    [0.7961, 0.1727, 0.0062, -0.267, -0.5004, -0.0547]
+]
+
+p.dem_d2 = centroidAllSegments(p.dem_z, dem_centroids)
+
+p.dem_exp = [math.exp(-d/2.0) for d in p.dem_d2]
+dem_exp_sum = sum(p.dem_exp)
+p.dem_prob = [(e/dem_exp_sum)*100.0 for e in p.dem_exp]
+
+for i in range(6):
+    XDEM_SOFTMAX.rows[i].c1.val = round(p.dem_d2[i], 4)
+    XDEM_SOFTMAX.rows[i].c2.val = round(p.dem_exp[i], 6)
+    XDEM_SOFTMAX.rows[i].c3.val = round(p.dem_prob[i], 2)
+
+sorted_probs = sorted(enumerate(p.dem_prob), key=lambda x: -x[1])
+XDEM_SEG_FINAL_1.val = XDEM_SEG_FINAL_1.rows[sorted_probs[0][0]].index
+XDEM_SEG_FINAL_2.val = XDEM_SEG_FINAL_2.rows[sorted_probs[1][0]].index
+
+gap = sorted_probs[0][1] - sorted_probs[1][1]
+XDEM_CONFIDENCE.r1.val = round(sorted_probs[0][1], 2)
+XDEM_CONFIDENCE.r2.val = round(sorted_probs[1][1], 2)
+XDEM_CONFIDENCE.r3.val = round(gap, 2)
+entropy_val = -sum((pr/100.0)*math.log(pr/100.0+1e-12) for pr in p.dem_prob)
+XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
+  </exec>
+
+  <text
+   label="XDEM_SOFTMAX"
+   randomize="0"
+   size="40"
+   where="execute,survey,report">
+    <title>HIDDEN: DEM Softmax Probabilities</title>
+    <row label="r1">11. Universal Care Progressives (UCP)</row>
+    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
+    <row label="r3">13. Health Care Protectionists (HCP)</row>
+    <row label="r4">14. Health Abundance Democrats (HAD)</row>
+    <row label="r5">15. Health Care Incrementalists (HCI)</row>
+    <row label="r6">16. Global Health Institutionalists (GHI)</row>
+    <col label="c1">D-Squared</col>
+    <col label="c2">exp(-D2/2)</col>
+    <col label="c3">Probability %</col>
+  </text>
+  <suspend/>
+
+  <radio
+   label="XDEM_SEG_FINAL_1"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - DEM SEGMENTS - First Maximum</title>
+    <row label="r1">11. Universal Care Progressives (UCP)</row>
+    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
+    <row label="r3">13. Health Care Protectionists (HCP)</row>
+    <row label="r4">14. Health Abundance Democrats (HAD)</row>
+    <row label="r5">15. Health Care Incrementalists (HCI)</row>
+    <row label="r6">16. Global Health Institutionalists (GHI)</row>
+  </radio>
+  <suspend/>
+
+  <radio
+   label="XDEM_SEG_FINAL_2"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - DEM SEGMENTS - Second Maximum</title>
+    <row label="r1">11. Universal Care Progressives (UCP)</row>
+    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
+    <row label="r3">13. Health Care Protectionists (HCP)</row>
+    <row label="r4">14. Health Abundance Democrats (HAD)</row>
+    <row label="r5">15. Health Care Incrementalists (HCI)</row>
+    <row label="r6">16. Global Health Institutionalists (GHI)</row>
+  </radio>
+  <suspend/>
+
+  <text
+   label="XDEM_CONFIDENCE"
+   size="20"
+   where="execute,survey,report">
+    <title>HIDDEN: DEM Confidence Metrics</title>
+    <row label="r1">Top Segment Probability %</row>
+    <row label="r2">Second Segment Probability %</row>
+    <row label="r3">Probability Gap (P1-P2)</row>
+    <row label="r4">Entropy</row>
+  </text>
+  <suspend/>
+
+  <note>MaxDiff Indices Template --End DEM--</note>
+</block>
+<suspend/>
+
+
+<!-- ===================== PAGE GROUP 3 — GOP MaxDiff Block ===================== -->
+
+<block label="b12" cond="TYPING_MODULE.r1">
+  <note>MaxDiff Indices Template --Start GOP--</note>
+  <exec when="init">
+QMD3_md = setupMaxDiffFile("GOPDesign.dat")
+  </exec>
+  <suspend/>
+  <quota label="quo2" overquota="noqual" sheet="GOP Quota"/>
+  <suspend/>
+  <number
+   label="QMD3_Version"
+   size="3"
+   verify="range(1,100)"
+   where="execute,survey,report">
+    <title>QMD3 - MaxDiff Version</title>
+    <exec>
+for x in p.markers:
+    if "/GOP Quota/GOP_" in x:
+        QMD3_Version.val = int(x.split("_")[-1])
+        break
+    </exec>
+  </number>
+  <suspend/>
+  <exec>
+p.startTime = timeSpent()
+  </exec>
+
+  <!-- GOP MaxDiff Loop: 12 items, 4 per task, 12 tasks -->
+  <loop label="QMD3_md_loop" vars="task">
+    <title>QMD3 - GOP MaxDiff Loop</title>
+    <block label="QMD3_md_block" randomize="1">
+      <radio
+     label="QGOP_[loopvar: task]"
+     adim="cols"
+     grouping="cols"
+     shuffle="rows"
+     ss:listDisplay="0"
+     ss:questionClassNames="QMD3_maxdiff"
+     unique="1">
+        <title>Select the one statement that sounds MOST like your own point of view (on the left), and the statement that sounds LEAST like you (on the right)</title>
+        <exec>
+setupMaxDiffItemsI( QMD3_md, "v%d_t%d" % (QMD3_Version.val, [loopvar: task]), QGOP_[loopvar: task])
+p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
+        </exec>
+        <col label="best"><strong>sounds MOST like me</strong></col>
+        <col label="worst"><strong>sounds LEAST like me</strong></col>
+        <row label="item1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
+        <row label="item2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
+        <row label="item3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
+        <row label="item4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
+        <row label="item5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
+        <row label="item6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
+        <row label="item7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
+        <row label="item8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
+        <row label="item9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
+        <row label="item10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
+        <row label="item11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
+        <row label="item12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
+        <style mode="before" name="question.header"><![CDATA[
+<style type="text/css">
+    body, .survey-body, .main-content { background: #F5F2ED !important; }
+    .QMD3_maxdiff .question-text { display: none !important; }
+    .QMD3_maxdiff .comment { display: none !important; }
+    .QMD3_maxdiff tr.maxdiff-header-legend {
+        background-color: transparent;
+    }
+    .QMD3_maxdiff tr.maxdiff-header-legend th.legend {
+        background-color: transparent;
+        font-family: Inter, sans-serif;
+        font-size: 10px; font-weight: 800;
+        letter-spacing: .06em; text-transform: uppercase;
+        padding: 8px 4px;
+    }
+    .QMD3_maxdiff tr.maxdiff-header-legend th.legend:first-child {
+        color: #6B7F4E;
+    }
+    .QMD3_maxdiff tr.maxdiff-header-legend th.legend:last-child {
+        color: #C62828;
+    }
+    .QMD3_maxdiff tr.maxdiff-row td.element {
+        text-align: center;
+        padding: 12px 4px;
+        border-bottom: 1px solid #EDE9E3;
+        vertical-align: middle;
+    }
+    .QMD3_maxdiff tr.maxdiff-row td.element input[type="radio"] {
+        width: 40px; height: 40px;
+        accent-color: #6B7F4E;
+        cursor: pointer;
+    }
+    .QMD3_maxdiff tr.maxdiff-row th.row-legend {
+        background-color: transparent;
+        font-family: Fraunces, Georgia, serif;
+        font-size: 14px; color: #333333;
+        line-height: 1.45; text-align: center;
+        padding: 12px 6px;
+        border-bottom: 1px solid #EDE9E3;
+    }
+    .QMD3_maxdiff { max-width: 640px; margin: 0 auto; }
+    .QMD3_maxdiff table { width: 100%; border-collapse: collapse; }
+    .nextPage, .button { display: none !important; }
+</style>
+<div style="max-width:640px;margin:0 auto;padding:16px;">
+  <div style="text-align:center;padding:12px 0 20px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
+  </div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:6px;text-align:right;">
+      Card ${p.MDcount} of ${len(QMD3_md_loop_expanded.order)}
+    </div>
+    <div style="font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:700;color:#333;line-height:1.42;margin-bottom:8px;">
+      From the set of short statements expressing different points of view about politics, culture and health.
+    </div>
+    <div style="font-size:13px;color:#555;text-align:center;margin-bottom:14px;line-height:1.5;">
+      <span style="color:#6B7F4E;font-weight:700;">&#x2B05;</span>
+      Select one statement that sounds MOST like your own point of view, and
+      the one statement that sounds LEAST like you
+      <span style="color:#C62828;font-weight:700;">&#x27A1;</span>
+    </div>
+]]></style>
+        <style name="question.top-legend"><![CDATA[
+\@if ec.simpleList
+    $(legends)
+\@else
+    <$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+        ${"%s%s" % (legends.split("</th>")[0],"</th>")}
+       $(left)
+        ${"%s%s" % (legends.split("</th>")[1],"</th>")}
+    </$(tag)>
+    \@if not simple
+  </tbody>
+  <tbody>
+    \@endif
+\@endif
+]]></style>
+        <style name="question.row"><![CDATA[
+\@if ec.simpleList
+    $(elements)
+\@else
+    <$(tag) class="maxdiff-row row row-elements $(style) colCount-$(colCount)">
+        ${"%s%s" % (elements.split("</td>")[0],"</td>")}
+        $(left)
+        ${"%s%s" % (elements.split("</td>")[1],"</td>")}
+    </$(tag)>
+\@endif
+]]></style>
+        <style mode="after" name="question.footer"><![CDATA[
+  </div>
+  <div style="text-align:center;padding:24px 0 16px;">
+    <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').click();"
+            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+      CONTINUE &gt;
+    </button>
+  </div>
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:#F5F2ED;border-top:1px solid #E0DCD6;padding:10px 20px;text-align:center;font-size:10px;color:#AAA;font-family:Inter,sans-serif;line-height:1.4;">
+    Your responses are held strictly confidential.
+    See our <a href="#" style="color:#6B7F4E;text-decoration:none;">Privacy Policy</a>
+    and commitment to research ethics and integrity.
+  </div>
+</div>
+]]></style>
+      </radio>
+      <suspend/>
+    </block>
+    <looprow label="1"><loopvar name="task">1</loopvar></looprow>
+    <looprow label="2"><loopvar name="task">2</loopvar></looprow>
+    <looprow label="3"><loopvar name="task">3</loopvar></looprow>
+    <looprow label="4"><loopvar name="task">4</loopvar></looprow>
+    <looprow label="5"><loopvar name="task">5</loopvar></looprow>
+    <looprow label="6"><loopvar name="task">6</loopvar></looprow>
+    <looprow label="7"><loopvar name="task">7</loopvar></looprow>
+    <looprow label="8"><loopvar name="task">8</loopvar></looprow>
+    <looprow label="9"><loopvar name="task">9</loopvar></looprow>
+    <looprow label="10"><loopvar name="task">10</loopvar></looprow>
+    <looprow label="11"><loopvar name="task">11</loopvar></looprow>
+    <looprow label="12"><loopvar name="task">12</loopvar></looprow>
+  </loop>
+
+  <float
+   label="QMD3_Timer"
+   size="15"
+   where="execute,survey,report">
+    <title>QMD3 - GOP MaxDiff Timer (Minutes)</title>
+    <exec>
+QMD3_Timer.val = (timeSpent() - p.startTime) / 60.0
+    </exec>
+  </float>
+  <note>MaxDiff Indices Template --End GOP Loop--</note>
+  <suspend/>
+
+
+  <!-- ===================== GOP B-W SCORING ===================== -->
+
+  <text
+   label="QMD3"
+   size="3"
+   where="execute,survey,report">
+    <title>Hidden: GOP MaxDiff B-W Matrix</title>
+    <exec>
+p.sum=[]
+groupSize = 4
+groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
+for col in range(0, 12):
+    rowsForColumn = groups[col]
+    for r in rowsForColumn:
+        rowNum = int(r)-1
+        QMD3.rows[rowNum][col].val=0
+for i in range(0,12):
+	best = "QGOP_{}".format(i+1)
+	worst = "QGOP_{}".format(i+1)
+	best1=allQuestions[best].best.val
+	worst1=allQuestions[worst].worst.val
+	QMD3.rows[best1][i].val=1
+	QMD3.rows[worst1][i].val=-1
+for i in QMD3.rows:
+	a=0
+	for j in range(12):
+		if QMD3[i][j].val!=None:
+			a1=QMD3[i][j].val
+			a+=int(a1)
+	QMD3[i].c13.val=a
+    </exec>
+    <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
+    <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
+    <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
+    <row label="r4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
+    <row label="r5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
+    <row label="r6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
+    <row label="r7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
+    <row label="r8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
+    <row label="r9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
+    <row label="r10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
+    <row label="r11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
+    <row label="r12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
+    <col label="c1">QGOP_1</col>
+    <col label="c2">QGOP_2</col>
+    <col label="c3">QGOP_3</col>
+    <col label="c4">QGOP_4</col>
+    <col label="c5">QGOP_5</col>
+    <col label="c6">QGOP_6</col>
+    <col label="c7">QGOP_7</col>
+    <col label="c8">QGOP_8</col>
+    <col label="c9">QGOP_9</col>
+    <col label="c10">QGOP_10</col>
+    <col label="c11">QGOP_11</col>
+    <col label="c12">QGOP_12</col>
+    <col label="c13">Row Total</col>
+  </text>
+  <suspend/>
+
+
+  <!-- ===================== GOP Z-SCORING ===================== -->
+
+  <text
+   label="XGOP_SEG"
+   size="25"
+   where="execute,survey,report">
+    <title>HIDDEN: XGOP_SEG (Z-Scores)</title>
+    <exec>
+GOP_U = [0.22251, 0.034617, 0.476305, -0.07664, -0.98778, 0.026842, -0.37542, 0.619956, -0.85117, 0.776564, -0.39097, 0.525176]
+GOP_S = [1.788406, 1.540211, 1.862495, 1.702904, 2.127103, 1.901242, 1.907928, 1.787279, 1.775616, 1.828781, 1.902662, 1.797109]
+GOP_MAX_F = []
+
+for i in XGOP_SEG.rows:
+	i.c1.val=QMD3[i].c13.val
+	GOP_MAX_F.append(float(QMD3[i].c13.val))
+for i in range(12):
+	XGOP_SEG.rows[i].c2.val = GOP_U[i]
+for i in range(12):
+	XGOP_SEG.rows[i].c3.val = GOP_S[i]
+for i in range(12):
+	XGOP_SEG.rows[i].c4.val = (GOP_MAX_F[i] - GOP_U[i])/GOP_S[i]
+    </exec>
+    <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
+    <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
+    <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
+    <row label="r4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
+    <row label="r5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
+    <row label="r6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
+    <row label="r7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
+    <row label="r8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
+    <row label="r9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
+    <row label="r10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
+    <row label="r11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
+    <row label="r12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
+    <col label="c1">PUNCH</col>
+    <col label="c2">Mean</col>
+    <col label="c3">Sigma</col>
+    <col label="c4">Z-Score</col>
+  </text>
+  <suspend/>
+
+
+  <!-- ===================== GOP CENTROID MODEL + SOFTMAX ===================== -->
+
+  <exec>
+import math
+
+def centroidDistance(resp_answers, segment_coeff):
+    return sum((a - c)**2 for a, c in zip(resp_answers, segment_coeff))
+
+def centroidAllSegments(answers, centroid_matrix):
+    num_segments = len(centroid_matrix[0])
+    d2_list = []
+    for c in range(num_segments):
+        segment_col = [row[c] for row in centroid_matrix]
+        d2_list.append(centroidDistance(answers, segment_col))
+    return d2_list
+
+p.gop_z = [float(x) for x in XGOP_SEG.c4.values]
+
+gop_centroids = [
+    [0.2, 0.0096, 0.9146, -0.1336, -0.6956, 0.5846, 0.4648, -0.2554, -0.739, -0.8787],
+    [-0.0608, 0.0308, -0.5647, 0.0053, 0.7257, -0.0362, 0.0185, -0.4401, 0.1704, 0.6758],
+    [-0.0633, 0.67, -0.4791, -0.3529, 0.712, -0.2058, -0.5104, -0.4564, 0.3953, 0.0561],
+    [0.8912, 0.4863, -0.2283, 0.1686, 0.9888, -0.7418, -0.9072, 0.1943, -0.1989, -0.4581],
+    [0.1561, -0.7521, -0.6867, 0.6036, -0.1513, -0.0754, 0.8258, 0.3333, -0.0793, 1.0337],
+    [-0.6021, 0.1277, -0.2994, 0.0551, 0.2664, -0.4837, -0.1493, 0.1478, 0.5757, 0.4379],
+    [-0.1778, -0.9908, -0.8135, 0.233, -0.1464, 0.0851, 0.236, 0.9657, 0.3877, 0.9297],
+    [-0.7705, -0.2343, -0.3477, -1.0279, -0.572, 0.6932, 0.1564, 0.2632, 0.5845, 0.5142],
+    [0.1964, -0.5763, 0.0446, 1.363, -0.0369, -0.4206, 0.9004, 0.2931, -0.5885, 0.1112],
+    [-0.3176, 0.7097, 0.4794, -0.8491, -0.2762, 0.4546, -0.4476, -0.8232, 0.3467, -0.4787],
+    [0.5922, 0.291, 1.1052, 0.6792, 0.0203, -0.5188, -0.4748, 0.0904, -0.7155, -1.192],
+    [-0.0166, 0.3879, 0.9236, -0.8652, -0.687, 0.6888, -0.2467, -0.4652, -0.1536, -0.8748]
+]
+
+p.gop_d2 = centroidAllSegments(p.gop_z, gop_centroids)
+
+p.gop_exp = [math.exp(-d/2.0) for d in p.gop_d2]
+gop_exp_sum = sum(p.gop_exp)
+p.gop_prob = [(e/gop_exp_sum)*100.0 for e in p.gop_exp]
+
+for i in range(10):
+    XGOP_SOFTMAX.rows[i].c1.val = round(p.gop_d2[i], 4)
+    XGOP_SOFTMAX.rows[i].c2.val = round(p.gop_exp[i], 6)
+    XGOP_SOFTMAX.rows[i].c3.val = round(p.gop_prob[i], 2)
+
+sorted_probs = sorted(enumerate(p.gop_prob), key=lambda x: -x[1])
+XGOP_SEG_FINAL_1.val = XGOP_SEG_FINAL_1.rows[sorted_probs[0][0]].index
+XGOP_SEG_FINAL_2.val = XGOP_SEG_FINAL_2.rows[sorted_probs[1][0]].index
+
+gap = sorted_probs[0][1] - sorted_probs[1][1]
+XGOP_CONFIDENCE.r1.val = round(sorted_probs[0][1], 2)
+XGOP_CONFIDENCE.r2.val = round(sorted_probs[1][1], 2)
+XGOP_CONFIDENCE.r3.val = round(gap, 2)
+entropy_val = -sum((pr/100.0)*math.log(pr/100.0+1e-12) for pr in p.gop_prob)
+XGOP_CONFIDENCE.r4.val = round(entropy_val, 4)
+  </exec>
+
+  <text
+   label="XGOP_SOFTMAX"
+   randomize="0"
+   size="40"
+   where="execute,survey,report">
+    <title>HIDDEN: GOP Softmax Probabilities</title>
+    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+    <row label="r3">3. Traditional Conservatives (TC)</row>
+    <row label="r4">4. Health Futurist (HF)</row>
+    <row label="r5">5. Price Populists (PP)</row>
+    <row label="r6">6. Wellness Evangelists (WE)</row>
+    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+    <row label="r10">10. Vaccine Skeptics (VS)</row>
+    <col label="c1">D-Squared</col>
+    <col label="c2">exp(-D2/2)</col>
+    <col label="c3">Probability %</col>
+  </text>
+  <suspend/>
+
+  <radio
+   label="XGOP_SEG_FINAL_1"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - GOP SEGMENTS - First Maximum</title>
+    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+    <row label="r3">3. Traditional Conservatives (TC)</row>
+    <row label="r4">4. Health Futurist (HF)</row>
+    <row label="r5">5. Price Populists (PP)</row>
+    <row label="r6">6. Wellness Evangelists (WE)</row>
+    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+    <row label="r10">10. Vaccine Skeptics (VS)</row>
+  </radio>
+  <suspend/>
+
+  <radio
+   label="XGOP_SEG_FINAL_2"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - GOP SEGMENTS - Second Maximum</title>
+    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+    <row label="r3">3. Traditional Conservatives (TC)</row>
+    <row label="r4">4. Health Futurist (HF)</row>
+    <row label="r5">5. Price Populists (PP)</row>
+    <row label="r6">6. Wellness Evangelists (WE)</row>
+    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+    <row label="r10">10. Vaccine Skeptics (VS)</row>
+  </radio>
+  <suspend/>
+
+  <text
+   label="XGOP_CONFIDENCE"
+   size="20"
+   where="execute,survey,report">
+    <title>HIDDEN: GOP Confidence Metrics</title>
+    <row label="r1">Top Segment Probability %</row>
+    <row label="r2">Second Segment Probability %</row>
+    <row label="r3">Probability Gap (P1-P2)</row>
+    <row label="r4">Entropy</row>
+  </text>
+  <suspend/>
+
+  <note>MaxDiff Indices Template --End GOP--</note>
+</block>
+<suspend/>
+
+
+<!-- ===================== FINAL SEGMENT ASSIGNMENT ===================== -->
+
+<radio
+  label="XSEG_ASSIGNED"
+  optional="1"
+  where="execute,survey,report">
+  <title>Final Segment Assignment (1-16)</title>
+  <comment>GOP Segments (1-10), DEM Segments (11-16)</comment>
+  <exec>
+if XGOP_SEG_FINAL_1.any:
+    XSEG_ASSIGNED.val = XGOP_SEG_FINAL_1.val
+elif XDEM_SEG_FINAL_1.any:
+    XSEG_ASSIGNED.val = XDEM_SEG_FINAL_1.val + 10
+  </exec>
+  <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+  <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+  <row label="r3">3. Traditional Conservatives (TC)</row>
+  <row label="r4">4. Health Futurist (HF)</row>
+  <row label="r5">5. Price Populists (PP)</row>
+  <row label="r6">6. Wellness Evangelists (WE)</row>
+  <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+  <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+  <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+  <row label="r10">10. Vaccine Skeptics (VS)</row>
+  <row label="r11">11. Universal Care Progressives (UCP)</row>
+  <row label="r12">12. Faith and Justice Progressives (FJP)</row>
+  <row label="r13">13. Health Care Protectionists (HCP)</row>
+  <row label="r14">14. Health Abundance Democrats (HAD)</row>
+  <row label="r15">15. Health Care Incrementalists (HCI)</row>
+  <row label="r16">16. Global Health Institutionalists (GHI)</row>
+</radio>
 <suspend/>
 
 
 </survey>
-
