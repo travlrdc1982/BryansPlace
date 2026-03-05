@@ -1119,11 +1119,6 @@ setMarker('Screened-QS5B')
 </exec>
 <term label="Term_QS5B" cond="QS5B.r98">QS5B - Prefer not to respond</term>
 
-<exec cond="QVOTE24.r3 and QS5B.r3">
-vscreenout.val = str('PARTYID')
-setMarker('Screened-PARTYID')
-</exec>
-<term label="Term_PARTYID" cond="QVOTE24.r3 and QS5B.r3">Voted for someone else and does not lean toward either party</term>
 
 
 <!-- ===================== PAGE GROUP 3 — MaxDiff ===================== -->
