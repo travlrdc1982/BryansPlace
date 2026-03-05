@@ -747,15 +747,15 @@ body, .survey-body, .main-content {
     </p>
 
     <div class="zip-digits-row">
-      <input class="zip-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="zip-digit" id="sc-zip-1" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="ZIP digit 1">
-      <input class="zip-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="zip-digit" id="sc-zip-2" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="ZIP digit 2">
-      <input class="zip-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="zip-digit" id="sc-zip-3" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="ZIP digit 3">
-      <input class="zip-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="zip-digit" id="sc-zip-4" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="ZIP digit 4">
-      <input class="zip-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="zip-digit" id="sc-zip-5" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="ZIP digit 5">
     </div>
 
@@ -786,9 +786,9 @@ body, .survey-body, .main-content {
     <div class="age-instruction">Enter two digits &mdash; e.g., &ldquo;4&rdquo; then &ldquo;5&rdquo; for age 45</div>
 
     <div class="age-digits-row">
-      <input class="age-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="age-digit" id="sc-age-1" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="Age tens digit">
-      <input class="age-digit" type="tel" maxlength="1" inputmode="numeric"
+      <input class="age-digit" id="sc-age-2" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="Age units digit">
     </div>
 
