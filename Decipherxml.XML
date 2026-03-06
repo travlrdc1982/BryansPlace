@@ -1208,6 +1208,38 @@ for x in p.markers:
 p.startTime = timeSpent()
   </exec>
 
+  <html label="QMD1_intro" where="execute">
+    <title>DEM MaxDiff Intro</title>
+    <style mode="before" name="question.header"><![CDATA[
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style type="text/css">
+  body, .survey-body, .main-content { background: #F5F2ED !important; }
+  .nextPage, .button { display: none !important; }
+</style>
+<div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
+  <div style="padding:16px 0 24px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
+  </div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
+      In this section we&#x2019;ll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
+    </p>
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
+      You&#x2019;ll see a series of cards, each with four / five statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
+    </p>
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0;">
+      Some statements may show up again&#x2014;that&#x2019;s intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
+    </p>
+  </div>
+  <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');document.querySelector('.nextPage, input[type=submit]').click();"
+          style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    ENJOY!
+  </button>
+</div>
+]]></style>
+  </html>
+  <suspend/>
+
   <note>DEM MaxDiff Loop: 10 items, 4 per task, 10 tasks</note>
   <loop label="QMD1_md_loop" vars="task">
     <title>QMD1 - DEM MaxDiff Loop</title>
@@ -1259,10 +1291,11 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
     .md-row { display: flex; align-items: center; padding: 12px 4px;
         border-bottom: 1px solid #EDE9E3; gap: 10px; }
     .md-row:last-child { border-bottom: none; }
-    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 14px;
-        color: #333; line-height: 1.45; text-align: center; padding: 0 6px; }
-    .md-row.md-has-best { background: rgba(107,127,78,.06); border-radius: 8px; }
-    .md-row.md-has-worst { background: rgba(198,40,40,.04); border-radius: 8px; }
+    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 16px;
+        color: #333; line-height: 1.5; text-align: center; padding: 0 8px; }
+    .md-row:hover { background: rgba(0,0,0,.03); border-radius: 8px; }
+    .md-row.md-has-best { background: rgba(107,127,78,.08); border-radius: 8px; }
+    .md-row.md-has-worst { background: rgba(198,40,40,.06); border-radius: 8px; }
 
     .md-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none;
         width: 44px; height: 44px; min-width: 44px; border-radius: 50%;
@@ -1370,6 +1403,8 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
       }
     }
     if(!text) text = 'Statement '+(i+1);
+    /* strip Decipher row labels like [item8] */
+    text = text.replace(/^\s*\[item\d+\]\s*/i, '');
     items.push(text);
   });
 
@@ -1778,6 +1813,38 @@ for x in p.markers:
 p.startTime = timeSpent()
   </exec>
 
+  <html label="QMD3_intro" where="execute">
+    <title>GOP MaxDiff Intro</title>
+    <style mode="before" name="question.header"><![CDATA[
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style type="text/css">
+  body, .survey-body, .main-content { background: #F5F2ED !important; }
+  .nextPage, .button { display: none !important; }
+</style>
+<div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
+  <div style="padding:16px 0 24px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
+  </div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
+      In this section we&#x2019;ll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
+    </p>
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
+      You&#x2019;ll see a series of cards, each with four / five statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
+    </p>
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0;">
+      Some statements may show up again&#x2014;that&#x2019;s intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
+    </p>
+  </div>
+  <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');document.querySelector('.nextPage, input[type=submit]').click();"
+          style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    ENJOY!
+  </button>
+</div>
+]]></style>
+  </html>
+  <suspend/>
+
   <note>GOP MaxDiff Loop: 12 items, 4 per task, 12 tasks</note>
   <loop label="QMD3_md_loop" vars="task">
     <title>QMD3 - GOP MaxDiff Loop</title>
@@ -1833,10 +1900,11 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
     .md-row { display: flex; align-items: center; padding: 12px 4px;
         border-bottom: 1px solid #EDE9E3; gap: 10px; }
     .md-row:last-child { border-bottom: none; }
-    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 14px;
-        color: #333; line-height: 1.45; text-align: center; padding: 0 6px; }
-    .md-row.md-has-best { background: rgba(107,127,78,.06); border-radius: 8px; }
-    .md-row.md-has-worst { background: rgba(198,40,40,.04); border-radius: 8px; }
+    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 16px;
+        color: #333; line-height: 1.5; text-align: center; padding: 0 8px; }
+    .md-row:hover { background: rgba(0,0,0,.03); border-radius: 8px; }
+    .md-row.md-has-best { background: rgba(107,127,78,.08); border-radius: 8px; }
+    .md-row.md-has-worst { background: rgba(198,40,40,.06); border-radius: 8px; }
 
     /* spherical radio buttons */
     .md-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none;
@@ -1964,6 +2032,8 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
       }
     }
     if(!text) text = 'Statement '+(i+1);
+    /* strip Decipher row labels like [item8] */
+    text = text.replace(/^\s*\[item\d+\]\s*/i, '');
     items.push(text);
   });
 
