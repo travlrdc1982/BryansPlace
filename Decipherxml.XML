@@ -1209,7 +1209,6 @@ p.startTime = timeSpent()
   </exec>
 
   <html label="QMD1_intro" where="execute">
-    <title>DEM MaxDiff Intro</title>
     <style mode="before" name="question.header"><![CDATA[
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style type="text/css">
@@ -1814,7 +1813,6 @@ p.startTime = timeSpent()
   </exec>
 
   <html label="QMD3_intro" where="execute">
-    <title>GOP MaxDiff Intro</title>
     <style mode="before" name="question.header"><![CDATA[
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style type="text/css">
