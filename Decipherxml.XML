@@ -1518,10 +1518,10 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
       }
     }
     if(!text) text = 'Statement '+(i+1);
-    /* strip Decipher row labels like [item6], item9, [Item 1], etc. */
-    text = text.replace(/^\s*\[\s*item\s*\d+\s*\]\s*/i, '');
-    text = text.replace(/^\s*item\s*\d+\s*[:\-.]?\s*/i, '');
-    text = text.replace(/^\s*\[\w+\d+\]\s*/i, '');
+    /* strip any [label] prefix from Decipher row text */
+    var bi = text.indexOf(']');
+    if(bi >= 0 && bi < 30) text = text.substring(bi+1).trim();
+    console.log('[MD-DEM] item'+i+' text:', JSON.stringify(text));
     items.push(text);
   });
 
@@ -2144,10 +2144,10 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
       }
     }
     if(!text) text = 'Statement '+(i+1);
-    /* strip Decipher row labels like [item6], item9, [Item 1], etc. */
-    text = text.replace(/^\s*\[\s*item\s*\d+\s*\]\s*/i, '');
-    text = text.replace(/^\s*item\s*\d+\s*[:\-.]?\s*/i, '');
-    text = text.replace(/^\s*\[\w+\d+\]\s*/i, '');
+    /* strip any [label] prefix from Decipher row text */
+    var bi = text.indexOf(']');
+    if(bi >= 0 && bi < 30) text = text.substring(bi+1).trim();
+    console.log('[MD-GOP] item'+i+' text:', JSON.stringify(text));
     items.push(text);
   });
 
