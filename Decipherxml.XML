@@ -1086,15 +1086,25 @@ setMarker('Screened-QS5')
 
 <exec when="init">
 def setupMaxDiffFile(fname, fileDelimiter="\t"):
+    fpath = "%s/%s" % (gv.survey.path, fname)
     try:
-        f = open("%s/%s" % (gv.survey.path, fname))
+        f = open(fpath)
         mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
-        d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
-    except IOError:
+        d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj if len(row) >= 3 )
+        print "[setupMaxDiffFile] Loaded %s: %d design keys from %d lines" % (fname, len(d), len(mdObj))
+        if d:
+            print "[setupMaxDiffFile] Sample keys: %s" % ", ".join(sorted(d.keys())[:5])
+    except IOError as e:
+        print "[setupMaxDiffFile] ERROR: Cannot open %s — %s" % (fpath, str(e))
+        d = {}
+    except Exception as e:
+        print "[setupMaxDiffFile] ERROR parsing %s — %s" % (fname, str(e))
         d = {}
     return d
 def setupMaxDiffItemsI(d, vt, question):
     item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
+    if not d:
+        raise Exception("MaxDiff design dict is EMPTY — the .dat file was not found or could not be loaded. Looking for key '%s'." % vt)
     if vt not in d:
         raise Exception("MaxDiff design key '%s' not found. Available keys: %s" % (vt, ", ".join(sorted(d.keys())[:20])))
     items = d[vt]
