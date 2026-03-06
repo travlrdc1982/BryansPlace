@@ -1185,7 +1185,7 @@ elif QVOTE24.r3:
   <row label="r3">BOTH</row>
 </radio>
 <suspend/>
-<note>Quota quo12 removed - no TYPING MODULE Quota sheet on server</note>
+<quota label="quo12" cond="TYPING_MODULE.any" overquota="noqual" sheet="TYPING MODULE Quota"/>
 <suspend/>
 
 
@@ -1197,7 +1197,7 @@ elif QVOTE24.r3:
 QMD1_md = setupMaxDiffFile("DEMDesign.dat")
   </exec>
   <suspend/>
-  <note>Quota quo1 removed - no Dem Quota sheet on server</note>
+  <quota label="quo1" overquota="noqual" sheet="Dem Quota"/>
   <suspend/>
   <number
    label="QMD1_Version"
@@ -1663,7 +1663,7 @@ XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
 QMD3_md = setupMaxDiffFile("GOPDesign.dat")
   </exec>
   <suspend/>
-  <note>Quota quo2 removed - no GOP Quota sheet on server</note>
+  <quota label="quo2" overquota="noqual" sheet="GOP Quota"/>
   <suspend/>
   <number
    label="QMD3_Version"
