@@ -1082,7 +1082,7 @@ setMarker('Screened-QS5')
 
 
 
-<!-- ===================== MAXDIFF SETUP ===================== -->
+<note>===================== MAXDIFF SETUP =====================</note>
 
 <exec when="init">
 def setupMaxDiffFile(fname, fileDelimiter="\t"):
@@ -1189,7 +1189,7 @@ elif QVOTE24.r3:
 <suspend/>
 
 
-<!-- ===================== PAGE GROUP 3 — DEM MaxDiff Block ===================== -->
+<note>===================== PAGE GROUP 3 — DEM MaxDiff Block =====================</note>
 
 <block label="b11" cond="TYPING_MODULE.r2 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start DEM--</note>
@@ -1217,7 +1217,7 @@ for x in p.markers:
 p.startTime = timeSpent()
   </exec>
 
-  <!-- DEM MaxDiff Loop: 10 items, 4 per task, 10 tasks -->
+  <note>DEM MaxDiff Loop: 10 items, 4 per task, 10 tasks</note>
   <loop label="QMD1_md_loop" vars="task">
     <title>QMD1 - DEM MaxDiff Loop</title>
     <block label="QMD1_md_block" randomize="1">
@@ -1376,7 +1376,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   <suspend/>
 
 
-  <!-- ===================== PAGE GROUP 4 — DEM Vectors ===================== -->
+  <note>===================== PAGE GROUP 4 — DEM Vectors =====================</note>
 
   <radio
    label="VECTOR_JUSTICE"
@@ -1415,7 +1415,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   <suspend/>
 
 
-  <!-- ===================== DEM B-W SCORING ===================== -->
+  <note>===================== DEM B-W SCORING =====================</note>
 
   <text
    label="QMD1"
@@ -1472,7 +1472,7 @@ for i in QMD1.rows:
   <suspend/>
 
 
-  <!-- ===================== DEM Z-SCORING ===================== -->
+  <note>===================== DEM Z-SCORING =====================</note>
 
   <text
    label="XDEM_SEG"
@@ -1532,7 +1532,7 @@ XDEM_SEG.r14.c4.val = (industry_raw - INDUSTRY_U) / INDUSTRY_S
   <suspend/>
 
 
-  <!-- ===================== DEM CENTROID MODEL + SOFTMAX ===================== -->
+  <note>===================== DEM CENTROID MODEL + SOFTMAX =====================</note>
 
   <exec>
 import math
@@ -1655,7 +1655,7 @@ XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
 <suspend/>
 
 
-<!-- ===================== PAGE GROUP 3 — GOP MaxDiff Block ===================== -->
+<note>===================== PAGE GROUP 3 — GOP MaxDiff Block =====================</note>
 
 <block label="b12" cond="TYPING_MODULE.r1 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start GOP--</note>
@@ -1683,7 +1683,7 @@ for x in p.markers:
 p.startTime = timeSpent()
   </exec>
 
-  <!-- GOP MaxDiff Loop: 12 items, 4 per task, 12 tasks -->
+  <note>GOP MaxDiff Loop: 12 items, 4 per task, 12 tasks</note>
   <loop label="QMD3_md_loop" vars="task">
     <title>QMD3 - GOP MaxDiff Loop</title>
     <block label="QMD3_md_block" randomize="1">
@@ -1847,7 +1847,7 @@ QMD3_Timer.val = (timeSpent() - p.startTime) / 60.0
   <suspend/>
 
 
-  <!-- ===================== GOP B-W SCORING ===================== -->
+  <note>===================== GOP B-W SCORING =====================</note>
 
   <text
    label="QMD3"
@@ -1907,7 +1907,7 @@ for i in QMD3.rows:
   <suspend/>
 
 
-  <!-- ===================== GOP Z-SCORING ===================== -->
+  <note>===================== GOP Z-SCORING =====================</note>
 
   <text
    label="XGOP_SEG"
@@ -1949,7 +1949,7 @@ for i in range(12):
   <suspend/>
 
 
-  <!-- ===================== GOP CENTROID MODEL + SOFTMAX ===================== -->
+  <note>===================== GOP CENTROID MODEL + SOFTMAX =====================</note>
 
   <exec>
 import math
@@ -2082,7 +2082,7 @@ XGOP_CONFIDENCE.r4.val = round(entropy_val, 4)
 <suspend/>
 
 
-<!-- ===================== FINAL SEGMENT ASSIGNMENT ===================== -->
+<note>===================== FINAL SEGMENT ASSIGNMENT =====================</note>
 
 <radio
   label="XSEG_ASSIGNED"
