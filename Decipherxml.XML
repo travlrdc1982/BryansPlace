@@ -19,7 +19,6 @@
   ss:enableNavigation="0"
   ss:hideProgressBar="1"
   state="testing"
-  theme="frozen:user/116957/dpi_project_temp"
   version="19">
 
 <res label="sys_check-error-atLeast-sing-column">You have left question(s) unanswered. Please provide an answer.</res>
