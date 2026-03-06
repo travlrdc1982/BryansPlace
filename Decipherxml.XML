@@ -1353,7 +1353,7 @@ p.startTime = timeSpent()
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
     var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
-    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c[0];}
+    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c.item(0);}
     if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
   });
   </script>
@@ -1965,7 +1965,7 @@ p.startTime = timeSpent()
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
     var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
-    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c[0];}
+    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c.item(0);}
     if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
   });
   </script>
