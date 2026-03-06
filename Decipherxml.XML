@@ -835,7 +835,14 @@ body, .survey-body, .main-content {
 ]]></style>
 
 <html label="sc_page_ui"><![CDATA[
-<style>.nextPage, .button { display: none !important; }</style>
+<style>
+.nextPage, .button { display: none !important; }
+/* pre-hide MaxDiff native elements to prevent flash on page transition */
+.QMD1_maxdiff table, .QMD1_maxdiff .survey-questions-container,
+.QMD1_maxdiff .col-legend-group, .QMD1_maxdiff .grouping-box,
+.QMD3_maxdiff table, .QMD3_maxdiff .survey-questions-container,
+.QMD3_maxdiff .col-legend-group, .QMD3_maxdiff .grouping-box { display: none !important; }
+</style>
 
 <div id="sc-footer">
   Your responses are held strictly confidential.
@@ -1389,8 +1396,8 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
     .QMD1_maxdiff .survey-questions-container,
     .QMD1_maxdiff table,
     .QMD1_maxdiff .col-legend-group,
-    .QMD1_maxdiff .grouping-box { visibility: hidden; height: 0; overflow: hidden; }
-    .QMD1_maxdiff .md-custom-ui { visibility: visible; height: auto; overflow: visible; }
+    .QMD1_maxdiff .grouping-box { display: none !important; }
+    .QMD1_maxdiff .md-custom-ui { display: block !important; }
 
     .md-custom-ui { max-width: 640px; margin: 0 auto; }
     .md-header-row { display: flex; justify-content: space-between; padding: 0 8px 8px; }
@@ -1501,20 +1508,23 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
 
   var items = [];
   bestRadios.forEach(function(r,i){
-    var row = r.closest('tr, .row-element, .row, label, li, div');
+    var row = r.closest('tr, .row-element, .row, label, li');
     var text = '';
     if(row){
-      var legend = row.querySelector('th.row-legend, .row-legend-text, .row-legend, .text');
+      var legend = row.querySelector('th.row-legend, td.row-legend, .row-legend-text, .row-legend');
+      if(!legend) legend = row.querySelector('.text');
       text = legend ? legend.textContent.trim() : '';
       if(!text){
         var clone = row.cloneNode(true);
-        clone.querySelectorAll('input').forEach(function(inp){ inp.remove(); });
+        clone.querySelectorAll('input,th.col-legend,td.col-legend').forEach(function(el){ el.remove(); });
         text = clone.textContent.trim();
       }
     }
     if(!text) text = 'Statement '+(i+1);
-    /* strip Decipher row labels like [item8] */
-    text = text.replace(/^\s*\[?\s*item\s*#?\s*\d+\s*\]?\s*[:\-]?\s*/i, '');
+    /* strip Decipher row labels like [item6], item9, [Item 1], etc. */
+    text = text.replace(/^\s*\[\s*item\s*\d+\s*\]\s*/i, '');
+    text = text.replace(/^\s*item\s*\d+\s*[:\-.]?\s*/i, '');
+    text = text.replace(/^\s*\[\w+\d+\]\s*/i, '');
     items.push(text);
   });
 
@@ -2000,8 +2010,8 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
     .QMD3_maxdiff .survey-questions-container,
     .QMD3_maxdiff table,
     .QMD3_maxdiff .col-legend-group,
-    .QMD3_maxdiff .grouping-box { visibility: hidden; height: 0; overflow: hidden; }
-    .QMD3_maxdiff .md-custom-ui { visibility: visible; height: auto; overflow: visible; }
+    .QMD3_maxdiff .grouping-box { display: none !important; }
+    .QMD3_maxdiff .md-custom-ui { display: block !important; }
 
     /* --- custom MaxDiff UI --- */
     .md-custom-ui { max-width: 640px; margin: 0 auto; }
@@ -2130,23 +2140,23 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
   /* extract item labels from the native rendering */
   var items = [];
   bestRadios.forEach(function(r,i){
-    /* find the label/text near this radio */
-    var row = r.closest('tr, .row-element, .row, label, li, div.element');
+    var row = r.closest('tr, .row-element, .row, label, li');
     var text = '';
     if(row){
-      var legend = row.querySelector('th.row-legend, .row-legend-text, .row-legend, .text');
+      var legend = row.querySelector('th.row-legend, td.row-legend, .row-legend-text, .row-legend');
+      if(!legend) legend = row.querySelector('.text');
       text = legend ? legend.textContent.trim() : '';
       if(!text){
-        /* try sibling text or parent text minus the radio */
         var clone = row.cloneNode(true);
-        var inputs = clone.querySelectorAll('input');
-        inputs.forEach(function(inp){ inp.remove(); });
+        clone.querySelectorAll('input,th.col-legend,td.col-legend').forEach(function(el){ el.remove(); });
         text = clone.textContent.trim();
       }
     }
     if(!text) text = 'Statement '+(i+1);
-    /* strip Decipher row labels like [item8] */
-    text = text.replace(/^\s*\[?\s*item\s*#?\s*\d+\s*\]?\s*[:\-]?\s*/i, '');
+    /* strip Decipher row labels like [item6], item9, [Item 1], etc. */
+    text = text.replace(/^\s*\[\s*item\s*\d+\s*\]\s*/i, '');
+    text = text.replace(/^\s*item\s*\d+\s*[:\-.]?\s*/i, '');
+    text = text.replace(/^\s*\[\w+\d+\]\s*/i, '');
     items.push(text);
   });
 
