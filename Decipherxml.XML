@@ -78,7 +78,7 @@ body, .survey-body, .main-content {
 /* --- PRISM logo top bar --- */
 .sc-logo-bar {
     text-align: center;
-    padding: 12px 0 20px;
+    padding: 16px 0 32px;
 }
 .sc-logo-bar img {
     height: 40px;
@@ -145,8 +145,6 @@ body, .survey-body, .main-content {
 }
 
 /* --- intro card --- */
-.intro-logo-wrap { text-align: center; margin-bottom: 16px; }
-.intro-logo-wrap img { height: 48px; width: auto; }
 .intro-body {
     font-family: Fraunces, Georgia, serif;
     font-size: 15px; color: #333333;
@@ -174,10 +172,14 @@ body, .survey-body, .main-content {
 
 /* --- QS1 yes/no/not-sure buttons --- */
 .qs1-btn-group {
-    display: flex; gap: 14px;
-    justify-content: center; align-items: flex-start;
-    flex-wrap: wrap; padding-top: 4px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    align-items: flex-start;
+    padding-top: 4px;
 }
+.qs1-btn.qs1-yes { grid-column: 2; justify-self: center; }
+.qs1-btn.qs1-no  { grid-column: 4; justify-self: center; }
+.qs1-btn.qs1-ns  { grid-column: 7; justify-self: center; }
 .qs1-btn {
     display: flex; flex-direction: column;
     align-items: center; gap: 7px;
@@ -291,9 +293,12 @@ body, .survey-body, .main-content {
 
 /* --- Gender: STYLE.HORIZONTAL.RADIO --- */
 .gender-pills {
-    display: flex; gap: 12px;
-    justify-content: flex-start; flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
 }
+.gender-pill:nth-child(1) { grid-column: 2; justify-self: center; }
+.gender-pill:nth-child(2) { grid-column: 4; justify-self: center; }
+.gender-pill:nth-child(3) { grid-column: 6; justify-self: center; }
 .gender-pill {
     padding: 10px 24px;
     border: 2px solid #E0DCD6; border-radius: 24px;
@@ -865,9 +870,6 @@ body, .survey-body, .main-content {
   </div>
 
   <div class="sc-card sc-intro" id="card-intro">
-    <div class="intro-logo-wrap">
-      <img src="[rel PRISM_glyph.svg]" alt="PRISM">
-    </div>
     <p class="intro-body">
       Thanks for taking part. This survey helps us understand how people
       think about health&nbsp;care and public policy today. There are no
@@ -1332,15 +1334,12 @@ p.startTime = timeSpent()
   .nextPage, .button { display: none !important; }
 </style>
 <div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
-  <div style="padding:16px 0 24px;">
-    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
-  </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
       In this section we'll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
     </p>
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
-      You'll see a series of cards, each with four / five statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
+      You'll see a series of cards, each with four statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
     </p>
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0;">
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
@@ -1937,15 +1936,12 @@ p.startTime = timeSpent()
   .nextPage, .button { display: none !important; }
 </style>
 <div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
-  <div style="padding:16px 0 24px;">
-    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
-  </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
       In this section we'll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
     </p>
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
-      You'll see a series of cards, each with four / five statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
+      You'll see a series of cards, each with four statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
     </p>
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0;">
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
