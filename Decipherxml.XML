@@ -1342,14 +1342,8 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
-    if(b){
-      b.setAttribute('style','display:block!important;visibility:hidden;position:absolute;left:-9999px');
-      b.click();
-    } else {
-      var f=document.querySelector('form');
-      if(f) f.submit();
-    }
+    var f=document.querySelector('form');
+    if(f) f.submit();
   });
   </script>
 </div>
@@ -1956,14 +1950,8 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
-    if(b){
-      b.setAttribute('style','display:block!important;visibility:hidden;position:absolute;left:-9999px');
-      b.click();
-    } else {
-      var f=document.querySelector('form');
-      if(f) f.submit();
-    }
+    var f=document.querySelector('form');
+    if(f) f.submit();
   });
   </script>
 </div>
