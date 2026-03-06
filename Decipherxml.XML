@@ -504,13 +504,12 @@ body, .survey-body, .main-content {
     if(!box){ console.warn('[setRadio] '+q+' NOT FOUND in DOM'); return; }
     var all = box.querySelectorAll('input[type="radio"]');
     console.log('[setRadio] '+q+' val='+val+' — found '+all.length+' radios:', [].map.call(all, function(r){return r.value;}));
-    /* try value="r1", then value="1", then by position */
-    var inp = box.querySelector('input[type="radio"][value="r'+val+'"]');
+    /* Position-based first (data-val="1" = 1st radio, etc.), then by value */
+    var inp = null;
+    var idx = parseInt(val,10);
+    if(idx>0 && idx<=all.length) inp = all[idx-1];
+    if(!inp) inp = box.querySelector('input[type="radio"][value="r'+val+'"]');
     if(!inp) inp = box.querySelector('input[type="radio"][value="'+val+'"]');
-    if(!inp){
-      var idx = parseInt(val,10);
-      if(idx>0 && idx<=all.length) inp = all[idx-1];
-    }
     if(inp){
       console.log('[setRadio] '+q+' MATCH → value='+inp.value+' name='+inp.name);
       inp.checked = true;
