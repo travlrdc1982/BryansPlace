@@ -14,11 +14,12 @@
   name="Survey"
   remerged="20260217_01:38"
   secure="1"
-  setup="term,decLang,time"
+  setup="term,decLang,quota,time"
   ss:disableBackButton="1"
   ss:enableNavigation="0"
   ss:hideProgressBar="1"
   state="testing"
+  theme="frozen:user/116957/dpi_project_temp"
   version="19">
 
 <res label="sys_check-error-atLeast-sing-column">You have left question(s) unanswered. Please provide an answer.</res>
@@ -1183,6 +1184,8 @@ elif QVOTE24.r3:
   <row label="r3">BOTH</row>
 </radio>
 <suspend/>
+<quota label="quo12" cond="TYPING_MODULE.any" overquota="noqual" sheet="TYPING MODULE Quota"/>
+<suspend/>
 
 
 <note>===================== PAGE GROUP 3 -- DEM MaxDiff Block =====================</note>
@@ -1193,6 +1196,8 @@ elif QVOTE24.r3:
 QMD1_md = setupMaxDiffFile("DEMDesign.dat")
   </exec>
   <suspend/>
+  <quota label="quo1" overquota="noqual" sheet="Dem Quota"/>
+  <suspend/>
   <number
    label="QMD1_Version"
    size="3"
@@ -1200,8 +1205,10 @@ QMD1_md = setupMaxDiffFile("DEMDesign.dat")
    where="execute,survey,report">
     <title>QMD1 - MaxDiff Version</title>
     <exec>
-import random
-QMD1_Version.val = random.randint(1, 10)
+for x in p.markers:
+    if "/Dem Quota/Dem_" in x:
+        QMD1_Version.val = int(x.split("_")[-1])
+        break
     </exec>
   </number>
   <suspend/>
@@ -1655,6 +1662,8 @@ XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
 QMD3_md = setupMaxDiffFile("GOPDesign.dat")
   </exec>
   <suspend/>
+  <quota label="quo2" overquota="noqual" sheet="GOP Quota"/>
+  <suspend/>
   <number
    label="QMD3_Version"
    size="3"
@@ -1662,8 +1671,10 @@ QMD3_md = setupMaxDiffFile("GOPDesign.dat")
    where="execute,survey,report">
     <title>QMD3 - MaxDiff Version</title>
     <exec>
-import random
-QMD3_Version.val = random.randint(1, 10)
+for x in p.markers:
+    if "/GOP Quota/GOP_" in x:
+        QMD3_Version.val = int(x.split("_")[-1])
+        break
     </exec>
   </number>
   <suspend/>
