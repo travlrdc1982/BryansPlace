@@ -1086,19 +1086,34 @@ setMarker('Screened-QS5')
 
 <exec when="init">
 def setupMaxDiffFile(fname, fileDelimiter="\t"):
+    import os
     fpath = "%s/%s" % (gv.survey.path, fname)
+    print "[setupMaxDiffFile] survey.path = %s" % gv.survey.path
+    print "[setupMaxDiffFile] Looking for: %s" % fpath
+    print "[setupMaxDiffFile] File exists: %s" % os.path.exists(fpath)
+    # List .dat files in the survey directory
+    try:
+        allfiles = os.listdir(gv.survey.path)
+        datfiles = [f for f in allfiles if f.endswith('.dat')]
+        print "[setupMaxDiffFile] .dat files in dir: %s" % datfiles
+    except Exception as e:
+        print "[setupMaxDiffFile] Cannot list dir: %s" % str(e)
     try:
         f = open(fpath)
-        mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
+        raw = f.readlines()
+        print "[setupMaxDiffFile] Read %d lines from %s" % (len(raw), fname)
+        if raw:
+            print "[setupMaxDiffFile] First line: %r" % raw[0][:120]
+        mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in raw ]
         d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj if len(row) >= 3 )
-        print "[setupMaxDiffFile] Loaded %s: %d design keys from %d lines" % (fname, len(d), len(mdObj))
+        print "[setupMaxDiffFile] Loaded %d design keys" % len(d)
         if d:
             print "[setupMaxDiffFile] Sample keys: %s" % ", ".join(sorted(d.keys())[:5])
     except IOError as e:
-        print "[setupMaxDiffFile] ERROR: Cannot open %s — %s" % (fpath, str(e))
+        print "[setupMaxDiffFile] IOError: %s" % str(e)
         d = {}
     except Exception as e:
-        print "[setupMaxDiffFile] ERROR parsing %s — %s" % (fname, str(e))
+        print "[setupMaxDiffFile] ERROR: %s" % str(e)
         d = {}
     return d
 def setupMaxDiffItemsI(d, vt, question):
