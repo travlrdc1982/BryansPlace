@@ -78,7 +78,7 @@ body, .survey-body, .main-content {
 /* --- PRISM logo top bar --- */
 .sc-logo-bar {
     text-align: center;
-    padding: 16px 0 32px;
+    padding: 4px 0 36px;
 }
 .sc-logo-bar img {
     height: 40px;
@@ -1333,8 +1333,8 @@ p.startTime = timeSpent()
   body, .survey-body, .main-content { background: #F5F2ED !important; }
   .nextPage, .button { display: none !important; }
 </style>
-<div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
-  <div style="padding:16px 0 24px;">
+<div style="max-width:480px;margin:0 auto;padding:0 16px 16px;text-align:center;">
+  <div style="padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
   </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
@@ -1431,8 +1431,8 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
         border-color: #A01E1E;
         box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
 </style>
-<div style="max-width:640px;margin:0 auto;padding:16px;">
-  <div style="text-align:center;padding:12px 0 20px;">
+<div style="max-width:640px;margin:0 auto;padding:0 16px 16px;">
+  <div style="text-align:center;padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
   </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
@@ -1938,8 +1938,8 @@ p.startTime = timeSpent()
   body, .survey-body, .main-content { background: #F5F2ED !important; }
   .nextPage, .button { display: none !important; }
 </style>
-<div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
-  <div style="padding:16px 0 24px;">
+<div style="max-width:480px;margin:0 auto;padding:0 16px 16px;text-align:center;">
+  <div style="padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
   </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
@@ -2041,8 +2041,8 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
         border-color: #A01E1E;
         box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
 </style>
-<div style="max-width:640px;margin:0 auto;padding:16px;">
-  <div style="text-align:center;padding:12px 0 20px;">
+<div style="max-width:640px;margin:0 auto;padding:0 16px 16px;">
+  <div style="text-align:center;padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
   </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
