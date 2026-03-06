@@ -1185,7 +1185,7 @@ elif QVOTE24.r3:
 <block label="b11" cond="TYPING_MODULE.r2 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start DEM--</note>
   <exec when="init">
-QMD1_md = setupMaxDiffFile("DEMDesign.dat")
+QMD1_md = setupMaxDiffFile("DemDesign.dat")
   </exec>
   <suspend/>
   <quota label="quo1" overquota="noqual" sheet="Dem Quota"/>
