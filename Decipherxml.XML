@@ -19,9 +19,7 @@
   ss:enableNavigation="0"
   ss:hideProgressBar="1"
   state="testing"
-  version="19"
-  xmlns:html="http://www.w3.org/1999/xhtml"
-  xmlns:ss="http://www.decipherinc.com/ss">
+  version="19">
 
 <res label="sys_check-error-atLeast-sing-column">You have left question(s) unanswered. Please provide an answer.</res>
 <res label="sys_noAnswerSelected">You have left question(s) unanswered. Please provide an answer.</res>
