@@ -1342,12 +1342,7 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
-    var b;
-    for(var i=0;i<sels.length;i++){
-      try{b=document.querySelector(sels[i]);}catch(e){b=null;}
-      if(b) break;
-    }
+    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
     if(b){
       b.setAttribute('style','display:block!important;visibility:hidden;position:absolute;left:-9999px');
       b.click();
@@ -1961,12 +1956,7 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
-    var b;
-    for(var i=0;i<sels.length;i++){
-      try{b=document.querySelector(sels[i]);}catch(e){b=null;}
-      if(b) break;
-    }
+    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
     if(b){
       b.setAttribute('style','display:block!important;visibility:hidden;position:absolute;left:-9999px');
       b.click();
