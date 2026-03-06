@@ -1229,10 +1229,17 @@ p.startTime = timeSpent()
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
     </p>
   </div>
-  <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');document.querySelector('.nextPage, input[type=submit]').click();"
+  <button type="button" id="md-enjoy-btn"
           style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
     ENJOY!
   </button>
+  <script>
+  document.getElementById('md-enjoy-btn').addEventListener('click',function(){
+    var b=document.querySelector('.nextPage')||document.querySelector('.button');
+    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
+    else{var f=document.querySelector('form');if(f)f.submit();}
+  });
+  </script>
 </div>
 ]]></html>
   <suspend/>
@@ -1831,10 +1838,17 @@ p.startTime = timeSpent()
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
     </p>
   </div>
-  <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');document.querySelector('.nextPage, input[type=submit]').click();"
+  <button type="button" id="md-enjoy-btn"
           style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
     ENJOY!
   </button>
+  <script>
+  document.getElementById('md-enjoy-btn').addEventListener('click',function(){
+    var b=document.querySelector('.nextPage')||document.querySelector('.button');
+    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
+    else{var f=document.querySelector('form');if(f)f.submit();}
+  });
+  </script>
 </div>
 ]]></html>
   <suspend/>
