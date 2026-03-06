@@ -1334,6 +1334,9 @@ p.startTime = timeSpent()
   .nextPage, .button { display: none !important; }
 </style>
 <div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
+  <div style="padding:16px 0 24px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
+  </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
       In this section we'll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
@@ -1936,6 +1939,9 @@ p.startTime = timeSpent()
   .nextPage, .button { display: none !important; }
 </style>
 <div style="max-width:480px;margin:0 auto;padding:24px 16px;text-align:center;">
+  <div style="padding:16px 0 24px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
+  </div>
   <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
     <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
       In this section we'll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
