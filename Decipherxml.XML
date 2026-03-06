@@ -44,9 +44,7 @@
 body, .survey-body, .main-content {
     background: #F5F2ED !important;
 }
-#q_QS1.question, #q_QZIP.question, #q_QAGE.question,
-#q_QGENDER.question, #q_QVOTE24.question,
-#q_QS5.question, #q_QS5A.question, #q_QS5B.question {
+.sc-native-hidden {
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
@@ -474,24 +472,36 @@ body, .survey-body, .main-content {
   var cur = 0;
   var total = CARDS.length - 1;
 
+  /* ---- find Decipher question element by label ---- */
+  function findQ(q){
+    return document.getElementById('q_'+q)
+        || document.getElementById('question_'+q)
+        || document.getElementById(q)
+        || document.querySelector('[id$="_'+q+'"]')
+        || document.querySelector('.question input[name*="'+q+'"]');
+  }
+  /* auto-detect: log all .question elements so we know the ID format */
+  var allQ = document.querySelectorAll('.question');
+  console.log('[init] All .question IDs:', [].map.call(allQ, function(e){return e.id;}));
+
   /* ---- hide native Decipher questions ---- */
   ['QS1','QZIP','QAGE','QGENDER','QVOTE24','QS5','QS5A','QS5B'].forEach(function(q){
-    var el = document.getElementById('q_'+q);
+    var el = findQ(q);
     if(el){
       el.classList.add('sc-native-hidden');
       var radios = el.querySelectorAll('input[type="radio"]');
       var texts  = el.querySelectorAll('input[type="text"],input[type="number"]');
-      console.log('[init] question_'+q+' found — '+radios.length+' radios, '+texts.length+' text inputs');
-      if(radios.length) console.log('[init]   values:', [].map.call(radios, function(r){return r.value;}));
+      console.log('[init] '+q+' → id='+el.id+' — '+radios.length+' radios, '+texts.length+' text inputs');
+      if(radios.length) console.log('[init]   values:', [].map.call(radios, function(r){return r.value+' name='+r.name;}));
     } else {
-      console.warn('[init] question_'+q+' NOT FOUND in DOM');
+      console.warn('[init] '+q+' NOT FOUND in DOM');
     }
   });
 
   /* ---- write back to native Decipher inputs ---- */
   function setRadio(q, val){
-    var box = document.getElementById('q_'+q);
-    if(!box){ console.warn('[setRadio] q_'+q+' NOT FOUND in DOM'); return; }
+    var box = findQ(q);
+    if(!box){ console.warn('[setRadio] '+q+' NOT FOUND in DOM'); return; }
     var all = box.querySelectorAll('input[type="radio"]');
     console.log('[setRadio] '+q+' val='+val+' — found '+all.length+' radios:', [].map.call(all, function(r){return r.value;}));
     /* try value="r1", then value="1", then by position */
@@ -512,8 +522,8 @@ body, .survey-body, .main-content {
     }
   }
   function setText(q, val){
-    var box = document.getElementById('q_'+q);
-    if(!box){ console.warn('[setText] q_'+q+' NOT FOUND'); return; }
+    var box = findQ(q);
+    if(!box){ console.warn('[setText] '+q+' NOT FOUND'); return; }
     var inp = box.querySelector('input[type="text"]');
     if(inp){
       console.log('[setText] '+q+' → "'+val+'"');
@@ -525,8 +535,8 @@ body, .survey-body, .main-content {
     }
   }
   function setNumber(q, val){
-    var box = document.getElementById('q_'+q);
-    if(!box){ console.warn('[setNumber] q_'+q+' NOT FOUND'); return; }
+    var box = findQ(q);
+    if(!box){ console.warn('[setNumber] '+q+' NOT FOUND'); return; }
     var inp = box.querySelector('input[type="text"],input[type="number"]');
     if(inp){
       console.log('[setNumber] '+q+' → "'+val+'"');
@@ -699,7 +709,7 @@ body, .survey-body, .main-content {
   jQuery('#sc-continue-btn').on('click', function(){
     console.log('[CONTINUE] clicked — dumping native input states:');
     ['QS1','QZIP','QAGE','QGENDER','QVOTE24','QS5','QS5A','QS5B'].forEach(function(q){
-      var box = document.getElementById('q_'+q);
+      var box = findQ(q);
       if(!box){ console.log('  '+q+': NOT IN DOM'); return; }
       var checked = box.querySelector('input[type="radio"]:checked');
       var text = box.querySelector('input[type="text"],input[type="number"]');
