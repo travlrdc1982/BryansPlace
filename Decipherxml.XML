@@ -1346,17 +1346,10 @@ p.startTime = timeSpent()
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
     </p>
   </div>
-  <button type="button" id="md-enjoy-btn"
+  <button type="submit" name="continue"
           style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;width:100%;max-width:320px;box-sizing:border-box;">
     ENJOY!
   </button>
-  <script>
-  document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
-    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c.item(0);}
-    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
-  });
-  </script>
 </div>
 ]]></html>
   <suspend/>
@@ -1958,17 +1951,10 @@ p.startTime = timeSpent()
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
     </p>
   </div>
-  <button type="button" id="md-enjoy-btn"
+  <button type="submit" name="continue"
           style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;width:100%;max-width:320px;box-sizing:border-box;">
     ENJOY!
   </button>
-  <script>
-  document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
-    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c.item(0);}
-    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
-  });
-  </script>
 </div>
 ]]></html>
   <suspend/>
