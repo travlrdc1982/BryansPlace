@@ -44,9 +44,9 @@
 body, .survey-body, .main-content {
     background: #F5F2ED !important;
 }
-#question_QS1.question, #question_QZIP.question, #question_QAGE.question,
-#question_QGENDER.question, #question_QVOTE24.question,
-#question_QS5.question, #question_QS5A.question, #question_QS5B.question {
+#q_QS1.question, #q_QZIP.question, #q_QAGE.question,
+#q_QGENDER.question, #q_QVOTE24.question,
+#q_QS5.question, #q_QS5A.question, #q_QS5B.question {
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
@@ -476,7 +476,7 @@ body, .survey-body, .main-content {
 
   /* ---- hide native Decipher questions ---- */
   ['QS1','QZIP','QAGE','QGENDER','QVOTE24','QS5','QS5A','QS5B'].forEach(function(q){
-    var el = document.getElementById('question_'+q);
+    var el = document.getElementById('q_'+q);
     if(el){
       el.classList.add('sc-native-hidden');
       var radios = el.querySelectorAll('input[type="radio"]');
@@ -490,7 +490,7 @@ body, .survey-body, .main-content {
 
   /* ---- write back to native Decipher inputs ---- */
   function setRadio(q, val){
-    var box = document.getElementById('question_'+q);
+    var box = document.getElementById('q_'+q);
     if(!box){ console.warn('[setRadio] question_'+q+' NOT FOUND in DOM'); return; }
     /* Decipher renders input values as row labels: r1, r2, r99 … */
     var inp = box.querySelector('input[type="radio"][value="r'+val+'"]');
@@ -520,7 +520,7 @@ body, .survey-body, .main-content {
     }
   }
   function setText(q, val){
-    var box = document.getElementById('question_'+q);
+    var box = document.getElementById('q_'+q);
     if(!box){ console.warn('[setText] question_'+q+' NOT FOUND'); return; }
     var inp = box.querySelector('input[type="text"]');
     if(inp){
@@ -533,7 +533,7 @@ body, .survey-body, .main-content {
     }
   }
   function setNumber(q, val){
-    var box = document.getElementById('question_'+q);
+    var box = document.getElementById('q_'+q);
     if(!box){ console.warn('[setNumber] question_'+q+' NOT FOUND'); return; }
     var inp = box.querySelector('input[type="text"],input[type="number"]');
     if(inp){
@@ -707,7 +707,7 @@ body, .survey-body, .main-content {
   jQuery('#sc-continue-btn').on('click', function(){
     console.log('[CONTINUE] clicked — dumping native input states:');
     ['QS1','QZIP','QAGE','QGENDER','QVOTE24','QS5','QS5A','QS5B'].forEach(function(q){
-      var box = document.getElementById('question_'+q);
+      var box = document.getElementById('q_'+q);
       if(!box){ console.log('  '+q+': NOT IN DOM'); return; }
       var checked = box.querySelector('input[type="radio"]:checked');
       var text = box.querySelector('input[type="text"],input[type="number"]');
@@ -1084,23 +1084,15 @@ setMarker('Screened-QS5')
 
 <exec when="init">
 def setupMaxDiffFile(fname, fileDelimiter="\t"):
-    fpath = "%s/%s" % (gv.survey.path, fname)
     try:
-        f = open(fpath)
+        f = open("%s/%s" % (gv.survey.path, fname))
         mdObj = [ line.strip("\r\n").split(fileDelimiter) for line in f.readlines() ]
-        # Skip header row if first field is not numeric
-        if mdObj and not mdObj[0][0].strip().isdigit():
-            mdObj = mdObj[1:]
-        d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj if len(row) >= 3 )
+        d = dict( ("v%s_t%s" % (row[0], row[1]), row[2:]) for row in mdObj )
     except IOError:
-        d = {}
-    except Exception:
         d = {}
     return d
 def setupMaxDiffItemsI(d, vt, question):
     item_index = dict( (r.o.label.strip("item"), r.index) for r in question.rows )
-    if not d:
-        raise Exception("MaxDiff design dict is EMPTY - the .dat file was not found or could not be loaded. Looking for key '%s'." % vt)
     if vt not in d:
         raise Exception("MaxDiff design key '%s' not found. Available keys: %s" % (vt, ", ".join(sorted(d.keys())[:20])))
     items = d[vt]
