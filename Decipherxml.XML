@@ -472,6 +472,9 @@ body, .survey-body, .main-content {
 ]]></style>
 
 <style name="respview.client.js" mode="after" wrap="ready"><![CDATA[
+  /* Only run screener card JS if screener elements exist on this page */
+  if(!document.getElementById('card-intro')){ return; }
+
   var defined = function(s,c){ return (c||document).querySelector(s); };
   var definedAll = function(s,c){ return [].slice.call((c||document).querySelectorAll(s)); };
 
@@ -1349,8 +1352,9 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var f=document.querySelector('form');
-    if(f) f.submit();
+    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
+    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c[0];}
+    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
   });
   </script>
 </div>
@@ -1960,8 +1964,9 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var f=document.querySelector('form');
-    if(f) f.submit();
+    var b=document.querySelector('.nextPage')||document.querySelector('input.button')||document.querySelector('.button');
+    if(!b){var c=document.getElementsByName('continue');if(c.length)b=c[0];}
+    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
   });
   </script>
 </div>
