@@ -1217,6 +1217,7 @@ p.startTime = timeSpent()
      adim="cols"
      grouping="cols"
      shuffle="rows"
+     ss:listDisplay="0"
      ss:questionClassNames="QMD1_maxdiff"
      unique="1">
         <title>Select the one statement that sounds MOST like your own point of view (on the left), and the statement that sounds LEAST like you (on the right)</title>
@@ -1242,93 +1243,44 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
     body, .survey-body, .main-content { background: #F5F2ED !important; }
     .QMD1_maxdiff .question-text { display: none !important; }
     .QMD1_maxdiff .comment { display: none !important; }
-
-    .QMD1_maxdiff .maxdiff-header-legend,
-    .QMD1_maxdiff tr.maxdiff-header-legend {
-        background-color: transparent !important;
-    }
-    .QMD1_maxdiff .maxdiff-header-legend .legend,
-    .QMD1_maxdiff .maxdiff-header-legend th.legend,
-    .QMD1_maxdiff tr.maxdiff-header-legend th {
-        background-color: transparent !important;
-        font-family: Inter, sans-serif !important;
-        font-size: 10px !important; font-weight: 800 !important;
-        letter-spacing: .06em; text-transform: uppercase;
-        padding: 8px 4px !important;
-        border: none !important;
-    }
-    .QMD1_maxdiff tr.maxdiff-header-legend th:first-child {
-        color: #6B7F4E !important;
-    }
-    .QMD1_maxdiff tr.maxdiff-header-legend th:last-child {
-        color: #C62828 !important;
-    }
-
-    .QMD1_maxdiff .maxdiff-row td,
-    .QMD1_maxdiff tr.maxdiff-row td.element {
-        text-align: center !important;
-        padding: 10px 4px !important;
-        border-bottom: 1px solid #EDE9E3 !important;
-        border-top: none !important; border-left: none !important; border-right: none !important;
-        vertical-align: middle !important;
-        background: transparent !important;
-    }
-
-    .QMD1_maxdiff input[type="radio"] {
-        -webkit-appearance: none !important;
-        -moz-appearance: none !important;
-        appearance: none !important;
-        width: 44px !important; height: 44px !important;
-        border-radius: 50% !important;
-        border: 2px solid #C5C0B8 !important;
-        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE) !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6) !important;
-        cursor: pointer !important;
-        transition: all .2s ease !important;
-        margin: 0 auto !important;
-        display: block !important;
-        position: relative !important;
-        outline: none !important;
-    }
-    .QMD1_maxdiff input[type="radio"]:hover {
-        border-color: #999 !important;
-        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6) !important;
-        transform: scale(1.08) !important;
-    }
-    .QMD1_maxdiff td:first-child input[type="radio"]:checked,
-    .QMD1_maxdiff td.element:first-child input[type="radio"]:checked {
-        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A) !important;
-        border-color: #4A6E2A !important;
-        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3) !important;
-    }
-    .QMD1_maxdiff td:last-child input[type="radio"]:checked,
-    .QMD1_maxdiff td.element:last-child input[type="radio"]:checked {
-        background: radial-gradient(circle at 35% 35%, #E05555, #C62828) !important;
-        border-color: #A01E1E !important;
-        box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3) !important;
-    }
-
-    .QMD1_maxdiff .maxdiff-row th,
-    .QMD1_maxdiff tr.maxdiff-row th.row-legend {
-        background-color: transparent !important;
-        font-family: Fraunces, Georgia, serif !important;
-        font-size: 14px !important; color: #333333 !important;
-        line-height: 1.45 !important; text-align: center !important;
-        padding: 12px 10px !important;
-        border-bottom: 1px solid #EDE9E3 !important;
-        border-top: none !important; border-left: none !important; border-right: none !important;
-    }
-    .QMD1_maxdiff tr.maxdiff-row:has(input:checked) th {
-        background-color: rgba(107,127,78,.06) !important;
-        border-radius: 6px;
-    }
-
-    .QMD1_maxdiff { max-width: 640px !important; margin: 0 auto !important; }
-    .QMD1_maxdiff table { width: 100% !important; border-collapse: collapse !important; }
-    .QMD1_maxdiff td:first-child,
-    .QMD1_maxdiff td:last-child { width: 60px !important; }
-
     .nextPage, .button { display: none !important; }
+    .QMD1_maxdiff .survey-questions-container,
+    .QMD1_maxdiff table,
+    .QMD1_maxdiff .col-legend-group,
+    .QMD1_maxdiff .grouping-box { visibility: hidden; height: 0; overflow: hidden; }
+    .QMD1_maxdiff .md-custom-ui { visibility: visible; height: auto; overflow: visible; }
+
+    .md-custom-ui { max-width: 640px; margin: 0 auto; }
+    .md-header-row { display: flex; justify-content: space-between; padding: 0 8px 8px; }
+    .md-header-row span { font-family: Inter,sans-serif; font-size: 10px; font-weight: 800;
+        letter-spacing: .06em; text-transform: uppercase; }
+    .md-header-most { color: #6B7F4E; }
+    .md-header-least { color: #C62828; }
+    .md-row { display: flex; align-items: center; padding: 12px 4px;
+        border-bottom: 1px solid #EDE9E3; gap: 10px; }
+    .md-row:last-child { border-bottom: none; }
+    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 14px;
+        color: #333; line-height: 1.45; text-align: center; padding: 0 6px; }
+    .md-row.md-has-best { background: rgba(107,127,78,.06); border-radius: 8px; }
+    .md-row.md-has-worst { background: rgba(198,40,40,.04); border-radius: 8px; }
+
+    .md-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none;
+        width: 44px; height: 44px; min-width: 44px; border-radius: 50%;
+        border: 2px solid #C5C0B8;
+        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE);
+        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6);
+        cursor: pointer; transition: all .2s ease; outline: none; }
+    .md-radio:hover { border-color: #999;
+        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6);
+        transform: scale(1.08); }
+    .md-radio.md-best-checked {
+        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
+        border-color: #4A6E2A;
+        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+    .md-radio.md-worst-checked {
+        background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
+        border-color: #A01E1E;
+        box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
 </style>
 <div style="max-width:640px;margin:0 auto;padding:16px;">
   <div style="text-align:center;padding:12px 0 20px;">
@@ -1377,8 +1329,8 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
         <style mode="after" name="question.footer"><![CDATA[
   </div>
   <div style="text-align:center;padding:24px 0 16px;">
-    <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').click();"
-            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    <button type="button" id="md-continue-btn"
+            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:.4;pointer-events:none;">
       CONTINUE &gt;
     </button>
   </div>
@@ -1388,6 +1340,109 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
     and commitment to research ethics and integrity.
   </div>
 </div>
+<script>
+(function(){
+  var q = document.querySelector('.QMD1_maxdiff');
+  if(!q) return;
+
+  var allRadios = [].slice.call(q.querySelectorAll('input[type="radio"]'));
+  var groups = {};
+  allRadios.forEach(function(r){ (groups[r.name] = groups[r.name]||[]).push(r); });
+  var gnames = Object.keys(groups);
+  console.log('[MD-DEM] radio groups found:', gnames);
+  if(gnames.length < 2){ console.warn('[MD-DEM] need 2+ radio groups'); return; }
+
+  var bestRadios = groups[gnames[0]];
+  var worstRadios = groups[gnames[1]];
+  console.log('[MD-DEM] best:', bestRadios.length, 'worst:', worstRadios.length);
+
+  var items = [];
+  bestRadios.forEach(function(r,i){
+    var row = r.closest('tr, .row-element, .row, label, li, div');
+    var text = '';
+    if(row){
+      var legend = row.querySelector('th.row-legend, .row-legend-text, .row-legend, .text');
+      text = legend ? legend.textContent.trim() : '';
+      if(!text){
+        var clone = row.cloneNode(true);
+        clone.querySelectorAll('input').forEach(function(inp){ inp.remove(); });
+        text = clone.textContent.trim();
+      }
+    }
+    if(!text) text = 'Statement '+(i+1);
+    items.push(text);
+  });
+
+  var wrap = document.createElement('div');
+  wrap.className = 'md-custom-ui';
+  wrap.innerHTML = '<div class="md-header-row">' +
+    '<span class="md-header-most">MOST<br>LIKE ME</span>' +
+    '<span class="md-header-least">LEAST<br>LIKE ME</span></div>';
+
+  var bestSel = -1, worstSel = -1;
+
+  function updateUI(){
+    var rows = wrap.querySelectorAll('.md-row');
+    var allBest = wrap.querySelectorAll('.md-radio-best');
+    var allWorst = wrap.querySelectorAll('.md-radio-worst');
+    for(var i=0;i<rows.length;i++){
+      rows[i].classList.remove('md-has-best','md-has-worst');
+      allBest[i].classList.remove('md-best-checked');
+      allWorst[i].classList.remove('md-worst-checked');
+      if(i===bestSel){ rows[i].classList.add('md-has-best'); allBest[i].classList.add('md-best-checked'); }
+      if(i===worstSel){ rows[i].classList.add('md-has-worst'); allWorst[i].classList.add('md-worst-checked'); }
+    }
+    var btn = document.getElementById('md-continue-btn');
+    if(btn){
+      if(bestSel>=0 && worstSel>=0){ btn.style.opacity='1'; btn.style.pointerEvents='auto'; }
+      else { btn.style.opacity='.4'; btn.style.pointerEvents='none'; }
+    }
+  }
+
+  items.forEach(function(txt,i){
+    var row = document.createElement('div');
+    row.className = 'md-row';
+    row.innerHTML = '<button type="button" class="md-radio md-radio-best" data-idx="'+i+'"></button>' +
+      '<div class="md-row-text">'+txt+'</div>' +
+      '<button type="button" class="md-radio md-radio-worst" data-idx="'+i+'"></button>';
+    wrap.appendChild(row);
+  });
+
+  wrap.addEventListener('click', function(e){
+    var btn = e.target.closest('.md-radio');
+    if(!btn) return;
+    var idx = parseInt(btn.getAttribute('data-idx'),10);
+    if(btn.classList.contains('md-radio-best')){
+      if(idx===worstSel) return;
+      bestSel = (bestSel===idx) ? -1 : idx;
+      if(bestSel>=0 && bestRadios[bestSel]){ bestRadios[bestSel].checked=true; bestRadios[bestSel].click(); }
+    } else {
+      if(idx===bestSel) return;
+      worstSel = (worstSel===idx) ? -1 : idx;
+      if(worstSel>=0 && worstRadios[worstSel]){ worstRadios[worstSel].checked=true; worstRadios[worstSel].click(); }
+    }
+    updateUI();
+  });
+
+  q.insertBefore(wrap, q.firstChild);
+
+  var btn = document.getElementById('md-continue-btn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      if(bestSel<0||worstSel<0) return;
+      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+      if(!nxt) nxt = document.querySelector('.button, input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+})();
+</script>
 ]]></style>
       </radio>
       <suspend/>
@@ -1732,6 +1787,7 @@ p.startTime = timeSpent()
      adim="cols"
      grouping="cols"
      shuffle="rows"
+     ss:listDisplay="0"
      ss:questionClassNames="QMD3_maxdiff"
      unique="1">
         <title>Select the one statement that sounds MOST like your own point of view (on the left), and the statement that sounds LEAST like you (on the right)</title>
@@ -1759,102 +1815,47 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
     body, .survey-body, .main-content { background: #F5F2ED !important; }
     .QMD3_maxdiff .question-text { display: none !important; }
     .QMD3_maxdiff .comment { display: none !important; }
-
-    /* --- header legend row --- */
-    .QMD3_maxdiff .maxdiff-header-legend,
-    .QMD3_maxdiff tr.maxdiff-header-legend {
-        background-color: transparent !important;
-    }
-    .QMD3_maxdiff .maxdiff-header-legend .legend,
-    .QMD3_maxdiff .maxdiff-header-legend th.legend,
-    .QMD3_maxdiff tr.maxdiff-header-legend th {
-        background-color: transparent !important;
-        font-family: Inter, sans-serif !important;
-        font-size: 10px !important; font-weight: 800 !important;
-        letter-spacing: .06em; text-transform: uppercase;
-        padding: 8px 4px !important;
-        border: none !important;
-    }
-    .QMD3_maxdiff tr.maxdiff-header-legend th:first-child {
-        color: #6B7F4E !important;
-    }
-    .QMD3_maxdiff tr.maxdiff-header-legend th:last-child {
-        color: #C62828 !important;
-    }
-
-    /* --- item rows --- */
-    .QMD3_maxdiff .maxdiff-row td,
-    .QMD3_maxdiff tr.maxdiff-row td.element {
-        text-align: center !important;
-        padding: 10px 4px !important;
-        border-bottom: 1px solid #EDE9E3 !important;
-        border-top: none !important; border-left: none !important; border-right: none !important;
-        vertical-align: middle !important;
-        background: transparent !important;
-    }
-
-    /* --- spherical radio buttons --- */
-    .QMD3_maxdiff input[type="radio"] {
-        -webkit-appearance: none !important;
-        -moz-appearance: none !important;
-        appearance: none !important;
-        width: 44px !important; height: 44px !important;
-        border-radius: 50% !important;
-        border: 2px solid #C5C0B8 !important;
-        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE) !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6) !important;
-        cursor: pointer !important;
-        transition: all .2s ease !important;
-        margin: 0 auto !important;
-        display: block !important;
-        position: relative !important;
-        outline: none !important;
-    }
-    .QMD3_maxdiff input[type="radio"]:hover {
-        border-color: #999 !important;
-        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6) !important;
-        transform: scale(1.08) !important;
-    }
-    /* BEST / MOST = green */
-    .QMD3_maxdiff td:first-child input[type="radio"]:checked,
-    .QMD3_maxdiff td.element:first-child input[type="radio"]:checked {
-        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A) !important;
-        border-color: #4A6E2A !important;
-        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3) !important;
-    }
-    /* WORST / LEAST = red */
-    .QMD3_maxdiff td:last-child input[type="radio"]:checked,
-    .QMD3_maxdiff td.element:last-child input[type="radio"]:checked {
-        background: radial-gradient(circle at 35% 35%, #E05555, #C62828) !important;
-        border-color: #A01E1E !important;
-        box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3) !important;
-    }
-
-    /* --- row text --- */
-    .QMD3_maxdiff .maxdiff-row th,
-    .QMD3_maxdiff tr.maxdiff-row th.row-legend {
-        background-color: transparent !important;
-        font-family: Fraunces, Georgia, serif !important;
-        font-size: 14px !important; color: #333333 !important;
-        line-height: 1.45 !important; text-align: center !important;
-        padding: 12px 10px !important;
-        border-bottom: 1px solid #EDE9E3 !important;
-        border-top: none !important; border-left: none !important; border-right: none !important;
-    }
-
-    /* --- highlight selected row --- */
-    .QMD3_maxdiff tr.maxdiff-row:has(input:checked) th {
-        background-color: rgba(107,127,78,.06) !important;
-        border-radius: 6px;
-    }
-
-    /* --- table layout --- */
-    .QMD3_maxdiff { max-width: 640px !important; margin: 0 auto !important; }
-    .QMD3_maxdiff table { width: 100% !important; border-collapse: collapse !important; }
-    .QMD3_maxdiff td:first-child,
-    .QMD3_maxdiff td:last-child { width: 60px !important; }
-
     .nextPage, .button { display: none !important; }
+    /* hide native rendering until JS rebuilds it */
+    .QMD3_maxdiff .survey-questions-container,
+    .QMD3_maxdiff table,
+    .QMD3_maxdiff .col-legend-group,
+    .QMD3_maxdiff .grouping-box { visibility: hidden; height: 0; overflow: hidden; }
+    .QMD3_maxdiff .md-custom-ui { visibility: visible; height: auto; overflow: visible; }
+
+    /* --- custom MaxDiff UI --- */
+    .md-custom-ui { max-width: 640px; margin: 0 auto; }
+    .md-header-row { display: flex; justify-content: space-between; padding: 0 8px 8px; }
+    .md-header-row span { font-family: Inter,sans-serif; font-size: 10px; font-weight: 800;
+        letter-spacing: .06em; text-transform: uppercase; }
+    .md-header-most { color: #6B7F4E; }
+    .md-header-least { color: #C62828; }
+    .md-row { display: flex; align-items: center; padding: 12px 4px;
+        border-bottom: 1px solid #EDE9E3; gap: 10px; }
+    .md-row:last-child { border-bottom: none; }
+    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 14px;
+        color: #333; line-height: 1.45; text-align: center; padding: 0 6px; }
+    .md-row.md-has-best { background: rgba(107,127,78,.06); border-radius: 8px; }
+    .md-row.md-has-worst { background: rgba(198,40,40,.04); border-radius: 8px; }
+
+    /* spherical radio buttons */
+    .md-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none;
+        width: 44px; height: 44px; min-width: 44px; border-radius: 50%;
+        border: 2px solid #C5C0B8;
+        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE);
+        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6);
+        cursor: pointer; transition: all .2s ease; outline: none; }
+    .md-radio:hover { border-color: #999;
+        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6);
+        transform: scale(1.08); }
+    .md-radio.md-best-checked {
+        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
+        border-color: #4A6E2A;
+        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+    .md-radio.md-worst-checked {
+        background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
+        border-color: #A01E1E;
+        box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
 </style>
 <div style="max-width:640px;margin:0 auto;padding:16px;">
   <div style="text-align:center;padding:12px 0 20px;">
@@ -1903,8 +1904,8 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
         <style mode="after" name="question.footer"><![CDATA[
   </div>
   <div style="text-align:center;padding:24px 0 16px;">
-    <button type="button" onclick="document.querySelector('.nextPage, input[type=submit]').click();"
-            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    <button type="button" id="md-continue-btn"
+            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:.4;pointer-events:none;">
       CONTINUE &gt;
     </button>
   </div>
@@ -1914,6 +1915,134 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
     and commitment to research ethics and integrity.
   </div>
 </div>
+<script>
+(function(){
+  var q = document.querySelector('.QMD3_maxdiff');
+  if(!q) return;
+
+  /* find all native radio inputs grouped by column (best/worst) */
+  var bestRadios = [].slice.call(q.querySelectorAll('input[type="radio"][name*="_best_"],input[type="radio"][name*=".best."],input[type="radio"][name*="c1"]'));
+  var worstRadios = [].slice.call(q.querySelectorAll('input[type="radio"][name*="_worst_"],input[type="radio"][name*=".worst."],input[type="radio"][name*="c2"]'));
+
+  /* fallback: if can't find by name pattern, find by grouping structure */
+  if(!bestRadios.length || !worstRadios.length){
+    var allRadios = [].slice.call(q.querySelectorAll('input[type="radio"]'));
+    /* group by name attribute */
+    var groups = {};
+    allRadios.forEach(function(r){ (groups[r.name] = groups[r.name]||[]).push(r); });
+    var gnames = Object.keys(groups);
+    console.log('[MD-GOP] radio groups found:', gnames);
+    if(gnames.length >= 2){
+      /* first group = best, second = worst */
+      bestRadios = groups[gnames[0]];
+      worstRadios = groups[gnames[1]];
+    }
+  }
+
+  if(!bestRadios.length || !worstRadios.length){
+    console.warn('[MD-GOP] could not find best/worst radios');
+    return;
+  }
+
+  console.log('[MD-GOP] best:', bestRadios.length, 'worst:', worstRadios.length);
+
+  /* extract item labels from the native rendering */
+  var items = [];
+  bestRadios.forEach(function(r,i){
+    /* find the label/text near this radio */
+    var row = r.closest('tr, .row-element, .row, label, li, div.element');
+    var text = '';
+    if(row){
+      var legend = row.querySelector('th.row-legend, .row-legend-text, .row-legend, .text');
+      text = legend ? legend.textContent.trim() : '';
+      if(!text){
+        /* try sibling text or parent text minus the radio */
+        var clone = row.cloneNode(true);
+        var inputs = clone.querySelectorAll('input');
+        inputs.forEach(function(inp){ inp.remove(); });
+        text = clone.textContent.trim();
+      }
+    }
+    if(!text) text = 'Statement '+(i+1);
+    items.push(text);
+  });
+
+  /* build custom UI */
+  var wrap = document.createElement('div');
+  wrap.className = 'md-custom-ui';
+  wrap.innerHTML = '<div class="md-header-row">' +
+    '<span class="md-header-most">MOST<br>LIKE ME</span>' +
+    '<span class="md-header-least">LEAST<br>LIKE ME</span></div>';
+
+  var bestSel = -1, worstSel = -1;
+
+  function updateUI(){
+    var rows = wrap.querySelectorAll('.md-row');
+    var allBest = wrap.querySelectorAll('.md-radio-best');
+    var allWorst = wrap.querySelectorAll('.md-radio-worst');
+    for(var i=0;i<rows.length;i++){
+      rows[i].classList.remove('md-has-best','md-has-worst');
+      allBest[i].classList.remove('md-best-checked');
+      allWorst[i].classList.remove('md-worst-checked');
+      if(i===bestSel){ rows[i].classList.add('md-has-best'); allBest[i].classList.add('md-best-checked'); }
+      if(i===worstSel){ rows[i].classList.add('md-has-worst'); allWorst[i].classList.add('md-worst-checked'); }
+    }
+    /* enable continue only when both selected */
+    var btn = document.getElementById('md-continue-btn');
+    if(btn){
+      if(bestSel>=0 && worstSel>=0){ btn.style.opacity='1'; btn.style.pointerEvents='auto'; }
+      else { btn.style.opacity='.4'; btn.style.pointerEvents='none'; }
+    }
+  }
+
+  items.forEach(function(txt,i){
+    var row = document.createElement('div');
+    row.className = 'md-row';
+    row.innerHTML = '<button type="button" class="md-radio md-radio-best" data-idx="'+i+'"></button>' +
+      '<div class="md-row-text">'+txt+'</div>' +
+      '<button type="button" class="md-radio md-radio-worst" data-idx="'+i+'"></button>';
+    wrap.appendChild(row);
+  });
+
+  /* click handlers */
+  wrap.addEventListener('click', function(e){
+    var btn = e.target.closest('.md-radio');
+    if(!btn) return;
+    var idx = parseInt(btn.getAttribute('data-idx'),10);
+    if(btn.classList.contains('md-radio-best')){
+      if(idx===worstSel) return; /* can't pick same row */
+      bestSel = (bestSel===idx) ? -1 : idx;
+      /* sync to native radio */
+      if(bestSel>=0 && bestRadios[bestSel]){ bestRadios[bestSel].checked=true; bestRadios[bestSel].click(); }
+    } else {
+      if(idx===bestSel) return;
+      worstSel = (worstSel===idx) ? -1 : idx;
+      if(worstSel>=0 && worstRadios[worstSel]){ worstRadios[worstSel].checked=true; worstRadios[worstSel].click(); }
+    }
+    updateUI();
+  });
+
+  /* insert custom UI before the native question */
+  q.insertBefore(wrap, q.firstChild);
+
+  /* continue button */
+  var btn = document.getElementById('md-continue-btn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      if(bestSel<0||worstSel<0) return;
+      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+      if(!nxt) nxt = document.querySelector('.button, input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+})();
+</script>
 ]]></style>
       </radio>
       <suspend/>
