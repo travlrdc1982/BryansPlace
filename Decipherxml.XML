@@ -1514,7 +1514,7 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
     }
     if(!text) text = 'Statement '+(i+1);
     /* strip Decipher row labels like [item8] */
-    text = text.replace(/^\s*\[item\d+\]\s*/i, '');
+    text = text.replace(/^\s*\[?\s*item\s*#?\s*\d+\s*\]?\s*[:\-]?\s*/i, '');
     items.push(text);
   });
 
@@ -2146,7 +2146,7 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
     }
     if(!text) text = 'Statement '+(i+1);
     /* strip Decipher row labels like [item8] */
-    text = text.replace(/^\s*\[item\d+\]\s*/i, '');
+    text = text.replace(/^\s*\[?\s*item\s*#?\s*\d+\s*\]?\s*[:\-]?\s*/i, '');
     items.push(text);
   });
 
