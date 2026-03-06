@@ -491,42 +491,34 @@ body, .survey-body, .main-content {
   /* ---- write back to native Decipher inputs ---- */
   function setRadio(q, val){
     var box = document.getElementById('q_'+q);
-    if(!box){ console.warn('[setRadio] question_'+q+' NOT FOUND in DOM'); return; }
-    /* Decipher renders input values as row labels: r1, r2, r99 … */
+    if(!box){ console.warn('[setRadio] q_'+q+' NOT FOUND in DOM'); return; }
+    var all = box.querySelectorAll('input[type="radio"]');
+    console.log('[setRadio] '+q+' val='+val+' — found '+all.length+' radios:', [].map.call(all, function(r){return r.value;}));
+    /* try value="r1", then value="1", then by position */
     var inp = box.querySelector('input[type="radio"][value="r'+val+'"]');
+    if(!inp) inp = box.querySelector('input[type="radio"][value="'+val+'"]');
     if(!inp){
-      /* fallback: try plain numeric value */
-      inp = box.querySelector('input[type="radio"][value="'+val+'"]');
-    }
-    if(!inp){
-      /* fallback: nth radio by 1-based position */
-      var all = box.querySelectorAll('input[type="radio"]');
       var idx = parseInt(val,10);
       if(idx>0 && idx<=all.length) inp = all[idx-1];
     }
     if(inp){
-      console.log('[setRadio] '+q+' → value='+inp.value+' name='+inp.name);
-      /* Use native click() — fires ALL event listeners (native + jQuery + framework) */
-      inp.click();
-      /* Belt-and-suspenders: also set checked and dispatch change */
+      console.log('[setRadio] '+q+' MATCH → value='+inp.value+' name='+inp.name);
       inp.checked = true;
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
-      inp.dispatchEvent(new Event('input', {bubbles:true}));
     } else {
-      console.warn('[setRadio] '+q+': NO INPUT for val='+val);
-      /* Debug: dump all radios in this question */
-      var dbg = box.querySelectorAll('input[type="radio"]');
-      console.warn('[setRadio] available radios:', [].map.call(dbg, function(r){return r.value;}));
+      console.warn('[setRadio] '+q+': NO MATCH for val='+val);
     }
   }
   function setText(q, val){
     var box = document.getElementById('q_'+q);
-    if(!box){ console.warn('[setText] question_'+q+' NOT FOUND'); return; }
+    if(!box){ console.warn('[setText] q_'+q+' NOT FOUND'); return; }
     var inp = box.querySelector('input[type="text"]');
     if(inp){
       console.log('[setText] '+q+' → "'+val+'"');
       inp.value = val;
-      inp.dispatchEvent(new Event('input', {bubbles:true}));
+      try{ jQuery(inp).trigger('change'); }catch(e){}
       inp.dispatchEvent(new Event('change', {bubbles:true}));
     } else {
       console.warn('[setText] '+q+': no text input found');
@@ -534,12 +526,12 @@ body, .survey-body, .main-content {
   }
   function setNumber(q, val){
     var box = document.getElementById('q_'+q);
-    if(!box){ console.warn('[setNumber] question_'+q+' NOT FOUND'); return; }
+    if(!box){ console.warn('[setNumber] q_'+q+' NOT FOUND'); return; }
     var inp = box.querySelector('input[type="text"],input[type="number"]');
     if(inp){
       console.log('[setNumber] '+q+' → "'+val+'"');
       inp.value = val;
-      inp.dispatchEvent(new Event('input', {bubbles:true}));
+      try{ jQuery(inp).trigger('change'); }catch(e){}
       inp.dispatchEvent(new Event('change', {bubbles:true}));
     } else {
       console.warn('[setNumber] '+q+': no input found');
