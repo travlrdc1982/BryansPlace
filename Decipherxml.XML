@@ -1183,11 +1183,7 @@ elif QVOTE24.r3:
   <row label="r3">BOTH</row>
 </radio>
 <suspend/>
-<quota label="quo12" cond="TYPING_MODULE.any" overquota="noqual" sheet="TYPING MODULE Quota">
-  <cell label="TM_1" count="0" cond="TYPING_MODULE.r1">TM_1</cell>
-  <cell label="TM_2" count="0" cond="TYPING_MODULE.r2">TM_2</cell>
-  <cell label="TM_3" count="0" cond="TYPING_MODULE.r3">TM_3</cell>
-</quota>
+<quota label="quo12" cond="TYPING_MODULE.any" overquota="noqual" sheet="TYPING MODULE Quota"/>
 <suspend/>
 
 
@@ -1199,18 +1195,7 @@ elif QVOTE24.r3:
 QMD1_md = setupMaxDiffFile("DEMDesign.dat")
   </exec>
   <suspend/>
-  <quota label="quo1" overquota="noqual" sheet="Dem Quota">
-    <cell label="Dem_1" count="0" cond="1">Dem_1</cell>
-    <cell label="Dem_2" count="0" cond="1">Dem_2</cell>
-    <cell label="Dem_3" count="0" cond="1">Dem_3</cell>
-    <cell label="Dem_4" count="0" cond="1">Dem_4</cell>
-    <cell label="Dem_5" count="0" cond="1">Dem_5</cell>
-    <cell label="Dem_6" count="0" cond="1">Dem_6</cell>
-    <cell label="Dem_7" count="0" cond="1">Dem_7</cell>
-    <cell label="Dem_8" count="0" cond="1">Dem_8</cell>
-    <cell label="Dem_9" count="0" cond="1">Dem_9</cell>
-    <cell label="Dem_10" count="0" cond="1">Dem_10</cell>
-  </quota>
+  <quota label="quo1" overquota="noqual" sheet="Dem Quota"/>
   <suspend/>
   <number
    label="QMD1_Version"
@@ -1676,18 +1661,7 @@ XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
 QMD3_md = setupMaxDiffFile("GOPDesign.dat")
   </exec>
   <suspend/>
-  <quota label="quo2" overquota="noqual" sheet="GOP Quota">
-    <cell label="GOP_1" count="0" cond="1">GOP_1</cell>
-    <cell label="GOP_2" count="0" cond="1">GOP_2</cell>
-    <cell label="GOP_3" count="0" cond="1">GOP_3</cell>
-    <cell label="GOP_4" count="0" cond="1">GOP_4</cell>
-    <cell label="GOP_5" count="0" cond="1">GOP_5</cell>
-    <cell label="GOP_6" count="0" cond="1">GOP_6</cell>
-    <cell label="GOP_7" count="0" cond="1">GOP_7</cell>
-    <cell label="GOP_8" count="0" cond="1">GOP_8</cell>
-    <cell label="GOP_9" count="0" cond="1">GOP_9</cell>
-    <cell label="GOP_10" count="0" cond="1">GOP_10</cell>
-  </quota>
+  <quota label="quo2" overquota="noqual" sheet="GOP Quota"/>
   <suspend/>
   <number
    label="QMD3_Version"
