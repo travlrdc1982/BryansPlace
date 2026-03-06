@@ -799,8 +799,9 @@ body, .survey-body, .main-content {
       else console.log('  '+q+': (no selection)');
     });
     /* Override !important by adding inline style with !important via setAttribute */
-    var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(!nxt) nxt = document.querySelector('.button, input.button');
+    var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
+    var nxt;
+    for(var i=0;i<sels.length;i++){try{nxt=document.querySelector(sels[i]);}catch(e){nxt=null;} if(nxt) break;}
     if(nxt){
       nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
       console.log('[CONTINUE] native button found, clicking:', nxt.tagName, nxt.className);
@@ -1342,9 +1343,19 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var b=document.querySelector('.nextPage')||document.querySelector('.button');
-    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
-    else{var f=document.querySelector('form');if(f)f.submit();}
+    var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
+    var b;
+    for(var i=0;i<sels.length;i++){
+      try{b=document.querySelector(sels[i]);}catch(e){b=null;}
+      if(b) break;
+    }
+    if(b){
+      b.setAttribute('style','display:block!important;visibility:hidden;position:absolute;left:-9999px');
+      b.click();
+    } else {
+      var f=document.querySelector('form');
+      if(f) f.submit();
+    }
   });
   </script>
 </div>
@@ -1576,8 +1587,9 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
   if(btn){
     btn.addEventListener('click', function(){
       if(bestSel<0||worstSel<0) return;
-      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-      if(!nxt) nxt = document.querySelector('.button, input.button');
+      var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
+      var nxt;
+      for(var i=0;i<sels.length;i++){try{nxt=document.querySelector(sels[i]);}catch(e){nxt=null;} if(nxt) break;}
       if(nxt){
         nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
         nxt.click();
@@ -1951,9 +1963,19 @@ p.startTime = timeSpent()
   </button>
   <script>
   document.getElementById('md-enjoy-btn').addEventListener('click',function(){
-    var b=document.querySelector('.nextPage')||document.querySelector('.button');
-    if(b){b.style.cssText='display:block!important;visibility:hidden;position:absolute;left:-9999px';b.click();}
-    else{var f=document.querySelector('form');if(f)f.submit();}
+    var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
+    var b;
+    for(var i=0;i<sels.length;i++){
+      try{b=document.querySelector(sels[i]);}catch(e){b=null;}
+      if(b) break;
+    }
+    if(b){
+      b.setAttribute('style','display:block!important;visibility:hidden;position:absolute;left:-9999px');
+      b.click();
+    } else {
+      var f=document.querySelector('form');
+      if(f) f.submit();
+    }
   });
   </script>
 </div>
@@ -2215,8 +2237,9 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
   if(btn){
     btn.addEventListener('click', function(){
       if(bestSel<0||worstSel<0) return;
-      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-      if(!nxt) nxt = document.querySelector('.button, input.button');
+      var sels=['.nextPage','input.button','.button','input[name="continue"]','button[name="continue"]'];
+      var nxt;
+      for(var i=0;i<sels.length;i++){try{nxt=document.querySelector(sels[i]);}catch(e){nxt=null;} if(nxt) break;}
       if(nxt){
         nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
         nxt.click();
