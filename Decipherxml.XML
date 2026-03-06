@@ -277,6 +277,13 @@ body, .survey-body, .main-content {
 }
 .age-digit:focus { border-color: #6B7F4E; background: #fff; box-shadow: 0 0 0 3px rgba(107,127,78,.18); }
 .age-digit.age-filled { background: #fff; border-color: #6B7F4E; }
+.sc-field-error {
+  color: #C0392B; font-family: Inter, sans-serif; font-size: 13px;
+  font-weight: 600; margin: -6px 0 12px; display: none;
+}
+.zip-digit.sc-input-err, .age-digit.sc-input-err {
+  border-color: #C0392B !important; background: #FDF2F2 !important;
+}
 .age-instruction {
     font-size: 13px; color: #888888; margin: -10px 0 12px;
     font-family: Inter, sans-serif;
@@ -593,14 +600,56 @@ body, .survey-body, .main-content {
     setTimeout(advance, 350);
   });
 
+  /* ---- validation helpers ---- */
+  function showFieldError(id, msg){
+    var el = document.getElementById(id);
+    if(el){ el.textContent = msg; el.style.display = 'block'; }
+  }
+  function clearFieldError(id){
+    var el = document.getElementById(id);
+    if(el){ el.textContent = ''; el.style.display = 'none'; }
+  }
+  function validateZip(code){
+    if(!/^\d{5}$/.test(code)) return 'Please enter a valid 5-digit ZIP code.';
+    var pfx = parseInt(code.substring(0,3),10);
+    /* US ZIP prefixes run 005-999; gaps: 000-004, 213, 269, 343, 348, 353, 419,
+       428-432, 517-519, 529-532, 552, 568, 578, 579, 589, 621, 632, 642, 643,
+       659, 663, 731, 732, 742, 771, 817, 818, 819, 839, 848, 849, 854, 858,
+       861, 862, 866-869, 876-884, 890-891, 896-899, 929, 952-959, 987 */
+    var bad = [0,1,2,3,4,213,269,343,348,353,419,517,518,519,552,568,578,579,
+      589,621,632,642,643,659,663,731,732,742,771,817,818,819,839,848,849,
+      854,858,861,862,866,867,868,869,876,877,878,879,880,881,882,883,884,
+      890,891,896,897,898,899,929,952,953,954,955,956,957,958,959,987];
+    if(bad.indexOf(pfx)!==-1) return 'That doesn\u2019t appear to be a valid US ZIP code. Please double-check.';
+    return '';
+  }
+  function validateAge(val){
+    var n = parseInt(val,10);
+    if(isNaN(n) || n<18) return 'You must be at least 18 to participate.';
+    if(n>89) return 'Please enter an age between 18 and 89.';
+    return '';
+  }
+
   /* QZIP - zip code digits */
   var zipD = definedAll('#card-qzip .zip-digit');
   jQuery('#card-qzip').on('input', '.zip-digit', function(){
+    this.value = this.value.replace(/\D/g,'');
     var idx = zipD.indexOf(this);
     if(this.value.length===1 && idx<zipD.length-1) zipD[idx+1].focus();
     jQuery(this).toggleClass('zip-filled', this.value.length>0);
+    clearFieldError('zip-error');
+    jQuery(zipD).removeClass('sc-input-err');
     var full = jQuery.map(zipD, function(d){return d.value;}).join('');
-    if(full.length===5){ setText('QZIP', full); setTimeout(advance, 400); }
+    if(full.length===5){
+      var err = validateZip(full);
+      if(err){
+        showFieldError('zip-error', err);
+        jQuery(zipD).addClass('sc-input-err');
+      } else {
+        setText('QZIP', full);
+        setTimeout(advance, 400);
+      }
+    }
   });
   jQuery('#card-qzip').on('keydown', '.zip-digit', function(e){
     var idx = zipD.indexOf(this);
@@ -608,7 +657,8 @@ body, .survey-body, .main-content {
   });
   jQuery('#zip-pna').on('change', function(){
     if(this.checked){
-      jQuery(zipD).val('').prop('disabled',true).removeClass('zip-filled');
+      jQuery(zipD).val('').prop('disabled',true).removeClass('zip-filled sc-input-err');
+      clearFieldError('zip-error');
       setText('QZIP','');
       setTimeout(advance, 350);
     } else { jQuery(zipD).prop('disabled',false); }
@@ -620,11 +670,23 @@ body, .survey-body, .main-content {
   /* QAGE - age digits */
   var ageD = definedAll('#card-qage .age-digit');
   jQuery('#card-qage').on('input', '.age-digit', function(){
+    this.value = this.value.replace(/\D/g,'');
     var idx = ageD.indexOf(this);
     if(this.value.length===1 && idx<ageD.length-1) ageD[idx+1].focus();
     jQuery(this).toggleClass('age-filled', this.value.length>0);
+    clearFieldError('age-error');
+    jQuery(ageD).removeClass('sc-input-err');
     var full = jQuery.map(ageD, function(d){return d.value;}).join('');
-    if(full.length===2){ setNumber('QAGE', full); setTimeout(advance, 400); }
+    if(full.length===2){
+      var err = validateAge(full);
+      if(err){
+        showFieldError('age-error', err);
+        jQuery(ageD).addClass('sc-input-err');
+      } else {
+        setNumber('QAGE', full);
+        setTimeout(advance, 400);
+      }
+    }
   });
   jQuery('#card-qage').on('keydown', '.age-digit', function(e){
     var idx = ageD.indexOf(this);
@@ -632,7 +694,8 @@ body, .survey-body, .main-content {
   });
   jQuery('#age-pna').on('change', function(){
     if(this.checked){
-      jQuery(ageD).val('').prop('disabled',true).removeClass('age-filled');
+      jQuery(ageD).val('').prop('disabled',true).removeClass('age-filled sc-input-err');
+      clearFieldError('age-error');
       setNumber('QAGE','');
       setTimeout(advance, 350);
     } else { jQuery(ageD).prop('disabled',false); }
@@ -704,8 +767,27 @@ body, .survey-body, .main-content {
     if(this.checked){ enableNext(); }
   });
 
-  /* CONTINUE button — triggers native Decipher page submit (suspend) */
+  /* CONTINUE button — validate then trigger native Decipher page submit */
   jQuery('#sc-continue-btn').on('click', function(){
+    /* Re-validate ZIP and age before submitting */
+    var zipVal = jQuery.map(zipD, function(d){return d.value;}).join('');
+    var ageVal = jQuery.map(ageD, function(d){return d.value;}).join('');
+    var blocked = false;
+
+    if(zipVal.length && zipVal.length===5){
+      var ze = validateZip(zipVal);
+      if(ze){ showFieldError('zip-error',ze); jQuery(zipD).addClass('sc-input-err'); blocked=true; }
+    }
+    if(ageVal.length && ageVal.length===2){
+      var ae = validateAge(ageVal);
+      if(ae){ showFieldError('age-error',ae); jQuery(ageD).addClass('sc-input-err'); blocked=true; }
+    }
+    if(blocked){
+      var errEl = document.querySelector('.sc-field-error[style*="block"]');
+      if(errEl) errEl.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+
     console.log('[CONTINUE] clicked — dumping native input states:');
     ['QS1','QZIP','QAGE','QGENDER','QVOTE24','QS5','QS5A','QS5B'].forEach(function(q){
       var box = findQ(q);
@@ -727,6 +809,27 @@ body, .survey-body, .main-content {
       console.warn('[CONTINUE] NO native submit button found — trying form submit');
       var form = document.querySelector('form');
       if(form) form.submit();
+    }
+  });
+
+  /* Surface Decipher server-side validation errors on hidden native questions */
+  jQuery(function(){
+    var nativeErrs = jQuery('.question.sc-native-hidden .error, .question.sc-native-hidden .cell.error');
+    if(nativeErrs.length){
+      nativeErrs.each(function(){
+        var qEl = jQuery(this).closest('.question');
+        var qId = qEl.attr('id') || '';
+        if(qId.indexOf('ZIP')!==-1||qId.indexOf('zip')!==-1){
+          showFieldError('zip-error', jQuery(this).text().trim() || 'Please enter a valid ZIP code.');
+          jQuery(zipD).addClass('sc-input-err');
+        }
+        if(qId.indexOf('AGE')!==-1||qId.indexOf('age')!==-1){
+          showFieldError('age-error', jQuery(this).text().trim() || 'Please enter a valid age.');
+          jQuery(ageD).addClass('sc-input-err');
+        }
+      });
+      var errEl = document.querySelector('.sc-field-error[style*="block"]');
+      if(errEl) errEl.scrollIntoView({behavior:'smooth',block:'center'});
     }
   });
 ]]></style>
@@ -807,6 +910,8 @@ body, .survey-body, .main-content {
              autocomplete="off" aria-label="ZIP digit 5">
     </div>
 
+    <div class="sc-field-error" id="zip-error"></div>
+
     <div class="zip-why-row">
       <button class="zip-why-trigger" type="button">
         <span class="zip-why-icon">?</span>
@@ -839,6 +944,8 @@ body, .survey-body, .main-content {
       <input class="age-digit" id="sc-age-2" type="tel" maxlength="1" inputmode="numeric"
              autocomplete="off" aria-label="Age units digit">
     </div>
+
+    <div class="sc-field-error" id="age-error"></div>
 
     <label class="sc-pna-row">
       <input class="sc-pna-chk" id="age-pna" type="checkbox">
