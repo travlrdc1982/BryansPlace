@@ -1191,7 +1191,7 @@ elif QVOTE24.r3:
 
 <block label="b11" cond="TYPING_MODULE.r2 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start DEM--</note>
-  <exec>
+  <exec when="init">
 QMD1_md = setupMaxDiffFile("DEMDesign.dat")
   </exec>
   <suspend/>
@@ -1657,7 +1657,7 @@ XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
 
 <block label="b12" cond="TYPING_MODULE.r1 or TYPING_MODULE.r3">
   <note>MaxDiff Indices Template --Start GOP--</note>
-  <exec>
+  <exec when="init">
 QMD3_md = setupMaxDiffFile("GOPDesign.dat")
   </exec>
   <suspend/>
