@@ -1358,8 +1358,8 @@ p.startTime = timeSpent()
   var btn = document.getElementById('md-intro-btn');
   if(btn){
     btn.addEventListener('click', function(){
-      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-      if(!nxt) nxt = document.querySelector('.button, input.button');
+      var nxt = document.querySelector('.nextPage');
+      if(!nxt) nxt = document.querySelector('input.button');
       if(nxt){
         nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
         nxt.click();
@@ -1981,8 +1981,8 @@ p.startTime = timeSpent()
   var btn = document.getElementById('md-intro-btn-gop');
   if(btn){
     btn.addEventListener('click', function(){
-      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-      if(!nxt) nxt = document.querySelector('.button, input.button');
+      var nxt = document.querySelector('.nextPage');
+      if(!nxt) nxt = document.querySelector('input.button');
       if(nxt){
         nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
         nxt.click();
