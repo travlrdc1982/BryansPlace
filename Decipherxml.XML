@@ -1327,7 +1327,7 @@ for x in p.markers:
 p.startTime = timeSpent()
   </exec>
 
-  <html label="QMD1_intro" where="execute"><![CDATA[
+  <html label="QMD1_intro"><![CDATA[
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style type="text/css">
   body, .survey-body, .main-content { background: #F5F2ED !important; }
@@ -1932,7 +1932,7 @@ for x in p.markers:
 p.startTime = timeSpent()
   </exec>
 
-  <html label="QMD3_intro" where="execute"><![CDATA[
+  <html label="QMD3_intro"><![CDATA[
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style type="text/css">
   body, .survey-body, .main-content { background: #F5F2ED !important; }
