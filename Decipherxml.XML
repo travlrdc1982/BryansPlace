@@ -2577,6 +2577,27 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 .inf_hidden table {
     display: none !important;
 }
+/* hide native cardrating.1 widget elements */
+.inf_hidden .card-slider,
+.inf_hidden .card-slider-container,
+.inf_hidden .card-container,
+.inf_hidden .card-rating,
+.inf_hidden .card-rating-container,
+.inf_hidden .cardRating,
+.inf_hidden .cards-wrapper,
+.inf_hidden .card-nav,
+.inf_hidden .card-buttons,
+.inf_hidden .survey-card,
+.inf_hidden .rating-scale,
+.inf_hidden .card-item,
+.inf_hidden .card-deck,
+.inf_hidden .card-content,
+.inf_hidden .card-footer,
+.inf_hidden .zc-card,
+.inf_hidden .zc-cardrating,
+.inf_hidden > div:not(.inf-card):not(.inf-q-label):not(.inf-continue-wrap):not(.inf-logo-bar):not(.inf-progress-wrap):not(.inf-footer) {
+    display: none !important;
+}
 /* hide native Next/submit button */
 .nextPage, .button[type="submit"], input[type="submit"] {
     display: none !important;
@@ -2651,18 +2672,16 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     border-radius: 10px;
     padding: 22px 24px 20px;
     margin-bottom: 28px;
-    display: none;
+    display: block;
 }
-.inf-card.inf-visible { display: block; }
 .inf-q-label {
     font-family: Inter, sans-serif;
     font-size: 9px; font-weight: 600;
     letter-spacing: .08em; text-transform: uppercase;
     color: #888888; margin-bottom: 4px;
     text-align: right;
-    display: none;
+    display: block;
 }
-.inf-q-label.inf-visible { display: block; }
 .inf-q-title {
     font-family: Fraunces, Georgia, serif;
     font-size: 19px; font-weight: 700;
@@ -2899,9 +2918,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 .inf-continue-wrap {
     text-align: center;
     padding: 24px 0 12px;
-    display: none;
+    display: block;
 }
-.inf-continue-wrap.inf-visible { display: block; }
 .inf-continue-btn {
     background: #6B7F4E;
     color: #fff; border: none;
@@ -3163,7 +3181,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   label="INF8"
   type="rating"
   values="order"
-  uses="cardrating.1"
   shuffle="rows"
   optional="0"
   ss:questionClassNames="inf_hidden">
@@ -3395,39 +3412,23 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   });
 
   var totalCards = CARDS.length;
-  var curCard = 0;
   var cardAnswered = {};
   console.log('[CARDS] Total visible cards: '+totalCards+' = '+CARDS.join(', '));
 
-  function showCards(upTo){
-    CARDS.forEach(function(q, i){
-      var show = i <= upTo;
-      cardElements[i].classList.toggle('inf-visible', show);
-      if(labelElements[i]){
-        labelElements[i].classList.toggle('inf-visible', show);
-        labelElements[i].textContent = (i+1)+' of '+totalCards+' Questions';
-      }
-    });
-    updateContinue();
-  }
-
-  function advanceCard(){
-    if(curCard < totalCards - 1){
-      curCard++;
-      showCards(curCard);
-      cardElements[curCard].scrollIntoView({behavior:'smooth', block:'start'});
+  /* Show all cards and labels immediately (no progressive disclosure) */
+  CARDS.forEach(function(q, i){
+    cardElements[i].style.display = 'block';
+    if(labelElements[i]){
+      labelElements[i].style.display = 'block';
+      labelElements[i].textContent = (i+1)+' of '+totalCards+' Questions';
     }
-    updateContinue();
-  }
+  });
 
   function updateContinue(){
     var allDone = CARDS.every(function(q){ return cardAnswered[q]; });
-    var wrap = document.getElementById('inf2-continue-wrap');
     var btn = document.getElementById('inf2-continue');
-    if(allDone){
-      wrap.classList.add('inf-visible');
-      btn.disabled = false;
-    }
+    btn.disabled = !allDone;
+    console.log('[updateContinue] allDone='+allDone+' answered='+JSON.stringify(cardAnswered));
   }
 
   /* ==================================================================
@@ -3485,9 +3486,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       }
 
       cardAnswered[q] = noneStates[q] || Object.keys(checkStates[q]||{}).some(function(k){ return checkStates[q][k]; });
-      if(cardAnswered[q] && CARDS.indexOf(q) === curCard){
-        setTimeout(function(){ advanceCard(); }, 300);
-      }
       updateContinue();
     });
   });
@@ -3505,9 +3503,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         var val = opt.getAttribute('data-val');
         syncRadio('INF7', val);
         cardAnswered['INF7'] = true;
-        if(CARDS.indexOf('INF7') === curCard){
-          setTimeout(function(){ advanceCard(); }, 300);
-        }
         updateContinue();
       });
     });
@@ -3631,8 +3626,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     });
   }
 
-  /* INIT */
-  showCards(0);
+  /* INIT: all cards shown, just update continue state */
+  updateContinue();
 })();
 </script>
 ]]></style>
