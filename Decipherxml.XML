@@ -1673,12 +1673,18 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     .vec-subtitle { font-family: Inter,sans-serif; font-size: 13px; color: #999;
         font-style: italic; margin-bottom: 18px; }
 
-    .vec-scale-labels { display: flex; justify-content: space-between; padding: 0 4px 6px;
-        font-family: Inter,sans-serif; font-size: 9px; font-weight: 800;
-        letter-spacing: .06em; text-transform: uppercase; }
-    .vec-scale-labels span:first-child { color: #C62828; }
-    .vec-scale-labels span:nth-child(2) { color: #999; }
-    .vec-scale-labels span:last-child { color: #6B7F4E; }
+    .vec-scale-labels { display: none; }
+    .vec-dot-labels { display: flex; justify-content: space-between; padding: 2px 4px 0;
+        font-family: Inter,sans-serif; font-size: 8px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: .04em; line-height: 1.2; }
+    .vec-dot-labels span { text-align: center; width: 36px; min-width: 36px; }
+    .vec-dot-labels span:first-child { color: #C62828; }
+    .vec-dot-labels span:nth-child(2) { color: #D68080; }
+    .vec-dot-labels span:nth-child(3) { color: #E0A8A8; }
+    .vec-dot-labels span:nth-child(4) { color: #999; }
+    .vec-dot-labels span:nth-child(5) { color: #A8CCA8; }
+    .vec-dot-labels span:nth-child(6) { color: #7DB87D; }
+    .vec-dot-labels span:last-child { color: #4A6E2A; }
 
     .vec-item { padding: 14px 0; border-bottom: 1px solid #EDE9E3; }
     .vec-item:last-child { border-bottom: none; }
@@ -1697,25 +1703,25 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
         box-shadow: 0 3px 10px rgba(198,40,40,.3), inset 0 1px 2px rgba(255,255,255,.4);
         transform: scale(1.08); }
-    .vec-dot[data-di="1"]:hover { border-color: #B71C1C;
-        background: radial-gradient(circle at 35% 35%, #E57373, #D32F2F);
-        box-shadow: 0 3px 10px rgba(211,47,47,.3), inset 0 1px 2px rgba(255,255,255,.4);
+    .vec-dot[data-di="1"]:hover { border-color: #D68080;
+        background: radial-gradient(circle at 35% 35%, #F5BFBF, #E89999);
+        box-shadow: 0 3px 10px rgba(211,47,47,.2), inset 0 1px 2px rgba(255,255,255,.4);
         transform: scale(1.08); }
-    .vec-dot[data-di="2"]:hover { border-color: #C62828;
-        background: radial-gradient(circle at 35% 35%, #EF9A9A, #EF5350);
-        box-shadow: 0 3px 10px rgba(239,83,80,.3), inset 0 1px 2px rgba(255,255,255,.4);
+    .vec-dot[data-di="2"]:hover { border-color: #E0A8A8;
+        background: radial-gradient(circle at 35% 35%, #FADCDC, #F2C4C4);
+        box-shadow: 0 3px 10px rgba(239,83,80,.15), inset 0 1px 2px rgba(255,255,255,.4);
         transform: scale(1.08); }
     .vec-dot[data-di="3"]:hover { border-color: #888;
         background: radial-gradient(circle at 35% 35%, #BDBDBD, #9E9E9E);
         box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.4);
         transform: scale(1.08); }
-    .vec-dot[data-di="4"]:hover { border-color: #558B2F;
-        background: radial-gradient(circle at 35% 35%, #A5D6A7, #81C784);
-        box-shadow: 0 3px 10px rgba(129,199,132,.3), inset 0 1px 2px rgba(255,255,255,.4);
+    .vec-dot[data-di="4"]:hover { border-color: #A8CCA8;
+        background: radial-gradient(circle at 35% 35%, #DCEDC8, #C5E1A5);
+        box-shadow: 0 3px 10px rgba(129,199,132,.15), inset 0 1px 2px rgba(255,255,255,.4);
         transform: scale(1.08); }
-    .vec-dot[data-di="5"]:hover { border-color: #4A6E2A;
-        background: radial-gradient(circle at 35% 35%, #81C784, #66BB6A);
-        box-shadow: 0 3px 10px rgba(102,187,106,.3), inset 0 1px 2px rgba(255,255,255,.4);
+    .vec-dot[data-di="5"]:hover { border-color: #7DB87D;
+        background: radial-gradient(circle at 35% 35%, #B5D8A0, #93C47D);
+        box-shadow: 0 3px 10px rgba(102,187,106,.2), inset 0 1px 2px rgba(255,255,255,.4);
         transform: scale(1.08); }
     .vec-dot[data-di="6"]:hover { border-color: #4A6E2A;
         background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
@@ -1727,25 +1733,25 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         border-color: #A01E1E;
         box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
     .vec-dot.vec-c2 {
-        background: radial-gradient(circle at 35% 35%, #E57373, #D32F2F);
-        border-color: #B71C1C;
-        box-shadow: 0 3px 10px rgba(211,47,47,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+        background: radial-gradient(circle at 35% 35%, #F5BFBF, #E89999);
+        border-color: #D68080;
+        box-shadow: 0 3px 10px rgba(211,47,47,.25), inset 0 1px 3px rgba(255,255,255,.3); }
     .vec-dot.vec-c3 {
-        background: radial-gradient(circle at 35% 35%, #EF9A9A, #EF5350);
-        border-color: #C62828;
-        box-shadow: 0 3px 10px rgba(239,83,80,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+        background: radial-gradient(circle at 35% 35%, #FADCDC, #F2C4C4);
+        border-color: #E0A8A8;
+        box-shadow: 0 3px 10px rgba(239,83,80,.2), inset 0 1px 3px rgba(255,255,255,.3); }
     .vec-dot.vec-c4 {
         background: radial-gradient(circle at 35% 35%, #BDBDBD, #9E9E9E);
         border-color: #888;
         box-shadow: 0 3px 10px rgba(0,0,0,.2), inset 0 1px 3px rgba(255,255,255,.3); }
     .vec-dot.vec-c5 {
-        background: radial-gradient(circle at 35% 35%, #A5D6A7, #81C784);
-        border-color: #558B2F;
-        box-shadow: 0 3px 10px rgba(129,199,132,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+        background: radial-gradient(circle at 35% 35%, #DCEDC8, #C5E1A5);
+        border-color: #A8CCA8;
+        box-shadow: 0 3px 10px rgba(129,199,132,.25), inset 0 1px 3px rgba(255,255,255,.3); }
     .vec-dot.vec-c6 {
-        background: radial-gradient(circle at 35% 35%, #81C784, #66BB6A);
-        border-color: #4A6E2A;
-        box-shadow: 0 3px 10px rgba(102,187,106,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+        background: radial-gradient(circle at 35% 35%, #B5D8A0, #93C47D);
+        border-color: #7DB87D;
+        box-shadow: 0 3px 10px rgba(102,187,106,.3), inset 0 1px 3px rgba(255,255,255,.3); }
     .vec-dot.vec-c7 {
         background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
         border-color: #4A6E2A;
@@ -1854,7 +1860,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   questions.forEach(function(qObj, qi){
     var item = document.createElement('div');
     item.className = 'vec-item';
-    item.innerHTML = '<div class="vec-item-text">' + qObj.text + '</div><div class="vec-dots"></div>';
+    item.innerHTML = '<div class="vec-item-text">' + qObj.text + '</div><div class="vec-dots"></div>' +
+      '<div class="vec-dot-labels"><span>Strongly Disagree</span><span></span><span></span><span>Neutral</span><span></span><span></span><span>Strongly Agree</span></div>';
     var dotsWrap = item.querySelector('.vec-dots');
 
     for(var d = 0; d < 7; d++){
