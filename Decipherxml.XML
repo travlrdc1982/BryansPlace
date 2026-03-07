@@ -1348,11 +1348,29 @@ p.startTime = timeSpent()
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
     </p>
   </div>
-  <button type="submit" name="continue"
+  <button type="button" id="md-intro-btn"
           style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;width:100%;max-width:320px;box-sizing:border-box;">
     ENJOY!
   </button>
 </div>
+<script>
+(function(){
+  var btn = document.getElementById('md-intro-btn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+      if(!nxt) nxt = document.querySelector('.button, input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+})();
+</script>
 ]]></html>
   <suspend/>
 
@@ -1953,11 +1971,29 @@ p.startTime = timeSpent()
       Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
     </p>
   </div>
-  <button type="submit" name="continue"
+  <button type="button" id="md-intro-btn-gop"
           style="background:#333;color:#fff;border:none;border-radius:24px;padding:14px 40px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;width:100%;max-width:320px;box-sizing:border-box;">
     ENJOY!
   </button>
 </div>
+<script>
+(function(){
+  var btn = document.getElementById('md-intro-btn-gop');
+  if(btn){
+    btn.addEventListener('click', function(){
+      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+      if(!nxt) nxt = document.querySelector('.button, input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+})();
+</script>
 ]]></html>
   <suspend/>
 
