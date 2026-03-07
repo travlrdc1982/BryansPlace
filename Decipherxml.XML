@@ -2348,29 +2348,86 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 
   /* ---- find Decipher question element by label ---- */
   function findQ(q){
-    return document.getElementById('q_'+q)
+    var el = document.getElementById('q_'+q)
         || document.getElementById('question_'+q)
         || document.getElementById(q)
         || document.querySelector('[id$="_'+q+'"]');
+    /* If we found an input rather than the question container, walk up */
+    if(el && el.closest && !el.classList.contains('question')){
+      var par = el.closest('.question');
+      if(par) el = par;
+    }
+    return el;
+  }
+
+  /* ---- Debug: log all .question elements + their inputs ---- */
+  var allQ = document.querySelectorAll('.question');
+  console.log('[INF1 init] All .question IDs:', [].map.call(allQ, function(e){return e.id;}));
+  var infBox = findQ('INF1');
+  if(infBox){
+    console.log('[INF1 init] Found INF1 id='+infBox.id);
+    var allInputs = infBox.querySelectorAll('input');
+    console.log('[INF1 init] INF1 has '+allInputs.length+' inputs:');
+    [].forEach.call(allInputs, function(inp){
+      console.log('  type='+inp.type+' name='+inp.name+' value='+inp.value+' checked='+inp.checked);
+    });
+  } else {
+    console.warn('[INF1 init] INF1 NOT FOUND - dumping all questions with checkboxes:');
+    allQ.forEach(function(q){
+      var cbs = q.querySelectorAll('input[type="checkbox"]');
+      if(cbs.length > 0){
+        console.log('  '+q.id+' has '+cbs.length+' checkboxes');
+        [].forEach.call(cbs, function(cb){
+          console.log('    name='+cb.name+' value='+cb.value);
+        });
+      }
+    });
   }
 
   /* ---- sync checkbox to native Decipher input ---- */
   function syncCheckbox(qLabel, rowLabel, checked){
     var box = findQ(qLabel);
-    if(!box) return;
-    var inp = box.querySelector('input[value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[name*="'+rowLabel+'"]');
+    if(!box){ console.warn('[syncCB] '+qLabel+' NOT FOUND'); return; }
+    var inp = null;
+
+    /* Strategy 1: value matches row label */
+    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    /* Strategy 2: name contains row label */
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    /* Strategy 3: position-based (r1=1st checkbox, r2=2nd, etc.) */
     if(!inp){
-      /* Try all checkboxes and match by value */
-      var all = box.querySelectorAll('input[type="checkbox"]');
-      for(var i=0; i<all.length; i++){
-        if(all[i].value === rowLabel){ inp = all[i]; break; }
+      var m = rowLabel.match(/^r(\d+)$/);
+      if(m){
+        var idx = parseInt(m[1], 10);
+        var allCB = box.querySelectorAll('input[type="checkbox"]');
+        if(idx === 99){
+          /* r99 = exclusive/noanswer = usually last checkbox */
+          for(var k=0; k<allCB.length; k++){
+            var nm = (allCB[k].name||'')+(allCB[k].className||'');
+            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
+          }
+          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
+        } else if(idx>0 && idx<=allCB.length){
+          inp = allCB[idx-1];
+        }
       }
     }
+    /* Strategy 4: scan ALL inputs */
+    if(!inp){
+      var all2 = box.querySelectorAll('input');
+      for(var j=0; j<all2.length; j++){
+        if(all2[j].value===rowLabel||(all2[j].name&&all2[j].name.indexOf(rowLabel)!==-1)){inp=all2[j]; break;}
+      }
+    }
+
     if(inp){
+      console.log('[syncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+' type='+inp.type+')');
       inp.checked = checked;
+      inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('change'); }catch(e){}
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+    } else {
+      console.warn('[syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND in #'+box.id);
     }
   }
 
@@ -2395,7 +2452,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       row.classList.toggle('inf-checked', selected[r]);
       syncCheckbox('INF1', r, selected[r]);
 
-      /* If checking a regular row, clear None */
       if(selected[r] && noneSelected){
         noneSelected = false;
         noneBtn.classList.remove('inf-sel');
@@ -2411,7 +2467,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     noneBtn.classList.toggle('inf-sel', noneSelected);
     syncCheckbox('INF1', 'r99', noneSelected);
 
-    /* If selecting None, clear all others */
     if(noneSelected){
       checkRows.forEach(function(row){
         var r = row.getAttribute('data-row');
@@ -2426,12 +2481,50 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   /* Continue button */
   continueBtn.addEventListener('click', function(){
     if(continueBtn.disabled) return;
+    console.log('[INF1 SUBMIT] selected=', JSON.stringify(selected), 'none=', noneSelected);
+
+    /* Verify native inputs */
+    var box = findQ('INF1');
+    if(box){
+      var chkd = box.querySelectorAll('input:checked');
+      console.log('[INF1 SUBMIT] Native checked: '+chkd.length);
+      [].forEach.call(chkd, function(c){ console.log('  '+c.name+'='+c.value); });
+
+      /* Emergency fallback: if nothing checked natively, force-set by position */
+      if(chkd.length === 0){
+        console.warn('[INF1 SUBMIT] FALLBACK: force-setting by position');
+        var allCB = box.querySelectorAll('input[type="checkbox"]');
+        console.log('[INF1 SUBMIT] Found '+allCB.length+' native checkboxes');
+        Object.keys(selected).forEach(function(r){
+          if(!selected[r]) return;
+          var m2 = r.match(/^r(\d+)$/);
+          if(m2){
+            var i2 = parseInt(m2[1],10) - 1;
+            if(i2 >= 0 && i2 < allCB.length){
+              allCB[i2].checked = true;
+              allCB[i2].click();
+              try{ jQuery(allCB[i2]).trigger('click').trigger('change'); }catch(e){}
+              console.log('[INF1 SUBMIT] Force-set idx='+i2+' name='+allCB[i2].name);
+            }
+          }
+        });
+        if(noneSelected && allCB.length > 0){
+          var last = allCB[allCB.length-1];
+          last.checked = true; last.click();
+          try{ jQuery(last).trigger('click').trigger('change'); }catch(e){}
+          console.log('[INF1 SUBMIT] Force-set None (last)');
+        }
+      }
+    }
+
     var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
     if(!nxt) nxt = document.querySelector('.button, input.button');
     if(nxt){
       nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+      console.log('[INF1 SUBMIT] Clicking native button:', nxt.tagName, nxt.className);
       nxt.click();
     } else {
+      console.warn('[INF1 SUBMIT] No native button - form.submit()');
       var form = document.querySelector('form');
       if(form) form.submit();
     }
@@ -3125,129 +3218,187 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   <style mode="after" name="question.footer"><![CDATA[
 <script>
 (function(){
-  /* Guard: only run on INF2 page (page.group.6) */
+  /* Guard: only run on page.group.6 */
   if(!document.getElementById('inf2-root')) return;
 
   /* ---- find Decipher question element by label ---- */
   function findQ(q){
-    return document.getElementById('q_'+q)
+    var el = document.getElementById('q_'+q)
         || document.getElementById('question_'+q)
         || document.getElementById(q)
         || document.querySelector('[id$="_'+q+'"]');
+    if(el && el.closest && !el.classList.contains('question')){
+      var par = el.closest('.question');
+      if(par) el = par;
+    }
+    return el;
   }
+
+  /* ---- Debug init ---- */
+  var allQ = document.querySelectorAll('.question');
+  console.log('[INF2-page init] All .question IDs:', [].map.call(allQ, function(e){return e.id;}));
+  ['INF2','INF3','INF4','INF5','INF6','INF7','INF8'].forEach(function(q){
+    var el = findQ(q);
+    if(el){
+      var inputs = el.querySelectorAll('input');
+      console.log('[INF2-page init] '+q+' found id='+el.id+' inputs='+inputs.length);
+      [].forEach.call(inputs, function(inp){
+        console.log('  type='+inp.type+' name='+inp.name+' value='+inp.value);
+      });
+    } else {
+      console.log('[INF2-page init] '+q+' NOT in DOM (cond=false or missing)');
+    }
+  });
 
   /* ---- sync checkbox to native Decipher input ---- */
   function syncCheckbox(qLabel, rowLabel, checked){
     var box = findQ(qLabel);
-    if(!box){ console.warn('[syncCB] '+qLabel+' not found'); return; }
-    var inp = box.querySelector('input[value="'+rowLabel+'"]');
+    if(!box){ console.warn('[syncCB] '+qLabel+' NOT FOUND'); return; }
+    var inp = null;
+
+    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
     if(!inp){
-      var all = box.querySelectorAll('input[type="checkbox"]');
-      for(var i=0; i<all.length; i++){
-        if(all[i].value === rowLabel){ inp = all[i]; break; }
+      var m = rowLabel.match(/^r(\d+)$/);
+      if(m){
+        var idx = parseInt(m[1], 10);
+        var allCB = box.querySelectorAll('input[type="checkbox"]');
+        if(idx === 99){
+          for(var k=0; k<allCB.length; k++){
+            var nm = (allCB[k].name||'')+(allCB[k].className||'');
+            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
+          }
+          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
+        } else if(idx>0 && idx<=allCB.length){
+          inp = allCB[idx-1];
+        }
       }
     }
+    if(!inp){
+      var all2 = box.querySelectorAll('input');
+      for(var j=0; j<all2.length; j++){
+        if(all2[j].value===rowLabel||(all2[j].name&&all2[j].name.indexOf(rowLabel)!==-1)){inp=all2[j]; break;}
+      }
+    }
+
     if(inp){
+      console.log('[syncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
+      inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('change'); }catch(e){}
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
     } else {
-      console.warn('[syncCB] '+qLabel+'.'+rowLabel+' input not found');
+      console.warn('[syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
   }
 
   /* ---- sync radio to native Decipher input ---- */
   function syncRadio(qLabel, val){
     var box = findQ(qLabel);
-    if(!box){ console.warn('[syncRadio] '+qLabel+' not found'); return; }
+    if(!box){ console.warn('[syncRadio] '+qLabel+' NOT FOUND'); return; }
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
       if(all[i].value === val || all[i].value === 'r'+val){ inp = all[i]; break; }
     }
-    /* Fallback: position-based */
     if(!inp){
       var idx = parseInt(val,10);
       if(idx>0 && idx<=all.length) inp = all[idx-1];
     }
     if(inp){
+      console.log('[syncRadio] '+qLabel+' val='+val+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
       try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
     } else {
-      console.warn('[syncRadio] '+qLabel+' val='+val+' not found');
+      console.warn('[syncRadio] '+qLabel+' val='+val+' NOT FOUND');
     }
   }
 
-  /* ---- sync card-rating cell to native Decipher input ---- */
+  /* ---- sync card-rating to native Decipher input ---- */
   function syncRating(qLabel, rowLabel, colVal){
     var box = findQ(qLabel);
-    if(!box){ console.warn('[syncRating] '+qLabel+' not found'); return; }
-    /* In Decipher card ratings, inputs often have name patterns like qLabel_rowLabel */
+    if(!box){ console.warn('[syncRating] '+qLabel+' NOT FOUND'); return; }
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
-      var val = all[i].value;
-      /* Match by row in name and col in value */
-      if(name.indexOf(rowLabel) !== -1 && val === colVal){ inp = all[i]; break; }
-      if(name.indexOf(rowLabel) !== -1 && val === 'c'+colVal){ inp = all[i]; break; }
+      var v = all[i].value;
+      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
-      /* Try broader: look for inputs grouped by row */
+      /* Try: find row container, then radio by value */
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
-      rowEls.forEach(function(el){
-        if(inp) return;
-        var radios = el.querySelectorAll('input[type="radio"]');
-        for(var i=0; i<radios.length; i++){
-          if(radios[i].value === colVal || radios[i].value === 'c'+colVal){ inp = radios[i]; break; }
+      for(var r=0; r<rowEls.length && !inp; r++){
+        var radios = rowEls[r].querySelectorAll('input[type="radio"]');
+        for(var j=0; j<radios.length; j++){
+          if(radios[j].value === colVal || radios[j].value === 'c'+colVal){ inp = radios[j]; break; }
         }
-      });
+      }
     }
+    if(!inp){
+      /* Position-based fallback: group radios by name, find row group, select by col index */
+      var groups = {};
+      for(var k=0; k<all.length; k++){
+        var n = all[k].name;
+        if(!groups[n]) groups[n] = [];
+        groups[n].push(all[k]);
+      }
+      var gKeys = Object.keys(groups);
+      var rowMatch = rowLabel.match(/^r(\d+)$/);
+      var colMatch = colVal.match ? colVal.match(/^(\d+)$/) : null;
+      if(rowMatch && gKeys.length >= parseInt(rowMatch[1],10)){
+        var rowGroup = groups[gKeys[parseInt(rowMatch[1],10)-1]];
+        var cIdx = colMatch ? parseInt(colMatch[1],10)-1 : parseInt(colVal,10)-1;
+        if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
+          inp = rowGroup[cIdx];
+        }
+      }
+    }
+
     if(inp){
+      console.log('[syncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
       try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
     } else {
-      console.warn('[syncRating] '+qLabel+' row='+rowLabel+' col='+colVal+' not found');
+      console.warn('[syncRating] '+qLabel+' '+rowLabel+'='+colVal+' NOT FOUND');
     }
   }
 
   /* ==================================================================
-     CARD SYSTEM: Discover which questions are present in the DOM
-     and build a progressive card reveal system.
+     CARD SYSTEM
      ================================================================== */
 
   var ALL_Q_LABELS = ['INF2','INF3','INF4','INF5','INF6','INF7','INF8'];
   var CARDS = [];
-  var cardLabels = [];
   var cardElements = [];
   var labelElements = [];
 
   ALL_Q_LABELS.forEach(function(q){
     var cardEl = document.getElementById('inf2-card-'+q);
     var nativeEl = findQ(q);
-    /* Only include cards whose native Decipher question exists in DOM (cond=true) OR always-shown */
-    if(cardEl && (nativeEl || q==='INF6' || q==='INF7' || q==='INF8')){
+    if(cardEl && nativeEl){
       CARDS.push(q);
       cardElements.push(cardEl);
       var lbl = document.querySelector('.inf2-card-label[data-for="'+q+'"]');
       labelElements.push(lbl);
+      console.log('[CARDS] Including '+q);
     } else if(cardEl && !nativeEl){
-      /* Conditional question not rendered — hide card HTML */
       cardEl.style.display = 'none';
       var lbl2 = document.querySelector('.inf2-card-label[data-for="'+q+'"]');
       if(lbl2) lbl2.style.display = 'none';
+      console.log('[CARDS] Hiding '+q+' (cond=false)');
     }
   });
 
   var totalCards = CARDS.length;
   var curCard = 0;
   var cardAnswered = {};
+  console.log('[CARDS] Total visible cards: '+totalCards+' = '+CARDS.join(', '));
 
-  /* ---- Show cards up to index ---- */
   function showCards(upTo){
     CARDS.forEach(function(q, i){
       var show = i <= upTo;
@@ -3280,7 +3431,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   }
 
   /* ==================================================================
-     CHECKBOX CARDS (INF2-INF6): Click handlers
+     CHECKBOX CARDS (INF2-INF6)
      ================================================================== */
 
   var checkStates = {};
@@ -3288,6 +3439,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 
   document.querySelectorAll('.inf-checklist').forEach(function(list){
     var q = list.getAttribute('data-q');
+    if(CARDS.indexOf(q) === -1) return; /* Skip cards not in DOM */
     checkStates[q] = {};
     noneStates[q] = false;
 
@@ -3298,7 +3450,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         row.classList.toggle('inf-checked', checkStates[q][r]);
         syncCheckbox(q, r, checkStates[q][r]);
 
-        /* Clear None if checking a regular row */
         if(checkStates[q][r] && noneStates[q]){
           noneStates[q] = false;
           var nb = list.parentElement.querySelector('.inf-none-btn[data-q="'+q+'"]');
@@ -3306,30 +3457,22 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
           syncCheckbox(q, 'r99', false);
         }
 
-        /* Mark answered if any checked */
         var any = Object.keys(checkStates[q]).some(function(k){ return checkStates[q][k]; });
         cardAnswered[q] = any || noneStates[q];
-
-        /* Auto-advance if first answer on this card */
-        if(cardAnswered[q] && CARDS.indexOf(q) === curCard && curCard < totalCards - 1){
-          /* Delay advance slightly so user sees the check */
-          /* Don't auto-advance checkboxes, let them click more. Advance on None or when they scroll */
-        }
         updateContinue();
       });
     });
   });
 
-  /* None of these buttons */
   document.querySelectorAll('.inf-none-btn[data-q]').forEach(function(btn){
     var q = btn.getAttribute('data-q');
+    if(CARDS.indexOf(q) === -1) return;
     btn.addEventListener('click', function(){
       noneStates[q] = !noneStates[q];
       btn.classList.toggle('inf-sel', noneStates[q]);
       syncCheckbox(q, 'r99', noneStates[q]);
 
       if(noneStates[q]){
-        /* Clear all regular checkboxes */
         var list = btn.parentElement.querySelector('.inf-checklist[data-q="'+q+'"]');
         if(list){
           list.querySelectorAll('.inf-check-row').forEach(function(row){
@@ -3342,8 +3485,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       }
 
       cardAnswered[q] = noneStates[q] || Object.keys(checkStates[q]||{}).some(function(k){ return checkStates[q][k]; });
-
-      /* Auto-advance on None selection */
       if(cardAnswered[q] && CARDS.indexOf(q) === curCard){
         setTimeout(function(){ advanceCard(); }, 300);
       }
@@ -3352,21 +3493,18 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   });
 
   /* ==================================================================
-     BUTTON-SELECT GRID (INF7): Click handlers
+     BUTTON-SELECT GRID (INF7)
      ================================================================== */
 
   var inf7Grid = document.querySelector('.inf-btn-grid[data-q="INF7"]');
   if(inf7Grid){
     inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(opt){
       opt.addEventListener('click', function(){
-        /* Deselect others */
         inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(o){ o.classList.remove('inf-sel'); });
         opt.classList.add('inf-sel');
         var val = opt.getAttribute('data-val');
         syncRadio('INF7', val);
         cardAnswered['INF7'] = true;
-
-        /* Auto-advance */
         if(CARDS.indexOf('INF7') === curCard){
           setTimeout(function(){ advanceCard(); }, 300);
         }
@@ -3376,7 +3514,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   }
 
   /* ==================================================================
-     CARD-SWIPE RATING (INF8): Swipe through 3 statement cards
+     CARD-SWIPE RATING (INF8)
      ================================================================== */
 
   var swipeItems = [
@@ -3396,23 +3534,15 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   function updateSwipe(){
     if(!cardText) return;
     cardText.textContent = swipeItems[swipeIdx].text;
-
-    /* Peek labels */
     if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? swipeItems[swipeIdx-1].text : '';
     if(peekRight) peekRight.textContent = swipeIdx < swipeItems.length-1 ? swipeItems[swipeIdx+1].text : '';
-
-    /* Arrow state */
     if(nextArrow) nextArrow.disabled = swipeIdx >= swipeItems.length - 1;
-
-    /* Freq button selection state */
     if(freqBtns){
-      var currentAnswer = swipeAnswers[swipeItems[swipeIdx].row];
-      freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(btn){
-        btn.classList.toggle('inf-sel', btn.getAttribute('data-col') === currentAnswer);
+      var cur = swipeAnswers[swipeItems[swipeIdx].row];
+      freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(b){
+        b.classList.toggle('inf-sel', b.getAttribute('data-col') === cur);
       });
     }
-
-    /* Dots */
     if(dotsEl){
       dotsEl.querySelectorAll('.inf-swipe-dot').forEach(function(dot, i){
         dot.classList.toggle('inf-active', i === swipeIdx);
@@ -3423,10 +3553,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 
   if(nextArrow){
     nextArrow.addEventListener('click', function(){
-      if(swipeIdx < swipeItems.length - 1){
-        swipeIdx++;
-        updateSwipe();
-      }
+      if(swipeIdx < swipeItems.length - 1){ swipeIdx++; updateSwipe(); }
     });
   }
 
@@ -3437,17 +3564,10 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         var val = btn.getAttribute('data-val');
         swipeAnswers[swipeItems[swipeIdx].row] = col;
         syncRating('INF8', swipeItems[swipeIdx].row, val);
-
-        /* Check if all 3 answered */
         var allRated = swipeItems.every(function(item){ return swipeAnswers[item.row]; });
         cardAnswered['INF8'] = allRated;
-
-        /* Auto-advance to next statement */
         if(swipeIdx < swipeItems.length - 1){
-          setTimeout(function(){
-            swipeIdx++;
-            updateSwipe();
-          }, 250);
+          setTimeout(function(){ swipeIdx++; updateSwipe(); }, 250);
         } else {
           updateSwipe();
         }
@@ -3459,13 +3579,46 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   updateSwipe();
 
   /* ==================================================================
-     CONTINUE BUTTON: Submit form
+     CONTINUE BUTTON
      ================================================================== */
 
   var continueBtn = document.getElementById('inf2-continue');
   if(continueBtn){
     continueBtn.addEventListener('click', function(){
       if(continueBtn.disabled) return;
+      console.log('[INF2 SUBMIT] cardAnswered:', JSON.stringify(cardAnswered));
+
+      /* Verify native state for each checkbox question */
+      CARDS.forEach(function(q){
+        var box = findQ(q);
+        if(!box) return;
+        var chkd = box.querySelectorAll('input:checked');
+        console.log('[INF2 SUBMIT] '+q+' native checked: '+chkd.length);
+        if(chkd.length === 0 && cardAnswered[q]){
+          console.warn('[INF2 SUBMIT] '+q+' FALLBACK: force-setting by position');
+          var allCB = box.querySelectorAll('input[type="checkbox"]');
+          if(allCB.length > 0){
+            if(noneStates[q]){
+              var last = allCB[allCB.length-1];
+              last.checked = true; last.click();
+              try{ jQuery(last).trigger('click').trigger('change'); }catch(e){}
+            } else if(checkStates[q]){
+              Object.keys(checkStates[q]).forEach(function(r){
+                if(!checkStates[q][r]) return;
+                var m3 = r.match(/^r(\d+)$/);
+                if(m3){
+                  var i3 = parseInt(m3[1],10)-1;
+                  if(i3>=0 && i3<allCB.length){
+                    allCB[i3].checked = true; allCB[i3].click();
+                    try{ jQuery(allCB[i3]).trigger('click').trigger('change'); }catch(e){}
+                  }
+                }
+              });
+            }
+          }
+        }
+      });
+
       var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
       if(!nxt) nxt = document.querySelector('.button, input.button');
       if(nxt){
@@ -3478,11 +3631,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     });
   }
 
-  /* ==================================================================
-     INIT: Show first card only
-     ================================================================== */
+  /* INIT */
   showCards(0);
-
 })();
 </script>
 ]]></style>
