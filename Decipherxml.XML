@@ -2229,6 +2229,26 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     color: #fff;
 }
 
+/* --- Per-card "Next" button (appears after selection) --- */
+.inf-card-next {
+    display: none;
+    float: right;
+    margin-top: 14px;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #6B7F4E;
+    color: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    cursor: pointer;
+    transition: background .15s;
+}
+.inf-card-next:hover { background: #5A6B42; }
+.inf-card-next.inf-show { display: inline-block; }
+
 /* --- Continue button --- */
 .inf-continue-wrap {
     text-align: center;
@@ -2672,16 +2692,18 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     border-radius: 10px;
     padding: 22px 24px 20px;
     margin-bottom: 28px;
-    display: block;
+    display: none;
 }
+.inf-card.inf-visible { display: block; }
 .inf-q-label {
     font-family: Inter, sans-serif;
     font-size: 9px; font-weight: 600;
     letter-spacing: .08em; text-transform: uppercase;
     color: #888888; margin-bottom: 4px;
     text-align: right;
-    display: block;
+    display: none;
 }
+.inf-q-label.inf-visible { display: block; }
 .inf-q-title {
     font-family: Fraunces, Georgia, serif;
     font-size: 19px; font-weight: 700;
@@ -2918,8 +2940,9 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 .inf-continue-wrap {
     text-align: center;
     padding: 24px 0 12px;
-    display: block;
+    display: none;
 }
+.inf-continue-wrap.inf-visible { display: block; }
 .inf-continue-btn {
     background: #6B7F4E;
     color: #fff; border: none;
@@ -2990,6 +3013,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       </div>
     </div>
     <button type="button" class="inf-none-btn" data-q="INF2">None of these</button>
+    <button type="button" class="inf-card-next" data-q="INF2">Next &#8250;</button>
   </div>
 ]]></style>
 </checkbox>
@@ -3032,6 +3056,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       </div>
     </div>
     <button type="button" class="inf-none-btn" data-q="INF3">None of these</button>
+    <button type="button" class="inf-card-next" data-q="INF3">Next &#8250;</button>
   </div>
 ]]></style>
 </checkbox>
@@ -3059,6 +3084,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       </div>
     </div>
     <button type="button" class="inf-none-btn" data-q="INF4">None of these</button>
+    <button type="button" class="inf-card-next" data-q="INF4">Next &#8250;</button>
   </div>
 ]]></style>
 </checkbox>
@@ -3091,6 +3117,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       </div>
     </div>
     <button type="button" class="inf-none-btn" data-q="INF5">None of these</button>
+    <button type="button" class="inf-card-next" data-q="INF5">Next &#8250;</button>
   </div>
 ]]></style>
 </checkbox>
@@ -3126,6 +3153,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       </div>
     </div>
     <button type="button" class="inf-none-btn" data-q="INF6">None of these</button>
+    <button type="button" class="inf-card-next" data-q="INF6">Next &#8250;</button>
   </div>
 ]]></style>
 </checkbox>
@@ -3412,23 +3440,49 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   });
 
   var totalCards = CARDS.length;
+  var curCard = 0;
   var cardAnswered = {};
   console.log('[CARDS] Total visible cards: '+totalCards+' = '+CARDS.join(', '));
 
-  /* Show all cards and labels immediately (no progressive disclosure) */
-  CARDS.forEach(function(q, i){
-    cardElements[i].style.display = 'block';
-    if(labelElements[i]){
-      labelElements[i].style.display = 'block';
-      labelElements[i].textContent = (i+1)+' of '+totalCards+' Questions';
+  /* Progressive disclosure: show cards 0..upTo */
+  function showCards(upTo){
+    CARDS.forEach(function(q, i){
+      var show = i <= upTo;
+      cardElements[i].classList.toggle('inf-visible', show);
+      if(labelElements[i]){
+        labelElements[i].classList.toggle('inf-visible', show);
+        labelElements[i].textContent = (i+1)+' of '+totalCards+' Questions';
+      }
+    });
+    updateContinue();
+  }
+
+  function advanceCard(){
+    if(curCard < totalCards - 1){
+      curCard++;
+      showCards(curCard);
+      cardElements[curCard].scrollIntoView({behavior:'smooth', block:'start'});
     }
-  });
+    updateContinue();
+  }
 
   function updateContinue(){
     var allDone = CARDS.every(function(q){ return cardAnswered[q]; });
+    var wrap = document.getElementById('inf2-continue-wrap');
     var btn = document.getElementById('inf2-continue');
-    btn.disabled = !allDone;
+    if(allDone){
+      wrap.classList.add('inf-visible');
+      btn.disabled = false;
+    }
     console.log('[updateContinue] allDone='+allDone+' answered='+JSON.stringify(cardAnswered));
+  }
+
+  /* Show/hide per-card Next button when card has a selection */
+  function updateNextBtn(q){
+    var nextBtn = document.querySelector('.inf-card-next[data-q="'+q+'"]');
+    if(nextBtn){
+      nextBtn.classList.toggle('inf-show', !!cardAnswered[q]);
+    }
   }
 
   /* ==================================================================
@@ -3460,6 +3514,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 
         var any = Object.keys(checkStates[q]).some(function(k){ return checkStates[q][k]; });
         cardAnswered[q] = any || noneStates[q];
+        updateNextBtn(q);
         updateContinue();
       });
     });
@@ -3486,7 +3541,23 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       }
 
       cardAnswered[q] = noneStates[q] || Object.keys(checkStates[q]||{}).some(function(k){ return checkStates[q][k]; });
+      updateNextBtn(q);
+      /* Auto-advance on None selection */
+      if(noneStates[q] && CARDS.indexOf(q) === curCard){
+        setTimeout(function(){ advanceCard(); }, 300);
+      }
       updateContinue();
+    });
+  });
+
+  /* Per-card Next button click handlers */
+  document.querySelectorAll('.inf-card-next[data-q]').forEach(function(btn){
+    var q = btn.getAttribute('data-q');
+    if(CARDS.indexOf(q) === -1) return;
+    btn.addEventListener('click', function(){
+      if(cardAnswered[q] && CARDS.indexOf(q) === curCard){
+        advanceCard();
+      }
     });
   });
 
@@ -3503,6 +3574,10 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         var val = opt.getAttribute('data-val');
         syncRadio('INF7', val);
         cardAnswered['INF7'] = true;
+        /* Auto-advance on selection */
+        if(CARDS.indexOf('INF7') === curCard){
+          setTimeout(function(){ advanceCard(); }, 300);
+        }
         updateContinue();
       });
     });
@@ -3565,6 +3640,11 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
           setTimeout(function(){ swipeIdx++; updateSwipe(); }, 250);
         } else {
           updateSwipe();
+          /* All rated — show CONTINUE */
+          if(allRated){
+            var wrap = document.getElementById('inf2-continue-wrap');
+            if(wrap) wrap.classList.add('inf-visible');
+          }
         }
         updateContinue();
       });
@@ -3626,8 +3706,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     });
   }
 
-  /* INIT: all cards shown, just update continue state */
-  updateContinue();
+  /* INIT: show first card only */
+  showCards(0);
 })();
 </script>
 ]]></style>
