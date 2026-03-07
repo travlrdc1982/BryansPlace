@@ -1654,6 +1654,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     body, .survey-body, .main-content { background: #F5F2ED !important; }
     .vec_dem_q .question-text { display: none !important; }
     .vec_dem_q .comment { display: none !important; }
+    .vec_dem_q .instruction-text { display: none !important; }
     .nextPage, .button { display: none !important; }
     .vec_dem_q .survey-questions-container,
     .vec_dem_q table,
@@ -1767,6 +1768,10 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       <span>Neutral</span>
       <span>Strongly<br>Agree</span>
     </div>
+    <div class="vec-prefer-wrap">
+      <input type="checkbox" id="vec-prefer-skip">
+      <label for="vec-prefer-skip">Prefer not to respond</label>
+    </div>
 ]]></style>
   </radio>
 
@@ -1787,10 +1792,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     <col label="c7" value="7">Strongly Agree</col>
     <row label="r1">Big corporations have too much influence over public health policies</row>
     <style mode="after" name="question.footer"><![CDATA[
-    <div class="vec-prefer-wrap">
-      <input type="checkbox" id="vec-prefer-skip">
-      <label for="vec-prefer-skip">Prefer not to respond</label>
-    </div>
   </div>
   <div style="text-align:center;padding:24px 0 16px;">
     <button type="button" id="vec-continue-btn"
@@ -1833,6 +1834,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   /* --- build custom UI --- */
   var card = document.querySelector('.vec-card');
   if(!card) return;
+  var preferWrap = card.querySelector('.vec-prefer-wrap');
 
   var selections = [-1, -1]; /* index of selected dot per question */
 
@@ -1889,7 +1891,12 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       updateContinue();
     });
 
-    card.appendChild(item);
+    /* insert items BEFORE the prefer-not checkbox */
+    if(preferWrap){
+      card.insertBefore(item, preferWrap);
+    } else {
+      card.appendChild(item);
+    }
   });
 
   /* --- prefer-not-to-respond checkbox --- */
