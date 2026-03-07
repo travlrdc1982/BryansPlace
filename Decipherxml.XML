@@ -1636,6 +1636,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
    type="rating"
    values="order"
    averages="cols"
+   ss:questionClassNames="vec_dem_q"
    optional="0">
     <title>Tell us how much you agree or disagree with these statements</title>
     <comment>Tap where you fall on each statement...</comment>
@@ -1647,6 +1648,73 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     <col label="c6" value="6">6</col>
     <col label="c7" value="7">Strongly Agree</col>
     <row label="r1">The federal government should invest extra funds in communities of color that have suffered historic health injustices, even if it means higher taxes</row>
+    <style mode="before" name="question.header"><![CDATA[
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style type="text/css">
+    body, .survey-body, .main-content { background: #F5F2ED !important; }
+    .vec_dem_q .question-text { display: none !important; }
+    .vec_dem_q .comment { display: none !important; }
+    .nextPage, .button { display: none !important; }
+    .vec_dem_q .survey-questions-container,
+    .vec_dem_q table,
+    .vec_dem_q .col-legend-group,
+    .vec_dem_q .grouping-box,
+    .vec_dem_q .answers-list { visibility: hidden; height: 0; overflow: hidden; }
+    .vec_dem_q .vec-custom-ui { visibility: visible; height: auto; overflow: visible; }
+
+    .vec-wrap { max-width: 640px; margin: 0 auto; }
+    .vec-card { background: #fff; border: 1px solid #E0DCD6; border-radius: 10px;
+        padding: 22px 24px 20px; margin-bottom: 20px; }
+    .vec-counter { font-size: 11px; font-weight: 600; letter-spacing: .08em;
+        text-transform: uppercase; color: #888; margin-bottom: 6px; text-align: right; }
+    .vec-title { font-family: Fraunces,Georgia,serif; font-size: 17px; font-weight: 700;
+        color: #333; line-height: 1.42; margin-bottom: 4px; }
+    .vec-subtitle { font-family: Inter,sans-serif; font-size: 13px; color: #999;
+        font-style: italic; margin-bottom: 18px; }
+
+    .vec-scale-labels { display: flex; justify-content: space-between; padding: 0 4px 6px;
+        font-family: Inter,sans-serif; font-size: 9px; font-weight: 800;
+        letter-spacing: .06em; text-transform: uppercase; color: #6B7F4E; }
+    .vec-scale-labels span:last-child { color: #6B7F4E; }
+
+    .vec-item { padding: 14px 0; border-bottom: 1px solid #EDE9E3; }
+    .vec-item:last-child { border-bottom: none; }
+    .vec-item-text { font-family: Fraunces,Georgia,serif; font-size: 14px;
+        color: #333; line-height: 1.45; margin-bottom: 10px; }
+    .vec-dots { display: flex; justify-content: space-between; align-items: center; padding: 0 4px; }
+
+    .vec-dot { -webkit-appearance: none; -moz-appearance: none; appearance: none;
+        width: 36px; height: 36px; min-width: 36px; border-radius: 50%;
+        border: 2px solid #C5C0B8;
+        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE);
+        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6);
+        cursor: pointer; transition: all .2s ease; outline: none; }
+    .vec-dot:hover { border-color: #999;
+        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6);
+        transform: scale(1.08); }
+    .vec-dot.vec-dot-checked {
+        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
+        border-color: #4A6E2A;
+        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+
+    .vec-prefer-wrap { padding: 12px 0 0; display: flex; align-items: center; gap: 8px;
+        font-family: Inter,sans-serif; font-size: 13px; color: #666; }
+    .vec-prefer-wrap input { width: 16px; height: 16px; cursor: pointer; }
+</style>
+<div class="vec-wrap" style="padding:0 16px 16px;">
+  <div style="text-align:center;padding:4px 0 36px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
+  </div>
+  <div class="vec-card">
+    <div class="vec-counter">1 of 2 Questions</div>
+    <div class="vec-title">Tell us how much you agree or disagree with these statements</div>
+    <div class="vec-subtitle">Tap where you fall on each statement...</div>
+    <div class="vec-scale-labels">
+      <span>Strongly<br>Disagree</span>
+      <span>Neutral</span>
+      <span>Strongly<br>Agree</span>
+    </div>
+]]></style>
   </radio>
 
   <radio
@@ -1654,6 +1722,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
    type="rating"
    values="order"
    averages="cols"
+   ss:questionClassNames="vec_dem_q"
    optional="0">
     <title>Tell us how much you agree or disagree with these statements</title>
     <col label="c1" value="1">Strongly Disagree</col>
@@ -1664,6 +1733,145 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     <col label="c6" value="6">6</col>
     <col label="c7" value="7">Strongly Agree</col>
     <row label="r1">Big corporations have too much influence over public health policies</row>
+    <style mode="after" name="question.footer"><![CDATA[
+    <div class="vec-prefer-wrap">
+      <input type="checkbox" id="vec-prefer-skip">
+      <label for="vec-prefer-skip">Prefer not to respond</label>
+    </div>
+  </div>
+  <div style="text-align:center;padding:24px 0 16px;">
+    <button type="button" id="vec-continue-btn"
+            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:.4;pointer-events:none;">
+      CONTINUE &gt;
+    </button>
+  </div>
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:#F5F2ED;border-top:1px solid #E0DCD6;padding:10px 20px;text-align:center;font-size:10px;color:#AAA;font-family:Inter,sans-serif;line-height:1.4;">
+    Your responses are held strictly confidential.
+    See our <a href="#" style="color:#6B7F4E;text-decoration:none;">Privacy Policy</a>
+    and commitment to research ethics and integrity.
+  </div>
+</div>
+<script>
+(function(){
+  /* --- find native radios for both questions --- */
+  var boxes = document.querySelectorAll('.vec_dem_q');
+  if(boxes.length < 2) return;
+
+  var questions = [];
+  boxes.forEach(function(box){
+    var radios = [].slice.call(box.querySelectorAll('input[type="radio"]'));
+    var row = box.querySelector('th.row-legend, td.row-legend, .row-legend-text, .row-legend, .text');
+    var text = row ? row.textContent.trim() : '';
+    if(!text){
+      /* fallback: get from row element text */
+      var rowEl = box.querySelector('.row-elements, .row-element, tr.row');
+      if(rowEl){
+        var clone = rowEl.cloneNode(true);
+        clone.querySelectorAll('input,th.col-legend,td.col-legend').forEach(function(el){ el.remove(); });
+        text = clone.textContent.trim();
+      }
+    }
+    /* strip any [label] prefix */
+    var bi = text.indexOf(']');
+    if(bi >= 0 && bi < 30) text = text.substring(bi+1).trim();
+    questions.push({ radios: radios, text: text || 'Statement' });
+  });
+
+  /* --- build custom UI --- */
+  var card = document.querySelector('.vec-card');
+  if(!card) return;
+
+  var selections = [-1, -1]; /* index of selected dot per question */
+
+  function updateContinue(){
+    var btn = document.getElementById('vec-continue-btn');
+    var skip = document.getElementById('vec-prefer-skip');
+    if(!btn) return;
+    var allDone = (selections[0] >= 0 && selections[1] >= 0);
+    var skipped = skip && skip.checked;
+    if(allDone || skipped){
+      btn.style.opacity = '1'; btn.style.pointerEvents = 'auto';
+    } else {
+      btn.style.opacity = '.4'; btn.style.pointerEvents = 'none';
+    }
+  }
+
+  questions.forEach(function(qObj, qi){
+    var item = document.createElement('div');
+    item.className = 'vec-item';
+    item.innerHTML = '<div class="vec-item-text">' + qObj.text + '</div><div class="vec-dots"></div>';
+    var dotsWrap = item.querySelector('.vec-dots');
+
+    for(var d = 0; d < 7; d++){
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'vec-dot';
+      dot.setAttribute('data-qi', qi);
+      dot.setAttribute('data-di', d);
+      dotsWrap.appendChild(dot);
+    }
+
+    dotsWrap.addEventListener('click', function(e){
+      var dot = e.target.closest('.vec-dot');
+      if(!dot) return;
+      var di = parseInt(dot.getAttribute('data-di'), 10);
+      /* toggle off if same dot clicked */
+      if(selections[qi] === di){
+        selections[qi] = -1;
+      } else {
+        selections[qi] = di;
+        /* sync to native radio */
+        if(qObj.radios[di]){
+          qObj.radios[di].checked = true;
+          qObj.radios[di].click();
+        }
+      }
+      /* update dot visuals */
+      var allDots = dotsWrap.querySelectorAll('.vec-dot');
+      allDots.forEach(function(dd, idx){
+        dd.classList.toggle('vec-dot-checked', idx === selections[qi]);
+      });
+      updateContinue();
+    });
+
+    card.appendChild(item);
+  });
+
+  /* --- prefer-not-to-respond checkbox --- */
+  var skip = document.getElementById('vec-prefer-skip');
+  if(skip){
+    skip.addEventListener('change', function(){
+      if(skip.checked){
+        /* clear selections visually */
+        card.querySelectorAll('.vec-dot').forEach(function(d){ d.classList.remove('vec-dot-checked'); });
+        selections = [-1, -1];
+        /* set native radios to neutral (c4) as default for skippers */
+        questions.forEach(function(qObj){
+          if(qObj.radios[3]){ qObj.radios[3].checked = true; qObj.radios[3].click(); }
+        });
+      }
+      updateContinue();
+    });
+  }
+
+  /* --- continue button --- */
+  var btn = document.getElementById('vec-continue-btn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      var nxt = document.querySelector('.nextPage');
+      if(!nxt) nxt = document.querySelector('input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+})();
+</script>
+]]></style>
   </radio>
   <suspend/>
 
