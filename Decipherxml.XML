@@ -105,10 +105,24 @@ body, .survey-body, .main-content {
     border-radius: 3px;
     transition: width .45s cubic-bezier(.4,0,.2,1);
 }
+#sc-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-family: Inter, sans-serif;
+}
+#sc-section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
 #sc-progress-label {
-    margin-top: 4px;
-    text-align: right;
-    font-size: 11px;
+    font-size: 9px;
     letter-spacing: .05em;
     color: #888888;
     font-weight: 600;
@@ -131,11 +145,13 @@ body, .survey-body, .main-content {
     background: #F8F5F0;
     padding: 28px 28px 26px;
 }
-.sc-card .sc-q-label {
+.sc-q-label {
     font-family: Inter, sans-serif;
-    font-size: 11px; font-weight: 600;
+    font-size: 9px; font-weight: 600;
     letter-spacing: .08em; text-transform: uppercase;
-    color: #888888; margin-bottom: 6px;
+    color: #888888; margin-bottom: 4px;
+    text-align: right;
+    display: none;
 }
 .sc-card .sc-q-text {
     font-family: Fraunces, Georgia, serif;
@@ -563,12 +579,18 @@ body, .survey-body, .main-content {
   }
 
   /* ---- card navigation ---- */
+  var LABELS = {
+    'card-qs1':'label-qs1','card-qzip':'label-qzip','card-qage':'label-qage',
+    'card-qgender':'label-qgender','card-qvote24':'label-qvote24','card-party':'label-party'
+  };
   function showCard(idx){
     CARDS.forEach(function(id,i){
       var el = document.getElementById(id);
       if(!el) return;
-      if(i===0){ el.style.display = idx===0 ? 'block' : 'none'; }
-      else { el.style.display = i<=idx ? 'block' : 'none'; }
+      var show = i===0 ? idx===0 : i<=idx;
+      el.style.display = show ? 'block' : 'none';
+      var lbl = LABELS[id] ? document.getElementById(LABELS[id]) : null;
+      if(lbl) lbl.style.display = show ? 'block' : 'none';
     });
     updateProgress();
   }
@@ -586,7 +608,7 @@ body, .survey-body, .main-content {
       wrap.style.display='block';
       var pct = Math.round((cur/total)*100);
       fill.style.width = pct+'%';
-      if(lbl) lbl.textContent = pct+'% COMPLETE';
+      if(lbl) lbl.textContent = cur+' of '+total+' Questions';
     }
   }
   function enableNext(){
@@ -647,6 +669,7 @@ body, .survey-body, .main-content {
     jQuery(this).toggleClass('zip-filled', this.value.length>0);
     clearFieldError('zip-error');
     jQuery(zipD).removeClass('sc-input-err');
+    jQuery('#zip-pna').prop('checked', false);
     var full = jQuery.map(zipD, function(d){return d.value;}).join('');
     if(full.length===5){
       var err = validateZip(full);
@@ -684,6 +707,7 @@ body, .survey-body, .main-content {
     jQuery(this).toggleClass('age-filled', this.value.length>0);
     clearFieldError('age-error');
     jQuery(ageD).removeClass('sc-input-err');
+    jQuery('#age-pna').prop('checked', false);
     var full = jQuery.map(ageD, function(d){return d.value;}).join('');
     if(full.length===2){
       var err = validateAge(full);
@@ -713,6 +737,7 @@ body, .survey-body, .main-content {
   jQuery('#gender-pills').on('click', '.gender-pill', function(){
     jQuery('#gender-pills .gender-pill').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
+    jQuery('#gender-pna').prop('checked', false);
     setRadio('QGENDER', jQuery(this).attr('data-val'));
     setTimeout(advance, 350);
   });
@@ -724,6 +749,7 @@ body, .survey-body, .main-content {
   jQuery('#ballot-vote24').on('click', '.ballot-row, .ballot-bottom-row', function(){
     jQuery('#ballot-vote24 .ballot-row, #ballot-vote24 .ballot-bottom-row').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
+    jQuery('#vote-pna').prop('checked', false);
     setRadio('QVOTE24', jQuery(this).attr('data-val'));
     setTimeout(advance, 350);
   });
@@ -736,6 +762,7 @@ body, .survey-body, .main-content {
   jQuery('#card-party').on('click', '.party-main-btn', function(){
     jQuery('#card-party .party-main-btn').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
+    jQuery('#party-pna').prop('checked', false);
     var v = jQuery(this).attr('data-val');
     partyChoice = v;
     setRadio('QS5', v);
@@ -756,6 +783,7 @@ body, .survey-body, .main-content {
   jQuery('#party-sub-a').on('click', '.party-sub-radio', function(){
     jQuery('#party-sub-a .party-sub-radio').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
+    jQuery('#party2-pna').prop('checked', false);
     setRadio('QS5A', jQuery(this).attr('data-val'));
     enableNext();
   });
@@ -765,6 +793,7 @@ body, .survey-body, .main-content {
   jQuery('#party-sub-b').on('click', '.party-lean-btn', function(){
     jQuery('#party-sub-b .party-lean-btn').removeClass('sc-sel');
     jQuery(this).addClass('sc-sel');
+    jQuery('#party3-pna').prop('checked', false);
     setRadio('QS5B', jQuery(this).attr('data-val'));
     enableNext();
   });
@@ -865,8 +894,11 @@ body, .survey-body, .main-content {
   </div>
 
   <div id="sc-progress-wrap">
+    <div id="sc-section-header">
+      <span id="sc-section-title">SECTION 1: BACKGROUND INFO</span>
+      <span id="sc-progress-label"></span>
+    </div>
     <div id="sc-progress-track"><div id="sc-progress-fill"></div></div>
-    <div id="sc-progress-label"></div>
   </div>
 
   <div class="sc-card sc-intro" id="card-intro">
@@ -879,8 +911,8 @@ body, .survey-body, .main-content {
     <button id="sc-start-btn" type="button">READY, SET, GO!</button>
   </div>
 
+  <div class="sc-q-label" id="label-qs1">1 of 6 Questions</div>
   <div class="sc-card" id="card-qs1">
-    <div class="sc-q-label">1 of 6 Questions</div>
     <div class="sc-q-text">Are you registered to vote?</div>
 
     <div class="qs1-btn-group">
@@ -902,8 +934,8 @@ body, .survey-body, .main-content {
     </div>
   </div>
 
+  <div class="sc-q-label" id="label-qzip">2 of 6 Questions</div>
   <div class="sc-card" id="card-qzip">
-    <div class="sc-q-label">2 of 6 Questions</div>
     <div class="sc-q-text">Please enter your 5-digit Zip Code</div>
     <p style="font-size:13px;color:#888888;margin:-12px 0 14px;font-family:Inter,sans-serif;">
       (the Zip Code of your primary residence where you are registered to vote)
@@ -945,8 +977,8 @@ body, .survey-body, .main-content {
     </label>
   </div>
 
+  <div class="sc-q-label" id="label-qage">3 of 6 Questions</div>
   <div class="sc-card" id="card-qage">
-    <div class="sc-q-label">3 of 6 Questions</div>
     <div class="sc-q-text">Tell us how old you are.</div>
     <div class="age-instruction">Enter two digits &mdash; e.g., &ldquo;4&rdquo; then &ldquo;5&rdquo; for age 45</div>
 
@@ -965,8 +997,8 @@ body, .survey-body, .main-content {
     </label>
   </div>
 
+  <div class="sc-q-label" id="label-qgender">4 of 6 Questions</div>
   <div class="sc-card" id="card-qgender">
-    <div class="sc-q-label">4 of 6 Questions</div>
     <div class="sc-q-text">What is your gender?</div>
 
     <div class="gender-pills" id="gender-pills">
@@ -981,8 +1013,8 @@ body, .survey-body, .main-content {
     </label>
   </div>
 
+  <div class="sc-q-label" id="label-qvote24">5 of 6 Questions</div>
   <div class="sc-card" id="card-qvote24">
-    <div class="sc-q-label">5 of 6 Questions</div>
     <div class="sc-q-text">Who did you vote for in the latest (2024) Presidential election?</div>
 
     <div class="ballot-card-inner" id="ballot-vote24">
@@ -1020,8 +1052,8 @@ body, .survey-body, .main-content {
     </label>
   </div>
 
+  <div class="sc-q-label" id="label-party">6 of 6 Questions</div>
   <div class="sc-card" id="card-party">
-    <div class="sc-q-label">6 of 6 Questions</div>
     <div class="sc-q-text">In politics today, do you consider yourself a&hellip;?</div>
 
     <div class="party-main-btns">
@@ -1434,15 +1466,34 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
         background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
         border-color: #A01E1E;
         box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+
+    .md-progress-wrap { padding: 0 0 8px; }
+    .md-section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .md-section-title { font-family: Inter,sans-serif; font-size: 9px; font-weight: 700;
+        letter-spacing: .06em; text-transform: uppercase; color: #888;
+        text-decoration: underline; text-underline-offset: 2px; }
+    .md-progress-label { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
+        letter-spacing: .05em; text-transform: uppercase; color: #888; }
+    .md-progress-track { height: 5px; background: #E0E0E0; border-radius: 3px; }
+    .md-progress-fill { height: 100%; width: 0%; background: #6B7F4E; border-radius: 3px;
+        transition: width .45s cubic-bezier(.4,0,.2,1); }
+    .md-card-counter { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
+        letter-spacing: .08em; text-transform: uppercase; color: #888;
+        margin-bottom: 4px; text-align: right; }
 </style>
 <div style="max-width:640px;margin:0 auto;padding:0 16px 16px;">
   <div style="text-align:center;padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
   </div>
-  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
-    <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:6px;text-align:right;">
-      Card ${p.MDcount} of ${len(QMD1_md_loop_expanded.order)}
+  <div class="md-progress-wrap">
+    <div class="md-section-header">
+      <span class="md-section-title">SECTION 2: VALUES &amp; IDENTITY</span>
+      <span class="md-progress-label">${p.MDcount} of ${len(QMD1_md_loop_expanded.order)} Questions</span>
     </div>
+    <div class="md-progress-track"><div class="md-progress-fill" id="md-progress-fill"></div></div>
+  </div>
+  <div class="md-card-counter">Card ${p.MDcount} of ${len(QMD1_md_loop_expanded.order)}</div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
     <div style="font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:700;color:#333;line-height:1.42;margin-bottom:8px;">
       From the set of short statements expressing different points of view about politics, culture and health.
     </div>
@@ -1495,6 +1546,14 @@ p.MDcount = str(QMD1_md_loop_expanded.order.index([loopvar: task]-1)+1)
 </div>
 <script>
 (function(){
+  /* set progress bar width from Decipher template vars */
+  var pFill = document.getElementById('md-progress-fill');
+  if(pFill){
+    var curCard = parseInt('${p.MDcount}',10) || 1;
+    var totalCards = parseInt('${len(QMD1_md_loop_expanded.order)}',10) || 1;
+    pFill.style.width = Math.round((curCard/totalCards)*100)+'%';
+  }
+
   var q = document.querySelector('.QMD1_maxdiff');
   if(!q) return;
 
@@ -1666,8 +1725,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     .vec-wrap { max-width: 640px; margin: 0 auto; }
     .vec-card { background: #fff; border: 1px solid #E0DCD6; border-radius: 10px;
         padding: 22px 24px 20px; margin-bottom: 20px; }
-    .vec-counter { font-size: 11px; font-weight: 600; letter-spacing: .08em;
-        text-transform: uppercase; color: #888; margin-bottom: 6px; text-align: right; }
+    .vec-counter { font-size: 9px; font-weight: 600; letter-spacing: .08em;
+        text-transform: uppercase; color: #888; margin-bottom: 4px; text-align: right; }
     .vec-title { font-family: Fraunces,Georgia,serif; font-size: 17px; font-weight: 700;
         color: #333; line-height: 1.42; margin-bottom: 4px; }
     .vec-subtitle { font-family: Inter,sans-serif; font-size: 13px; color: #999;
@@ -1765,8 +1824,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   <div style="text-align:center;padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
   </div>
+  <div class="vec-counter">1 of 1 Questions</div>
   <div class="vec-card">
-    <div class="vec-counter">1 of 2 Questions</div>
     <div class="vec-title">Tell us how much you agree or disagree with these statements</div>
     <div class="vec-subtitle">Tap where you fall on each statement...</div>
     <div class="vec-scale-labels">
@@ -1895,6 +1954,9 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         cnames.forEach(function(cn){ dd.classList.remove(cn); });
         if(idx === selections[qi]) dd.classList.add(cnames[idx]);
       });
+      /* uncheck prefer-not-to-respond when a dot is selected */
+      var skip = document.getElementById('vec-prefer-skip');
+      if(skip) skip.checked = false;
       updateContinue();
     });
 
@@ -2326,15 +2388,33 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
         background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
         border-color: #A01E1E;
         box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+    .md-progress-wrap { padding: 0 0 8px; }
+    .md-section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .md-section-title { font-family: Inter,sans-serif; font-size: 9px; font-weight: 700;
+        letter-spacing: .06em; text-transform: uppercase; color: #888;
+        text-decoration: underline; text-underline-offset: 2px; }
+    .md-progress-label { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
+        letter-spacing: .05em; text-transform: uppercase; color: #888; }
+    .md-progress-track { height: 5px; background: #E0E0E0; border-radius: 3px; }
+    .md-progress-fill { height: 100%; width: 0%; background: #6B7F4E; border-radius: 3px;
+        transition: width .45s cubic-bezier(.4,0,.2,1); }
+    .md-card-counter { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
+        letter-spacing: .08em; text-transform: uppercase; color: #888;
+        margin-bottom: 4px; text-align: right; }
 </style>
 <div style="max-width:640px;margin:0 auto;padding:0 16px 16px;">
   <div style="text-align:center;padding:4px 0 36px;">
     <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
   </div>
-  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
-    <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:6px;text-align:right;">
-      Card ${p.MDcount} of ${len(QMD3_md_loop_expanded.order)}
+  <div class="md-progress-wrap">
+    <div class="md-section-header">
+      <span class="md-section-title">SECTION 2: VALUES &amp; IDENTITY</span>
+      <span class="md-progress-label">${p.MDcount} of ${len(QMD3_md_loop_expanded.order)} Questions</span>
     </div>
+    <div class="md-progress-track"><div class="md-progress-fill" id="md-progress-fill-gop"></div></div>
+  </div>
+  <div class="md-card-counter">Card ${p.MDcount} of ${len(QMD3_md_loop_expanded.order)}</div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
     <div style="font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:700;color:#333;line-height:1.42;margin-bottom:8px;">
       From the set of short statements expressing different points of view about politics, culture and health.
     </div>
@@ -2387,6 +2467,14 @@ p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
 </div>
 <script>
 (function(){
+  /* set progress bar width from Decipher template vars */
+  var pFill = document.getElementById('md-progress-fill-gop');
+  if(pFill){
+    var curCard = parseInt('${p.MDcount}',10) || 1;
+    var totalCards = parseInt('${len(QMD3_md_loop_expanded.order)}',10) || 1;
+    pFill.style.width = Math.round((curCard/totalCards)*100)+'%';
+  }
+
   var q = document.querySelector('.QMD3_maxdiff');
   if(!q) return;
 
