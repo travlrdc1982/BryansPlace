@@ -3711,10 +3711,10 @@ elif XDEM_SEG_FINAL_1.any:
 }
 .inf-btn-range {
     font-family: Inter, sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    color: #999;
-    margin-top: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #888;
+    margin-top: 4px;
 }
 
 /* --- Card-swipe UI (INF8 social media activity) --- */
