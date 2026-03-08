@@ -2805,18 +2805,20 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 }
 .inf-btn-option.inf-sel {
     border-color: #6B7F4E;
-    background: #F8F5F0;
+    background: #EAF0E0;
 }
-.inf-btn-value {
+.inf-btn-big {
     font-family: Inter, sans-serif;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 800;
     color: #333;
+    line-height: 1.1;
 }
-.inf-btn-sub {
+.inf-btn-range {
     font-family: Inter, sans-serif;
     font-size: 11px;
-    color: #888;
+    font-weight: 500;
+    color: #999;
     margin-top: 2px;
 }
 
@@ -2848,26 +2850,17 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     color: #333;
     line-height: 1.4;
 }
-.inf-swipe-arrow {
-    flex-shrink: 0;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: #333;
-    color: #fff;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .15s;
+/* --- Green highlight flash for selections --- */
+.inf-btn-option.inf-flash {
+    border-color: #6B7F4E;
+    background: #D4E8B8;
+    transition: background .12s;
 }
-.inf-swipe-arrow:hover {
-    background: #555;
-}
-.inf-swipe-arrow:disabled {
-    background: #ccc;
-    cursor: not-allowed;
+.inf-freq-btn.inf-flash {
+    border-color: #6B7F4E;
+    background: #D4E8B8;
+    color: #333;
+    transition: background .12s;
 }
 .inf-swipe-peek {
     display: flex;
@@ -2981,13 +2974,13 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   <div class="inf-progress-wrap" id="inf2-progress-wrap">
     <div class="inf-section-header">
       <span class="inf-section-title">SECTION 3: INFLUENCE &amp; ENGAGEMENT</span>
-      <span class="inf-progress-label" id="inf2-progress-label">1 of 3 Questions</span>
+      <span class="inf-progress-label" id="inf2-progress-label">1 of 4 Questions</span>
     </div>
-    <div class="inf-progress-track"><div class="inf-progress-fill" id="inf2-progress-fill" style="width:33%"></div></div>
+    <div class="inf-progress-track"><div class="inf-progress-fill" id="inf2-progress-fill" style="width:25%"></div></div>
   </div>
 
-  <!-- Merged checklist card: all INF2-INF6 rows in one card -->
-  <div class="inf-q-label">1 of 3 Questions</div>
+  <!-- Merged checklist card: INF2-INF5 rows in one card -->
+  <div class="inf-q-label">1 of 4 Questions</div>
   <div class="inf-card" id="inf-merged-checklist">
     <div class="inf-q-title">Which of these have you done, if any?</div>
     <div class="inf-q-subtitle">Select all that apply. At the end, you&rsquo;ll see your Influence Compass.</div>
@@ -3028,8 +3021,16 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <span class="inf-check-label">Organized an event or rally on any issue</span>
       </div>
-      <div class="inf-merged-separator"></div>
-      <div class="inf-merged-subhead">In the past 12 months, have you taken any of the following actions related to a public policy issue?</div>
+    </div>
+    <button type="button" class="inf-none-btn" id="inf-merged-none">None of these</button>
+  </div>
+
+  <!-- INF6 card: separate card for policy actions -->
+  <div class="inf-q-label">2 of 4 Questions</div>
+  <div class="inf-card" id="inf6-card">
+    <div class="inf-q-title">In the past 12 months, have you taken any of the following actions related to a public policy issue?</div>
+    <div class="inf-q-subtitle">Select all that apply.</div>
+    <div id="inf6-checks">
       <div class="inf-check-row" data-q="INF6" data-row="r1">
         <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <span class="inf-check-label">Signed a petition</span>
@@ -3043,7 +3044,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         <span class="inf-check-label">Donated money</span>
       </div>
     </div>
-    <button type="button" class="inf-none-btn" id="inf-merged-none">None of these</button>
+    <button type="button" class="inf-none-btn" id="inf6-none">None of these</button>
   </div>
 ]]></style>
 </checkbox>
@@ -3128,32 +3129,32 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 
   <style mode="before" name="question.header"><![CDATA[
   <!-- INF7 card: Social media followers (always shown) -->
-  <div class="inf-q-label">2 of 3 Questions</div>
+  <div class="inf-q-label">3 of 4 Questions</div>
   <div class="inf-card inf2-card" data-q="INF7" id="inf2-card-INF7">
     <div class="inf-q-title">Across all your public social-media accounts about how many followers or subscribers do you have in total?</div>
     <div class="inf-q-subtitle">Including from X/Twitter, Instagram, TikTok, Facebook pages, Substack, podcast, YouTube, etc.</div>
     <div class="inf-btn-grid" data-q="INF7">
       <div class="inf-btn-option" data-row="r1" data-val="1">
-        <span class="inf-btn-value">0</span>
-        <span class="inf-btn-sub">None</span>
+        <span class="inf-btn-big">0</span>
+        <span class="inf-btn-range">None</span>
       </div>
       <div class="inf-btn-option" data-row="r2" data-val="2">
-        <span class="inf-btn-value">&lt;500</span>
+        <span class="inf-btn-big">&lt;500</span>
       </div>
       <div class="inf-btn-option" data-row="r3" data-val="3">
-        <span class="inf-btn-value">500 -</span>
-        <span class="inf-btn-sub">2,000</span>
+        <span class="inf-btn-big">500</span>
+        <span class="inf-btn-range">to 2,000</span>
       </div>
       <div class="inf-btn-option" data-row="r4" data-val="4">
-        <span class="inf-btn-value">2,000 -</span>
-        <span class="inf-btn-sub">10,000</span>
+        <span class="inf-btn-big">2,000</span>
+        <span class="inf-btn-range">to 10,000</span>
       </div>
       <div class="inf-btn-option" data-row="r5" data-val="5">
-        <span class="inf-btn-value">10,000 -</span>
-        <span class="inf-btn-sub">50,000</span>
+        <span class="inf-btn-big">10,000</span>
+        <span class="inf-btn-range">to 50,000</span>
       </div>
       <div class="inf-btn-option" data-row="r6" data-val="6">
-        <span class="inf-btn-value">50,000 +</span>
+        <span class="inf-btn-big">50,000+</span>
       </div>
     </div>
   </div>
@@ -3180,7 +3181,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 
   <style mode="before" name="question.header"><![CDATA[
   <!-- INF8 card: Social media activity card-swipe (always shown) -->
-  <div class="inf-q-label">3 of 3 Questions</div>
+  <div class="inf-q-label">4 of 4 Questions</div>
   <div class="inf-card inf2-card" data-q="INF8" id="inf2-card-INF8">
     <div class="inf-q-title">How many times over the past 30 days have you&hellip;</div>
     <div class="inf-q-subtitle">Across social media platforms you use (X/Twitter, Instagram, TikTok, Facebook, Substack, YouTube, etc.). Approximately how many times have you done any of the following to advocate on a public policy issue?</div>
@@ -3192,7 +3193,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       </div>
       <div class="inf-swipe-card-area">
         <div class="inf-swipe-card" id="inf8-card-text">Created an original post or video</div>
-        <button type="button" class="inf-swipe-arrow" id="inf8-next-arrow">&#8250;</button>
       </div>
       <div class="inf-freq-btns" id="inf8-freq-btns">
         <button type="button" class="inf-freq-btn" data-col="c1" data-val="1">Never</button>
@@ -3372,9 +3372,9 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
      MERGED CHECKLIST + 3-CARD LAYOUT (no progressive disclosure)
      ================================================================== */
 
-  var CB_LABELS = ['INF2','INF3','INF4','INF5','INF6'];
+  var MERGED_LABELS = ['INF2','INF3','INF4','INF5'];
   var visibleCBs = [];
-  CB_LABELS.forEach(function(q){
+  MERGED_LABELS.forEach(function(q){
     if(findQ(q)){
       visibleCBs.push(q);
       console.log('[MERGED] '+q+' in DOM');
@@ -3386,13 +3386,17 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     }
   });
 
-  /* Track 3 cards */
-  var cardAnswered = { checklist: false, INF7: false, INF8: false };
+  /* INF6 is always visible (no condition) but track separately */
+  var inf6Visible = !!findQ('INF6');
+
+  /* Track 4 cards */
+  var cardAnswered = { checklist: false, INF6: false, INF7: false, INF8: false };
   var hasAnyRows = document.querySelectorAll('#inf-merged-checks .inf-check-row:not([style*="display: none"])').length > 0;
   if(!hasAnyRows) cardAnswered.checklist = true;
+  if(!inf6Visible) cardAnswered.INF6 = true;
 
   function updateContinue(){
-    var allDone = cardAnswered.checklist && cardAnswered.INF7 && cardAnswered.INF8;
+    var allDone = cardAnswered.checklist && cardAnswered.INF6 && cardAnswered.INF7 && cardAnswered.INF8;
     document.getElementById('inf2-continue').disabled = !allDone;
   }
 
@@ -3447,6 +3451,51 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   }
 
   /* ==================================================================
+     INF6 SEPARATE CARD
+     ================================================================== */
+  var inf6Selected = {};
+  var inf6None = false;
+  var inf6NoneBtn = document.getElementById('inf6-none');
+
+  document.querySelectorAll('#inf6-checks .inf-check-row').forEach(function(row){
+    row.addEventListener('click', function(){
+      var r = row.getAttribute('data-row');
+      inf6Selected[r] = !inf6Selected[r];
+      row.classList.toggle('inf-checked', inf6Selected[r]);
+      syncCheckbox('INF6', r, inf6Selected[r]);
+
+      if(inf6Selected[r] && inf6None){
+        inf6None = false;
+        if(inf6NoneBtn) inf6NoneBtn.classList.remove('inf-sel');
+        syncCheckbox('INF6', 'r99', false);
+      }
+
+      cardAnswered.INF6 = inf6None || Object.keys(inf6Selected).some(function(k){ return inf6Selected[k]; });
+      updateContinue();
+    });
+  });
+
+  if(inf6NoneBtn){
+    inf6NoneBtn.addEventListener('click', function(){
+      inf6None = !inf6None;
+      inf6NoneBtn.classList.toggle('inf-sel', inf6None);
+      syncCheckbox('INF6', 'r99', inf6None);
+
+      if(inf6None){
+        document.querySelectorAll('#inf6-checks .inf-check-row').forEach(function(row){
+          var r2 = row.getAttribute('data-row');
+          inf6Selected[r2] = false;
+          row.classList.remove('inf-checked');
+          syncCheckbox('INF6', r2, false);
+        });
+      }
+
+      cardAnswered.INF6 = inf6None || Object.keys(inf6Selected).some(function(k){ return inf6Selected[k]; });
+      updateContinue();
+    });
+  }
+
+  /* ==================================================================
      BUTTON-SELECT GRID (INF7)
      ================================================================== */
 
@@ -3454,12 +3503,16 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   if(inf7Grid){
     inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(opt){
       opt.addEventListener('click', function(){
-        inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(o){ o.classList.remove('inf-sel'); });
-        opt.classList.add('inf-sel');
+        inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(o){ o.classList.remove('inf-sel','inf-flash'); });
+        opt.classList.add('inf-flash');
         var val = opt.getAttribute('data-val');
         syncRadio('INF7', val);
         cardAnswered.INF7 = true;
         updateContinue();
+        setTimeout(function(){
+          opt.classList.remove('inf-flash');
+          opt.classList.add('inf-sel');
+        }, 400);
       });
     });
   }
@@ -3476,7 +3529,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   var swipeIdx = 0;
   var swipeAnswers = {};
   var cardText = document.getElementById('inf8-card-text');
-  var nextArrow = document.getElementById('inf8-next-arrow');
   var peekLeft = document.getElementById('inf8-peek-left');
   var peekRight = document.getElementById('inf8-peek-right');
   var freqBtns = document.getElementById('inf8-freq-btns');
@@ -3487,10 +3539,10 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     cardText.textContent = swipeItems[swipeIdx].text;
     if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? swipeItems[swipeIdx-1].text : '';
     if(peekRight) peekRight.textContent = swipeIdx < swipeItems.length-1 ? swipeItems[swipeIdx+1].text : '';
-    if(nextArrow) nextArrow.disabled = swipeIdx >= swipeItems.length - 1;
     if(freqBtns){
       var cur = swipeAnswers[swipeItems[swipeIdx].row];
       freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(b){
+        b.classList.remove('inf-flash');
         b.classList.toggle('inf-sel', b.getAttribute('data-col') === cur);
       });
     }
@@ -3502,12 +3554,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
     }
   }
 
-  if(nextArrow){
-    nextArrow.addEventListener('click', function(){
-      if(swipeIdx < swipeItems.length - 1){ swipeIdx++; updateSwipe(); }
-    });
-  }
-
   if(freqBtns){
     freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(btn){
       btn.addEventListener('click', function(){
@@ -3517,17 +3563,20 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
         syncRating('INF8', swipeItems[swipeIdx].row, val);
         var allRated = swipeItems.every(function(item){ return swipeAnswers[item.row]; });
         cardAnswered.INF8 = allRated;
-        if(swipeIdx < swipeItems.length - 1){
-          setTimeout(function(){ swipeIdx++; updateSwipe(); }, 250);
-        } else {
-          updateSwipe();
-          /* All rated — show CONTINUE */
-          if(allRated){
-            var wrap = document.getElementById('inf2-continue-wrap');
-            if(wrap) wrap.classList.add('inf-visible');
+
+        /* Green flash highlight then auto-advance */
+        freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(b){ b.classList.remove('inf-sel','inf-flash'); });
+        btn.classList.add('inf-flash');
+        setTimeout(function(){
+          btn.classList.remove('inf-flash');
+          btn.classList.add('inf-sel');
+          if(swipeIdx < swipeItems.length - 1){
+            setTimeout(function(){ swipeIdx++; updateSwipe(); }, 150);
+          } else {
+            updateSwipe();
           }
-        }
-        updateContinue();
+          updateContinue();
+        }, 400);
       });
     });
   }
@@ -3545,7 +3594,8 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
       console.log('[INF2 SUBMIT] cardAnswered:', JSON.stringify(cardAnswered));
 
       /* Set r99 on visible checkbox questions with no selections */
-      visibleCBs.forEach(function(q){
+      var allCBLabels = visibleCBs.concat(inf6Visible ? ['INF6'] : []);
+      allCBLabels.forEach(function(q){
         var box = findQ(q);
         if(!box) return;
         var chkd = box.querySelectorAll('input:checked');
