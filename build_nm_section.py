@@ -28,17 +28,16 @@ from collections import defaultdict
 #  FILTER CONFIGURATION — Adjust these thresholds as needed
 # ================================================================
 
+# Global score minimums applied to ALL topics (0 = no filter).
 FILTER_CONFIG = {
-    # Score minimums (0 = no filter). CSV values are typically 0-3.
-    'reach_score_min':          0,
-    'uniqueness_score_min':     0,
-    'recognition_score_min':    0,
-    'scale_fit_score_min':      0,
-    'strategic_priority_min':   0,
-
-    # Eligibility flags — set to True to require the flag == 1
+    'reach_score_min':          0,   # 0-3
+    'uniqueness_score_min':     0,   # 0-3
+    'recognition_score_min':    0,   # 0-3
+    'scale_fit_score_min':      0,   # 0-3
+    'strategic_priority_min':   0,   # 0+
     'require_field_eligible':           False,
     'require_field_eligible_relaxed':   False,
+    'require_mainstream_flag':          None,  # None=ignore, 0=non-mainstream only, 1=mainstream only
 }
 
 # ================================================================
@@ -65,6 +64,34 @@ TOPIC_CONFIG = [
 ]
 
 # ================================================================
+#  PER-TOPIC FILTER RULES
+#  Maps CSV primary_topic → additional filter overrides.
+#  These are applied ON TOP of FILTER_CONFIG (overrides win).
+#
+#  Current logic:
+#    Health Policy & Political News → field_eligible_relaxed = 1
+#    Everything else               → mainstream_flag = 0
+# ================================================================
+
+HIGH_VOLUME_TOPICS = {
+    'Health policy',
+    'Political news and commentary',
+}
+
+TOPIC_FILTER_RULES = {}
+
+# Build per-topic overrides from the rule above
+for _t_idx, _csv_topic, _display in TOPIC_CONFIG:
+    if _csv_topic in HIGH_VOLUME_TOPICS:
+        TOPIC_FILTER_RULES[_csv_topic] = {
+            'require_field_eligible_relaxed': True,
+        }
+    else:
+        TOPIC_FILTER_RULES[_csv_topic] = {
+            'require_mainstream_flag': 0,   # non-mainstream only
+        }
+
+# ================================================================
 #  FILE PATHS
 # ================================================================
 
@@ -89,22 +116,34 @@ TRACK_COND = {
 #  FILTER LOGIC
 # ================================================================
 
+def _merge_cfg(base, overrides):
+    """Merge per-topic overrides on top of the base config."""
+    if not overrides:
+        return base
+    merged = dict(base)
+    merged.update(overrides)
+    return merged
+
+
 def passes_filter(row, cfg):
     """Return True if a CSV row passes all configured filters."""
     try:
-        if cfg['reach_score_min'] and int(row.get('reach_score', 0)) < cfg['reach_score_min']:
+        if cfg.get('reach_score_min') and int(row.get('reach_score', 0)) < cfg['reach_score_min']:
             return False
-        if cfg['uniqueness_score_min'] and int(row.get('uniqueness_score', 0)) < cfg['uniqueness_score_min']:
+        if cfg.get('uniqueness_score_min') and int(row.get('uniqueness_score', 0)) < cfg['uniqueness_score_min']:
             return False
-        if cfg['recognition_score_min'] and int(row.get('recognition_score', 0)) < cfg['recognition_score_min']:
+        if cfg.get('recognition_score_min') and int(row.get('recognition_score', 0)) < cfg['recognition_score_min']:
             return False
-        if cfg['scale_fit_score_min'] and int(row.get('scale_fit_score', 0)) < cfg['scale_fit_score_min']:
+        if cfg.get('scale_fit_score_min') and int(row.get('scale_fit_score', 0)) < cfg['scale_fit_score_min']:
             return False
-        if cfg['strategic_priority_min'] and int(row.get('strategic_priority', 0)) < cfg['strategic_priority_min']:
+        if cfg.get('strategic_priority_min') and int(row.get('strategic_priority', 0)) < cfg['strategic_priority_min']:
             return False
-        if cfg['require_field_eligible'] and str(row.get('field_eligible', '0')).strip() != '1':
+        if cfg.get('require_field_eligible') and str(row.get('field_eligible', '0')).strip() != '1':
             return False
-        if cfg['require_field_eligible_relaxed'] and str(row.get('field_eligible_relaxed', '0')).strip() != '1':
+        if cfg.get('require_field_eligible_relaxed') and str(row.get('field_eligible_relaxed', '0')).strip() != '1':
+            return False
+        mf = cfg.get('require_mainstream_flag')
+        if mf is not None and int(row.get('mainstream_flag', 0)) != int(mf):
             return False
     except (ValueError, TypeError):
         return False
@@ -112,16 +151,18 @@ def passes_filter(row, cfg):
 
 
 def load_and_filter_csv(csv_path, cfg):
-    """Read CSV, apply filters, return sources and influencers grouped by topic."""
+    """Read CSV, apply filters (with per-topic overrides), return sources and influencers grouped by topic."""
     sources = defaultdict(list)      # csv_topic -> [row, ...]
     influencers = defaultdict(list)   # csv_topic -> [row, ...]
 
     with open(csv_path, 'r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if not passes_filter(row, cfg):
-                continue
             topic = row.get('primary_topic', '').strip()
+            # Merge global config with per-topic overrides
+            effective_cfg = _merge_cfg(cfg, TOPIC_FILTER_RULES.get(topic))
+            if not passes_filter(row, effective_cfg):
+                continue
             rtype = row.get('record_type', '').strip().lower()
             if rtype in ('source', 'both'):
                 sources[topic].append(row)
@@ -608,16 +649,20 @@ def generate_nm_blocks(csv_path, cfg):
     blocks = []
 
     # Header comment with active filter summary
-    active_filters = []
-    for key, val in cfg.items():
-        if val:
-            active_filters.append(f'{key}={val}')
-    filter_summary = ', '.join(active_filters) if active_filters else 'none (all sources included)'
+    active_global = [f'{k}={v}' for k, v in cfg.items() if v]
+    global_str = ', '.join(active_global) if active_global else 'none'
+    topic_rules = []
+    for csv_topic, rule in TOPIC_FILTER_RULES.items():
+        parts = ', '.join(f'{k}={v}' for k, v in rule.items())
+        topic_rules.append(f'       {csv_topic}: {parts}')
+    topic_str = '\n'.join(topic_rules) if topic_rules else '       none'
 
     blocks.append(f'''<!-- =============================================================
      NM TOPIC BLOCKS — AUTO-GENERATED from NewMediaSurvey.csv
      Generated by build_nm_section.py
-     Active filters: {filter_summary}
+     Global filters: {global_str}
+     Per-topic rules:
+{topic_str}
      To regenerate: python build_nm_section.py --apply
      ============================================================= -->
 ''')
@@ -688,13 +733,20 @@ def print_summary(csv_path, cfg):
     print("  NEW MEDIA BUILD SUMMARY")
     print("=" * 60)
     print()
-    print("  FILTER CONFIG:")
+    print("  GLOBAL FILTER CONFIG:")
     for key, val in cfg.items():
         marker = " <<<" if val else ""
         print(f"    {key}: {val}{marker}")
     print()
-    print(f"  {'TOPIC':<45} {'SRC':>5} {'INF':>5}")
-    print(f"  {'-'*45} {'-'*5} {'-'*5}")
+    print("  PER-TOPIC RULES:")
+    for tidx, csv_topic, display_title in TOPIC_CONFIG:
+        rule = TOPIC_FILTER_RULES.get(csv_topic)
+        if rule:
+            parts = ', '.join(f'{k}={v}' for k, v in rule.items())
+            print(f"    {csv_topic}: {parts}")
+    print()
+    print(f"  {'TOPIC':<45} {'SRC':>5} {'INF':>5}  RULE")
+    print(f"  {'-'*45} {'-'*5} {'-'*5}  {'-'*30}")
 
     total_src = 0
     total_inf = 0
@@ -703,7 +755,9 @@ def print_summary(csv_path, cfg):
         ni = len(influencers.get(csv_topic, []))
         total_src += ns
         total_inf += ni
-        print(f"  {display_title:<45} {ns:>5} {ni:>5}")
+        rule = TOPIC_FILTER_RULES.get(csv_topic, {})
+        rule_str = ', '.join(f'{k}={v}' for k, v in rule.items()) if rule else '(global only)'
+        print(f"  {display_title:<45} {ns:>5} {ni:>5}  {rule_str}")
 
     print(f"  {'-'*45} {'-'*5} {'-'*5}")
     print(f"  {'TOTAL':<45} {total_src:>5} {total_inf:>5}")
