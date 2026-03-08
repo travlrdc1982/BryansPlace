@@ -2007,6 +2007,1654 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   </radio>
   <suspend/>
 
+<note>===================== PAGE GROUP 5 -- INFLUENCE360_SCREEN =====================</note>
+
+<checkbox
+  label="INF1"
+  atleast="1"
+  optional="0"
+  ss:questionClassNames="inf_hidden">
+  <title>How have you made your voice heard?</title>
+  <comment>Select all that apply. At the end, you'll see your Influence Compass.</comment>
+  <row label="r1">I've worked inside government, held office, or staffed those who do</row>
+  <row label="r2">I've helped decide who runs for office or who gets hired in political or government roles</row>
+  <row label="r3">I advise organizations, sit on boards, or have testified on policy matters</row>
+  <row label="r4">I've written, spoken publicly, or published on issues</row>
+  <row label="r5">I've organized people, worked campaigns, or rallied others to action</row>
+  <row label="r6">I vote, follow current events, and stay involved in my community</row>
+  <row label="r99" exclusive="1">None of these</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+<style>
+/* --- hide native Decipher question elements on influence pages --- */
+.inf_hidden {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+.inf_hidden .question-text,
+.inf_hidden .comment,
+.inf_hidden .instruction-text,
+.inf_hidden .answers-list,
+.inf_hidden .fir-row,
+.inf_hidden .row-elements,
+.inf_hidden .noanswer-row,
+.inf_hidden .error,
+.inf_hidden .mobile-grid-wrapper,
+.inf_hidden .grid-table-mode,
+.inf_hidden .cell.noAnswer {
+    display: none !important;
+}
+/* hide native Next/submit button */
+.nextPage, .button[type="submit"], input[type="submit"] {
+    display: none !important;
+}
+
+/* --- INF root container --- */
+#inf-root {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px 120px;
+    font-family: Inter, sans-serif;
+    color: #333333;
+}
+
+/* --- PRISM logo --- */
+.inf-logo-bar {
+    text-align: center;
+    padding: 4px 0 36px;
+}
+.inf-logo-bar img {
+    height: 40px;
+    width: auto;
+}
+
+/* --- Section header + progress --- */
+.inf-progress-wrap {
+    position: sticky;
+    top: 0; z-index: 200;
+    background: #F5F2ED;
+    padding: 8px 0 12px;
+}
+.inf-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-family: Inter, sans-serif;
+}
+.inf-section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.inf-progress-label {
+    font-size: 9px;
+    letter-spacing: .05em;
+    color: #888888;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.inf-progress-track {
+    height: 5px;
+    background: #E0E0E0;
+    border-radius: 3px;
+}
+.inf-progress-fill {
+    height: 100%;
+    width: 33%;
+    background: #6B7F4E;
+    border-radius: 3px;
+    transition: width .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Intro card --- */
+.inf-intro-card {
+    background: #F8F5F0;
+    border: 1px solid #E0DCD6;
+    border-radius: 10px;
+    padding: 28px 28px 26px;
+    margin-bottom: 28px;
+}
+.inf-intro-body {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 15px;
+    color: #333333;
+    text-align: center;
+    line-height: 1.65;
+}
+
+/* --- Question card --- */
+.inf-card {
+    background: #FFFFFF;
+    border: 1px solid #E0DCD6;
+    border-radius: 10px;
+    padding: 22px 24px 20px;
+    margin-bottom: 28px;
+}
+.inf-q-label {
+    font-family: Inter, sans-serif;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: #888888; margin-bottom: 4px;
+    text-align: right;
+}
+.inf-q-title {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 19px; font-weight: 700;
+    color: #333333; line-height: 1.42;
+    margin-bottom: 6px;
+}
+.inf-q-subtitle {
+    font-family: Inter, sans-serif;
+    font-size: 12px; color: #888888;
+    margin-bottom: 18px;
+}
+
+/* --- Checklist checkbox rows --- */
+.inf-check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #F0EDE8;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+}
+.inf-check-row:last-of-type {
+    border-bottom: none;
+}
+.inf-check-row:hover {
+    background: #FAFAF8;
+}
+.inf-check-box {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border: 2px solid #CCCCCC;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, background .15s;
+    margin-top: 1px;
+}
+.inf-check-row.inf-checked .inf-check-box {
+    border-color: #6B7F4E;
+    background: #6B7F4E;
+}
+.inf-check-box svg {
+    display: none;
+    width: 14px; height: 14px;
+}
+.inf-check-row.inf-checked .inf-check-box svg {
+    display: block;
+}
+.inf-check-label {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.45;
+    flex: 1;
+}
+
+/* --- Merged checklist separator + subhead --- */
+.inf-merged-separator {
+    height: 1px;
+    background: #E0DCD6;
+    margin: 16px 0 12px;
+}
+.inf-merged-subhead {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    padding: 0 14px;
+}
+
+/* --- "None of these" button --- */
+.inf-none-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background .15s, border-color .15s;
+}
+.inf-none-btn:hover {
+    background: #F5F2ED;
+}
+.inf-none-btn.inf-sel {
+    background: #333;
+    color: #fff;
+}
+
+
+/* --- Continue button --- */
+.inf-continue-wrap {
+    text-align: center;
+    padding: 24px 0 12px;
+}
+.inf-continue-btn {
+    background: #6B7F4E;
+    color: #fff; border: none;
+    border-radius: 24px;
+    padding: 14px 36px;
+    font-family: Inter, sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+}
+.inf-continue-btn:hover {
+    background: #5A6B42;
+    transform: translateY(-1px);
+}
+.inf-continue-btn:disabled {
+    background: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+.inf-continue-btn .inf-arrow {
+    margin-left: 8px;
+}
+
+/* --- Footer --- */
+.inf-footer {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: #F5F2ED;
+    border-top: 1px solid #E0DCD6;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 10px; color: #AAAAAA; font-family: Inter, sans-serif; line-height: 1.4;
+}
+.inf-footer a { color: #6B7F4E; text-decoration: none; }
+</style>
+
+<div class="inf-footer">
+  Your responses are held strictly confidential.
+  See our <a href="#">Privacy Policy</a>
+  and commitment to research ethics and integrity.
+</div>
+
+<div id="inf-root">
+  <div class="inf-logo-bar">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM">
+  </div>
+
+  <div class="inf-progress-wrap">
+    <div class="inf-section-header">
+      <span class="inf-section-title">SECTION 3: INFLUENCE &amp; ENGAGEMENT</span>
+      <span class="inf-progress-label">1 of 3 Questions</span>
+    </div>
+    <div class="inf-progress-track"><div class="inf-progress-fill" style="width:33%"></div></div>
+  </div>
+
+  <div class="inf-intro-card">
+    <p class="inf-intro-body">
+      People shape decisions in different ways. The questions that follow
+      help us understand how you tend to engage and where your influence
+      shows up. At the end of the survey, we&rsquo;ll share a snapshot of your
+      influence profile.
+    </p>
+  </div>
+
+  <div class="inf-q-label">1 of 5 Questions</div>
+  <div class="inf-card" id="inf1-card">
+    <div class="inf-q-title">How have you made your voice heard?</div>
+    <div class="inf-q-subtitle">Select all that apply. At the end, you&rsquo;ll see your Influence Compass.</div>
+
+    <div id="inf1-checks">
+      <div class="inf-check-row" data-row="r1">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">I&rsquo;ve worked inside government, held office, or staffed those who do</span>
+      </div>
+      <div class="inf-check-row" data-row="r2">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">I&rsquo;ve helped decide who runs for office or who gets hired in political or government roles</span>
+      </div>
+      <div class="inf-check-row" data-row="r3">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">I advise organizations, sit on boards, or have testified on policy matters</span>
+      </div>
+      <div class="inf-check-row" data-row="r4">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">I&rsquo;ve written, spoken publicly, or published on issues</span>
+      </div>
+      <div class="inf-check-row" data-row="r5">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">I&rsquo;ve organized people, worked campaigns, or rallied others to action</span>
+      </div>
+      <div class="inf-check-row" data-row="r6">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">I vote, follow current events, and stay involved in my community</span>
+      </div>
+    </div>
+
+    <button type="button" class="inf-none-btn" id="inf1-none">None of these</button>
+  </div>
+
+  <div class="inf-continue-wrap">
+    <button type="button" class="inf-continue-btn" id="inf1-continue" disabled>CONTINUE <span class="inf-arrow">&#8250;</span></button>
+  </div>
+
+</div>
+]]></style>
+
+  <style mode="after" name="question.footer"><![CDATA[
+<script>
+(function(){
+  /* Guard: only run on INF1 page */
+  if(!document.getElementById('inf1-card')) return;
+
+  /* ---- find Decipher question element by label ---- */
+  function findQ(q){
+    var el = document.getElementById('q_'+q)
+        || document.getElementById('question_'+q)
+        || document.getElementById(q)
+        || document.querySelector('[id$="_'+q+'"]');
+    /* If we found an input rather than the question container, walk up */
+    if(el && el.closest && !el.classList.contains('question')){
+      var par = el.closest('.question');
+      if(par) el = par;
+    }
+    return el;
+  }
+
+  /* ---- Debug: log all .question elements + their inputs ---- */
+  var allQ = document.querySelectorAll('.question');
+  console.log('[INF1 init] All .question IDs:', [].map.call(allQ, function(e){return e.id;}));
+  var infBox = findQ('INF1');
+  if(infBox){
+    console.log('[INF1 init] Found INF1 id='+infBox.id);
+    var allInputs = infBox.querySelectorAll('input');
+    console.log('[INF1 init] INF1 has '+allInputs.length+' inputs:');
+    [].forEach.call(allInputs, function(inp){
+      console.log('  type='+inp.type+' name='+inp.name+' value='+inp.value+' checked='+inp.checked);
+    });
+  } else {
+    console.warn('[INF1 init] INF1 NOT FOUND - dumping all questions with checkboxes:');
+    allQ.forEach(function(q){
+      var cbs = q.querySelectorAll('input[type="checkbox"]');
+      if(cbs.length > 0){
+        console.log('  '+q.id+' has '+cbs.length+' checkboxes');
+        [].forEach.call(cbs, function(cb){
+          console.log('    name='+cb.name+' value='+cb.value);
+        });
+      }
+    });
+  }
+
+  /* ---- sync checkbox to native Decipher input ---- */
+  function syncCheckbox(qLabel, rowLabel, checked){
+    var box = findQ(qLabel);
+    if(!box){ console.warn('[syncCB] '+qLabel+' NOT FOUND'); return; }
+    var inp = null;
+
+    /* Strategy 1: value matches row label */
+    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    /* Strategy 2: name contains row label */
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    /* Strategy 3: position-based (r1=1st checkbox, r2=2nd, etc.) */
+    if(!inp){
+      var m = rowLabel.match(/^r(\d+)$/);
+      if(m){
+        var idx = parseInt(m[1], 10);
+        var allCB = box.querySelectorAll('input[type="checkbox"]');
+        if(idx === 99){
+          /* r99 = exclusive/noanswer = usually last checkbox */
+          for(var k=0; k<allCB.length; k++){
+            var nm = (allCB[k].name||'')+(allCB[k].className||'');
+            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
+          }
+          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
+        } else if(idx>0 && idx<=allCB.length){
+          inp = allCB[idx-1];
+        }
+      }
+    }
+    /* Strategy 4: scan ALL inputs */
+    if(!inp){
+      var all2 = box.querySelectorAll('input');
+      for(var j=0; j<all2.length; j++){
+        if(all2[j].value===rowLabel||(all2[j].name&&all2[j].name.indexOf(rowLabel)!==-1)){inp=all2[j]; break;}
+      }
+    }
+
+    if(inp){
+      console.log('[syncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+' type='+inp.type+')');
+      inp.checked = checked;
+      inp.click();
+      inp.dispatchEvent(new Event('change', {bubbles:true}));
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+    } else {
+      console.warn('[syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND in #'+box.id);
+    }
+  }
+
+  /* ---- state tracking ---- */
+  var selected = {};
+  var noneSelected = false;
+
+  var checkRows = document.querySelectorAll('#inf1-checks .inf-check-row');
+  var noneBtn = document.getElementById('inf1-none');
+  var continueBtn = document.getElementById('inf1-continue');
+
+  function updateContinue(){
+    var anyChecked = Object.keys(selected).some(function(k){ return selected[k]; });
+    continueBtn.disabled = !(anyChecked || noneSelected);
+  }
+
+  /* Checkbox row click */
+  checkRows.forEach(function(row){
+    row.addEventListener('click', function(){
+      var r = row.getAttribute('data-row');
+      selected[r] = !selected[r];
+      row.classList.toggle('inf-checked', selected[r]);
+      syncCheckbox('INF1', r, selected[r]);
+
+      if(selected[r] && noneSelected){
+        noneSelected = false;
+        noneBtn.classList.remove('inf-sel');
+        syncCheckbox('INF1', 'r99', false);
+      }
+      updateContinue();
+    });
+  });
+
+  /* None of these click */
+  noneBtn.addEventListener('click', function(){
+    noneSelected = !noneSelected;
+    noneBtn.classList.toggle('inf-sel', noneSelected);
+    syncCheckbox('INF1', 'r99', noneSelected);
+
+    if(noneSelected){
+      checkRows.forEach(function(row){
+        var r = row.getAttribute('data-row');
+        selected[r] = false;
+        row.classList.remove('inf-checked');
+        syncCheckbox('INF1', r, false);
+      });
+    }
+    updateContinue();
+  });
+
+  /* Continue button */
+  continueBtn.addEventListener('click', function(){
+    if(continueBtn.disabled) return;
+    console.log('[INF1 SUBMIT] selected=', JSON.stringify(selected), 'none=', noneSelected);
+
+    /* Verify native inputs */
+    var box = findQ('INF1');
+    if(box){
+      var chkd = box.querySelectorAll('input:checked');
+      console.log('[INF1 SUBMIT] Native checked: '+chkd.length);
+      [].forEach.call(chkd, function(c){ console.log('  '+c.name+'='+c.value); });
+
+      /* Emergency fallback: if nothing checked natively, force-set by position */
+      if(chkd.length === 0){
+        console.warn('[INF1 SUBMIT] FALLBACK: force-setting by position');
+        var allCB = box.querySelectorAll('input[type="checkbox"]');
+        console.log('[INF1 SUBMIT] Found '+allCB.length+' native checkboxes');
+        Object.keys(selected).forEach(function(r){
+          if(!selected[r]) return;
+          var m2 = r.match(/^r(\d+)$/);
+          if(m2){
+            var i2 = parseInt(m2[1],10) - 1;
+            if(i2 >= 0 && i2 < allCB.length){
+              allCB[i2].checked = true;
+              allCB[i2].click();
+              try{ jQuery(allCB[i2]).trigger('click').trigger('change'); }catch(e){}
+              console.log('[INF1 SUBMIT] Force-set idx='+i2+' name='+allCB[i2].name);
+            }
+          }
+        });
+        if(noneSelected && allCB.length > 0){
+          var last = allCB[allCB.length-1];
+          last.checked = true; last.click();
+          try{ jQuery(last).trigger('click').trigger('change'); }catch(e){}
+          console.log('[INF1 SUBMIT] Force-set None (last)');
+        }
+      }
+    }
+
+    var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+    if(!nxt) nxt = document.querySelector('.button, input.button');
+    if(nxt){
+      nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+      console.log('[INF1 SUBMIT] Clicking native button:', nxt.tagName, nxt.className);
+      nxt.click();
+    } else {
+      console.warn('[INF1 SUBMIT] No native button - form.submit()');
+      var form = document.querySelector('form');
+      if(form) form.submit();
+    }
+  });
+})();
+</script>
+]]></style>
+
+</checkbox>
+<suspend/>
+
+<note>===================== PAGE GROUP 6 -- INFLUENCE360_SCREEN2 =====================</note>
+
+<checkbox
+  label="INF2"
+  atleast="0"
+  optional="1"
+  cond="INF1.r2"
+  ss:questionClassNames="inf_hidden">
+  <title>Which of these have you done, if any?</title>
+  <row label="r1">Helped recruit a candidate to run for public office</row>
+  <row label="r2">Helped recruit staff for a political campaign, office of an elected official, or state/local government appointment</row>
+  <row label="r99" exclusive="1">None of these</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+<style>
+/* --- hide native Decipher question elements on influence page 2 --- */
+.inf_hidden {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+}
+.inf_hidden .question-text,
+.inf_hidden .comment,
+.inf_hidden .instruction-text,
+.inf_hidden .answers-list,
+.inf_hidden .fir-row,
+.inf_hidden .row-elements,
+.inf_hidden .noanswer-row,
+.inf_hidden .error,
+.inf_hidden .mobile-grid-wrapper,
+.inf_hidden .grid-table-mode,
+.inf_hidden .cell.noAnswer,
+.inf_hidden .col-legend-group,
+.inf_hidden .grouping-box,
+.inf_hidden table {
+    display: none !important;
+}
+/* hide native cardrating.1 widget elements */
+.inf_hidden .card-slider,
+.inf_hidden .card-slider-container,
+.inf_hidden .card-container,
+.inf_hidden .card-rating,
+.inf_hidden .card-rating-container,
+.inf_hidden .cardRating,
+.inf_hidden .cards-wrapper,
+.inf_hidden .card-nav,
+.inf_hidden .card-buttons,
+.inf_hidden .survey-card,
+.inf_hidden .rating-scale,
+.inf_hidden .card-item,
+.inf_hidden .card-deck,
+.inf_hidden .card-content,
+.inf_hidden .card-footer,
+.inf_hidden .zc-card,
+.inf_hidden .zc-cardrating,
+.inf_hidden > div:not(.inf-card):not(.inf-q-label):not(.inf-continue-wrap):not(.inf-logo-bar):not(.inf-progress-wrap):not(.inf-footer) {
+    display: none !important;
+}
+/* hide native Next/submit button */
+.nextPage, .button[type="submit"], input[type="submit"] {
+    display: none !important;
+}
+
+/* --- INF2 root container --- */
+#inf2-root {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px 120px;
+    font-family: Inter, sans-serif;
+    color: #333333;
+}
+
+/* --- PRISM logo --- */
+.inf-logo-bar {
+    text-align: center;
+    padding: 4px 0 36px;
+}
+.inf-logo-bar img {
+    height: 40px;
+    width: auto;
+}
+
+/* --- Section header + progress --- */
+.inf-progress-wrap {
+    position: sticky;
+    top: 0; z-index: 200;
+    background: #F5F2ED;
+    padding: 8px 0 12px;
+}
+.inf-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+    font-family: Inter, sans-serif;
+}
+.inf-section-title {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.inf-progress-label {
+    font-size: 9px;
+    letter-spacing: .05em;
+    color: #888888;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.inf-progress-track {
+    height: 5px;
+    background: #E0E0E0;
+    border-radius: 3px;
+}
+.inf-progress-fill {
+    height: 100%;
+    width: 33%;
+    background: #6B7F4E;
+    border-radius: 3px;
+    transition: width .45s cubic-bezier(.4,0,.2,1);
+}
+
+/* --- Question card --- */
+.inf-card {
+    background: #FFFFFF;
+    border: 1px solid #E0DCD6;
+    border-radius: 10px;
+    padding: 22px 24px 20px;
+    margin-bottom: 28px;
+}
+.inf-q-label {
+    font-family: Inter, sans-serif;
+    font-size: 9px; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: #888888; margin-bottom: 4px;
+    text-align: right;
+}
+.inf-q-title {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 19px; font-weight: 700;
+    color: #333333; line-height: 1.42;
+    margin-bottom: 6px;
+}
+.inf-q-subtitle {
+    font-family: Inter, sans-serif;
+    font-size: 12px; color: #888888;
+    margin-bottom: 18px;
+}
+
+/* --- Checklist checkbox rows --- */
+.inf-check-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #F0EDE8;
+    cursor: pointer;
+    user-select: none;
+    transition: background .15s;
+}
+.inf-check-row:last-of-type {
+    border-bottom: none;
+}
+.inf-check-row:hover {
+    background: #FAFAF8;
+}
+.inf-check-box {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border: 2px solid #CCCCCC;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .15s, background .15s;
+    margin-top: 1px;
+}
+.inf-check-row.inf-checked .inf-check-box {
+    border-color: #6B7F4E;
+    background: #6B7F4E;
+}
+.inf-check-box svg {
+    display: none;
+    width: 14px; height: 14px;
+}
+.inf-check-row.inf-checked .inf-check-box svg {
+    display: block;
+}
+.inf-check-label {
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.45;
+    flex: 1;
+}
+
+/* --- "None of these" button --- */
+.inf-none-btn {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    background: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background .15s, border-color .15s;
+}
+.inf-none-btn:hover {
+    background: #F5F2ED;
+}
+.inf-none-btn.inf-sel {
+    background: #333;
+    color: #fff;
+}
+
+/* --- Button-select grid (INF7 followers) --- */
+.inf-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+}
+.inf-btn-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 8px;
+    border: 2px solid #E0DCD6;
+    border-radius: 10px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color .18s, background .18s;
+    user-select: none;
+    text-align: center;
+}
+.inf-btn-option:hover {
+    border-color: #6B7F4E;
+}
+.inf-btn-option.inf-sel {
+    border-color: #6B7F4E;
+    background: #EAF0E0;
+}
+.inf-btn-big {
+    font-family: Inter, sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #333;
+    line-height: 1.1;
+}
+.inf-btn-range {
+    font-family: Inter, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #999;
+    margin-top: 2px;
+}
+
+/* --- Card-swipe UI (INF8 social media activity) --- */
+.inf-swipe-wrap {
+    position: relative;
+    margin-bottom: 20px;
+}
+.inf-swipe-card-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.inf-swipe-card {
+    flex: 1;
+    background: #F8F5F0;
+    border: 1px solid #E0DCD6;
+    border-radius: 24px;
+    padding: 20px 24px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+}
+/* --- Green highlight flash for selections --- */
+.inf-btn-option.inf-flash {
+    border-color: #6B7F4E;
+    background: #D4E8B8;
+    transition: background .12s;
+}
+.inf-freq-btn.inf-flash {
+    border-color: #6B7F4E;
+    background: #D4E8B8;
+    color: #333;
+    transition: background .12s;
+}
+.inf-swipe-peek {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-family: Inter, sans-serif;
+    font-size: 11px;
+    color: #AAA;
+}
+.inf-swipe-peek-left,
+.inf-swipe-peek-right {
+    max-width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.inf-freq-btns {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.inf-freq-btn {
+    padding: 8px 12px;
+    border: 1px solid #E0DCD6;
+    border-radius: 6px;
+    background: #fff;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+}
+.inf-freq-btn:hover {
+    border-color: #6B7F4E;
+}
+.inf-freq-btn.inf-sel {
+    border-color: #6B7F4E;
+    background: #6B7F4E;
+    color: #fff;
+}
+.inf-swipe-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+}
+.inf-swipe-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #E0DCD6;
+    transition: background .2s;
+}
+.inf-swipe-dot.inf-active {
+    background: #6B7F4E;
+}
+.inf-swipe-dot.inf-done {
+    background: #6B7F4E;
+}
+
+/* --- Continue button --- */
+.inf-continue-wrap {
+    text-align: center;
+    padding: 24px 0 12px;
+}
+.inf-continue-btn {
+    background: #6B7F4E;
+    color: #fff; border: none;
+    border-radius: 24px;
+    padding: 14px 36px;
+    font-family: Inter, sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+}
+.inf-continue-btn:hover {
+    background: #5A6B42;
+    transform: translateY(-1px);
+}
+.inf-continue-btn:disabled {
+    background: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- Footer --- */
+.inf-footer {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: #F5F2ED;
+    border-top: 1px solid #E0DCD6;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 10px; color: #AAAAAA; font-family: Inter, sans-serif; line-height: 1.4;
+}
+.inf-footer a { color: #6B7F4E; text-decoration: none; }
+</style>
+
+<div class="inf-footer">
+  Your responses are held strictly confidential.
+  See our <a href="#">Privacy Policy</a>
+  and commitment to research ethics and integrity.
+</div>
+
+<div id="inf2-root">
+  <div class="inf-logo-bar">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM">
+  </div>
+
+  <div class="inf-progress-wrap" id="inf2-progress-wrap">
+    <div class="inf-section-header">
+      <span class="inf-section-title">SECTION 3: INFLUENCE &amp; ENGAGEMENT</span>
+      <span class="inf-progress-label" id="inf2-progress-label">1 of 4 Questions</span>
+    </div>
+    <div class="inf-progress-track"><div class="inf-progress-fill" id="inf2-progress-fill" style="width:25%"></div></div>
+  </div>
+
+  <!-- Merged checklist card: INF2-INF5 rows in one card -->
+  <div class="inf-q-label">1 of 4 Questions</div>
+  <div class="inf-card" id="inf-merged-checklist">
+    <div class="inf-q-title">Which of these have you done, if any?</div>
+    <div class="inf-q-subtitle">Select all that apply. At the end, you&rsquo;ll see your Influence Compass.</div>
+    <div id="inf-merged-checks">
+      <div class="inf-check-row" data-q="INF2" data-row="r1">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Helped recruit a candidate to run for public office</span>
+      </div>
+      <div class="inf-check-row" data-q="INF2" data-row="r2">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Helped recruit staff for a political campaign, office of an elected official, or state/local government appointment</span>
+      </div>
+      <div class="inf-check-row" data-q="INF3" data-row="r1">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Met (in person or video) with congressional, agency, or state legislative staff</span>
+      </div>
+      <div class="inf-check-row" data-q="INF3" data-row="r2">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Sat on the board or executive committee of any health, policy, or business association</span>
+      </div>
+      <div class="inf-check-row" data-q="INF3" data-row="r3">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Worked with or advised a Washington-based organization (think tank, patient advocacy group, trade association)</span>
+      </div>
+      <div class="inf-check-row" data-q="INF3" data-row="r4">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Testified or submitted written comments to a state legislative or Congressional committee</span>
+      </div>
+      <div class="inf-check-row" data-q="INF4" data-row="r1">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Spoke at a public meeting, protest, webinar, church or local group on a health topic</span>
+      </div>
+      <div class="inf-check-row" data-q="INF5" data-row="r1">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Volunteered on a political campaign</span>
+      </div>
+      <div class="inf-check-row" data-q="INF5" data-row="r2">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Organized an event or rally on any issue</span>
+      </div>
+    </div>
+    <button type="button" class="inf-none-btn" id="inf-merged-none">None of these</button>
+  </div>
+
+  <!-- INF6 card: separate card for policy actions -->
+  <div class="inf-q-label">2 of 4 Questions</div>
+  <div class="inf-card" id="inf6-card">
+    <div class="inf-q-title">In the past 12 months, have you taken any of the following actions related to a public policy issue?</div>
+    <div class="inf-q-subtitle">Select all that apply.</div>
+    <div id="inf6-checks">
+      <div class="inf-check-row" data-q="INF6" data-row="r1">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Signed a petition</span>
+      </div>
+      <div class="inf-check-row" data-q="INF6" data-row="r2">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Attended a meeting</span>
+      </div>
+      <div class="inf-check-row" data-q="INF6" data-row="r3">
+        <div class="inf-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="inf-check-label">Donated money</span>
+      </div>
+    </div>
+    <button type="button" class="inf-none-btn" id="inf6-none">None of these</button>
+  </div>
+]]></style>
+</checkbox>
+
+<checkbox
+  label="INF3"
+  atleast="0"
+  optional="1"
+  cond="INF1.r3"
+  ss:questionClassNames="inf_hidden">
+  <title>Which of these have you done, if any?</title>
+  <row label="r1">Met (in person or video) with congressional, agency, or state legislative staff</row>
+  <row label="r2">Sat on the board or executive committee of any health, policy, or business association</row>
+  <row label="r3">Worked with or advised a Washington-based organization (think tank, patient advocacy group, trade association)</row>
+  <row label="r4">Testified or submitted written comments to a state legislative or Congressional committee</row>
+  <row label="r99" exclusive="1">None of these</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+  <!-- Rows in merged checklist -->
+]]></style>
+</checkbox>
+
+<checkbox
+  label="INF4"
+  atleast="0"
+  optional="1"
+  cond="INF1.r4"
+  ss:questionClassNames="inf_hidden">
+  <title>Which of these have you done, if any?</title>
+  <row label="r1">Spoke at a public meeting, protest, webinar, church or local group on a health topic</row>
+  <row label="r99" exclusive="1">None of these</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+  <!-- Rows in merged checklist -->
+]]></style>
+</checkbox>
+
+<checkbox
+  label="INF5"
+  atleast="0"
+  optional="1"
+  cond="INF1.r5"
+  ss:questionClassNames="inf_hidden">
+  <title>Which of these have you done, if any?</title>
+  <row label="r1">Volunteered on a political campaign</row>
+  <row label="r2">Organized an event or rally on any issue</row>
+  <row label="r99" exclusive="1">None of these</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+  <!-- Rows in merged checklist -->
+]]></style>
+</checkbox>
+
+<checkbox
+  label="INF6"
+  atleast="0"
+  optional="1"
+  ss:questionClassNames="inf_hidden">
+  <title>In the past 12 months, have you taken any of the following actions related to a public policy issue?</title>
+  <row label="r1">Signed a petition</row>
+  <row label="r2">Attended a meeting</row>
+  <row label="r3">Donated money</row>
+  <row label="r99" exclusive="1">None of these</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+  <!-- Rows in merged checklist -->
+]]></style>
+</checkbox>
+
+<radio
+  label="INF7"
+  optional="0"
+  ss:questionClassNames="inf_hidden">
+  <title>Across all your public social-media accounts about how many followers or subscribers do you have in total?</title>
+  <comment>Including from X/Twitter, Instagram, TikTok, Facebook pages, Substack, podcast, YouTube, etc.</comment>
+  <row label="r1" value="1">0 / None</row>
+  <row label="r2" value="2">&lt;500</row>
+  <row label="r3" value="3">500 - 2,000</row>
+  <row label="r4" value="4">2,000 - 10,000</row>
+  <row label="r5" value="5">10,000 - 50,000</row>
+  <row label="r6" value="6">50,000+</row>
+
+  <style mode="before" name="question.header"><![CDATA[
+  <!-- INF7 card: Social media followers (always shown) -->
+  <div class="inf-q-label">3 of 4 Questions</div>
+  <div class="inf-card inf2-card" data-q="INF7" id="inf2-card-INF7">
+    <div class="inf-q-title">Across all your public social-media accounts about how many followers or subscribers do you have in total?</div>
+    <div class="inf-q-subtitle">Including from X/Twitter, Instagram, TikTok, Facebook pages, Substack, podcast, YouTube, etc.</div>
+    <div class="inf-btn-grid" data-q="INF7">
+      <div class="inf-btn-option" data-row="r1" data-val="1">
+        <span class="inf-btn-big">0</span>
+        <span class="inf-btn-range">None</span>
+      </div>
+      <div class="inf-btn-option" data-row="r2" data-val="2">
+        <span class="inf-btn-big">&lt;500</span>
+      </div>
+      <div class="inf-btn-option" data-row="r3" data-val="3">
+        <span class="inf-btn-big">500</span>
+        <span class="inf-btn-range">to 2,000</span>
+      </div>
+      <div class="inf-btn-option" data-row="r4" data-val="4">
+        <span class="inf-btn-big">2,000</span>
+        <span class="inf-btn-range">to 10,000</span>
+      </div>
+      <div class="inf-btn-option" data-row="r5" data-val="5">
+        <span class="inf-btn-big">10,000</span>
+        <span class="inf-btn-range">to 50,000</span>
+      </div>
+      <div class="inf-btn-option" data-row="r6" data-val="6">
+        <span class="inf-btn-big">50,000+</span>
+      </div>
+    </div>
+  </div>
+]]></style>
+</radio>
+
+<radio
+  label="INF8"
+  type="rating"
+  values="order"
+  shuffle="rows"
+  optional="0"
+  ss:questionClassNames="inf_hidden">
+  <title>How many times over the past 30 days have you...</title>
+  <comment>Across social media platforms you use (X/Twitter, Instagram, TikTok, Facebook, Substack, YouTube, etc.). Approximately how many times have you done any of the following to advocate on a public policy issue?</comment>
+  <row label="r1">Created an original post or video</row>
+  <row label="r2">Shared or reposted content</row>
+  <row label="r3">Commented or replied to posts</row>
+  <col label="c1" value="1">Never</col>
+  <col label="c2" value="2">Not in the past 30 days</col>
+  <col label="c3" value="3">One time</col>
+  <col label="c4" value="4">2 - 4 times</col>
+  <col label="c5" value="5">5+ times</col>
+
+  <style mode="before" name="question.header"><![CDATA[
+  <!-- INF8 card: Social media activity card-swipe (always shown) -->
+  <div class="inf-q-label">4 of 4 Questions</div>
+  <div class="inf-card inf2-card" data-q="INF8" id="inf2-card-INF8">
+    <div class="inf-q-title">How many times over the past 30 days have you&hellip;</div>
+    <div class="inf-q-subtitle">Across social media platforms you use (X/Twitter, Instagram, TikTok, Facebook, Substack, YouTube, etc.). Approximately how many times have you done any of the following to advocate on a public policy issue?</div>
+
+    <div class="inf-swipe-wrap" id="inf8-swipe">
+      <div class="inf-swipe-peek">
+        <span class="inf-swipe-peek-left" id="inf8-peek-left"></span>
+        <span class="inf-swipe-peek-right" id="inf8-peek-right"></span>
+      </div>
+      <div class="inf-swipe-card-area">
+        <div class="inf-swipe-card" id="inf8-card-text">Created an original post or video</div>
+      </div>
+      <div class="inf-freq-btns" id="inf8-freq-btns">
+        <button type="button" class="inf-freq-btn" data-col="c1" data-val="1">Never</button>
+        <button type="button" class="inf-freq-btn" data-col="c2" data-val="2">Not in the<br>past 30 days</button>
+        <button type="button" class="inf-freq-btn" data-col="c3" data-val="3">One time</button>
+        <button type="button" class="inf-freq-btn" data-col="c4" data-val="4">2 - 4 times</button>
+        <button type="button" class="inf-freq-btn" data-col="c5" data-val="5">5+ times</button>
+      </div>
+      <div class="inf-swipe-dots" id="inf8-dots">
+        <div class="inf-swipe-dot inf-active" data-idx="0"></div>
+        <div class="inf-swipe-dot" data-idx="1"></div>
+        <div class="inf-swipe-dot" data-idx="2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="inf-continue-wrap" id="inf2-continue-wrap">
+    <button type="button" class="inf-continue-btn" id="inf2-continue" disabled>CONTINUE <span class="inf-arrow">&#8250;</span></button>
+  </div>
+</div>
+]]></style>
+
+  <style mode="after" name="question.footer"><![CDATA[
+<script>
+(function(){
+  /* Guard: only run on page.group.6 */
+  if(!document.getElementById('inf2-root')) return;
+
+  /* ---- find Decipher question element by label ---- */
+  function findQ(q){
+    var el = document.getElementById('q_'+q)
+        || document.getElementById('question_'+q)
+        || document.getElementById(q)
+        || document.querySelector('[id$="_'+q+'"]');
+    if(el && el.closest && !el.classList.contains('question')){
+      var par = el.closest('.question');
+      if(par) el = par;
+    }
+    return el;
+  }
+
+  /* ---- Debug init ---- */
+  var allQ = document.querySelectorAll('.question');
+  console.log('[INF2-page init] All .question IDs:', [].map.call(allQ, function(e){return e.id;}));
+  ['INF2','INF3','INF4','INF5','INF6','INF7','INF8'].forEach(function(q){
+    var el = findQ(q);
+    if(el){
+      var inputs = el.querySelectorAll('input');
+      console.log('[INF2-page init] '+q+' found id='+el.id+' inputs='+inputs.length);
+      [].forEach.call(inputs, function(inp){
+        console.log('  type='+inp.type+' name='+inp.name+' value='+inp.value);
+      });
+    } else {
+      console.log('[INF2-page init] '+q+' NOT in DOM (cond=false or missing)');
+    }
+  });
+
+  /* ---- sync checkbox to native Decipher input ---- */
+  function syncCheckbox(qLabel, rowLabel, checked){
+    var box = findQ(qLabel);
+    if(!box){ console.warn('[syncCB] '+qLabel+' NOT FOUND'); return; }
+    var inp = null;
+
+    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    if(!inp){
+      var m = rowLabel.match(/^r(\d+)$/);
+      if(m){
+        var idx = parseInt(m[1], 10);
+        var allCB = box.querySelectorAll('input[type="checkbox"]');
+        if(idx === 99){
+          for(var k=0; k<allCB.length; k++){
+            var nm = (allCB[k].name||'')+(allCB[k].className||'');
+            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
+          }
+          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
+        } else if(idx>0 && idx<=allCB.length){
+          inp = allCB[idx-1];
+        }
+      }
+    }
+    if(!inp){
+      var all2 = box.querySelectorAll('input');
+      for(var j=0; j<all2.length; j++){
+        if(all2[j].value===rowLabel||(all2[j].name&&all2[j].name.indexOf(rowLabel)!==-1)){inp=all2[j]; break;}
+      }
+    }
+
+    if(inp){
+      console.log('[syncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
+      inp.checked = checked;
+      inp.click();
+      inp.dispatchEvent(new Event('change', {bubbles:true}));
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+    } else {
+      console.warn('[syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
+    }
+  }
+
+  /* ---- sync radio to native Decipher input ---- */
+  function syncRadio(qLabel, val){
+    var box = findQ(qLabel);
+    if(!box){ console.warn('[syncRadio] '+qLabel+' NOT FOUND'); return; }
+    var all = box.querySelectorAll('input[type="radio"]');
+    var inp = null;
+    for(var i=0; i<all.length; i++){
+      if(all[i].value === val || all[i].value === 'r'+val){ inp = all[i]; break; }
+    }
+    if(!inp){
+      var idx = parseInt(val,10);
+      if(idx>0 && idx<=all.length) inp = all[idx-1];
+    }
+    if(inp){
+      console.log('[syncRadio] '+qLabel+' val='+val+' (name='+inp.name+' value='+inp.value+')');
+      inp.checked = true;
+      inp.click();
+      inp.dispatchEvent(new Event('change', {bubbles:true}));
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+    } else {
+      console.warn('[syncRadio] '+qLabel+' val='+val+' NOT FOUND');
+    }
+  }
+
+  /* ---- sync card-rating to native Decipher input ---- */
+  function syncRating(qLabel, rowLabel, colVal){
+    var box = findQ(qLabel);
+    if(!box){ console.warn('[syncRating] '+qLabel+' NOT FOUND'); return; }
+    var all = box.querySelectorAll('input[type="radio"]');
+    var inp = null;
+    for(var i=0; i<all.length; i++){
+      var name = all[i].name || '';
+      var v = all[i].value;
+      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+    }
+    if(!inp){
+      /* Try: find row container, then radio by value */
+      var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
+      for(var r=0; r<rowEls.length && !inp; r++){
+        var radios = rowEls[r].querySelectorAll('input[type="radio"]');
+        for(var j=0; j<radios.length; j++){
+          if(radios[j].value === colVal || radios[j].value === 'c'+colVal){ inp = radios[j]; break; }
+        }
+      }
+    }
+    if(!inp){
+      /* Position-based fallback: group radios by name, find row group, select by col index */
+      var groups = {};
+      for(var k=0; k<all.length; k++){
+        var n = all[k].name;
+        if(!groups[n]) groups[n] = [];
+        groups[n].push(all[k]);
+      }
+      var gKeys = Object.keys(groups);
+      var rowMatch = rowLabel.match(/^r(\d+)$/);
+      var colMatch = colVal.match ? colVal.match(/^(\d+)$/) : null;
+      if(rowMatch && gKeys.length >= parseInt(rowMatch[1],10)){
+        var rowGroup = groups[gKeys[parseInt(rowMatch[1],10)-1]];
+        var cIdx = colMatch ? parseInt(colMatch[1],10)-1 : parseInt(colVal,10)-1;
+        if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
+          inp = rowGroup[cIdx];
+        }
+      }
+    }
+
+    if(inp){
+      console.log('[syncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
+      inp.checked = true;
+      inp.click();
+      inp.dispatchEvent(new Event('change', {bubbles:true}));
+      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+    } else {
+      console.warn('[syncRating] '+qLabel+' '+rowLabel+'='+colVal+' NOT FOUND');
+    }
+  }
+
+  /* ==================================================================
+     MERGED CHECKLIST + 3-CARD LAYOUT (no progressive disclosure)
+     ================================================================== */
+
+  var MERGED_LABELS = ['INF2','INF3','INF4','INF5'];
+  var visibleCBs = [];
+  MERGED_LABELS.forEach(function(q){
+    if(findQ(q)){
+      visibleCBs.push(q);
+      console.log('[MERGED] '+q+' in DOM');
+    } else {
+      console.log('[MERGED] '+q+' NOT in DOM (cond=false)');
+      document.querySelectorAll('#inf-merged-checks .inf-check-row[data-q="'+q+'"]').forEach(function(r){
+        r.style.display = 'none';
+      });
+    }
+  });
+
+  /* INF6 is always visible (no condition) but track separately */
+  var inf6Visible = !!findQ('INF6');
+
+  /* Track 4 cards */
+  var cardAnswered = { checklist: false, INF6: false, INF7: false, INF8: false };
+  var hasAnyRows = document.querySelectorAll('#inf-merged-checks .inf-check-row:not([style*="display: none"])').length > 0;
+  if(!hasAnyRows) cardAnswered.checklist = true;
+  if(!inf6Visible) cardAnswered.INF6 = true;
+
+  function updateContinue(){
+    var allDone = cardAnswered.checklist && cardAnswered.INF6 && cardAnswered.INF7 && cardAnswered.INF8;
+    document.getElementById('inf2-continue').disabled = !allDone;
+  }
+
+  /* ==================================================================
+     MERGED CHECKLIST
+     ================================================================== */
+  var mergedSelected = {};
+  var mergedNone = false;
+  var noneBtn = document.getElementById('inf-merged-none');
+
+  document.querySelectorAll('#inf-merged-checks .inf-check-row').forEach(function(row){
+    if(row.style.display === 'none') return;
+    row.addEventListener('click', function(){
+      var q = row.getAttribute('data-q');
+      var r = row.getAttribute('data-row');
+      var key = q+'_'+r;
+      mergedSelected[key] = !mergedSelected[key];
+      row.classList.toggle('inf-checked', mergedSelected[key]);
+      syncCheckbox(q, r, mergedSelected[key]);
+
+      if(mergedSelected[key] && mergedNone){
+        mergedNone = false;
+        if(noneBtn) noneBtn.classList.remove('inf-sel');
+        visibleCBs.forEach(function(qq){ syncCheckbox(qq, 'r99', false); });
+      }
+
+      cardAnswered.checklist = mergedNone || Object.keys(mergedSelected).some(function(k){ return mergedSelected[k]; });
+      updateContinue();
+    });
+  });
+
+  if(noneBtn){
+    noneBtn.addEventListener('click', function(){
+      mergedNone = !mergedNone;
+      noneBtn.classList.toggle('inf-sel', mergedNone);
+      visibleCBs.forEach(function(q){ syncCheckbox(q, 'r99', mergedNone); });
+
+      if(mergedNone){
+        document.querySelectorAll('#inf-merged-checks .inf-check-row').forEach(function(row){
+          if(row.style.display === 'none') return;
+          var q2 = row.getAttribute('data-q');
+          var r2 = row.getAttribute('data-row');
+          mergedSelected[q2+'_'+r2] = false;
+          row.classList.remove('inf-checked');
+          syncCheckbox(q2, r2, false);
+        });
+      }
+
+      cardAnswered.checklist = mergedNone || Object.keys(mergedSelected).some(function(k){ return mergedSelected[k]; });
+      updateContinue();
+    });
+  }
+
+  /* ==================================================================
+     INF6 SEPARATE CARD
+     ================================================================== */
+  var inf6Selected = {};
+  var inf6None = false;
+  var inf6NoneBtn = document.getElementById('inf6-none');
+
+  document.querySelectorAll('#inf6-checks .inf-check-row').forEach(function(row){
+    row.addEventListener('click', function(){
+      var r = row.getAttribute('data-row');
+      inf6Selected[r] = !inf6Selected[r];
+      row.classList.toggle('inf-checked', inf6Selected[r]);
+      syncCheckbox('INF6', r, inf6Selected[r]);
+
+      if(inf6Selected[r] && inf6None){
+        inf6None = false;
+        if(inf6NoneBtn) inf6NoneBtn.classList.remove('inf-sel');
+        syncCheckbox('INF6', 'r99', false);
+      }
+
+      cardAnswered.INF6 = inf6None || Object.keys(inf6Selected).some(function(k){ return inf6Selected[k]; });
+      updateContinue();
+    });
+  });
+
+  if(inf6NoneBtn){
+    inf6NoneBtn.addEventListener('click', function(){
+      inf6None = !inf6None;
+      inf6NoneBtn.classList.toggle('inf-sel', inf6None);
+      syncCheckbox('INF6', 'r99', inf6None);
+
+      if(inf6None){
+        document.querySelectorAll('#inf6-checks .inf-check-row').forEach(function(row){
+          var r2 = row.getAttribute('data-row');
+          inf6Selected[r2] = false;
+          row.classList.remove('inf-checked');
+          syncCheckbox('INF6', r2, false);
+        });
+      }
+
+      cardAnswered.INF6 = inf6None || Object.keys(inf6Selected).some(function(k){ return inf6Selected[k]; });
+      updateContinue();
+    });
+  }
+
+  /* ==================================================================
+     BUTTON-SELECT GRID (INF7)
+     ================================================================== */
+
+  var inf7Grid = document.querySelector('.inf-btn-grid[data-q="INF7"]');
+  if(inf7Grid){
+    inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(opt){
+      opt.addEventListener('click', function(){
+        inf7Grid.querySelectorAll('.inf-btn-option').forEach(function(o){ o.classList.remove('inf-sel','inf-flash'); });
+        opt.classList.add('inf-flash');
+        var val = opt.getAttribute('data-val');
+        syncRadio('INF7', val);
+        cardAnswered.INF7 = true;
+        updateContinue();
+        setTimeout(function(){
+          opt.classList.remove('inf-flash');
+          opt.classList.add('inf-sel');
+        }, 400);
+      });
+    });
+  }
+
+  /* ==================================================================
+     CARD-SWIPE RATING (INF8)
+     ================================================================== */
+
+  var swipeItems = [
+    {row: 'r1', text: 'Created an original post or video'},
+    {row: 'r2', text: 'Shared or reposted content'},
+    {row: 'r3', text: 'Commented or replied to posts'}
+  ];
+  var swipeIdx = 0;
+  var swipeAnswers = {};
+  var cardText = document.getElementById('inf8-card-text');
+  var peekLeft = document.getElementById('inf8-peek-left');
+  var peekRight = document.getElementById('inf8-peek-right');
+  var freqBtns = document.getElementById('inf8-freq-btns');
+  var dotsEl = document.getElementById('inf8-dots');
+
+  function updateSwipe(){
+    if(!cardText) return;
+    cardText.textContent = swipeItems[swipeIdx].text;
+    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? swipeItems[swipeIdx-1].text : '';
+    if(peekRight) peekRight.textContent = swipeIdx < swipeItems.length-1 ? swipeItems[swipeIdx+1].text : '';
+    if(freqBtns){
+      var cur = swipeAnswers[swipeItems[swipeIdx].row];
+      freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(b){
+        b.classList.remove('inf-flash');
+        b.classList.toggle('inf-sel', b.getAttribute('data-col') === cur);
+      });
+    }
+    if(dotsEl){
+      dotsEl.querySelectorAll('.inf-swipe-dot').forEach(function(dot, i){
+        dot.classList.toggle('inf-active', i === swipeIdx);
+        dot.classList.toggle('inf-done', !!swipeAnswers[swipeItems[i].row]);
+      });
+    }
+  }
+
+  if(freqBtns){
+    freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var col = btn.getAttribute('data-col');
+        var val = btn.getAttribute('data-val');
+        swipeAnswers[swipeItems[swipeIdx].row] = col;
+        syncRating('INF8', swipeItems[swipeIdx].row, val);
+        var allRated = swipeItems.every(function(item){ return swipeAnswers[item.row]; });
+        cardAnswered.INF8 = allRated;
+
+        /* Green flash highlight then auto-advance */
+        freqBtns.querySelectorAll('.inf-freq-btn').forEach(function(b){ b.classList.remove('inf-sel','inf-flash'); });
+        btn.classList.add('inf-flash');
+        setTimeout(function(){
+          btn.classList.remove('inf-flash');
+          btn.classList.add('inf-sel');
+          if(swipeIdx < swipeItems.length - 1){
+            setTimeout(function(){ swipeIdx++; updateSwipe(); }, 150);
+          } else {
+            updateSwipe();
+          }
+          updateContinue();
+        }, 400);
+      });
+    });
+  }
+
+  updateSwipe();
+
+  /* ==================================================================
+     CONTINUE BUTTON
+     ================================================================== */
+
+  var continueBtn = document.getElementById('inf2-continue');
+  if(continueBtn){
+    continueBtn.addEventListener('click', function(){
+      if(continueBtn.disabled) return;
+      console.log('[INF2 SUBMIT] cardAnswered:', JSON.stringify(cardAnswered));
+
+      /* Set r99 on visible checkbox questions with no selections */
+      var allCBLabels = visibleCBs.concat(inf6Visible ? ['INF6'] : []);
+      allCBLabels.forEach(function(q){
+        var box = findQ(q);
+        if(!box) return;
+        var chkd = box.querySelectorAll('input:checked');
+        if(chkd.length === 0){
+          console.log('[SUBMIT] '+q+' no selections, auto-setting r99');
+          syncCheckbox(q, 'r99', true);
+        }
+      });
+      ['INF7','INF8'].forEach(function(q){
+        var box = findQ(q);
+        if(!box) return;
+        var chkd = box.querySelectorAll('input:checked');
+        console.log('[INF2 SUBMIT] '+q+' native checked: '+chkd.length);
+        if(chkd.length === 0 && cardAnswered[q]){
+          console.warn('[INF2 SUBMIT] '+q+' FALLBACK: force-setting by position');
+          var allCB = box.querySelectorAll('input[type="checkbox"]');
+          if(allCB.length > 0){
+            if(noneStates[q]){
+              var last = allCB[allCB.length-1];
+              last.checked = true; last.click();
+              try{ jQuery(last).trigger('click').trigger('change'); }catch(e){}
+            } else if(checkStates[q]){
+              Object.keys(checkStates[q]).forEach(function(r){
+                if(!checkStates[q][r]) return;
+                var m3 = r.match(/^r(\d+)$/);
+                if(m3){
+                  var i3 = parseInt(m3[1],10)-1;
+                  if(i3>=0 && i3<allCB.length){
+                    allCB[i3].checked = true; allCB[i3].click();
+                    try{ jQuery(allCB[i3]).trigger('click').trigger('change'); }catch(e){}
+                  }
+                }
+              });
+            }
+          }
+        }
+      });
+
+      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+      if(!nxt) nxt = document.querySelector('.button, input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+
+  /* INIT */
+  updateContinue();
+})();
+</script>
+]]></style>
+
+</radio>
+<suspend/>
+
 
   <note>===================== DEM B-W SCORING =====================</note>
 
