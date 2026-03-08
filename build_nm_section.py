@@ -224,7 +224,7 @@ def gen_src_block(tidx, csv_topic, display_title, rows_list):
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -325,7 +325,7 @@ def gen_inf_block(tidx, csv_topic, display_title, rows_list):
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>

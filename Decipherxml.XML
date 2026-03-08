@@ -4840,7 +4840,7 @@ elif TYPING_MODULE.r3:
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -4859,51 +4859,51 @@ elif TYPING_MODULE.r3:
     <div class="nm-check-list" id="nm-plat-list">
       <div class="nm-check-row" data-row="r1">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Podcasts</div></div>
+        <div><div class="nm-check-label">Podcasts</div><div class="nm-check-desc">Audio shows you stream or download</div></div>
       </div>
       <div class="nm-check-row" data-row="r2">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">YouTube</div></div>
+        <div><div class="nm-check-label">YouTube</div><div class="nm-check-desc">Video content on YouTube</div></div>
       </div>
       <div class="nm-check-row" data-row="r3">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Facebook</div></div>
+        <div><div class="nm-check-label">Facebook</div><div class="nm-check-desc">Posts, groups, or pages on Facebook</div></div>
       </div>
       <div class="nm-check-row" data-row="r4">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">X (Twitter)</div></div>
+        <div><div class="nm-check-label">X (Twitter)</div><div class="nm-check-desc">Posts and threads on X</div></div>
       </div>
       <div class="nm-check-row" data-row="r5">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Instagram</div></div>
+        <div><div class="nm-check-label">Instagram</div><div class="nm-check-desc">Posts, reels, or stories on Instagram</div></div>
       </div>
       <div class="nm-check-row" data-row="r6">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">TikTok</div></div>
+        <div><div class="nm-check-label">TikTok</div><div class="nm-check-desc">Short videos on TikTok</div></div>
       </div>
       <div class="nm-check-row" data-row="r7">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Substack or email newsletters</div></div>
+        <div><div class="nm-check-label">Substack or email newsletters</div><div class="nm-check-desc">Newsletters delivered by email</div></div>
       </div>
       <div class="nm-check-row" data-row="r8">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Online news sites and blogs</div></div>
+        <div><div class="nm-check-label">Online news sites and blogs</div><div class="nm-check-desc">Websites, news sites, or blogs</div></div>
       </div>
       <div class="nm-check-row" data-row="r9">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Rumble or alternative video platforms</div></div>
+        <div><div class="nm-check-label">Rumble or alternative video platforms</div><div class="nm-check-desc">Rumble, Odysee, Brighteon, or similar</div></div>
       </div>
       <div class="nm-check-row" data-row="r10">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Telegram or Signal channels</div></div>
+        <div><div class="nm-check-label">Telegram or Signal channels</div><div class="nm-check-desc">Channels or groups on Telegram or Signal</div></div>
       </div>
       <div class="nm-check-row" data-row="r11">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Cable news or broadcast TV programs</div></div>
+        <div><div class="nm-check-label">Cable news or broadcast TV programs</div><div class="nm-check-desc">Cable TV news or broadcast television</div></div>
       </div>
       <div class="nm-check-row" data-row="r12">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Talk radio</div></div>
+        <div><div class="nm-check-label">Radio or talk radio</div><div class="nm-check-desc">AM/FM radio, satellite radio, or talk radio shows</div></div>
       </div>
     </div>
     <button type="button" class="nm-none-btn" id="nm-plat-none">None of these</button>
@@ -4992,6 +4992,10 @@ function nmGetRows(qLabel){
 }
 
 (function(){
+  /* Progress bar: page 1 of 3 = 33% */
+  var pf = document.getElementById('nm-progress-fill');
+  if(pf) pf.style.width = '33%';
+
   var qLabel = 'NM_PLAT';
   var checks = {};
   var noneActive = false;
@@ -5047,6 +5051,7 @@ function nmGetRows(qLabel){
 ]]></style>
 </checkbox>
 
+<suspend/>
 
 <checkbox
   label="NM_TOPICS"
@@ -5074,7 +5079,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -5187,6 +5192,10 @@ function nmGetRows(qLabel){
 }
 
 (function(){
+  /* Progress bar: page 2 of 3 = 67% */
+  var pf = document.getElementById('nm-progress-fill');
+  if(pf) pf.style.width = '67%';
+
   var qLabel = 'NM_TOPICS';
   var checks = {};
   var noneActive = false;
@@ -5339,7 +5348,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -5608,7 +5617,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -5864,7 +5873,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6157,7 +6166,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6392,7 +6401,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6648,7 +6657,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6896,7 +6905,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7172,7 +7181,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7416,7 +7425,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7694,7 +7703,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7912,7 +7921,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8163,7 +8172,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8402,7 +8411,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8670,7 +8679,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8887,7 +8896,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9143,7 +9152,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9363,7 +9372,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9619,7 +9628,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9842,7 +9851,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10102,7 +10111,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10339,7 +10348,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10598,7 +10607,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10830,7 +10839,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11089,7 +11098,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11310,7 +11319,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11568,7 +11577,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11790,7 +11799,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
