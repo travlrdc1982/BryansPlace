@@ -8577,7 +8577,7 @@ function nmGetRows(qLabel){
   <div class="nm-card">
     <div class="nm-topic-badge">Supplements and vitamins</div>
     <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
-    <div class="nm-q-subtitle">If you&rsquo;ve never heard of it below, don&rsquo;t worry &mdash; you&rsquo;re definitely not alone. The next source slides in as soon as you answer. No time to waste &mdash; keep swiping!</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
       <div class="nm-swipe-card-area">
