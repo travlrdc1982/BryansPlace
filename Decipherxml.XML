@@ -8707,8 +8707,18 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T6';
   var oeLabel = 'NM_SRC_T6_OE';
-  var items = nmGetRows(qLabel);
-  if(items.length === 0) return;
+  var items = [
+    {r:'r1', name:'Huberman Lab'},
+    {r:'r2', name:'Examine.com'},
+    {r:'r3', name:'Nootropics Depot'},
+    {r:'r4', name:'Life Extension Foundation'},
+    {r:'r5', name:'ConsumerLab'},
+    {r:'r6', name:'LabDoor'},
+    {r:'r7', name:'Tim Ferriss Show'},
+    {r:'r8', name:'The Supplement Review Podcast'},
+    {r:'r9', name:'Designs for Health Podcast'},
+    {r:'r10', name:'Fullscript Insights'}
+  ];
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var peekLeft = document.getElementById('nm-peek-left');
