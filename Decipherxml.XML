@@ -5650,7 +5650,52 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T1';
   var oeLabel = 'NM_SRC_T1_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'National Review'},
+    {r:'r2', name:'The Dispatch'},
+    {r:'r3', name:'The Bulwark'},
+    {r:'r4', name:'The Hill'},
+    {r:'r5', name:'RealClearPolitics'},
+    {r:'r6', name:'Washington Examiner'},
+    {r:'r7', name:'Townhall'},
+    {r:'r8', name:'The Federalist'},
+    {r:'r9', name:'American Conservative'},
+    {r:'r10', name:'Compact Magazine'},
+    {r:'r11', name:'American Greatness'},
+    {r:'r12', name:'The Daily Wire'},
+    {r:'r13', name:'The Dan Bongino Show'},
+    {r:'r14', name:'Tucker Carlson Network'},
+    {r:'r15', name:'War Room with Steve Bannon'},
+    {r:'r16', name:'Breitbart News'},
+    {r:'r17', name:'The Epoch Times'},
+    {r:'r18', name:'Glenn Beck  (Blaze Media)'},
+    {r:'r19', name:'Turning Point USA'},
+    {r:'r20', name:'The Megyn Kelly Show'},
+    {r:'r21', name:'Real America\'s Voice'},
+    {r:'r22', name:'Ben Shapiro Show'},
+    {r:'r23', name:'Reason Magazine'},
+    {r:'r24', name:'Ron Paul Liberty Report'},
+    {r:'r25', name:'Racket News  (Matt Taibbi)'},
+    {r:'r26', name:'The Free Press  (Bari Weiss)'},
+    {r:'r27', name:'Unherd'},
+    {r:'r28', name:'Cato Daily Podcast'},
+    {r:'r29', name:'Jordan Peterson Podcast'},
+    {r:'r30', name:'Pod Save America'},
+    {r:'r31', name:'The Young Turks'},
+    {r:'r32', name:'Democracy Now'},
+    {r:'r33', name:'The Intercept'},
+    {r:'r34', name:'Jacobin'},
+    {r:'r35', name:'The Nation'},
+    {r:'r36', name:'Zeteo  (Mehdi Hasan)'},
+    {r:'r37', name:'American Prospect'},
+    {r:'r38', name:'In These Times'},
+    {r:'r39', name:'The Atlantic'},
+    {r:'r40', name:'Vox'},
+    {r:'r41', name:'Farm Bureau News  (AFBF)'},
+    {r:'r42', name:'Farm Journal'},
+    {r:'r43', name:'The Daily Poster  (David Sirota)'},
+    {r:'r44', name:'Bad Faith  (Briahna Joy Gray)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -5949,7 +5994,28 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T1';
   var oeLabel = 'NM_INF_T1_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Tucker Carlson Network'},
+    {r:'r2', name:'Turning Point USA'},
+    {r:'r3', name:'The Megyn Kelly Show'},
+    {r:'r4', name:'Ben Shapiro Show'},
+    {r:'r5', name:'Racket News  (Matt Taibbi)'},
+    {r:'r6', name:'The Free Press  (Bari Weiss)'},
+    {r:'r7', name:'Jordan Peterson Podcast'},
+    {r:'r8', name:'American Farm Bureau'},
+    {r:'r9', name:'Matt Walsh'},
+    {r:'r10', name:'Dr. Sebastian Gorka'},
+    {r:'r11', name:'Bernie Sanders'},
+    {r:'r12', name:'Rand Paul'},
+    {r:'r13', name:'Thomas Massie'},
+    {r:'r14', name:'Liz Wheeler'},
+    {r:'r15', name:'Nina Turner'},
+    {r:'r16', name:'AOC'},
+    {r:'r17', name:'Briahna Joy Gray'},
+    {r:'r18', name:'Ryan Grim  (The Intercept)'},
+    {r:'r19', name:'Working Families Party'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -6269,7 +6335,56 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T2';
   var oeLabel = 'NM_SRC_T2_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'KFF Health News'},
+    {r:'r2', name:'STAT News'},
+    {r:'r3', name:'Health Affairs'},
+    {r:'r4', name:'Axios Health'},
+    {r:'r5', name:'Politico Health Care'},
+    {r:'r6', name:'Health Care Dive'},
+    {r:'r7', name:'Modern Healthcare'},
+    {r:'r8', name:'Benefits Pro'},
+    {r:'r9', name:'Families USA'},
+    {r:'r10', name:'Heritage Foundation Health'},
+    {r:'r11', name:'American Enterprise Institute Health'},
+    {r:'r12', name:'The Health Care Blog'},
+    {r:'r13', name:'Physicians for National Health'},
+    {r:'r14', name:'Community Catalyst'},
+    {r:'r15', name:'Center for American Progress Health'},
+    {r:'r16', name:'Brownstone Institute'},
+    {r:'r17', name:'Rural Health Information Hub'},
+    {r:'r18', name:'National Rural Health Association'},
+    {r:'r19', name:'Right to Try Foundation'},
+    {r:'r20', name:'Alliance for Patient Access'},
+    {r:'r21', name:'Health Rosetta  (Dave Chase)'},
+    {r:'r22', name:'Clear Health Costs'},
+    {r:'r23', name:'Direct Primary Care Journal'},
+    {r:'r24', name:'Business Group on Health'},
+    {r:'r25', name:'Manhattan Institute Health'},
+    {r:'r26', name:'Competitive Enterprise Institute'},
+    {r:'r27', name:'Forbes Health'},
+    {r:'r28', name:'Second Opinion  (Lanhee Chen)'},
+    {r:'r29', name:'The Gist  (Advisory Board)'},
+    {r:'r30', name:'Consumer Reports Health'},
+    {r:'r31', name:'Patients for Affordable Drugs'},
+    {r:'r32', name:'Public Citizen Health Research'},
+    {r:'r33', name:'Black Doctor  (BlackDoctor.org)'},
+    {r:'r34', name:'Essence Health'},
+    {r:'r35', name:'The Root Health Coverage'},
+    {r:'r36', name:'Black Women\'s Health Imperative'},
+    {r:'r37', name:'Salud America'},
+    {r:'r38', name:'Trust for America\'s Health'},
+    {r:'r39', name:'Robert Wood Johnson Foundation'},
+    {r:'r40', name:'CommonHealth  (WBUR)'},
+    {r:'r41', name:'The Dose Podcast  (Commonwealth Fund)'},
+    {r:'r42', name:'UnidosUS Health'},
+    {r:'r43', name:'NAACP Health Program'},
+    {r:'r44', name:'National Urban League Health'},
+    {r:'r45', name:'Covering Health  (AHCJ Podcast)'},
+    {r:'r46', name:'Do No Harm  (Stanley Goldfarb)'},
+    {r:'r47', name:'Health Justice Monitor'},
+    {r:'r48', name:'Physicians for Social Responsibility'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -6592,7 +6707,52 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T2';
   var oeLabel = 'NM_INF_T2_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Rural Health Voices'},
+    {r:'r2', name:'Dave Chase  (Health Rosetta)'},
+    {r:'r3', name:'Wendell Potter'},
+    {r:'r4', name:'Marshall Allen  (ProPublica Health)'},
+    {r:'r5', name:'Ge Bai  (Hopkins Health Economics)'},
+    {r:'r6', name:'Marty Makary  (Johns Hopkins)'},
+    {r:'r7', name:'Leah Binder  (Leapfrog Group)'},
+    {r:'r8', name:'Elisabeth Rosenthal'},
+    {r:'r9', name:'Dr. Jeff Barke'},
+    {r:'r10', name:'Alex Lawson  (Social Security Works)'},
+    {r:'r11', name:'Ro Khanna'},
+    {r:'r12', name:'Patient Rights Advocate'},
+    {r:'r13', name:'Calley Means'},
+    {r:'r14', name:'Ady Barkan  (Be a Hero)'},
+    {r:'r15', name:'Dr. Abdul El-Sayed'},
+    {r:'r16', name:'Physicians for a National Health Program'},
+    {r:'r17', name:'Healthcare-NOW'},
+    {r:'r18', name:'Black Girl Health'},
+    {r:'r19', name:'Dr. UchÃ© Blackstock'},
+    {r:'r20', name:'Dr. Oni Blackstock'},
+    {r:'r21', name:'Unwell Network'},
+    {r:'r22', name:'Chika Stacy Oriuwa'},
+    {r:'r23', name:'The Movement for Black Lives Health'},
+    {r:'r24', name:'Bettina Judd'},
+    {r:'r25', name:'National Birth Equity Collaborative'},
+    {r:'r26', name:'Ashish Jha'},
+    {r:'r27', name:'Bob Wachter'},
+    {r:'r28', name:'Vivek Murthy'},
+    {r:'r29', name:'Mandy Cohen'},
+    {r:'r30', name:'Dr. Atul Gawande'},
+    {r:'r31', name:'Andy Slavitt'},
+    {r:'r32', name:'Zeke Emanuel'},
+    {r:'r33', name:'Dave deBronkart'},
+    {r:'r34', name:'Protect Our Care'},
+    {r:'r35', name:'Kaiser Health News'},
+    {r:'r36', name:'Dr. Tedros (WHO)'},
+    {r:'r37', name:'Dr. Tom Frieden ("Resolve to Save Lives")'},
+    {r:'r38', name:'Dr. Richard Besser (Robert Wood Johnson Foundation)'},
+    {r:'r39', name:'Dr. Paul Farmer legacy'},
+    {r:'r40', name:'Seth Berkley'},
+    {r:'r41', name:'Bill Gates'},
+    {r:'r42', name:'Chelsea Clinton'},
+    {r:'r43', name:'Gregg Gonsalves'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -6891,7 +7051,35 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T3';
   var oeLabel = 'NM_SRC_T3_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'The Medicare Podcast'},
+    {r:'r2', name:'Medicare Interactive'},
+    {r:'r3', name:'Senior Planet  (OATS)'},
+    {r:'r4', name:'Sixty and Me'},
+    {r:'r5', name:'National Council on Aging'},
+    {r:'r6', name:'Caregiver Action Network'},
+    {r:'r7', name:'The Senior List Podcast'},
+    {r:'r8', name:'Sixty and Me Podcast'},
+    {r:'r9', name:'Aging Today  (ASA)'},
+    {r:'r10', name:'Generations Journal  (ASA)'},
+    {r:'r11', name:'Elder Law Answers'},
+    {r:'r12', name:'SeniorLiving.org'},
+    {r:'r13', name:'The Senior Times'},
+    {r:'r14', name:'AMAC  (Association Mature Americans)'},
+    {r:'r15', name:'Kiplinger Retirement Health'},
+    {r:'r16', name:'MarketWatch Retirement Health'},
+    {r:'r17', name:'Forbes Retirement Health'},
+    {r:'r18', name:'US News Best Medicare Plans'},
+    {r:'r19', name:'Medicare Plan Finder  (CMS)'},
+    {r:'r20', name:'Medicare Interactive Podcast'},
+    {r:'r21', name:'Your Medicare Advisor'},
+    {r:'r22', name:'Medicare on Video'},
+    {r:'r23', name:'Boomer Benefits Podcast'},
+    {r:'r24', name:'LeadingAge Podcast'},
+    {r:'r25', name:'Medicare Decoded'},
+    {r:'r26', name:'The Senior Report'},
+    {r:'r27', name:'Aging Well  (Dr. Leslie Kernisan)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -7177,7 +7365,15 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T3';
   var oeLabel = 'NM_INF_T3_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'AARP'},
+    {r:'r2', name:'Medicare Rights Center'},
+    {r:'r3', name:'Social Security Works'},
+    {r:'r4', name:'Nancy Altman'},
+    {r:'r5', name:'Dr. Howard Fillit'},
+    {r:'r6', name:'Next Avenue'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -7489,7 +7685,48 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T4';
   var oeLabel = 'NM_SRC_T4_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Mark Hyman  (Doctor\'s Farmacy)'},
+    {r:'r2', name:'Dr. Josh Axe'},
+    {r:'r3', name:'Wellness Mama'},
+    {r:'r4', name:'mindbodygreen'},
+    {r:'r5', name:'Goop  (Gwyneth Paltrow)'},
+    {r:'r6', name:'The Model Health Show'},
+    {r:'r7', name:'Functional Medicine for Life'},
+    {r:'r8', name:'Natural Health 365'},
+    {r:'r9', name:'GreenMedInfo'},
+    {r:'r10', name:'Weston A. Price Foundation'},
+    {r:'r11', name:'Anthony William  (Medical Medium)'},
+    {r:'r12', name:'Dr. Terry Wahls'},
+    {r:'r13', name:'Chris Kresser'},
+    {r:'r14', name:'Dr. Will Cole'},
+    {r:'r15', name:'Aviva Romm  (Natural MD Radio)'},
+    {r:'r16', name:'Sacred Science'},
+    {r:'r17', name:'NaturalNews  (Mike Adams)'},
+    {r:'r18', name:'Herbs &amp; Oils World'},
+    {r:'r19', name:'Oil Testimonials'},
+    {r:'r20', name:'Epoch Health Telegram'},
+    {r:'r21', name:'Make America Healthy Again'},
+    {r:'r22', name:'The Wellness Mama Podcast'},
+    {r:'r23', name:'MAHA Moms Facebook Community'},
+    {r:'r24', name:'Organic Consumers Association'},
+    {r:'r25', name:'Babes and Babies'},
+    {r:'r26', name:'Homeschool Health Summit'},
+    {r:'r27', name:'The Home School Mom'},
+    {r:'r28', name:'Wellness Wednesday Homeschool FB'},
+    {r:'r29', name:'The Wellness Way  (Patrick Flynn)'},
+    {r:'r30', name:'Health Ranger Report  (Mike Adams)'},
+    {r:'r31', name:'Brighteon'},
+    {r:'r32', name:'Natural Living Family'},
+    {r:'r33', name:'The Healthy Home Economist'},
+    {r:'r34', name:'Ashley Evelyn'},
+    {r:'r35', name:'Live Blessed or Stressed'},
+    {r:'r36', name:'The Mamas Network'},
+    {r:'r37', name:'A Midwestern Doctor'},
+    {r:'r38', name:'Mark Hyman  (Food Fix)'},
+    {r:'r39', name:'Dr. Will Cole  (Inflammation Fix)'},
+    {r:'r40', name:'Metabolic Mind  (Baszucki Group)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -7795,7 +8032,35 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T4';
   var oeLabel = 'NM_INF_T4_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Mark Hyman  (Doctor\'s Farmacy)'},
+    {r:'r2', name:'Dr. Josh Axe'},
+    {r:'r3', name:'Wellness Mama'},
+    {r:'r4', name:'Chris Kresser'},
+    {r:'r5', name:'Health Ranger Report  (Mike Adams)'},
+    {r:'r6', name:'Kelly Brogan MD'},
+    {r:'r7', name:'Mama Natural  (Genevieve Howland)'},
+    {r:'r8', name:'Moms Across America  (Zen Honeycutt)'},
+    {r:'r9', name:'MAHA Mom  (Rebecca Kleefisch)'},
+    {r:'r10', name:'Homesteaders of America'},
+    {r:'r11', name:'Katie Wells  (Wellness Mama)'},
+    {r:'r12', name:'Robyn Openshaw  (Green Smoothie Girl)'},
+    {r:'r13', name:'Dr. Amy Myers'},
+    {r:'r14', name:'Dr. Jolene Brighten'},
+    {r:'r15', name:'Aviva Romm MD'},
+    {r:'r16', name:'The Holistic Psychologist  (Dr. Nicole LePera)'},
+    {r:'r17', name:'MindBodyGreen'},
+    {r:'r18', name:'Essential Oils'},
+    {r:'r19', name:'Young Living'},
+    {r:'r20', name:'Herbal Academy'},
+    {r:'r21', name:'Organic Olivia'},
+    {r:'r22', name:'Dr. Sebi Community'},
+    {r:'r23', name:'The Herbal Spoon'},
+    {r:'r24', name:'Essentially Elana'},
+    {r:'r25', name:'Dr. Zach Bush'},
+    {r:'r26', name:'Kitchen Witch'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -8103,7 +8368,44 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T5';
   var oeLabel = 'NM_SRC_T5_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Paul Saladino  (Carnivore MD)'},
+    {r:'r2', name:'Shawn Baker  (Revero)'},
+    {r:'r3', name:'Mikhaila Peterson'},
+    {r:'r4', name:'Liver King  (Brian Johnson)'},
+    {r:'r5', name:'Diet Doctor'},
+    {r:'r6', name:'Nutrition with Judy'},
+    {r:'r7', name:'Thomas DeLauer'},
+    {r:'r8', name:'What I\'ve Learned'},
+    {r:'r9', name:'Layne Norton  (BioLayne)'},
+    {r:'r10', name:'Whole30  (Melissa Urban)'},
+    {r:'r11', name:'Dr. Gabrielle Lyon'},
+    {r:'r12', name:'Nutrition Made Simple  (Gil Carvalho)'},
+    {r:'r13', name:'The Exam Room  (PCRM)'},
+    {r:'r14', name:'Nourishing Traditions  (Sally Fallon)'},
+    {r:'r15', name:'Peak Human Podcast'},
+    {r:'r16', name:'Ancestral Health Society'},
+    {r:'r17', name:'Food Democracy Now'},
+    {r:'r18', name:'Sustainable Pulse'},
+    {r:'r19', name:'Fed Up with School Lunch'},
+    {r:'r20', name:'Food Babe  (Vani Hari)'},
+    {r:'r21', name:'The Organic Authority'},
+    {r:'r22', name:'Nourished Kitchen'},
+    {r:'r23', name:'Weston A. Price Foundation FB'},
+    {r:'r24', name:'Non-GMO Project'},
+    {r:'r25', name:'Kitchen Stewardship'},
+    {r:'r26', name:'100 Days of Real Food'},
+    {r:'r27', name:'Real Food For Real Kids'},
+    {r:'r28', name:'Trim Healthy Mama'},
+    {r:'r29', name:'Homesteading Family'},
+    {r:'r30', name:'Real Food RD  (Rylee Hackley)'},
+    {r:'r31', name:'The Nourished Child  (Jill Castle)'},
+    {r:'r32', name:'Nutrition with Judy  (Judy Cho)'},
+    {r:'r33', name:'Dr. Gabrielle Lyon  (Protein Matters)'},
+    {r:'r34', name:'Food Politics  (Marion Nestle)'},
+    {r:'r35', name:'Grain Brain  (David Perlmutter)'},
+    {r:'r36', name:'The Carnivore Bar'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -8411,7 +8713,37 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T5';
   var oeLabel = 'NM_INF_T5_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Paul Saladino  (Carnivore MD)'},
+    {r:'r2', name:'Shawn Baker  (Revero)'},
+    {r:'r3', name:'Mikhaila Peterson'},
+    {r:'r4', name:'Liver King  (Brian Johnson)'},
+    {r:'r5', name:'Thomas DeLauer'},
+    {r:'r6', name:'Dr. Gabrielle Lyon'},
+    {r:'r7', name:'Food Babe  (Vani Hari)'},
+    {r:'r8', name:'Nutrition with Judy  (Judy Cho)'},
+    {r:'r9', name:'The Feeding Doctor  (Katja Rowell)'},
+    {r:'r10', name:'Feeding Littles'},
+    {r:'r11', name:'Lily Nichols  (Real Food for Pregnancy)'},
+    {r:'r12', name:'Clean Label Project'},
+    {r:'r13', name:'Robb Wolf'},
+    {r:'r14', name:'Naturally Nourished  (Ali Miller)'},
+    {r:'r15', name:'Balanced Bites  (Diane Sanfilippo)'},
+    {r:'r16', name:'Well Fed  (Melissa Joulwan)'},
+    {r:'r17', name:'The Paleo Mom  (Sarah Ballantyne)'},
+    {r:'r18', name:'Trina Holden  (Real Food Living)'},
+    {r:'r19', name:'Bart Kay'},
+    {r:'r20', name:'Anthony Chaffee MD'},
+    {r:'r21', name:'Carnivore Aurelius'},
+    {r:'r22', name:'Steak and Butter Gal'},
+    {r:'r23', name:'Ken Berry MD  (Keep it Simple)'},
+    {r:'r24', name:'Dr. Eric Berg'},
+    {r:'r25', name:'Frank Tufano'},
+    {r:'r26', name:'Sakara Life'},
+    {r:'r27', name:'Fully Raw Kristina'},
+    {r:'r28', name:'Plant Based News'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -8693,7 +9025,18 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T6';
   var oeLabel = 'NM_SRC_T6_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Huberman Lab'},
+    {r:'r2', name:'Examine.com'},
+    {r:'r3', name:'Nootropics Depot'},
+    {r:'r4', name:'Life Extension Foundation'},
+    {r:'r5', name:'ConsumerLab'},
+    {r:'r6', name:'LabDoor'},
+    {r:'r7', name:'Tim Ferriss Show'},
+    {r:'r8', name:'The Supplement Review Podcast'},
+    {r:'r9', name:'Designs for Health Podcast'},
+    {r:'r10', name:'Fullscript Insights'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -8974,7 +9317,10 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T6';
   var oeLabel = 'NM_INF_T6_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Huberman Lab'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -9277,7 +9623,39 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T7';
   var oeLabel = 'NM_SRC_T7_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Your Local Epidemiologist'},
+    {r:'r2', name:'CHOP Vaccine Education Center'},
+    {r:'r3', name:'Paul Offit'},
+    {r:'r4', name:'Vax Populi Substack'},
+    {r:'r5', name:'CDC Vaccine Communications'},
+    {r:'r6', name:'The Highwire  (Del Bigtree)'},
+    {r:'r7', name:'Children\'s Health Defense'},
+    {r:'r8', name:'Dr. Sherri Tenpenny'},
+    {r:'r9', name:'America\'s Frontline Doctors'},
+    {r:'r10', name:'Dr. Mercola'},
+    {r:'r11', name:'Steve Kirsch Substack'},
+    {r:'r12', name:'Epoch Health'},
+    {r:'r13', name:'Health Impact News'},
+    {r:'r14', name:'Informed Consent Action Network'},
+    {r:'r15', name:'Dr. Paul Thomas  (Integrative Pediatrics)'},
+    {r:'r16', name:'Stew Peters Network Telegram'},
+    {r:'r17', name:'Health Freedom Telegram'},
+    {r:'r18', name:'Generation Rescue  (Jenny McCarthy)'},
+    {r:'r19', name:'Robert Malone  (Who is Robert Malone)'},
+    {r:'r20', name:'Alex Berenson  (Unreported Truths)'},
+    {r:'r21', name:'Pierre Kory  (Fight the System)'},
+    {r:'r22', name:'Paul Marik  (FLCCC Alliance)'},
+    {r:'r23', name:'Jessica Rose  (Unacceptable Jessica)'},
+    {r:'r24', name:'Igor Chudov  (Igor\'s Newsletter)'},
+    {r:'r25', name:'Naomi Wolf  (DailyClout)'},
+    {r:'r26', name:'Matthew Crawford  (Rounding the Earth)'},
+    {r:'r27', name:'David Zweig'},
+    {r:'r28', name:'Sage Hana'},
+    {r:'r29', name:'Courageous Discourse  (Bhattacharya)'},
+    {r:'r30', name:'Karl Denninger  (Market Ticker Health)'},
+    {r:'r31', name:'Your Local Epidemiologist  (Jetelina)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -9575,7 +9953,27 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T7';
   var oeLabel = 'NM_INF_T7_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Your Local Epidemiologist'},
+    {r:'r2', name:'The Highwire  (Del Bigtree)'},
+    {r:'r3', name:'Dr. Mercola'},
+    {r:'r4', name:'Robert Malone  (Who is Robert Malone)'},
+    {r:'r5', name:'Alex Berenson  (Unreported Truths)'},
+    {r:'r6', name:'Pierre Kory  (Fight the System)'},
+    {r:'r7', name:'Naomi Wolf  (DailyClout)'},
+    {r:'r8', name:'Sage Hana'},
+    {r:'r9', name:'Dr. Tenpenny'},
+    {r:'r10', name:'Aaron Siri  (ICAN)'},
+    {r:'r11', name:'Mary Holland  (CHD)'},
+    {r:'r12', name:'Meryl Nass MD'},
+    {r:'r13', name:'Harvey Risch'},
+    {r:'r14', name:'Dr. Sherri Tenpenny'},
+    {r:'r15', name:'Stephanie Seneff'},
+    {r:'r16', name:'Dr. Carrie Madej'},
+    {r:'r17', name:'Health Freedom Defense Fund'},
+    {r:'r18', name:'Vaccine Safety Research Foundation'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -9856,7 +10254,17 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T8';
   var oeLabel = 'NM_SRC_T8_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Mark Bell\'s Power Project'},
+    {r:'r2', name:'Ben Greenfield Life'},
+    {r:'r3', name:'Barbell Medicine'},
+    {r:'r4', name:'Jocko Podcast'},
+    {r:'r5', name:'Mike Israetel  (Renaissance Periodization)'},
+    {r:'r6', name:'Mind Pump Podcast'},
+    {r:'r7', name:'Starting Strength  (Mark Rippetoe)'},
+    {r:'r8', name:'Functional Patterns'},
+    {r:'r9', name:'Garage Gym Reviews'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -10142,7 +10550,15 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T8';
   var oeLabel = 'NM_INF_T8_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Mark Bell\'s Power Project'},
+    {r:'r2', name:'Ben Greenfield Life'},
+    {r:'r3', name:'Jocko Podcast'},
+    {r:'r4', name:'Mike Israetel  (Renaissance Periodization)'},
+    {r:'r5', name:'Mind Pump Podcast'},
+    {r:'r6', name:'Steph Gaudreau  (Harder to Kill)'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -10426,7 +10842,20 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T9';
   var oeLabel = 'NM_SRC_T9_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Peter Attia  (The Drive)'},
+    {r:'r2', name:'Bryan Johnson  (Blueprint)'},
+    {r:'r3', name:'David Sinclair  (Lifespan)'},
+    {r:'r4', name:'Fight Aging'},
+    {r:'r5', name:'Lifespan.io'},
+    {r:'r6', name:'Longevity.Technology'},
+    {r:'r7', name:'Sergey Young  (Longevity Vision)'},
+    {r:'r8', name:'Nir Barzilai  (Age Later)'},
+    {r:'r9', name:'Elysium Health Insights'},
+    {r:'r10', name:'Peter Attia  (Outlive)'},
+    {r:'r11', name:'Nir Eyal  (Indistractable Health)'},
+    {r:'r12', name:'LifeOmic  (Longevity Science)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -10712,7 +11141,15 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T9';
   var oeLabel = 'NM_INF_T9_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Peter Attia  (The Drive)'},
+    {r:'r2', name:'Bryan Johnson  (Blueprint)'},
+    {r:'r3', name:'David Sinclair  (Lifespan)'},
+    {r:'r4', name:'Bryan Johnson'},
+    {r:'r5', name:'Aubrey de Grey'},
+    {r:'r6', name:'Casey Means'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -10999,7 +11436,23 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T10';
   var oeLabel = 'NM_SRC_T10_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Ground Truths  (Eric Topol)'},
+    {r:'r2', name:'MedPage Today'},
+    {r:'r3', name:'Medscape'},
+    {r:'r4', name:'Science Friday'},
+    {r:'r5', name:'Endpoints News'},
+    {r:'r6', name:'BioPharma Dive'},
+    {r:'r7', name:'New England Journal of Medicine (JAMA)'},
+    {r:'r8', name:'Ars Technica Health'},
+    {r:'r9', name:'FDA Voice'},
+    {r:'r10', name:'NIH News in Health'},
+    {r:'r11', name:'CDC Health Matters Podcast'},
+    {r:'r12', name:'Stat of the Week  (Bob Wachter)'},
+    {r:'r13', name:'Tomas Pueyo  (Uncharted Territories)'},
+    {r:'r14', name:'The Incubator  (Neonatal Research)'},
+    {r:'r15', name:'Absolutely Maybe  (Lisa Bero)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -11289,7 +11742,19 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T10';
   var oeLabel = 'NM_INF_T10_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Ground Truths  (Eric Topol)'},
+    {r:'r2', name:'Dr. CÃ©line Gounder'},
+    {r:'r3', name:'Dr. Howard Luks'},
+    {r:'r4', name:'Dr. Danielle Jones  (Mama Doctor Jones)'},
+    {r:'r5', name:'Michael Levin'},
+    {r:'r6', name:'George Church'},
+    {r:'r7', name:'Dr. Peter Hotez'},
+    {r:'r8', name:'Laurie Garrett'},
+    {r:'r9', name:'Saad Omer'},
+    {r:'r10', name:'Amy Maxmen'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -11590,7 +12055,37 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T11';
   var oeLabel = 'NM_SRC_T11_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'EWTN'},
+    {r:'r2', name:'Focus on the Family Podcast'},
+    {r:'r3', name:'Christianity Today'},
+    {r:'r4', name:'The Gospel Coalition'},
+    {r:'r5', name:'Relevant Podcast'},
+    {r:'r6', name:'Catholic Vote'},
+    {r:'r7', name:'The Catholic Thing'},
+    {r:'r8', name:'Crisis Magazine'},
+    {r:'r9', name:'First Things'},
+    {r:'r10', name:'Sojourners'},
+    {r:'r11', name:'National Catholic Reporter'},
+    {r:'r12', name:'America Magazine'},
+    {r:'r13', name:'Religion News Service'},
+    {r:'r14', name:'CBN Health'},
+    {r:'r15', name:'Christian Post'},
+    {r:'r16', name:'Black Christian News'},
+    {r:'r17', name:'Word in Black'},
+    {r:'r18', name:'The Witness BCC'},
+    {r:'r19', name:'National Black Church Initiative'},
+    {r:'r20', name:'The Word Network Health Content'},
+    {r:'r21', name:'Catholic Health Association'},
+    {r:'r22', name:'Catholic Charities Health'},
+    {r:'r23', name:'Konos'},
+    {r:'r24', name:'Dispatches from Exile  (Rod Dreher)'},
+    {r:'r25', name:'Mere Orthodoxy'},
+    {r:'r26', name:'The Pillar'},
+    {r:'r27', name:'Comment Magazine  (Cardus)'},
+    {r:'r28', name:'Plough Quarterly'},
+    {r:'r29', name:'Faithful Politics'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -11879,7 +12374,18 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T11';
   var oeLabel = 'NM_INF_T11_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Lila Rose'},
+    {r:'r2', name:'Kirk Cameron'},
+    {r:'r3', name:'Allie Beth Stuckey'},
+    {r:'r4', name:'Abby Johnson'},
+    {r:'r5', name:'Rev. William Barber II'},
+    {r:'r6', name:'Lisa Sharon Harper  (Freedom Road )'},
+    {r:'r7', name:'Latasha Morrison (Be the Bridge)'},
+    {r:'r8', name:'Christina Edmondson'},
+    {r:'r9', name:'Jemar Tisby'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -12175,7 +12681,32 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T12';
   var oeLabel = 'NM_SRC_T12_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Working People Podcast'},
+    {r:'r2', name:'AFL-CIO Now'},
+    {r:'r3', name:'Labor Notes'},
+    {r:'r4', name:'Economic Policy Institute'},
+    {r:'r5', name:'Teamster Nation'},
+    {r:'r6', name:'National Nurses United'},
+    {r:'r7', name:'SEIU  (Service Workers)'},
+    {r:'r8', name:'The Majority Report'},
+    {r:'r9', name:'UFCW  (United Food Workers Health)'},
+    {r:'r10', name:'UAW Health and Benefits'},
+    {r:'r11', name:'IBEW Health Benefits'},
+    {r:'r12', name:'USW  (United Steelworkers Health)'},
+    {r:'r13', name:'AFSCME Healthcare Coverage'},
+    {r:'r14', name:'Union Plus Benefits Podcast'},
+    {r:'r15', name:'Capital and Main'},
+    {r:'r16', name:'Ohio Valley ReSource'},
+    {r:'r17', name:'National COSH'},
+    {r:'r18', name:'Occupational Health &amp; Safety News'},
+    {r:'r19', name:'Jobs with Justice Health'},
+    {r:'r20', name:'National Partnership Women Families'},
+    {r:'r21', name:'Working Families Party Health'},
+    {r:'r22', name:'The Lever  (David Sirota)'},
+    {r:'r23', name:'More Perfect Union'},
+    {r:'r24', name:'Healthcare Worker Stories'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -12464,7 +12995,18 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T12';
   var oeLabel = 'NM_INF_T12_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'AFSCME'},
+    {r:'r2', name:'SEIU'},
+    {r:'r3', name:'Sara Nelson (AFA Union)'},
+    {r:'r4', name:'Shawn Fain (UAW)'},
+    {r:'r5', name:'Liz Shuler (AFL-CIO)'},
+    {r:'r6', name:'Harold Schaitberger (IAFF)'},
+    {r:'r7', name:'UFCW'},
+    {r:'r8', name:'Teamsters'},
+    {r:'r9', name:'Jobs with Justice'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -12749,7 +13291,21 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T13';
   var oeLabel = 'NM_SRC_T13_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Fierce Healthcare'},
+    {r:'r2', name:'Healthcare IT News'},
+    {r:'r3', name:'HIMSS Media'},
+    {r:'r4', name:'Digital Health Today'},
+    {r:'r5', name:'Becker\'s Health IT'},
+    {r:'r6', name:'Forbes Healthcare'},
+    {r:'r7', name:'A16z Health'},
+    {r:'r8', name:'The Health Innovation Podcast'},
+    {r:'r9', name:'Not Boring Health  (Packy McCormick)'},
+    {r:'r10', name:'Elemental Health  (Elad Gil)'},
+    {r:'r11', name:'The Prism  (Health Innovation)'},
+    {r:'r12', name:'Heartbeat Health AI'},
+    {r:'r13', name:'Rock Health  (Weekly Briefing)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
@@ -13037,7 +13593,17 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_INF_T13';
   var oeLabel = 'NM_INF_T13_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Balaji Srinivasan'},
+    {r:'r2', name:'Lex Fridman'},
+    {r:'r3', name:'Sam Altman'},
+    {r:'r4', name:'Vinod Khosla'},
+    {r:'r5', name:'Marc Andreessen'},
+    {r:'r6', name:'Garry Tan'},
+    {r:'r7', name:'Hala Mazur'},
+    {r:'r8', name:'Farzad Mostashari'},
+    {r:'r99', name:'None of these'}
+  ];
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
@@ -13323,7 +13889,22 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T14';
   var oeLabel = 'NM_SRC_T14_OE';
-  var items = nmGetRows(qLabel);
+  var items = [
+    {r:'r1', name:'Grist'},
+    {r:'r2', name:'Yale Climate Connections'},
+    {r:'r3', name:'Environmental Health News'},
+    {r:'r4', name:'Climate Now Podcast'},
+    {r:'r5', name:'Inside Climate News'},
+    {r:'r6', name:'NRDC Health'},
+    {r:'r7', name:'Sierra Club Health'},
+    {r:'r8', name:'EWG  (Environmental Working Group)'},
+    {r:'r9', name:'Safer Chemicals Healthy Families'},
+    {r:'r10', name:'Hot Take  (Mary Heglar &amp; Amy Westervelt)'},
+    {r:'r11', name:'Heated  (Emily Atkin)'},
+    {r:'r12', name:'The Climate Crisis  (Bill McKibben)'},
+    {r:'r13', name:'Drilled  (Amy Westervelt)'},
+    {r:'r14', name:'Health &amp; Climate  (Medical Society)'}
+  ];
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
