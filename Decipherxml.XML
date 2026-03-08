@@ -4989,7 +4989,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -5018,7 +5017,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -5037,7 +5035,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -5261,7 +5258,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -5290,7 +5286,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -5309,7 +5304,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -5606,7 +5600,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -5635,7 +5628,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -5654,7 +5646,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -5760,10 +5751,8 @@ function nmGetRows(qLabel){
     {r:'r44', name:'Bad Faith  (Briahna Joy Gray)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -5975,7 +5964,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -6004,7 +5992,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -6023,7 +6010,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -6341,7 +6327,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -6370,7 +6355,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -6389,7 +6373,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -6499,10 +6482,8 @@ function nmGetRows(qLabel){
     {r:'r48', name:'Physicians for Social Responsibility'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -6738,7 +6719,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -6767,7 +6747,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -6786,7 +6765,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7107,7 +7085,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7136,7 +7113,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -7155,7 +7131,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7244,10 +7219,8 @@ function nmGetRows(qLabel){
     {r:'r27', name:'Aging Well  (Dr. Leslie Kernisan)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -7446,7 +7419,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7475,7 +7447,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -7494,7 +7465,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7791,7 +7761,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7820,7 +7789,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -7839,7 +7807,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -7941,10 +7908,8 @@ function nmGetRows(qLabel){
     {r:'r40', name:'Metabolic Mind  (Baszucki Group)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -8163,7 +8128,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -8192,7 +8156,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -8211,7 +8174,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -8524,7 +8486,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -8553,7 +8514,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -8572,7 +8532,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -8670,10 +8629,8 @@ function nmGetRows(qLabel){
     {r:'r36', name:'The Carnivore Bar'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -8894,7 +8851,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -8923,7 +8879,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -8942,7 +8897,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -9231,7 +9185,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -9260,7 +9213,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -9279,7 +9231,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -9351,10 +9302,8 @@ function nmGetRows(qLabel){
     {r:'r10', name:'Fullscript Insights'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -9548,7 +9497,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -9577,7 +9525,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -9596,7 +9543,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -9879,7 +9825,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -9908,7 +9853,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -9927,7 +9871,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -10020,10 +9963,8 @@ function nmGetRows(qLabel){
     {r:'r31', name:'Your Local Epidemiologist  (Jetelina)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -10234,7 +10175,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -10263,7 +10203,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -10282,7 +10221,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -10560,7 +10498,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -10589,7 +10526,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -10608,7 +10544,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -10679,10 +10614,8 @@ function nmGetRows(qLabel){
     {r:'r9', name:'Garage Gym Reviews'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -10881,7 +10814,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -10910,7 +10842,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -10929,7 +10860,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11198,7 +11128,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11227,7 +11156,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -11246,7 +11174,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11320,10 +11247,8 @@ function nmGetRows(qLabel){
     {r:'r12', name:'LifeOmic  (Longevity Science)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -11522,7 +11447,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11551,7 +11475,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -11570,7 +11493,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11842,7 +11764,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11871,7 +11792,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -11890,7 +11810,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -11967,10 +11886,8 @@ function nmGetRows(qLabel){
     {r:'r15', name:'Absolutely Maybe  (Lisa Bero)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -12173,7 +12090,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -12202,7 +12118,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -12221,7 +12136,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -12511,7 +12425,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -12540,7 +12453,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -12559,7 +12471,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -12650,10 +12561,8 @@ function nmGetRows(qLabel){
     {r:'r29', name:'Faithful Politics'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -12855,7 +12764,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -12884,7 +12792,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -12903,7 +12810,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13187,7 +13093,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13216,7 +13121,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -13235,7 +13139,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13321,10 +13224,8 @@ function nmGetRows(qLabel){
     {r:'r24', name:'Healthcare Worker Stories'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -13526,7 +13427,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13555,7 +13455,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -13574,7 +13473,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13847,7 +13745,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13876,7 +13773,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -13895,7 +13791,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -13970,10 +13865,8 @@ function nmGetRows(qLabel){
     {r:'r13', name:'Rock Health  (Weekly Briefing)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -14174,7 +14067,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -14203,7 +14095,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -14222,7 +14113,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -14495,7 +14385,6 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
       inp.checked = checked;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -14524,7 +14413,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(!inp){
-      /* Position-based fallback: group radios by name, find row group, select by col index */
       var groups = {};
       for(var k=0; k<all.length; k++){
         var n = all[k].name;
@@ -14543,7 +14431,6 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
     }
     if(inp){
-      console.log('[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' (name='+inp.name+' value='+inp.value+')');
       inp.checked = true;
       inp.click();
       inp.dispatchEvent(new Event('change', {bubbles:true}));
@@ -14619,10 +14506,8 @@ function nmGetRows(qLabel){
     {r:'r14', name:'Health &amp; Climate  (Medical Society)'}
   ];
   if(items.length === 0) return;
-  var _r99=null;for(var _i=items.length-1;_i>=0;_i--){if(items[_i].r==='r99'){_r99=items.splice(_i,1)[0];break;}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
-  if(_r99)items.push(_r99);
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
