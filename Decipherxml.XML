@@ -4791,6 +4791,7 @@ elif XDEM_SEG_FINAL_1.any:
 
 
 
+<!-- ===================== NEW MEDIA SECTION ===================== -->
 <note>===================== SECTION 5 -- NEW MEDIA ECOSYSTEMS =====================</note>
 
 <radio
@@ -4839,77 +4840,70 @@ elif TYPING_MODULE.r3:
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
-      <span class="nm-section-title">SECTION 5: NEW MEDIA ECOSYSTEMS</span>
-      <span id="nm-progress-label">1 of 3 Questions</span>
+      <span class="nm-section-title">NEW MEDIA</span>
+      <span id="nm-progress-label">1 of 3</span>
     </div>
-    <div id="nm-progress-track"><div id="nm-progress-fill" style="width:33%"></div></div>
+    <div id="nm-progress-track"><div id="nm-progress-fill"></div></div>
   </div>
   <div class="nm-intro">
     <div class="nm-intro-body">
-      To help us better understand how people encounter and engage with
-      information about health, this section asks about the media,
-      platforms, and voices that shape your information environment.
-    </div>
-    <div class="nm-intro-body" style="margin-bottom:0">
-      These questions help us understand where you go for information,
-      who you trust, and how different sources influence the way you think
-      about health and healthcare.
+      Now we&rsquo;d like to understand where you get your <em style="color:#6B7F4E">health</em> and <em style="color:#6B7F4E">political</em> information. There are no right or wrong answers&mdash;we&rsquo;re genuinely curious about the sources and voices you trust.
     </div>
   </div>
   <div class="nm-card">
-    <div class="nm-q-title">Which of the following do you use to get health or political information? Select all that apply.</div>
-    <div class="nm-q-subtitle">Include any platform you use at least occasionally&mdash;it doesn&rsquo;t have to be your main source.</div>
+    <div class="nm-q-title">Which of the following do you use to get health or political information?</div>
+    <div class="nm-q-subtitle">Select all that apply. Include any platform you use at least occasionally&mdash;it doesn&rsquo;t have to be your main source.</div>
     <div class="nm-check-list" id="nm-plat-list">
       <div class="nm-check-row" data-row="r1">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Podcasts</div><div class="nm-check-desc">Audio shows you stream or download</div></div>
+        <div><div class="nm-check-label">Podcasts</div></div>
       </div>
       <div class="nm-check-row" data-row="r2">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">YouTube</div><div class="nm-check-desc">Video content on YouTube</div></div>
+        <div><div class="nm-check-label">YouTube</div></div>
       </div>
       <div class="nm-check-row" data-row="r3">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Facebook</div><div class="nm-check-desc">Posts, groups, or pages on Facebook</div></div>
+        <div><div class="nm-check-label">Facebook</div></div>
       </div>
       <div class="nm-check-row" data-row="r4">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">X (Twitter)</div><div class="nm-check-desc">Posts and threads on X</div></div>
+        <div><div class="nm-check-label">X (Twitter)</div></div>
       </div>
       <div class="nm-check-row" data-row="r5">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Instagram</div><div class="nm-check-desc">Posts, reels, or stories on Instagram</div></div>
+        <div><div class="nm-check-label">Instagram</div></div>
       </div>
       <div class="nm-check-row" data-row="r6">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">TikTok</div><div class="nm-check-desc">Short videos on TikTok</div></div>
+        <div><div class="nm-check-label">TikTok</div></div>
       </div>
       <div class="nm-check-row" data-row="r7">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Substack or email newsletters</div><div class="nm-check-desc">Newsletters delivered by email</div></div>
+        <div><div class="nm-check-label">Substack or email newsletters</div></div>
       </div>
       <div class="nm-check-row" data-row="r8">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Online news sites and blogs</div><div class="nm-check-desc">Websites, news sites, or blogs</div></div>
+        <div><div class="nm-check-label">Online news sites and blogs</div></div>
       </div>
       <div class="nm-check-row" data-row="r9">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Rumble or alternative video platforms</div><div class="nm-check-desc">Rumble, Odysee, Brighteon, or similar</div></div>
+        <div><div class="nm-check-label">Rumble or alternative video platforms</div></div>
       </div>
       <div class="nm-check-row" data-row="r10">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Telegram or Signal channels</div><div class="nm-check-desc">Channels or groups on Telegram or Signal</div></div>
+        <div><div class="nm-check-label">Telegram or Signal channels</div></div>
       </div>
       <div class="nm-check-row" data-row="r11">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Cable news or broadcast TV programs</div><div class="nm-check-desc">Cable TV news or broadcast television</div></div>
+        <div><div class="nm-check-label">Cable news or broadcast TV programs</div></div>
       </div>
       <div class="nm-check-row" data-row="r12">
         <div class="nm-check-box"><svg viewBox="0 0 14 14" fill="none"><polyline points="2,7 6,11 12,3" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><div class="nm-check-label">Radio or talk radio</div><div class="nm-check-desc">AM/FM radio, satellite radio, or talk radio shows</div></div>
+        <div><div class="nm-check-label">Talk radio</div></div>
       </div>
     </div>
     <button type="button" class="nm-none-btn" id="nm-plat-none">None of these</button>
@@ -4918,176 +4912,141 @@ elif TYPING_MODULE.r3:
     <div class="nm-error-prompt" id="nm-error">Please answer before continuing.</div>
     <button type="button" class="nm-continue-btn" id="nm-continue" disabled>CONTINUE &#8250;</button>
   </div>
-  <div class="nm-footer">Your responses are held strictly confidential.
-    See our <a href="#">Privacy Policy</a>
-    and commitment to research ethics and integrity.</div>
+  <div class="nm-footer">PRISM Health Insights Survey</div>
 </div>
 ]]></style>
 
   <style mode="after" name="question.footer"><![CDATA[
 <script>
-(function(){
-  /* Guard: only run on NM_PLAT page */
-  if(!document.getElementById('nm-plat-list')) return;
 
-  /* ---- find Decipher question element by label ---- */
-  function findQ(q){
-    var el = document.getElementById('q_'+q)
-        || document.getElementById('question_'+q)
-        || document.getElementById(q)
-        || document.querySelector('[id$="_'+q+'"]');
-    if(el && el.closest && !el.classList.contains('question')){
-      var par = el.closest('.question');
-      if(par) el = par;
-    }
+function nmFindQ(q){
+    var el = document.getElementById('v_'+q);
+    if(!el) el = document.querySelector('.question[data-questionid="'+q+'"]');
+    if(!el) el = document.querySelector('[id*="'+q+'"]');
     return el;
-  }
-
-  /* ---- sync checkbox to native Decipher input ---- */
-  function syncCheckbox(qLabel, rowLabel, checked){
-    var box = findQ(qLabel);
-    if(!box){ console.warn('[NM_PLAT syncCB] '+qLabel+' NOT FOUND'); return; }
-    var inp = null;
-
-    /* Strategy 1: value matches row label */
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    /* Strategy 2: name contains row label */
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
-    /* Strategy 3: position-based */
-    if(!inp){
-      var m = rowLabel.match(/^r(\d+)$/);
-      if(m){
-        var idx = parseInt(m[1], 10);
-        var allCB = box.querySelectorAll('input[type="checkbox"]');
-        if(idx === 99){
-          for(var k=0; k<allCB.length; k++){
-            var nm = (allCB[k].name||'')+(allCB[k].className||'');
-            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
-          }
-          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
-        } else if(idx>0 && idx<=allCB.length){
-          inp = allCB[idx-1];
-        }
-      }
+}
+function nmSyncCheckbox(qLabel, rowLabel, checked){
+    var q = nmFindQ(qLabel); if(!q) return;
+    var cb = q.querySelector('#'+qLabel+'_'+rowLabel)
+          || q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"]')
+          || q.querySelector('[id*="_'+rowLabel+'"] input[type="checkbox"]');
+    if(cb){
+        cb.checked = checked;
+        try{ jQuery(cb).trigger('click').trigger('change'); }catch(e){}
     }
-    /* Strategy 4: scan ALL inputs */
-    if(!inp){
-      var all2 = box.querySelectorAll('input');
-      for(var j=0; j<all2.length; j++){
-        if(all2[j].value===rowLabel||(all2[j].name&&all2[j].name.indexOf(rowLabel)!==-1)){inp=all2[j]; break;}
-      }
+}
+function nmSyncRating(qLabel, rowLabel, colVal){
+    var q = nmFindQ(qLabel); if(!q) return;
+    var rd = q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"][value="'+colVal+'"]');
+    if(!rd) rd = q.querySelector('[id*="_'+rowLabel+'"] input[value="'+colVal+'"]');
+    if(rd){
+        rd.checked = true;
+        try{ jQuery(rd).trigger('click').trigger('change'); }catch(e){}
     }
-
+}
+function nmSyncText(qLabel, val){
+    var q = nmFindQ(qLabel); if(!q) return;
+    var inp = q.querySelector('textarea') || q.querySelector('input[type="text"]');
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
-    } else {
-      console.warn('[NM_PLAT syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
+        inp.value = val;
+        try{ jQuery(inp).trigger('change').trigger('input'); }catch(e){}
     }
-  }
-
-  /* ---- state tracking ---- */
-  var selected = {};
-  var noneSelected = false;
-
-  var checkRows = document.querySelectorAll('#nm-plat-list .nm-check-row');
-  var noneBtn = document.getElementById('nm-plat-none');
-  var continueBtn = document.getElementById('nm-continue');
-
-  function updateContinue(){
-    var anyChecked = Object.keys(selected).some(function(k){ return selected[k]; });
-    continueBtn.disabled = !(anyChecked || noneSelected);
-  }
-
-  /* Checkbox row click */
-  checkRows.forEach(function(row){
-    row.addEventListener('click', function(){
-      var r = row.getAttribute('data-row');
-      selected[r] = !selected[r];
-      row.classList.toggle('nm-checked', selected[r]);
-      syncCheckbox('NM_PLAT', r, selected[r]);
-
-      if(selected[r] && noneSelected){
-        noneSelected = false;
-        noneBtn.classList.remove('nm-sel');
-        syncCheckbox('NM_PLAT', 'r99', false);
-      }
-      updateContinue();
-    });
-  });
-
-  /* None of these click */
-  noneBtn.addEventListener('click', function(){
-    noneSelected = !noneSelected;
-    noneBtn.classList.toggle('nm-sel', noneSelected);
-    syncCheckbox('NM_PLAT', 'r99', noneSelected);
-
-    if(noneSelected){
-      checkRows.forEach(function(row){
-        var r = row.getAttribute('data-row');
-        selected[r] = false;
-        row.classList.remove('nm-checked');
-        syncCheckbox('NM_PLAT', r, false);
-      });
-    }
-    updateContinue();
-  });
-
-  /* Continue button */
-  continueBtn.addEventListener('click', function(){
-    if(continueBtn.disabled) return;
-    console.log('[NM_PLAT SUBMIT] selected=', JSON.stringify(selected), 'none=', noneSelected);
-
-    /* Verify native inputs */
-    var box = findQ('NM_PLAT');
-    if(box){
-      var chkd = box.querySelectorAll('input:checked');
-      console.log('[NM_PLAT SUBMIT] Native checked: '+chkd.length);
-
-      /* Emergency fallback: if nothing checked natively, force-set by position */
-      if(chkd.length === 0){
-        console.warn('[NM_PLAT SUBMIT] FALLBACK: force-setting by position');
-        var allCB = box.querySelectorAll('input[type="checkbox"]');
-        Object.keys(selected).forEach(function(r){
-          if(!selected[r]) return;
-          var m2 = r.match(/^r(\d+)$/);
-          if(m2){
-            var i2 = parseInt(m2[1],10) - 1;
-            if(i2 >= 0 && i2 < allCB.length){
-              allCB[i2].checked = true;
-              allCB[i2].click();
-              try{ jQuery(allCB[i2]).trigger('click').trigger('change'); }catch(e){}
-            }
-          }
-        });
-        if(noneSelected && allCB.length > 0){
-          var last = allCB[allCB.length-1];
-          last.checked = true; last.click();
-          try{ jQuery(last).trigger('click').trigger('change'); }catch(e){}
-        }
-      }
-    }
-
+}
+function nmClickNext(){
     var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
     if(!nxt) nxt = document.querySelector('.button, input.button');
     if(nxt){
-      nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
-      nxt.click();
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
     } else {
-      var form = document.querySelector('form');
-      if(form) form.submit();
+        var form = document.querySelector('form');
+        if(form) form.submit();
     }
-  });
+}
+function nmGetRows(qLabel){
+    var q = nmFindQ(qLabel); if(!q) return [];
+    var rows = [], seen = {};
+    var inputs = q.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+    for(var i=0; i<inputs.length; i++){
+        var inp = inputs[i];
+        var name = inp.name || '';
+        var m = name.match(new RegExp('^'+qLabel+'_(r\\d+)'));
+        if(!m) continue;
+        var rLabel = m[1];
+        if(seen[rLabel] || rLabel === 'r99') continue;
+        seen[rLabel] = true;
+        var rowEl = inp.closest('.fir-row') || inp.closest('tr') || inp.closest('.row-elements');
+        if(!rowEl) rowEl = inp.parentNode;
+        var textEl = rowEl ? (rowEl.querySelector('.fir-text') || rowEl.querySelector('.row-text') || rowEl.querySelector('label')) : null;
+        var txt = textEl ? textEl.textContent.trim() : rLabel;
+        if(txt === rLabel || txt.length < 2){
+            var parent = inp.closest('.fir-row');
+            if(parent){
+                var fc = parent.querySelector('.fir-text-container, .fir-text, td:first-child, .row-label');
+                if(fc) txt = fc.textContent.trim();
+            }
+        }
+        rows.push({r: rLabel, name: txt});
+    }
+    return rows;
+}
 
+(function(){
+  var qLabel = 'NM_PLAT';
+  var checks = {};
+  var noneActive = false;
+  var list = document.getElementById('nm-plat-list');
+  var noneBtn = document.getElementById('nm-plat-none');
+  var continueBtn = document.getElementById('nm-continue');
+  function updateContinue(){
+    var any = noneActive || Object.keys(checks).some(function(k){ return checks[k]; });
+    continueBtn.disabled = !any;
+  }
+  if(list){
+    list.querySelectorAll('.nm-check-row').forEach(function(row){
+      row.addEventListener('click', function(){
+        var r = row.getAttribute('data-row');
+        checks[r] = !checks[r];
+        row.classList.toggle('nm-checked', checks[r]);
+        nmSyncCheckbox(qLabel, r, checks[r]);
+        if(checks[r] && noneActive){
+          noneActive = false;
+          noneBtn.classList.remove('nm-sel');
+          nmSyncCheckbox(qLabel, 'r99', false);
+        }
+        updateContinue();
+      });
+    });
+  }
+  if(noneBtn){
+    noneBtn.addEventListener('click', function(){
+      noneActive = !noneActive;
+      noneBtn.classList.toggle('nm-sel', noneActive);
+      nmSyncCheckbox(qLabel, 'r99', noneActive);
+      if(noneActive){
+        Object.keys(checks).forEach(function(r){ checks[r] = false; });
+        list.querySelectorAll('.nm-check-row').forEach(function(row){ row.classList.remove('nm-checked'); });
+        var q = nmFindQ(qLabel);
+        if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
+          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+        });
+      }
+      updateContinue();
+    });
+  }
+  if(continueBtn){
+    continueBtn.addEventListener('click', function(){
+      if(continueBtn.disabled) return;
+      nmClickNext();
+    });
+  }
   updateContinue();
 })();
+
 </script>
 ]]></style>
 </checkbox>
 
-<suspend/>
 
 <checkbox
   label="NM_TOPICS"
@@ -5115,13 +5074,13 @@ elif TYPING_MODULE.r3:
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
-      <span class="nm-section-title">SECTION 5: NEW MEDIA ECOSYSTEMS</span>
-      <span id="nm-progress-label">2 of 3 Questions</span>
+      <span class="nm-section-title">NEW MEDIA</span>
+      <span id="nm-progress-label">2 of 3</span>
     </div>
-    <div id="nm-progress-track"><div id="nm-progress-fill" style="width:67%"></div></div>
+    <div id="nm-progress-track"><div id="nm-progress-fill"></div></div>
   </div>
   <div class="nm-card">
     <div class="nm-q-title">Which of the following topics do you follow for health or political information?</div>
@@ -5145,169 +5104,140 @@ elif TYPING_MODULE.r3:
     <button type="button" class="nm-none-btn" id="nm-topic-none">None of these</button>
   </div>
   <div class="nm-continue-wrap">
-    <div class="nm-error-prompt" id="nm-error">Please select at least one topic to continue.</div>
+    <div class="nm-error-prompt" id="nm-error">Please answer before continuing.</div>
     <button type="button" class="nm-continue-btn" id="nm-continue" disabled>CONTINUE &#8250;</button>
   </div>
-  <div class="nm-footer">Your responses are held strictly confidential.
-    See our <a href="#">Privacy Policy</a>
-    and commitment to research ethics and integrity.</div>
+  <div class="nm-footer">PRISM Health Insights Survey</div>
 </div>
 ]]></style>
 
   <style mode="after" name="question.footer"><![CDATA[
 <script>
-(function(){
-  /* Guard: only run on NM_TOPICS page */
-  if(!document.getElementById('nm-topic-grid')) return;
 
-  /* ---- find Decipher question element by label ---- */
-  function findQ(q){
-    var el = document.getElementById('q_'+q)
-        || document.getElementById('question_'+q)
-        || document.getElementById(q)
-        || document.querySelector('[id$="_'+q+'"]');
-    if(el && el.closest && !el.classList.contains('question')){
-      var par = el.closest('.question');
-      if(par) el = par;
-    }
+function nmFindQ(q){
+    var el = document.getElementById('v_'+q);
+    if(!el) el = document.querySelector('.question[data-questionid="'+q+'"]');
+    if(!el) el = document.querySelector('[id*="'+q+'"]');
     return el;
-  }
-
-  /* ---- sync checkbox to native Decipher input ---- */
-  function syncCheckbox(qLabel, rowLabel, checked){
-    var box = findQ(qLabel);
-    if(!box){ console.warn('[NM_TOPICS syncCB] '+qLabel+' NOT FOUND'); return; }
-    var inp = null;
-
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
-    if(!inp){
-      var m = rowLabel.match(/^r(\d+)$/);
-      if(m){
-        var idx = parseInt(m[1], 10);
-        var allCB = box.querySelectorAll('input[type="checkbox"]');
-        if(idx === 99){
-          for(var k=0; k<allCB.length; k++){
-            var nm = (allCB[k].name||'')+(allCB[k].className||'');
-            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
-          }
-          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
-        } else if(idx>0 && idx<=allCB.length){
-          inp = allCB[idx-1];
-        }
-      }
+}
+function nmSyncCheckbox(qLabel, rowLabel, checked){
+    var q = nmFindQ(qLabel); if(!q) return;
+    var cb = q.querySelector('#'+qLabel+'_'+rowLabel)
+          || q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"]')
+          || q.querySelector('[id*="_'+rowLabel+'"] input[type="checkbox"]');
+    if(cb){
+        cb.checked = checked;
+        try{ jQuery(cb).trigger('click').trigger('change'); }catch(e){}
     }
-    if(!inp){
-      var all2 = box.querySelectorAll('input');
-      for(var j=0; j<all2.length; j++){
-        if(all2[j].value===rowLabel||(all2[j].name&&all2[j].name.indexOf(rowLabel)!==-1)){inp=all2[j]; break;}
-      }
+}
+function nmSyncRating(qLabel, rowLabel, colVal){
+    var q = nmFindQ(qLabel); if(!q) return;
+    var rd = q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"][value="'+colVal+'"]');
+    if(!rd) rd = q.querySelector('[id*="_'+rowLabel+'"] input[value="'+colVal+'"]');
+    if(rd){
+        rd.checked = true;
+        try{ jQuery(rd).trigger('click').trigger('change'); }catch(e){}
     }
-
+}
+function nmSyncText(qLabel, val){
+    var q = nmFindQ(qLabel); if(!q) return;
+    var inp = q.querySelector('textarea') || q.querySelector('input[type="text"]');
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
-    } else {
-      console.warn('[NM_TOPICS syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
+        inp.value = val;
+        try{ jQuery(inp).trigger('change').trigger('input'); }catch(e){}
     }
-  }
-
-  /* ---- state tracking ---- */
-  var selected = {};
-  var noneSelected = false;
-
-  var grid = document.getElementById('nm-topic-grid');
-  var noneBtn = document.getElementById('nm-topic-none');
-  var continueBtn = document.getElementById('nm-continue');
-
-  function updateContinue(){
-    var anyChecked = Object.keys(selected).some(function(k){ return selected[k]; });
-    continueBtn.disabled = !(anyChecked || noneSelected);
-  }
-
-  /* Topic chip click */
-  grid.querySelectorAll('.nm-chip').forEach(function(chip){
-    chip.addEventListener('click', function(){
-      var r = chip.getAttribute('data-row');
-      selected[r] = !selected[r];
-      chip.classList.toggle('nm-sel', selected[r]);
-      syncCheckbox('NM_TOPICS', r, selected[r]);
-
-      if(selected[r] && noneSelected){
-        noneSelected = false;
-        noneBtn.classList.remove('nm-sel');
-        syncCheckbox('NM_TOPICS', 'r99', false);
-      }
-      updateContinue();
-    });
-  });
-
-  /* None of these click */
-  noneBtn.addEventListener('click', function(){
-    noneSelected = !noneSelected;
-    noneBtn.classList.toggle('nm-sel', noneSelected);
-    syncCheckbox('NM_TOPICS', 'r99', noneSelected);
-
-    if(noneSelected){
-      grid.querySelectorAll('.nm-chip').forEach(function(chip){
-        var r = chip.getAttribute('data-row');
-        selected[r] = false;
-        chip.classList.remove('nm-sel');
-        syncCheckbox('NM_TOPICS', r, false);
-      });
-    }
-    updateContinue();
-  });
-
-  /* Continue button */
-  continueBtn.addEventListener('click', function(){
-    if(continueBtn.disabled) return;
-    console.log('[NM_TOPICS SUBMIT] selected=', JSON.stringify(selected), 'none=', noneSelected);
-
-    /* Verify native inputs */
-    var box = findQ('NM_TOPICS');
-    if(box){
-      var chkd = box.querySelectorAll('input:checked');
-      console.log('[NM_TOPICS SUBMIT] Native checked: '+chkd.length);
-
-      if(chkd.length === 0){
-        console.warn('[NM_TOPICS SUBMIT] FALLBACK: force-setting by position');
-        var allCB = box.querySelectorAll('input[type="checkbox"]');
-        Object.keys(selected).forEach(function(r){
-          if(!selected[r]) return;
-          var m2 = r.match(/^r(\d+)$/);
-          if(m2){
-            var i2 = parseInt(m2[1],10) - 1;
-            if(i2 >= 0 && i2 < allCB.length){
-              allCB[i2].checked = true;
-              allCB[i2].click();
-              try{ jQuery(allCB[i2]).trigger('click').trigger('change'); }catch(e){}
-            }
-          }
-        });
-        if(noneSelected && allCB.length > 0){
-          var last = allCB[allCB.length-1];
-          last.checked = true; last.click();
-          try{ jQuery(last).trigger('click').trigger('change'); }catch(e){}
-        }
-      }
-    }
-
+}
+function nmClickNext(){
     var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
     if(!nxt) nxt = document.querySelector('.button, input.button');
     if(nxt){
-      nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
-      nxt.click();
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
     } else {
-      var form = document.querySelector('form');
-      if(form) form.submit();
+        var form = document.querySelector('form');
+        if(form) form.submit();
     }
-  });
+}
+function nmGetRows(qLabel){
+    var q = nmFindQ(qLabel); if(!q) return [];
+    var rows = [], seen = {};
+    var inputs = q.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+    for(var i=0; i<inputs.length; i++){
+        var inp = inputs[i];
+        var name = inp.name || '';
+        var m = name.match(new RegExp('^'+qLabel+'_(r\\d+)'));
+        if(!m) continue;
+        var rLabel = m[1];
+        if(seen[rLabel] || rLabel === 'r99') continue;
+        seen[rLabel] = true;
+        var rowEl = inp.closest('.fir-row') || inp.closest('tr') || inp.closest('.row-elements');
+        if(!rowEl) rowEl = inp.parentNode;
+        var textEl = rowEl ? (rowEl.querySelector('.fir-text') || rowEl.querySelector('.row-text') || rowEl.querySelector('label')) : null;
+        var txt = textEl ? textEl.textContent.trim() : rLabel;
+        if(txt === rLabel || txt.length < 2){
+            var parent = inp.closest('.fir-row');
+            if(parent){
+                var fc = parent.querySelector('.fir-text-container, .fir-text, td:first-child, .row-label');
+                if(fc) txt = fc.textContent.trim();
+            }
+        }
+        rows.push({r: rLabel, name: txt});
+    }
+    return rows;
+}
 
+(function(){
+  var qLabel = 'NM_TOPICS';
+  var checks = {};
+  var noneActive = false;
+  var grid = document.getElementById('nm-topic-grid');
+  var noneBtn = document.getElementById('nm-topic-none');
+  var continueBtn = document.getElementById('nm-continue');
+  function updateContinue(){
+    var any = noneActive || Object.keys(checks).some(function(k){ return checks[k]; });
+    continueBtn.disabled = !any;
+  }
+  if(grid){
+    grid.querySelectorAll('.nm-chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        var r = chip.getAttribute('data-row');
+        checks[r] = !checks[r];
+        chip.classList.toggle('nm-sel', checks[r]);
+        nmSyncCheckbox(qLabel, r, checks[r]);
+        if(checks[r] && noneActive){
+          noneActive = false;
+          noneBtn.classList.remove('nm-sel');
+          nmSyncCheckbox(qLabel, 'r99', false);
+        }
+        updateContinue();
+      });
+    });
+  }
+  if(noneBtn){
+    noneBtn.addEventListener('click', function(){
+      noneActive = !noneActive;
+      noneBtn.classList.toggle('nm-sel', noneActive);
+      nmSyncCheckbox(qLabel, 'r99', noneActive);
+      if(noneActive){
+        Object.keys(checks).forEach(function(r){ checks[r] = false; });
+        grid.querySelectorAll('.nm-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
+        var q = nmFindQ(qLabel);
+        if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
+          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+        });
+      }
+      updateContinue();
+    });
+  }
+  if(continueBtn){
+    continueBtn.addEventListener('click', function(){
+      if(continueBtn.disabled) return;
+      nmClickNext();
+    });
+  }
   updateContinue();
 })();
+
 </script>
 ]]></style>
 </checkbox>
@@ -5315,7 +5245,35 @@ elif TYPING_MODULE.r3:
 <suspend/>
 
 
-<note>NM TOPIC BLOCKS -- AUTO-GENERATED from NewMediaSurvey.csv via build_nm_section.py</note>
+<!-- =============================================================
+     NM TOPIC BLOCKS — AUTO-GENERATED from NewMediaSurvey.csv
+     Generated by build_nm_section.py
+     Active filters: none (all sources included)
+     To regenerate: python build_nm_section.py --apply
+     ============================================================= -->
+
+
+<!-- =============================================================
+     NM TOPIC BLOCKS — AUTO-GENERATED from NewMediaSurvey.csv
+     Generated by build_nm_section.py
+     Global filters: none
+     Per-topic rules:
+       Political news and commentary: require_field_eligible_relaxed=True
+       Health policy: require_field_eligible_relaxed=True
+       Medicare and senior health: require_mainstream_flag=0
+       Natural and alternative health: require_mainstream_flag=0
+       Nutrition and diet: require_mainstream_flag=0
+       Supplements and vitamins: require_mainstream_flag=0
+       Vaccines and immunization: require_mainstream_flag=0
+       Fitness and physical performance: require_mainstream_flag=0
+       Longevity and anti-aging: require_mainstream_flag=0
+       Science and medical research: require_mainstream_flag=0
+       Faith and values: require_mainstream_flag=0
+       Worker and economic issues: require_mainstream_flag=0
+       Health technology and innovation: require_mainstream_flag=0
+       Environmental and climate health: require_mainstream_flag=0
+     To regenerate: python build_nm_section.py --apply
+     ============================================================= -->
 
 
 <block label="nm_src_t1" cond="NM_TOPICS.r1">
@@ -5381,7 +5339,7 @@ elif TYPING_MODULE.r3:
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -5650,7 +5608,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -5906,7 +5864,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6199,7 +6157,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6434,7 +6392,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6690,7 +6648,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -6938,7 +6896,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7214,7 +7172,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7458,7 +7416,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7736,7 +7694,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -7954,7 +7912,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8205,7 +8163,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8444,7 +8402,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8712,7 +8670,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -8929,7 +8887,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9185,7 +9143,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9405,7 +9363,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9661,7 +9619,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -9884,7 +9842,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10144,7 +10102,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10381,7 +10339,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10640,7 +10598,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -10872,7 +10830,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11131,7 +11089,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11352,7 +11310,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11610,7 +11568,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
@@ -11832,7 +11790,7 @@ function nmGetRows(qLabel){
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
-  <div class="nm-logo-bar"><img src="[rel PRISM_glyph.svg]" alt="PRISM"></div>
+  <div class="nm-logo-bar"><img src="[logo_url]" alt="PRISM"></div>
   <div id="nm-progress-wrap">
     <div class="nm-section-header">
       <span class="nm-section-title">NEW MEDIA</span>
