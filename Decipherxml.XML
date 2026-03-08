@@ -8535,8 +8535,13 @@ function nmGetRows(qLabel){
 <style>
 /* --- T6 overrides --- */
 .nm-freq-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px; margin-bottom: 4px;
+  display: flex; gap: 8px; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 4px;
+}
+.nm-freq-btn-v2 { flex: 1 1 auto; min-width: 0; }
+/* If buttons wrap on narrow screens, force equal 3-per-row */
+@media (max-width: 420px) {
+  .nm-freq-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
 }
 .nm-freq-btn-v2 {
   padding: 14px 6px; border: 2px solid transparent; border-radius: 20px;
