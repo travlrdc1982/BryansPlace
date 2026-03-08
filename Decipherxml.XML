@@ -2007,6 +2007,901 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   </radio>
   <suspend/>
 
+
+  <note>===================== DEM B-W SCORING =====================</note>
+
+  <text
+   label="QMD1"
+   size="3"
+   where="execute,survey,report">
+    <title>Hidden: DEM MaxDiff B-W Matrix</title>
+    <exec>
+p.sum=[]
+groupSize = 4
+groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
+for col in range(0, 10):
+    rowsForColumn = groups[col]
+    for r in rowsForColumn:
+        rowNum = int(r)-1
+        QMD1.rows[rowNum][col].val=0
+for i in range(0,10):
+	best = "QDEM_{}".format(i+1)
+	worst = "QDEM_{}".format(i+1)
+	best1=allQuestions[best].best.val
+	worst1=allQuestions[worst].worst.val
+	QMD1.rows[best1][i].val=1
+	QMD1.rows[worst1][i].val=-1
+for i in QMD1.rows:
+	a=0
+	for j in range(10):
+		if QMD1[i][j].val!=None:
+			a1=QMD1[i][j].val
+			a+=int(a1)
+	QMD1[i].c11.val=a
+    </exec>
+    <row label="r1">Item-1</row>
+    <row label="r2">Item-2</row>
+    <row label="r3">Item-3</row>
+    <row label="r4">Item-4</row>
+    <row label="r5">Item-5</row>
+    <row label="r6">Item-6</row>
+    <row label="r7">Item-7</row>
+    <row label="r8">Item-8</row>
+    <row label="r9">Item-9</row>
+    <row label="r10">Item-10</row>
+    <col label="c1">QDEM_1</col>
+    <col label="c2">QDEM_2</col>
+    <col label="c3">QDEM_3</col>
+    <col label="c4">QDEM_4</col>
+    <col label="c5">QDEM_5</col>
+    <col label="c6">QDEM_6</col>
+    <col label="c7">QDEM_7</col>
+    <col label="c8">QDEM_8</col>
+    <col label="c9">QDEM_9</col>
+    <col label="c10">QDEM_10</col>
+    <col label="c11">Row Total</col>
+  </text>
+  <note>MaxDiff Indices Template --End DEM BW--</note>
+  <suspend/>
+
+
+  <note>===================== DEM Z-SCORING =====================</note>
+
+  <text
+   label="XDEM_SEG"
+   ss:listDisplay="0"
+   where="execute,survey,report">
+    <title>HIDDEN: XDEM_SEG (Z-Scores)</title>
+    <exec>
+DEM_U = [-0.60198, -0.31771, -1.69065, 0.128199, 1.596402, 0.095769, 0.370408, 0.965797, -1.03699, 0.490752]
+DEM_S = [1.590145, 1.904432, 1.809285, 1.851639, 1.958779, 1.680348, 1.76441, 1.862097, 2.16036, 1.804034]
+DEM_MAX_F = []
+
+for i in range(10):
+	XDEM_SEG.rows[i].c1.val=QMD1.rows[i].c11.val
+	DEM_MAX_F.append(float(QMD1.rows[i].c11.val))
+for i in range(10):
+	XDEM_SEG.rows[i].c2.val = DEM_U[i]
+for i in range(10):
+	XDEM_SEG.rows[i].c3.val = DEM_S[i]
+for i in range(10):
+	XDEM_SEG.rows[i].c4.val = (DEM_MAX_F[i] - DEM_U[i])/DEM_S[i]
+
+JUSTICE_U = 4.868184
+JUSTICE_S = 1.515216
+INDUSTRY_U = 5.495869
+INDUSTRY_S = 1.315719
+
+justice_raw = float(VECTOR_JUSTICE.r1.val) if VECTOR_JUSTICE.r1.val else 4.0
+industry_raw = float(VECTOR_INDUSTRY.r1.val) if VECTOR_INDUSTRY.r1.val else 4.0
+
+XDEM_SEG.r13.c1.val = justice_raw
+XDEM_SEG.r13.c2.val = JUSTICE_U
+XDEM_SEG.r13.c3.val = JUSTICE_S
+XDEM_SEG.r13.c4.val = (justice_raw - JUSTICE_U) / JUSTICE_S
+
+XDEM_SEG.r14.c1.val = industry_raw
+XDEM_SEG.r14.c2.val = INDUSTRY_U
+XDEM_SEG.r14.c3.val = INDUSTRY_S
+XDEM_SEG.r14.c4.val = (industry_raw - INDUSTRY_U) / INDUSTRY_S
+    </exec>
+    <row label="r1">Tech and data can improve care, but only if we stop bias, protect privacy, and provide benefits fairly.</row>
+    <row label="r2">I trust mainstream experts and prefer step-by-step fixes&#x2014;strengthening the ACA, not ripping it up.</row>
+    <row label="r3">Digital tools, AI, and start-ups can universalize care faster than big bureaucracies&#x2014;let&#x2019;s remove red tape.</row>
+    <row label="r4">Corporate greed hurts ordinary people. Government must crack down on prices, ads, and junk food.</row>
+    <row label="r5">Healthcare is a human right. We need Medicare-for-All or something very close to it.</row>
+    <row label="r6">Unions fought for good coverage. Policy should protect employer benefits and bargaining power.</row>
+    <row label="r7">Racism and inequality drive poor health. Equity must be built into every health decision and budget.</row>
+    <row label="r8">Reproductive freedom&#x2014;including abortion access&#x2014;is non-negotiable and central to health policy.</row>
+    <row label="r9">My faith calls me to fight for the poor and for broader access&#x2014;especially in under-served communities.</row>
+    <row label="r10">Climate change is a public-health emergency. Clean energy and environmental justice are health policy.</row>
+    <row label="r13">VECTOR_JUSTICE (ATTITUDE_EQUITY_FUNDING)</row>
+    <row label="r14">VECTOR_INDUSTRY (ATTITUDE_INFLUENCE)</row>
+    <col label="c1">PUNCH</col>
+    <col label="c2">Mean</col>
+    <col label="c3">Sigma</col>
+    <col label="c4">Z-Score</col>
+  </text>
+  <suspend/>
+
+
+  <note>===================== DEM CENTROID MODEL + SOFTMAX =====================</note>
+
+  <exec>
+import math
+
+def centroidDistance(resp_answers, segment_coeff):
+    return sum((a - c)**2 for a, c in zip(resp_answers, segment_coeff))
+
+def centroidAllSegments(answers, centroid_matrix):
+    num_segments = len(centroid_matrix[0])
+    d2_list = []
+    for c in range(num_segments):
+        segment_col = [row[c] for row in centroid_matrix]
+        d2_list.append(centroidDistance(answers, segment_col))
+    return d2_list
+
+p.dem_z = [float(XDEM_SEG.rows[i].c4.val) for i in range(10)]
+p.dem_z.append(float(XDEM_SEG.r13.c4.val))
+p.dem_z.append(float(XDEM_SEG.r14.c4.val))
+
+dem_centroids = [
+    [-0.5135, -0.1429, -0.3291, 0.544, 0.9293, -0.3204],
+    [-0.039, -0.8206, -0.544, 0.1583, 0.6292, 0.8164],
+    [-0.4356, -0.3798, -0.3126, 1.1914, 0.6485, -0.4382],
+    [0.4891, -0.5913, 0.7544, 0.2422, -0.1966, -0.7195],
+    [0.5194, 0.2926, 0.2316, 0.1168, -1.3929, 0.1419],
+    [-0.1269, -0.1611, 0.5696, -0.2886, -0.2956, 0.2223],
+    [0.257, 0.8708, -0.2005, -0.5704, -0.3712, -0.1654],
+    [0.4032, -0.1316, 0.0902, -0.9386, -0.1134, 0.547],
+    [-0.7075, 1.0908, -0.1312, 0.2406, 0.0411, -0.5795],
+    [0.1626, -0.2097, -0.1184, -0.7095, 0.2866, 0.5285],
+    [0.7218, 0.4355, -0.4757, -0.3332, -0.4753, 0.2212],
+    [0.7961, 0.1727, 0.0062, -0.267, -0.5004, -0.0547]
+]
+
+p.dem_d2 = centroidAllSegments(p.dem_z, dem_centroids)
+
+p.dem_exp = [math.exp(-d/2.0) for d in p.dem_d2]
+dem_exp_sum = sum(p.dem_exp)
+p.dem_prob = [(e/dem_exp_sum)*100.0 for e in p.dem_exp]
+
+for i in range(6):
+    XDEM_SOFTMAX.rows[i].c1.val = round(p.dem_d2[i], 4)
+    XDEM_SOFTMAX.rows[i].c2.val = round(p.dem_exp[i], 6)
+    XDEM_SOFTMAX.rows[i].c3.val = round(p.dem_prob[i], 2)
+
+sorted_probs = sorted(enumerate(p.dem_prob), key=lambda x: -x[1])
+XDEM_SEG_FINAL_1.val = XDEM_SEG_FINAL_1.rows[sorted_probs[0][0]].index
+XDEM_SEG_FINAL_2.val = XDEM_SEG_FINAL_2.rows[sorted_probs[1][0]].index
+
+gap = sorted_probs[0][1] - sorted_probs[1][1]
+XDEM_CONFIDENCE.r1.val = round(sorted_probs[0][1], 2)
+XDEM_CONFIDENCE.r2.val = round(sorted_probs[1][1], 2)
+XDEM_CONFIDENCE.r3.val = round(gap, 2)
+entropy_val = -sum((pr/100.0)*math.log(pr/100.0+1e-12) for pr in p.dem_prob)
+XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
+  </exec>
+
+  <text
+   label="XDEM_SOFTMAX"
+   randomize="0"
+   size="40"
+   where="execute,survey,report">
+    <title>HIDDEN: DEM Softmax Probabilities</title>
+    <row label="r1">11. Universal Care Progressives (UCP)</row>
+    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
+    <row label="r3">13. Health Care Protectionists (HCP)</row>
+    <row label="r4">14. Health Abundance Democrats (HAD)</row>
+    <row label="r5">15. Health Care Incrementalists (HCI)</row>
+    <row label="r6">16. Global Health Institutionalists (GHI)</row>
+    <col label="c1">D-Squared</col>
+    <col label="c2">exp(-D2/2)</col>
+    <col label="c3">Probability %</col>
+  </text>
+  <suspend/>
+
+  <radio
+   label="XDEM_SEG_FINAL_1"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - DEM SEGMENTS - First Maximum</title>
+    <row label="r1">11. Universal Care Progressives (UCP)</row>
+    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
+    <row label="r3">13. Health Care Protectionists (HCP)</row>
+    <row label="r4">14. Health Abundance Democrats (HAD)</row>
+    <row label="r5">15. Health Care Incrementalists (HCI)</row>
+    <row label="r6">16. Global Health Institutionalists (GHI)</row>
+  </radio>
+  <suspend/>
+
+  <radio
+   label="XDEM_SEG_FINAL_2"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - DEM SEGMENTS - Second Maximum</title>
+    <row label="r1">11. Universal Care Progressives (UCP)</row>
+    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
+    <row label="r3">13. Health Care Protectionists (HCP)</row>
+    <row label="r4">14. Health Abundance Democrats (HAD)</row>
+    <row label="r5">15. Health Care Incrementalists (HCI)</row>
+    <row label="r6">16. Global Health Institutionalists (GHI)</row>
+  </radio>
+  <suspend/>
+
+  <text
+   label="XDEM_CONFIDENCE"
+   size="20"
+   where="execute,survey,report">
+    <title>HIDDEN: DEM Confidence Metrics</title>
+    <row label="r1">Top Segment Probability %</row>
+    <row label="r2">Second Segment Probability %</row>
+    <row label="r3">Probability Gap (P1-P2)</row>
+    <row label="r4">Entropy</row>
+  </text>
+  <suspend/>
+
+  <note>MaxDiff Indices Template --End DEM--</note>
+</block>
+<suspend/>
+
+
+<note>===================== PAGE GROUP 3 -- GOP MaxDiff Block =====================</note>
+
+<block label="b12" cond="TYPING_MODULE.r1 or TYPING_MODULE.r3">
+  <note>MaxDiff Indices Template --Start GOP--</note>
+  <exec when="init">
+QMD3_md = setupMaxDiffFile("GOPDesign.dat")
+  </exec>
+  <suspend/>
+  <quota label="quo2" overquota="noqual" sheet="GOP Quota"/>
+  <suspend/>
+  <number
+   label="QMD3_Version"
+   size="3"
+   verify="range(1,100)"
+   where="execute,survey,report">
+    <title>QMD3 - MaxDiff Version</title>
+    <exec>
+for x in p.markers:
+    if "/GOP Quota/GOP_" in x:
+        QMD3_Version.val = int(x.split("_")[-1])
+        break
+    </exec>
+  </number>
+  <suspend/>
+  <exec>
+p.startTime = timeSpent()
+  </exec>
+
+  <html label="QMD3_intro"><![CDATA[
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style type="text/css">
+  body, .survey-body, .main-content { background: #F5F2ED !important; }
+  .nextPage, .button {
+    background: #333 !important; color: #fff !important; border: none !important;
+    border-radius: 24px !important; padding: 14px 40px !important;
+    font-family: Inter,sans-serif !important; font-size: 14px !important;
+    font-weight: 700 !important; letter-spacing: .08em !important;
+    text-transform: uppercase !important; cursor: pointer !important;
+    max-width: 320px !important; margin: 0 auto !important;
+    display: block !important;
+  }
+</style>
+<div style="max-width:480px;margin:0 auto;padding:0 16px 16px;text-align:center;">
+  <div style="padding:4px 0 36px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
+  </div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
+      In this section we'll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
+    </p>
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
+      You'll see a series of cards, each with four statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
+    </p>
+    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0;">
+      Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
+    </p>
+  </div>
+</div>
+]]></html>
+  <suspend/>
+
+  <note>GOP MaxDiff Loop: 12 items, 4 per task, 12 tasks</note>
+  <loop label="QMD3_md_loop" vars="task">
+    <title>QMD3 - GOP MaxDiff Loop</title>
+    <block label="QMD3_md_block" randomize="1">
+      <radio
+     label="QGOP_[loopvar: task]"
+     adim="cols"
+     grouping="cols"
+     shuffle="rows"
+     ss:listDisplay="0"
+     ss:questionClassNames="QMD3_maxdiff"
+     unique="1">
+        <title>Select the one statement that sounds MOST like your own point of view (on the left), and the statement that sounds LEAST like you (on the right)</title>
+        <exec>
+setupMaxDiffItemsI( QMD3_md, "v%d_t%d" % (QMD3_Version.val, [loopvar: task]), QGOP_[loopvar: task])
+p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
+        </exec>
+        <col label="best"><strong>sounds MOST like me</strong></col>
+        <col label="worst"><strong>sounds LEAST like me</strong></col>
+        <row label="item1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
+        <row label="item2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
+        <row label="item3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
+        <row label="item4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
+        <row label="item5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
+        <row label="item6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
+        <row label="item7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
+        <row label="item8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
+        <row label="item9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
+        <row label="item10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
+        <row label="item11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
+        <row label="item12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
+        <style mode="before" name="question.header"><![CDATA[
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style type="text/css">
+    body, .survey-body, .main-content { background: #F5F2ED !important; }
+    .QMD3_maxdiff .question-text { display: none !important; }
+    .QMD3_maxdiff .comment { display: none !important; }
+    .nextPage, .button { display: none !important; }
+    /* hide native rendering until JS rebuilds it */
+    .QMD3_maxdiff .survey-questions-container,
+    .QMD3_maxdiff table,
+    .QMD3_maxdiff .col-legend-group,
+    .QMD3_maxdiff .grouping-box { display: none !important; }
+    .QMD3_maxdiff .md-custom-ui { display: block !important; }
+
+    /* --- custom MaxDiff UI --- */
+    .md-custom-ui { max-width: 640px; margin: 0 auto; }
+    .md-header-row { display: flex; justify-content: space-between; padding: 0 8px 8px; }
+    .md-header-row span { font-family: Inter,sans-serif; font-size: 10px; font-weight: 800;
+        letter-spacing: .06em; text-transform: uppercase; }
+    .md-header-most { color: #6B7F4E; }
+    .md-header-least { color: #C62828; }
+    .md-row { display: flex; align-items: center; padding: 12px 4px;
+        border-bottom: 1px solid #EDE9E3; gap: 10px; }
+    .md-row:last-child { border-bottom: none; }
+    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 16px;
+        color: #333; line-height: 1.5; text-align: center; padding: 0 8px; }
+    .md-row:hover { background: rgba(0,0,0,.03); border-radius: 8px; }
+    .md-row.md-has-best { background: rgba(107,127,78,.08); border-radius: 8px; }
+    .md-row.md-has-worst { background: rgba(198,40,40,.06); border-radius: 8px; }
+
+    /* spherical radio buttons */
+    .md-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none;
+        width: 44px; height: 44px; min-width: 44px; border-radius: 50%;
+        border: 2px solid #C5C0B8;
+        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE);
+        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6);
+        cursor: pointer; transition: all .2s ease; outline: none; }
+    .md-radio:hover { border-color: #999;
+        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6);
+        transform: scale(1.08); }
+    .md-radio.md-best-checked {
+        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
+        border-color: #4A6E2A;
+        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+    .md-radio.md-worst-checked {
+        background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
+        border-color: #A01E1E;
+        box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
+    .md-progress-wrap { padding: 0 0 8px; }
+    .md-section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .md-section-title { font-family: Inter,sans-serif; font-size: 9px; font-weight: 700;
+        letter-spacing: .06em; text-transform: uppercase; color: #888;
+        text-decoration: underline; text-underline-offset: 2px; }
+    .md-progress-label { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
+        letter-spacing: .05em; text-transform: uppercase; color: #888; }
+    .md-progress-track { height: 5px; background: #E0E0E0; border-radius: 3px; }
+    .md-progress-fill { height: 100%; width: 0%; background: #6B7F4E; border-radius: 3px;
+        transition: width .45s cubic-bezier(.4,0,.2,1); }
+    .md-card-counter { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
+        letter-spacing: .08em; text-transform: uppercase; color: #888;
+        margin-bottom: 4px; text-align: right; }
+</style>
+<div style="max-width:640px;margin:0 auto;padding:0 16px 16px;">
+  <div style="text-align:center;padding:4px 0 36px;">
+    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
+  </div>
+  <div class="md-progress-wrap">
+    <div class="md-section-header">
+      <span class="md-section-title">SECTION 2: VALUES &amp; IDENTITY</span>
+      <span class="md-progress-label">${p.MDcount} of ${len(QMD3_md_loop_expanded.order)} Questions</span>
+    </div>
+    <div class="md-progress-track"><div class="md-progress-fill" id="md-progress-fill-gop"></div></div>
+  </div>
+  <div class="md-card-counter">Card ${p.MDcount} of ${len(QMD3_md_loop_expanded.order)}</div>
+  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
+    <div style="font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:700;color:#333;line-height:1.42;margin-bottom:8px;">
+      From the set of short statements expressing different points of view about politics, culture and health.
+    </div>
+    <div style="font-size:13px;color:#555;text-align:center;margin-bottom:14px;line-height:1.5;">
+      <span style="color:#6B7F4E;font-weight:700;">&#x2B05;</span>
+      Select one statement that sounds MOST like your own point of view, and
+      the one statement that sounds LEAST like you
+      <span style="color:#C62828;font-weight:700;">&#x27A1;</span>
+    </div>
+]]></style>
+        <style name="question.top-legend"><![CDATA[
+\@if ec.simpleList
+    $(legends)
+\@else
+    <$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
+        ${"%s%s" % (legends.split("</th>")[0],"</th>")}
+       $(left)
+        ${"%s%s" % (legends.split("</th>")[1],"</th>")}
+    </$(tag)>
+    \@if not simple
+  </tbody>
+  <tbody>
+    \@endif
+\@endif
+]]></style>
+        <style name="question.row"><![CDATA[
+\@if ec.simpleList
+    $(elements)
+\@else
+    <$(tag) class="maxdiff-row row row-elements $(style) colCount-$(colCount)">
+        ${"%s%s" % (elements.split("</td>")[0],"</td>")}
+        $(left)
+        ${"%s%s" % (elements.split("</td>")[1],"</td>")}
+    </$(tag)>
+\@endif
+]]></style>
+        <style mode="after" name="question.footer"><![CDATA[
+  </div>
+  <div style="text-align:center;padding:24px 0 16px;">
+    <button type="button" id="md-continue-btn"
+            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:.4;pointer-events:none;">
+      CONTINUE &gt;
+    </button>
+  </div>
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:#F5F2ED;border-top:1px solid #E0DCD6;padding:10px 20px;text-align:center;font-size:10px;color:#AAA;font-family:Inter,sans-serif;line-height:1.4;">
+    Your responses are held strictly confidential.
+    See our <a href="#" style="color:#6B7F4E;text-decoration:none;">Privacy Policy</a>
+    and commitment to research ethics and integrity.
+  </div>
+</div>
+<script>
+(function(){
+  /* set progress bar width from Decipher template vars */
+  var pFill = document.getElementById('md-progress-fill-gop');
+  if(pFill){
+    var curCard = parseInt('${p.MDcount}',10) || 1;
+    var totalCards = parseInt('${len(QMD3_md_loop_expanded.order)}',10) || 1;
+    pFill.style.width = Math.round((curCard/totalCards)*100)+'%';
+  }
+
+  var q = document.querySelector('.QMD3_maxdiff');
+  if(!q) return;
+
+  /* find all native radio inputs grouped by column (best/worst) */
+  var bestRadios = [].slice.call(q.querySelectorAll('input[type="radio"][name*="_best_"],input[type="radio"][name*=".best."],input[type="radio"][name*="c1"]'));
+  var worstRadios = [].slice.call(q.querySelectorAll('input[type="radio"][name*="_worst_"],input[type="radio"][name*=".worst."],input[type="radio"][name*="c2"]'));
+
+  /* fallback: if can't find by name pattern, find by grouping structure */
+  if(!bestRadios.length || !worstRadios.length){
+    var allRadios = [].slice.call(q.querySelectorAll('input[type="radio"]'));
+    /* group by name attribute */
+    var groups = {};
+    allRadios.forEach(function(r){ (groups[r.name] = groups[r.name]||[]).push(r); });
+    var gnames = Object.keys(groups);
+    console.log('[MD-GOP] radio groups found:', gnames);
+    if(gnames.length >= 2){
+      /* first group = best, second = worst */
+      bestRadios = groups[gnames[0]];
+      worstRadios = groups[gnames[1]];
+    }
+  }
+
+  if(!bestRadios.length || !worstRadios.length){
+    console.warn('[MD-GOP] could not find best/worst radios');
+    return;
+  }
+
+  console.log('[MD-GOP] best:', bestRadios.length, 'worst:', worstRadios.length);
+
+  /* extract item labels from the native rendering */
+  var items = [];
+  bestRadios.forEach(function(r,i){
+    var row = r.closest('tr, .row-element, .row, label, li');
+    var text = '';
+    if(row){
+      var legend = row.querySelector('th.row-legend, td.row-legend, .row-legend-text, .row-legend');
+      if(!legend) legend = row.querySelector('.text');
+      text = legend ? legend.textContent.trim() : '';
+      if(!text){
+        var clone = row.cloneNode(true);
+        clone.querySelectorAll('input,th.col-legend,td.col-legend').forEach(function(el){ el.remove(); });
+        text = clone.textContent.trim();
+      }
+    }
+    if(!text) text = 'Statement '+(i+1);
+    /* strip any [label] prefix from Decipher row text */
+    var bi = text.indexOf(']');
+    if(bi >= 0 && bi < 30) text = text.substring(bi+1).trim();
+    console.log('[MD-GOP] item'+i+' text:', JSON.stringify(text));
+    items.push(text);
+  });
+
+  /* build custom UI */
+  var wrap = document.createElement('div');
+  wrap.className = 'md-custom-ui';
+  wrap.innerHTML = '<div class="md-header-row">' +
+    '<span class="md-header-most">MOST<br>LIKE ME</span>' +
+    '<span class="md-header-least">LEAST<br>LIKE ME</span></div>';
+
+  var bestSel = -1, worstSel = -1;
+
+  function updateUI(){
+    var rows = wrap.querySelectorAll('.md-row');
+    var allBest = wrap.querySelectorAll('.md-radio-best');
+    var allWorst = wrap.querySelectorAll('.md-radio-worst');
+    for(var i=0;i<rows.length;i++){
+      rows[i].classList.remove('md-has-best','md-has-worst');
+      allBest[i].classList.remove('md-best-checked');
+      allWorst[i].classList.remove('md-worst-checked');
+      if(i===bestSel){ rows[i].classList.add('md-has-best'); allBest[i].classList.add('md-best-checked'); }
+      if(i===worstSel){ rows[i].classList.add('md-has-worst'); allWorst[i].classList.add('md-worst-checked'); }
+    }
+    /* enable continue only when both selected */
+    var btn = document.getElementById('md-continue-btn');
+    if(btn){
+      if(bestSel>=0 && worstSel>=0){ btn.style.opacity='1'; btn.style.pointerEvents='auto'; }
+      else { btn.style.opacity='.4'; btn.style.pointerEvents='none'; }
+    }
+  }
+
+  items.forEach(function(txt,i){
+    var row = document.createElement('div');
+    row.className = 'md-row';
+    row.innerHTML = '<button type="button" class="md-radio md-radio-best" data-idx="'+i+'"></button>' +
+      '<div class="md-row-text">'+txt+'</div>' +
+      '<button type="button" class="md-radio md-radio-worst" data-idx="'+i+'"></button>';
+    wrap.appendChild(row);
+  });
+
+  /* click handlers */
+  wrap.addEventListener('click', function(e){
+    var btn = e.target.closest('.md-radio');
+    if(!btn) return;
+    var idx = parseInt(btn.getAttribute('data-idx'),10);
+    if(btn.classList.contains('md-radio-best')){
+      if(idx===worstSel) return; /* can't pick same row */
+      bestSel = (bestSel===idx) ? -1 : idx;
+      /* sync to native radio */
+      if(bestSel>=0 && bestRadios[bestSel]){ bestRadios[bestSel].checked=true; bestRadios[bestSel].click(); }
+    } else {
+      if(idx===bestSel) return;
+      worstSel = (worstSel===idx) ? -1 : idx;
+      if(worstSel>=0 && worstRadios[worstSel]){ worstRadios[worstSel].checked=true; worstRadios[worstSel].click(); }
+    }
+    updateUI();
+  });
+
+  /* insert custom UI before the native question */
+  q.insertBefore(wrap, q.firstChild);
+
+  /* continue button */
+  var btn = document.getElementById('md-continue-btn');
+  if(btn){
+    btn.addEventListener('click', function(){
+      if(bestSel<0||worstSel<0) return;
+      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
+      if(!nxt) nxt = document.querySelector('.button, input.button');
+      if(nxt){
+        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
+        nxt.click();
+      } else {
+        var form = document.querySelector('form');
+        if(form) form.submit();
+      }
+    });
+  }
+})();
+</script>
+]]></style>
+      </radio>
+      <suspend/>
+    </block>
+    <looprow label="1"><loopvar name="task">1</loopvar></looprow>
+    <looprow label="2"><loopvar name="task">2</loopvar></looprow>
+    <looprow label="3"><loopvar name="task">3</loopvar></looprow>
+    <looprow label="4"><loopvar name="task">4</loopvar></looprow>
+    <looprow label="5"><loopvar name="task">5</loopvar></looprow>
+    <looprow label="6"><loopvar name="task">6</loopvar></looprow>
+    <looprow label="7"><loopvar name="task">7</loopvar></looprow>
+    <looprow label="8"><loopvar name="task">8</loopvar></looprow>
+    <looprow label="9"><loopvar name="task">9</loopvar></looprow>
+    <looprow label="10"><loopvar name="task">10</loopvar></looprow>
+    <looprow label="11"><loopvar name="task">11</loopvar></looprow>
+    <looprow label="12"><loopvar name="task">12</loopvar></looprow>
+  </loop>
+
+  <float
+   label="QMD3_Timer"
+   size="15"
+   where="execute,survey,report">
+    <title>QMD3 - GOP MaxDiff Timer (Minutes)</title>
+    <exec>
+QMD3_Timer.val = (timeSpent() - p.startTime) / 60.0
+    </exec>
+  </float>
+  <note>MaxDiff Indices Template --End GOP Loop--</note>
+  <suspend/>
+
+
+  <note>===================== GOP B-W SCORING =====================</note>
+
+  <text
+   label="QMD3"
+   size="3"
+   where="execute,survey,report">
+    <title>Hidden: GOP MaxDiff B-W Matrix</title>
+    <exec>
+p.sum=[]
+groupSize = 4
+groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
+for col in range(0, 12):
+    rowsForColumn = groups[col]
+    for r in rowsForColumn:
+        rowNum = int(r)-1
+        QMD3.rows[rowNum][col].val=0
+for i in range(0,12):
+	best = "QGOP_{}".format(i+1)
+	worst = "QGOP_{}".format(i+1)
+	best1=allQuestions[best].best.val
+	worst1=allQuestions[worst].worst.val
+	QMD3.rows[best1][i].val=1
+	QMD3.rows[worst1][i].val=-1
+for i in QMD3.rows:
+	a=0
+	for j in range(12):
+		if QMD3[i][j].val!=None:
+			a1=QMD3[i][j].val
+			a+=int(a1)
+	QMD3[i].c13.val=a
+    </exec>
+    <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
+    <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
+    <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
+    <row label="r4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
+    <row label="r5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
+    <row label="r6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
+    <row label="r7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
+    <row label="r8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
+    <row label="r9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
+    <row label="r10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
+    <row label="r11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
+    <row label="r12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
+    <col label="c1">QGOP_1</col>
+    <col label="c2">QGOP_2</col>
+    <col label="c3">QGOP_3</col>
+    <col label="c4">QGOP_4</col>
+    <col label="c5">QGOP_5</col>
+    <col label="c6">QGOP_6</col>
+    <col label="c7">QGOP_7</col>
+    <col label="c8">QGOP_8</col>
+    <col label="c9">QGOP_9</col>
+    <col label="c10">QGOP_10</col>
+    <col label="c11">QGOP_11</col>
+    <col label="c12">QGOP_12</col>
+    <col label="c13">Row Total</col>
+  </text>
+  <suspend/>
+
+
+  <note>===================== GOP Z-SCORING =====================</note>
+
+  <text
+   label="XGOP_SEG"
+   size="25"
+   where="execute,survey,report">
+    <title>HIDDEN: XGOP_SEG (Z-Scores)</title>
+    <exec>
+GOP_U = [0.22251, 0.034617, 0.476305, -0.07664, -0.98778, 0.026842, -0.37542, 0.619956, -0.85117, 0.776564, -0.39097, 0.525176]
+GOP_S = [1.788406, 1.540211, 1.862495, 1.702904, 2.127103, 1.901242, 1.907928, 1.787279, 1.775616, 1.828781, 1.902662, 1.797109]
+GOP_MAX_F = []
+
+for i in XGOP_SEG.rows:
+	i.c1.val=QMD3[i].c13.val
+	GOP_MAX_F.append(float(QMD3[i].c13.val))
+for i in range(12):
+	XGOP_SEG.rows[i].c2.val = GOP_U[i]
+for i in range(12):
+	XGOP_SEG.rows[i].c3.val = GOP_S[i]
+for i in range(12):
+	XGOP_SEG.rows[i].c4.val = (GOP_MAX_F[i] - GOP_U[i])/GOP_S[i]
+    </exec>
+    <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
+    <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
+    <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
+    <row label="r4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
+    <row label="r5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
+    <row label="r6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
+    <row label="r7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
+    <row label="r8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
+    <row label="r9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
+    <row label="r10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
+    <row label="r11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
+    <row label="r12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
+    <col label="c1">PUNCH</col>
+    <col label="c2">Mean</col>
+    <col label="c3">Sigma</col>
+    <col label="c4">Z-Score</col>
+  </text>
+  <suspend/>
+
+
+  <note>===================== GOP CENTROID MODEL + SOFTMAX =====================</note>
+
+  <exec>
+import math
+
+def centroidDistance(resp_answers, segment_coeff):
+    return sum((a - c)**2 for a, c in zip(resp_answers, segment_coeff))
+
+def centroidAllSegments(answers, centroid_matrix):
+    num_segments = len(centroid_matrix[0])
+    d2_list = []
+    for c in range(num_segments):
+        segment_col = [row[c] for row in centroid_matrix]
+        d2_list.append(centroidDistance(answers, segment_col))
+    return d2_list
+
+p.gop_z = [float(x) for x in XGOP_SEG.c4.values]
+
+gop_centroids = [
+    [0.2, 0.0096, 0.9146, -0.1336, -0.6956, 0.5846, 0.4648, -0.2554, -0.739, -0.8787],
+    [-0.0608, 0.0308, -0.5647, 0.0053, 0.7257, -0.0362, 0.0185, -0.4401, 0.1704, 0.6758],
+    [-0.0633, 0.67, -0.4791, -0.3529, 0.712, -0.2058, -0.5104, -0.4564, 0.3953, 0.0561],
+    [0.8912, 0.4863, -0.2283, 0.1686, 0.9888, -0.7418, -0.9072, 0.1943, -0.1989, -0.4581],
+    [0.1561, -0.7521, -0.6867, 0.6036, -0.1513, -0.0754, 0.8258, 0.3333, -0.0793, 1.0337],
+    [-0.6021, 0.1277, -0.2994, 0.0551, 0.2664, -0.4837, -0.1493, 0.1478, 0.5757, 0.4379],
+    [-0.1778, -0.9908, -0.8135, 0.233, -0.1464, 0.0851, 0.236, 0.9657, 0.3877, 0.9297],
+    [-0.7705, -0.2343, -0.3477, -1.0279, -0.572, 0.6932, 0.1564, 0.2632, 0.5845, 0.5142],
+    [0.1964, -0.5763, 0.0446, 1.363, -0.0369, -0.4206, 0.9004, 0.2931, -0.5885, 0.1112],
+    [-0.3176, 0.7097, 0.4794, -0.8491, -0.2762, 0.4546, -0.4476, -0.8232, 0.3467, -0.4787],
+    [0.5922, 0.291, 1.1052, 0.6792, 0.0203, -0.5188, -0.4748, 0.0904, -0.7155, -1.192],
+    [-0.0166, 0.3879, 0.9236, -0.8652, -0.687, 0.6888, -0.2467, -0.4652, -0.1536, -0.8748]
+]
+
+p.gop_d2 = centroidAllSegments(p.gop_z, gop_centroids)
+
+p.gop_exp = [math.exp(-d/2.0) for d in p.gop_d2]
+gop_exp_sum = sum(p.gop_exp)
+p.gop_prob = [(e/gop_exp_sum)*100.0 for e in p.gop_exp]
+
+for i in range(10):
+    XGOP_SOFTMAX.rows[i].c1.val = round(p.gop_d2[i], 4)
+    XGOP_SOFTMAX.rows[i].c2.val = round(p.gop_exp[i], 6)
+    XGOP_SOFTMAX.rows[i].c3.val = round(p.gop_prob[i], 2)
+
+sorted_probs = sorted(enumerate(p.gop_prob), key=lambda x: -x[1])
+XGOP_SEG_FINAL_1.val = XGOP_SEG_FINAL_1.rows[sorted_probs[0][0]].index
+XGOP_SEG_FINAL_2.val = XGOP_SEG_FINAL_2.rows[sorted_probs[1][0]].index
+
+gap = sorted_probs[0][1] - sorted_probs[1][1]
+XGOP_CONFIDENCE.r1.val = round(sorted_probs[0][1], 2)
+XGOP_CONFIDENCE.r2.val = round(sorted_probs[1][1], 2)
+XGOP_CONFIDENCE.r3.val = round(gap, 2)
+entropy_val = -sum((pr/100.0)*math.log(pr/100.0+1e-12) for pr in p.gop_prob)
+XGOP_CONFIDENCE.r4.val = round(entropy_val, 4)
+  </exec>
+
+  <text
+   label="XGOP_SOFTMAX"
+   randomize="0"
+   size="40"
+   where="execute,survey,report">
+    <title>HIDDEN: GOP Softmax Probabilities</title>
+    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+    <row label="r3">3. Traditional Conservatives (TC)</row>
+    <row label="r4">4. Health Futurist (HF)</row>
+    <row label="r5">5. Price Populists (PP)</row>
+    <row label="r6">6. Wellness Evangelists (WE)</row>
+    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+    <row label="r10">10. Vaccine Skeptics (VS)</row>
+    <col label="c1">D-Squared</col>
+    <col label="c2">exp(-D2/2)</col>
+    <col label="c3">Probability %</col>
+  </text>
+  <suspend/>
+
+  <radio
+   label="XGOP_SEG_FINAL_1"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - GOP SEGMENTS - First Maximum</title>
+    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+    <row label="r3">3. Traditional Conservatives (TC)</row>
+    <row label="r4">4. Health Futurist (HF)</row>
+    <row label="r5">5. Price Populists (PP)</row>
+    <row label="r6">6. Wellness Evangelists (WE)</row>
+    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+    <row label="r10">10. Vaccine Skeptics (VS)</row>
+  </radio>
+  <suspend/>
+
+  <radio
+   label="XGOP_SEG_FINAL_2"
+   optional="1"
+   randomize="0"
+   where="execute,survey,report">
+    <title>CENTROID+SOFTMAX - GOP SEGMENTS - Second Maximum</title>
+    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+    <row label="r3">3. Traditional Conservatives (TC)</row>
+    <row label="r4">4. Health Futurist (HF)</row>
+    <row label="r5">5. Price Populists (PP)</row>
+    <row label="r6">6. Wellness Evangelists (WE)</row>
+    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+    <row label="r10">10. Vaccine Skeptics (VS)</row>
+  </radio>
+  <suspend/>
+
+  <text
+   label="XGOP_CONFIDENCE"
+   size="20"
+   where="execute,survey,report">
+    <title>HIDDEN: GOP Confidence Metrics</title>
+    <row label="r1">Top Segment Probability %</row>
+    <row label="r2">Second Segment Probability %</row>
+    <row label="r3">Probability Gap (P1-P2)</row>
+    <row label="r4">Entropy</row>
+  </text>
+  <suspend/>
+
+  <note>MaxDiff Indices Template --End GOP--</note>
+</block>
+<suspend/>
+
+
+<note>===================== FINAL SEGMENT ASSIGNMENT =====================</note>
+
+<radio
+  label="XSEG_ASSIGNED"
+  optional="1"
+  where="execute,survey,report">
+  <title>Final Segment Assignment (1-16)</title>
+  <comment>GOP Segments (1-10), DEM Segments (11-16)</comment>
+  <exec>
+if XGOP_SEG_FINAL_1.any:
+    XSEG_ASSIGNED.val = XGOP_SEG_FINAL_1.val
+elif XDEM_SEG_FINAL_1.any:
+    XSEG_ASSIGNED.val = XDEM_SEG_FINAL_1.val + 10
+  </exec>
+  <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
+  <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
+  <row label="r3">3. Traditional Conservatives (TC)</row>
+  <row label="r4">4. Health Futurist (HF)</row>
+  <row label="r5">5. Price Populists (PP)</row>
+  <row label="r6">6. Wellness Evangelists (WE)</row>
+  <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
+  <row label="r8">8. Holistic Health Naturalists (HHN)</row>
+  <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
+  <row label="r10">10. Vaccine Skeptics (VS)</row>
+  <row label="r11">11. Universal Care Progressives (UCP)</row>
+  <row label="r12">12. Faith and Justice Progressives (FJP)</row>
+  <row label="r13">13. Health Care Protectionists (HCP)</row>
+  <row label="r14">14. Health Abundance Democrats (HAD)</row>
+  <row label="r15">15. Health Care Incrementalists (HCI)</row>
+  <row label="r16">16. Global Health Institutionalists (GHI)</row>
+</radio>
+<suspend/>
+
 <note>===================== PAGE GROUP 5 -- INFLUENCE360_SCREEN =====================</note>
 
 <checkbox
@@ -3655,900 +4550,6 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
 </radio>
 <suspend/>
 
-
-  <note>===================== DEM B-W SCORING =====================</note>
-
-  <text
-   label="QMD1"
-   size="3"
-   where="execute,survey,report">
-    <title>Hidden: DEM MaxDiff B-W Matrix</title>
-    <exec>
-p.sum=[]
-groupSize = 4
-groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
-for col in range(0, 10):
-    rowsForColumn = groups[col]
-    for r in rowsForColumn:
-        rowNum = int(r)-1
-        QMD1.rows[rowNum][col].val=0
-for i in range(0,10):
-	best = "QDEM_{}".format(i+1)
-	worst = "QDEM_{}".format(i+1)
-	best1=allQuestions[best].best.val
-	worst1=allQuestions[worst].worst.val
-	QMD1.rows[best1][i].val=1
-	QMD1.rows[worst1][i].val=-1
-for i in QMD1.rows:
-	a=0
-	for j in range(10):
-		if QMD1[i][j].val!=None:
-			a1=QMD1[i][j].val
-			a+=int(a1)
-	QMD1[i].c11.val=a
-    </exec>
-    <row label="r1">Item-1</row>
-    <row label="r2">Item-2</row>
-    <row label="r3">Item-3</row>
-    <row label="r4">Item-4</row>
-    <row label="r5">Item-5</row>
-    <row label="r6">Item-6</row>
-    <row label="r7">Item-7</row>
-    <row label="r8">Item-8</row>
-    <row label="r9">Item-9</row>
-    <row label="r10">Item-10</row>
-    <col label="c1">QDEM_1</col>
-    <col label="c2">QDEM_2</col>
-    <col label="c3">QDEM_3</col>
-    <col label="c4">QDEM_4</col>
-    <col label="c5">QDEM_5</col>
-    <col label="c6">QDEM_6</col>
-    <col label="c7">QDEM_7</col>
-    <col label="c8">QDEM_8</col>
-    <col label="c9">QDEM_9</col>
-    <col label="c10">QDEM_10</col>
-    <col label="c11">Row Total</col>
-  </text>
-  <note>MaxDiff Indices Template --End DEM BW--</note>
-  <suspend/>
-
-
-  <note>===================== DEM Z-SCORING =====================</note>
-
-  <text
-   label="XDEM_SEG"
-   ss:listDisplay="0"
-   where="execute,survey,report">
-    <title>HIDDEN: XDEM_SEG (Z-Scores)</title>
-    <exec>
-DEM_U = [-0.60198, -0.31771, -1.69065, 0.128199, 1.596402, 0.095769, 0.370408, 0.965797, -1.03699, 0.490752]
-DEM_S = [1.590145, 1.904432, 1.809285, 1.851639, 1.958779, 1.680348, 1.76441, 1.862097, 2.16036, 1.804034]
-DEM_MAX_F = []
-
-for i in range(10):
-	XDEM_SEG.rows[i].c1.val=QMD1.rows[i].c11.val
-	DEM_MAX_F.append(float(QMD1.rows[i].c11.val))
-for i in range(10):
-	XDEM_SEG.rows[i].c2.val = DEM_U[i]
-for i in range(10):
-	XDEM_SEG.rows[i].c3.val = DEM_S[i]
-for i in range(10):
-	XDEM_SEG.rows[i].c4.val = (DEM_MAX_F[i] - DEM_U[i])/DEM_S[i]
-
-JUSTICE_U = 4.868184
-JUSTICE_S = 1.515216
-INDUSTRY_U = 5.495869
-INDUSTRY_S = 1.315719
-
-justice_raw = float(VECTOR_JUSTICE.r1.val) if VECTOR_JUSTICE.r1.val else 4.0
-industry_raw = float(VECTOR_INDUSTRY.r1.val) if VECTOR_INDUSTRY.r1.val else 4.0
-
-XDEM_SEG.r13.c1.val = justice_raw
-XDEM_SEG.r13.c2.val = JUSTICE_U
-XDEM_SEG.r13.c3.val = JUSTICE_S
-XDEM_SEG.r13.c4.val = (justice_raw - JUSTICE_U) / JUSTICE_S
-
-XDEM_SEG.r14.c1.val = industry_raw
-XDEM_SEG.r14.c2.val = INDUSTRY_U
-XDEM_SEG.r14.c3.val = INDUSTRY_S
-XDEM_SEG.r14.c4.val = (industry_raw - INDUSTRY_U) / INDUSTRY_S
-    </exec>
-    <row label="r1">Tech and data can improve care, but only if we stop bias, protect privacy, and provide benefits fairly.</row>
-    <row label="r2">I trust mainstream experts and prefer step-by-step fixes&#x2014;strengthening the ACA, not ripping it up.</row>
-    <row label="r3">Digital tools, AI, and start-ups can universalize care faster than big bureaucracies&#x2014;let&#x2019;s remove red tape.</row>
-    <row label="r4">Corporate greed hurts ordinary people. Government must crack down on prices, ads, and junk food.</row>
-    <row label="r5">Healthcare is a human right. We need Medicare-for-All or something very close to it.</row>
-    <row label="r6">Unions fought for good coverage. Policy should protect employer benefits and bargaining power.</row>
-    <row label="r7">Racism and inequality drive poor health. Equity must be built into every health decision and budget.</row>
-    <row label="r8">Reproductive freedom&#x2014;including abortion access&#x2014;is non-negotiable and central to health policy.</row>
-    <row label="r9">My faith calls me to fight for the poor and for broader access&#x2014;especially in under-served communities.</row>
-    <row label="r10">Climate change is a public-health emergency. Clean energy and environmental justice are health policy.</row>
-    <row label="r13">VECTOR_JUSTICE (ATTITUDE_EQUITY_FUNDING)</row>
-    <row label="r14">VECTOR_INDUSTRY (ATTITUDE_INFLUENCE)</row>
-    <col label="c1">PUNCH</col>
-    <col label="c2">Mean</col>
-    <col label="c3">Sigma</col>
-    <col label="c4">Z-Score</col>
-  </text>
-  <suspend/>
-
-
-  <note>===================== DEM CENTROID MODEL + SOFTMAX =====================</note>
-
-  <exec>
-import math
-
-def centroidDistance(resp_answers, segment_coeff):
-    return sum((a - c)**2 for a, c in zip(resp_answers, segment_coeff))
-
-def centroidAllSegments(answers, centroid_matrix):
-    num_segments = len(centroid_matrix[0])
-    d2_list = []
-    for c in range(num_segments):
-        segment_col = [row[c] for row in centroid_matrix]
-        d2_list.append(centroidDistance(answers, segment_col))
-    return d2_list
-
-p.dem_z = [float(XDEM_SEG.rows[i].c4.val) for i in range(10)]
-p.dem_z.append(float(XDEM_SEG.r13.c4.val))
-p.dem_z.append(float(XDEM_SEG.r14.c4.val))
-
-dem_centroids = [
-    [-0.5135, -0.1429, -0.3291, 0.544, 0.9293, -0.3204],
-    [-0.039, -0.8206, -0.544, 0.1583, 0.6292, 0.8164],
-    [-0.4356, -0.3798, -0.3126, 1.1914, 0.6485, -0.4382],
-    [0.4891, -0.5913, 0.7544, 0.2422, -0.1966, -0.7195],
-    [0.5194, 0.2926, 0.2316, 0.1168, -1.3929, 0.1419],
-    [-0.1269, -0.1611, 0.5696, -0.2886, -0.2956, 0.2223],
-    [0.257, 0.8708, -0.2005, -0.5704, -0.3712, -0.1654],
-    [0.4032, -0.1316, 0.0902, -0.9386, -0.1134, 0.547],
-    [-0.7075, 1.0908, -0.1312, 0.2406, 0.0411, -0.5795],
-    [0.1626, -0.2097, -0.1184, -0.7095, 0.2866, 0.5285],
-    [0.7218, 0.4355, -0.4757, -0.3332, -0.4753, 0.2212],
-    [0.7961, 0.1727, 0.0062, -0.267, -0.5004, -0.0547]
-]
-
-p.dem_d2 = centroidAllSegments(p.dem_z, dem_centroids)
-
-p.dem_exp = [math.exp(-d/2.0) for d in p.dem_d2]
-dem_exp_sum = sum(p.dem_exp)
-p.dem_prob = [(e/dem_exp_sum)*100.0 for e in p.dem_exp]
-
-for i in range(6):
-    XDEM_SOFTMAX.rows[i].c1.val = round(p.dem_d2[i], 4)
-    XDEM_SOFTMAX.rows[i].c2.val = round(p.dem_exp[i], 6)
-    XDEM_SOFTMAX.rows[i].c3.val = round(p.dem_prob[i], 2)
-
-sorted_probs = sorted(enumerate(p.dem_prob), key=lambda x: -x[1])
-XDEM_SEG_FINAL_1.val = XDEM_SEG_FINAL_1.rows[sorted_probs[0][0]].index
-XDEM_SEG_FINAL_2.val = XDEM_SEG_FINAL_2.rows[sorted_probs[1][0]].index
-
-gap = sorted_probs[0][1] - sorted_probs[1][1]
-XDEM_CONFIDENCE.r1.val = round(sorted_probs[0][1], 2)
-XDEM_CONFIDENCE.r2.val = round(sorted_probs[1][1], 2)
-XDEM_CONFIDENCE.r3.val = round(gap, 2)
-entropy_val = -sum((pr/100.0)*math.log(pr/100.0+1e-12) for pr in p.dem_prob)
-XDEM_CONFIDENCE.r4.val = round(entropy_val, 4)
-  </exec>
-
-  <text
-   label="XDEM_SOFTMAX"
-   randomize="0"
-   size="40"
-   where="execute,survey,report">
-    <title>HIDDEN: DEM Softmax Probabilities</title>
-    <row label="r1">11. Universal Care Progressives (UCP)</row>
-    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
-    <row label="r3">13. Health Care Protectionists (HCP)</row>
-    <row label="r4">14. Health Abundance Democrats (HAD)</row>
-    <row label="r5">15. Health Care Incrementalists (HCI)</row>
-    <row label="r6">16. Global Health Institutionalists (GHI)</row>
-    <col label="c1">D-Squared</col>
-    <col label="c2">exp(-D2/2)</col>
-    <col label="c3">Probability %</col>
-  </text>
-  <suspend/>
-
-  <radio
-   label="XDEM_SEG_FINAL_1"
-   optional="1"
-   randomize="0"
-   where="execute,survey,report">
-    <title>CENTROID+SOFTMAX - DEM SEGMENTS - First Maximum</title>
-    <row label="r1">11. Universal Care Progressives (UCP)</row>
-    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
-    <row label="r3">13. Health Care Protectionists (HCP)</row>
-    <row label="r4">14. Health Abundance Democrats (HAD)</row>
-    <row label="r5">15. Health Care Incrementalists (HCI)</row>
-    <row label="r6">16. Global Health Institutionalists (GHI)</row>
-  </radio>
-  <suspend/>
-
-  <radio
-   label="XDEM_SEG_FINAL_2"
-   optional="1"
-   randomize="0"
-   where="execute,survey,report">
-    <title>CENTROID+SOFTMAX - DEM SEGMENTS - Second Maximum</title>
-    <row label="r1">11. Universal Care Progressives (UCP)</row>
-    <row label="r2">12. Faith and Justice Progressives (FJP)</row>
-    <row label="r3">13. Health Care Protectionists (HCP)</row>
-    <row label="r4">14. Health Abundance Democrats (HAD)</row>
-    <row label="r5">15. Health Care Incrementalists (HCI)</row>
-    <row label="r6">16. Global Health Institutionalists (GHI)</row>
-  </radio>
-  <suspend/>
-
-  <text
-   label="XDEM_CONFIDENCE"
-   size="20"
-   where="execute,survey,report">
-    <title>HIDDEN: DEM Confidence Metrics</title>
-    <row label="r1">Top Segment Probability %</row>
-    <row label="r2">Second Segment Probability %</row>
-    <row label="r3">Probability Gap (P1-P2)</row>
-    <row label="r4">Entropy</row>
-  </text>
-  <suspend/>
-
-  <note>MaxDiff Indices Template --End DEM--</note>
-</block>
-<suspend/>
-
-
-<note>===================== PAGE GROUP 3 -- GOP MaxDiff Block =====================</note>
-
-<block label="b12" cond="TYPING_MODULE.r1 or TYPING_MODULE.r3">
-  <note>MaxDiff Indices Template --Start GOP--</note>
-  <exec when="init">
-QMD3_md = setupMaxDiffFile("GOPDesign.dat")
-  </exec>
-  <suspend/>
-  <quota label="quo2" overquota="noqual" sheet="GOP Quota"/>
-  <suspend/>
-  <number
-   label="QMD3_Version"
-   size="3"
-   verify="range(1,100)"
-   where="execute,survey,report">
-    <title>QMD3 - MaxDiff Version</title>
-    <exec>
-for x in p.markers:
-    if "/GOP Quota/GOP_" in x:
-        QMD3_Version.val = int(x.split("_")[-1])
-        break
-    </exec>
-  </number>
-  <suspend/>
-  <exec>
-p.startTime = timeSpent()
-  </exec>
-
-  <html label="QMD3_intro"><![CDATA[
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style type="text/css">
-  body, .survey-body, .main-content { background: #F5F2ED !important; }
-  .nextPage, .button {
-    background: #333 !important; color: #fff !important; border: none !important;
-    border-radius: 24px !important; padding: 14px 40px !important;
-    font-family: Inter,sans-serif !important; font-size: 14px !important;
-    font-weight: 700 !important; letter-spacing: .08em !important;
-    text-transform: uppercase !important; cursor: pointer !important;
-    max-width: 320px !important; margin: 0 auto !important;
-    display: block !important;
-  }
-</style>
-<div style="max-width:480px;margin:0 auto;padding:0 16px 16px;text-align:center;">
-  <div style="padding:4px 0 36px;">
-    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:48px;width:auto;">
-  </div>
-  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:12px;padding:28px 24px 24px;margin-bottom:24px;">
-    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
-      In this section we'll ask about a mix of political and social issues. Some questions may feel personal, and some statements you may agree with strongly and others not so much. Always just go with your first, honest reaction.
-    </p>
-    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0 0 16px;">
-      You'll see a series of cards, each with four statements. On each card, choose the one that sounds <strong>most</strong> like you and the one that sounds <strong>least</strong> like you.
-    </p>
-    <p style="font-family:Fraunces,Georgia,serif;font-size:15px;color:#333;line-height:1.55;margin:0;">
-      Some statements may show up again&#x2014;that's intentional. There are no right or wrong answers. Go with the statement that feels most true&#x2014;and most familiar&#x2014;to you.
-    </p>
-  </div>
-</div>
-]]></html>
-  <suspend/>
-
-  <note>GOP MaxDiff Loop: 12 items, 4 per task, 12 tasks</note>
-  <loop label="QMD3_md_loop" vars="task">
-    <title>QMD3 - GOP MaxDiff Loop</title>
-    <block label="QMD3_md_block" randomize="1">
-      <radio
-     label="QGOP_[loopvar: task]"
-     adim="cols"
-     grouping="cols"
-     shuffle="rows"
-     ss:listDisplay="0"
-     ss:questionClassNames="QMD3_maxdiff"
-     unique="1">
-        <title>Select the one statement that sounds MOST like your own point of view (on the left), and the statement that sounds LEAST like you (on the right)</title>
-        <exec>
-setupMaxDiffItemsI( QMD3_md, "v%d_t%d" % (QMD3_Version.val, [loopvar: task]), QGOP_[loopvar: task])
-p.MDcount = str(QMD3_md_loop_expanded.order.index([loopvar: task]-1)+1)
-        </exec>
-        <col label="best"><strong>sounds MOST like me</strong></col>
-        <col label="worst"><strong>sounds LEAST like me</strong></col>
-        <row label="item1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
-        <row label="item2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
-        <row label="item3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
-        <row label="item4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
-        <row label="item5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
-        <row label="item6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
-        <row label="item7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
-        <row label="item8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
-        <row label="item9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
-        <row label="item10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
-        <row label="item11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
-        <row label="item12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
-        <style mode="before" name="question.header"><![CDATA[
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<style type="text/css">
-    body, .survey-body, .main-content { background: #F5F2ED !important; }
-    .QMD3_maxdiff .question-text { display: none !important; }
-    .QMD3_maxdiff .comment { display: none !important; }
-    .nextPage, .button { display: none !important; }
-    /* hide native rendering until JS rebuilds it */
-    .QMD3_maxdiff .survey-questions-container,
-    .QMD3_maxdiff table,
-    .QMD3_maxdiff .col-legend-group,
-    .QMD3_maxdiff .grouping-box { display: none !important; }
-    .QMD3_maxdiff .md-custom-ui { display: block !important; }
-
-    /* --- custom MaxDiff UI --- */
-    .md-custom-ui { max-width: 640px; margin: 0 auto; }
-    .md-header-row { display: flex; justify-content: space-between; padding: 0 8px 8px; }
-    .md-header-row span { font-family: Inter,sans-serif; font-size: 10px; font-weight: 800;
-        letter-spacing: .06em; text-transform: uppercase; }
-    .md-header-most { color: #6B7F4E; }
-    .md-header-least { color: #C62828; }
-    .md-row { display: flex; align-items: center; padding: 12px 4px;
-        border-bottom: 1px solid #EDE9E3; gap: 10px; }
-    .md-row:last-child { border-bottom: none; }
-    .md-row-text { flex: 1; font-family: Fraunces,Georgia,serif; font-size: 16px;
-        color: #333; line-height: 1.5; text-align: center; padding: 0 8px; }
-    .md-row:hover { background: rgba(0,0,0,.03); border-radius: 8px; }
-    .md-row.md-has-best { background: rgba(107,127,78,.08); border-radius: 8px; }
-    .md-row.md-has-worst { background: rgba(198,40,40,.06); border-radius: 8px; }
-
-    /* spherical radio buttons */
-    .md-radio { -webkit-appearance: none; -moz-appearance: none; appearance: none;
-        width: 44px; height: 44px; min-width: 44px; border-radius: 50%;
-        border: 2px solid #C5C0B8;
-        background: radial-gradient(circle at 35% 35%, #FAFAFA, #E8E4DE);
-        box-shadow: 0 2px 6px rgba(0,0,0,.12), inset 0 1px 2px rgba(255,255,255,.6);
-        cursor: pointer; transition: all .2s ease; outline: none; }
-    .md-radio:hover { border-color: #999;
-        box-shadow: 0 3px 10px rgba(0,0,0,.18), inset 0 1px 2px rgba(255,255,255,.6);
-        transform: scale(1.08); }
-    .md-radio.md-best-checked {
-        background: radial-gradient(circle at 35% 35%, #8CAF6B, #5A7E3A);
-        border-color: #4A6E2A;
-        box-shadow: 0 3px 10px rgba(90,126,58,.4), inset 0 1px 3px rgba(255,255,255,.3); }
-    .md-radio.md-worst-checked {
-        background: radial-gradient(circle at 35% 35%, #E05555, #C62828);
-        border-color: #A01E1E;
-        box-shadow: 0 3px 10px rgba(198,40,40,.4), inset 0 1px 3px rgba(255,255,255,.3); }
-    .md-progress-wrap { padding: 0 0 8px; }
-    .md-section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-    .md-section-title { font-family: Inter,sans-serif; font-size: 9px; font-weight: 700;
-        letter-spacing: .06em; text-transform: uppercase; color: #888;
-        text-decoration: underline; text-underline-offset: 2px; }
-    .md-progress-label { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
-        letter-spacing: .05em; text-transform: uppercase; color: #888; }
-    .md-progress-track { height: 5px; background: #E0E0E0; border-radius: 3px; }
-    .md-progress-fill { height: 100%; width: 0%; background: #6B7F4E; border-radius: 3px;
-        transition: width .45s cubic-bezier(.4,0,.2,1); }
-    .md-card-counter { font-family: Inter,sans-serif; font-size: 9px; font-weight: 600;
-        letter-spacing: .08em; text-transform: uppercase; color: #888;
-        margin-bottom: 4px; text-align: right; }
-</style>
-<div style="max-width:640px;margin:0 auto;padding:0 16px 16px;">
-  <div style="text-align:center;padding:4px 0 36px;">
-    <img src="[rel PRISM_glyph.svg]" alt="PRISM" style="height:40px;width:auto;">
-  </div>
-  <div class="md-progress-wrap">
-    <div class="md-section-header">
-      <span class="md-section-title">SECTION 2: VALUES &amp; IDENTITY</span>
-      <span class="md-progress-label">${p.MDcount} of ${len(QMD3_md_loop_expanded.order)} Questions</span>
-    </div>
-    <div class="md-progress-track"><div class="md-progress-fill" id="md-progress-fill-gop"></div></div>
-  </div>
-  <div class="md-card-counter">Card ${p.MDcount} of ${len(QMD3_md_loop_expanded.order)}</div>
-  <div style="background:#fff;border:1px solid #E0DCD6;border-radius:10px;padding:22px 24px 20px;margin-bottom:20px;">
-    <div style="font-family:Fraunces,Georgia,serif;font-size:17px;font-weight:700;color:#333;line-height:1.42;margin-bottom:8px;">
-      From the set of short statements expressing different points of view about politics, culture and health.
-    </div>
-    <div style="font-size:13px;color:#555;text-align:center;margin-bottom:14px;line-height:1.5;">
-      <span style="color:#6B7F4E;font-weight:700;">&#x2B05;</span>
-      Select one statement that sounds MOST like your own point of view, and
-      the one statement that sounds LEAST like you
-      <span style="color:#C62828;font-weight:700;">&#x27A1;</span>
-    </div>
-]]></style>
-        <style name="question.top-legend"><![CDATA[
-\@if ec.simpleList
-    $(legends)
-\@else
-    <$(tag) class="maxdiff-header-legend row row-col-legends row-col-legends-top ${"mobile-top-row-legend " if mobileOnly else ""}${"GtTenColumns " if ec.colCount > 10 else ""}colCount-$(colCount)">
-        ${"%s%s" % (legends.split("</th>")[0],"</th>")}
-       $(left)
-        ${"%s%s" % (legends.split("</th>")[1],"</th>")}
-    </$(tag)>
-    \@if not simple
-  </tbody>
-  <tbody>
-    \@endif
-\@endif
-]]></style>
-        <style name="question.row"><![CDATA[
-\@if ec.simpleList
-    $(elements)
-\@else
-    <$(tag) class="maxdiff-row row row-elements $(style) colCount-$(colCount)">
-        ${"%s%s" % (elements.split("</td>")[0],"</td>")}
-        $(left)
-        ${"%s%s" % (elements.split("</td>")[1],"</td>")}
-    </$(tag)>
-\@endif
-]]></style>
-        <style mode="after" name="question.footer"><![CDATA[
-  </div>
-  <div style="text-align:center;padding:24px 0 16px;">
-    <button type="button" id="md-continue-btn"
-            style="background:#6B7F4E;color:#fff;border:none;border-radius:24px;padding:14px 36px;font-family:Inter,sans-serif;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:.4;pointer-events:none;">
-      CONTINUE &gt;
-    </button>
-  </div>
-  <div style="position:fixed;bottom:0;left:0;right:0;z-index:100;background:#F5F2ED;border-top:1px solid #E0DCD6;padding:10px 20px;text-align:center;font-size:10px;color:#AAA;font-family:Inter,sans-serif;line-height:1.4;">
-    Your responses are held strictly confidential.
-    See our <a href="#" style="color:#6B7F4E;text-decoration:none;">Privacy Policy</a>
-    and commitment to research ethics and integrity.
-  </div>
-</div>
-<script>
-(function(){
-  /* set progress bar width from Decipher template vars */
-  var pFill = document.getElementById('md-progress-fill-gop');
-  if(pFill){
-    var curCard = parseInt('${p.MDcount}',10) || 1;
-    var totalCards = parseInt('${len(QMD3_md_loop_expanded.order)}',10) || 1;
-    pFill.style.width = Math.round((curCard/totalCards)*100)+'%';
-  }
-
-  var q = document.querySelector('.QMD3_maxdiff');
-  if(!q) return;
-
-  /* find all native radio inputs grouped by column (best/worst) */
-  var bestRadios = [].slice.call(q.querySelectorAll('input[type="radio"][name*="_best_"],input[type="radio"][name*=".best."],input[type="radio"][name*="c1"]'));
-  var worstRadios = [].slice.call(q.querySelectorAll('input[type="radio"][name*="_worst_"],input[type="radio"][name*=".worst."],input[type="radio"][name*="c2"]'));
-
-  /* fallback: if can't find by name pattern, find by grouping structure */
-  if(!bestRadios.length || !worstRadios.length){
-    var allRadios = [].slice.call(q.querySelectorAll('input[type="radio"]'));
-    /* group by name attribute */
-    var groups = {};
-    allRadios.forEach(function(r){ (groups[r.name] = groups[r.name]||[]).push(r); });
-    var gnames = Object.keys(groups);
-    console.log('[MD-GOP] radio groups found:', gnames);
-    if(gnames.length >= 2){
-      /* first group = best, second = worst */
-      bestRadios = groups[gnames[0]];
-      worstRadios = groups[gnames[1]];
-    }
-  }
-
-  if(!bestRadios.length || !worstRadios.length){
-    console.warn('[MD-GOP] could not find best/worst radios');
-    return;
-  }
-
-  console.log('[MD-GOP] best:', bestRadios.length, 'worst:', worstRadios.length);
-
-  /* extract item labels from the native rendering */
-  var items = [];
-  bestRadios.forEach(function(r,i){
-    var row = r.closest('tr, .row-element, .row, label, li');
-    var text = '';
-    if(row){
-      var legend = row.querySelector('th.row-legend, td.row-legend, .row-legend-text, .row-legend');
-      if(!legend) legend = row.querySelector('.text');
-      text = legend ? legend.textContent.trim() : '';
-      if(!text){
-        var clone = row.cloneNode(true);
-        clone.querySelectorAll('input,th.col-legend,td.col-legend').forEach(function(el){ el.remove(); });
-        text = clone.textContent.trim();
-      }
-    }
-    if(!text) text = 'Statement '+(i+1);
-    /* strip any [label] prefix from Decipher row text */
-    var bi = text.indexOf(']');
-    if(bi >= 0 && bi < 30) text = text.substring(bi+1).trim();
-    console.log('[MD-GOP] item'+i+' text:', JSON.stringify(text));
-    items.push(text);
-  });
-
-  /* build custom UI */
-  var wrap = document.createElement('div');
-  wrap.className = 'md-custom-ui';
-  wrap.innerHTML = '<div class="md-header-row">' +
-    '<span class="md-header-most">MOST<br>LIKE ME</span>' +
-    '<span class="md-header-least">LEAST<br>LIKE ME</span></div>';
-
-  var bestSel = -1, worstSel = -1;
-
-  function updateUI(){
-    var rows = wrap.querySelectorAll('.md-row');
-    var allBest = wrap.querySelectorAll('.md-radio-best');
-    var allWorst = wrap.querySelectorAll('.md-radio-worst');
-    for(var i=0;i<rows.length;i++){
-      rows[i].classList.remove('md-has-best','md-has-worst');
-      allBest[i].classList.remove('md-best-checked');
-      allWorst[i].classList.remove('md-worst-checked');
-      if(i===bestSel){ rows[i].classList.add('md-has-best'); allBest[i].classList.add('md-best-checked'); }
-      if(i===worstSel){ rows[i].classList.add('md-has-worst'); allWorst[i].classList.add('md-worst-checked'); }
-    }
-    /* enable continue only when both selected */
-    var btn = document.getElementById('md-continue-btn');
-    if(btn){
-      if(bestSel>=0 && worstSel>=0){ btn.style.opacity='1'; btn.style.pointerEvents='auto'; }
-      else { btn.style.opacity='.4'; btn.style.pointerEvents='none'; }
-    }
-  }
-
-  items.forEach(function(txt,i){
-    var row = document.createElement('div');
-    row.className = 'md-row';
-    row.innerHTML = '<button type="button" class="md-radio md-radio-best" data-idx="'+i+'"></button>' +
-      '<div class="md-row-text">'+txt+'</div>' +
-      '<button type="button" class="md-radio md-radio-worst" data-idx="'+i+'"></button>';
-    wrap.appendChild(row);
-  });
-
-  /* click handlers */
-  wrap.addEventListener('click', function(e){
-    var btn = e.target.closest('.md-radio');
-    if(!btn) return;
-    var idx = parseInt(btn.getAttribute('data-idx'),10);
-    if(btn.classList.contains('md-radio-best')){
-      if(idx===worstSel) return; /* can't pick same row */
-      bestSel = (bestSel===idx) ? -1 : idx;
-      /* sync to native radio */
-      if(bestSel>=0 && bestRadios[bestSel]){ bestRadios[bestSel].checked=true; bestRadios[bestSel].click(); }
-    } else {
-      if(idx===bestSel) return;
-      worstSel = (worstSel===idx) ? -1 : idx;
-      if(worstSel>=0 && worstRadios[worstSel]){ worstRadios[worstSel].checked=true; worstRadios[worstSel].click(); }
-    }
-    updateUI();
-  });
-
-  /* insert custom UI before the native question */
-  q.insertBefore(wrap, q.firstChild);
-
-  /* continue button */
-  var btn = document.getElementById('md-continue-btn');
-  if(btn){
-    btn.addEventListener('click', function(){
-      if(bestSel<0||worstSel<0) return;
-      var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-      if(!nxt) nxt = document.querySelector('.button, input.button');
-      if(nxt){
-        nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
-        nxt.click();
-      } else {
-        var form = document.querySelector('form');
-        if(form) form.submit();
-      }
-    });
-  }
-})();
-</script>
-]]></style>
-      </radio>
-      <suspend/>
-    </block>
-    <looprow label="1"><loopvar name="task">1</loopvar></looprow>
-    <looprow label="2"><loopvar name="task">2</loopvar></looprow>
-    <looprow label="3"><loopvar name="task">3</loopvar></looprow>
-    <looprow label="4"><loopvar name="task">4</loopvar></looprow>
-    <looprow label="5"><loopvar name="task">5</loopvar></looprow>
-    <looprow label="6"><loopvar name="task">6</loopvar></looprow>
-    <looprow label="7"><loopvar name="task">7</loopvar></looprow>
-    <looprow label="8"><loopvar name="task">8</loopvar></looprow>
-    <looprow label="9"><loopvar name="task">9</loopvar></looprow>
-    <looprow label="10"><loopvar name="task">10</loopvar></looprow>
-    <looprow label="11"><loopvar name="task">11</loopvar></looprow>
-    <looprow label="12"><loopvar name="task">12</loopvar></looprow>
-  </loop>
-
-  <float
-   label="QMD3_Timer"
-   size="15"
-   where="execute,survey,report">
-    <title>QMD3 - GOP MaxDiff Timer (Minutes)</title>
-    <exec>
-QMD3_Timer.val = (timeSpent() - p.startTime) / 60.0
-    </exec>
-  </float>
-  <note>MaxDiff Indices Template --End GOP Loop--</note>
-  <suspend/>
-
-
-  <note>===================== GOP B-W SCORING =====================</note>
-
-  <text
-   label="QMD3"
-   size="3"
-   where="execute,survey,report">
-    <title>Hidden: GOP MaxDiff B-W Matrix</title>
-    <exec>
-p.sum=[]
-groupSize = 4
-groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
-for col in range(0, 12):
-    rowsForColumn = groups[col]
-    for r in rowsForColumn:
-        rowNum = int(r)-1
-        QMD3.rows[rowNum][col].val=0
-for i in range(0,12):
-	best = "QGOP_{}".format(i+1)
-	worst = "QGOP_{}".format(i+1)
-	best1=allQuestions[best].best.val
-	worst1=allQuestions[worst].worst.val
-	QMD3.rows[best1][i].val=1
-	QMD3.rows[worst1][i].val=-1
-for i in QMD3.rows:
-	a=0
-	for j in range(12):
-		if QMD3[i][j].val!=None:
-			a1=QMD3[i][j].val
-			a+=int(a1)
-	QMD3[i].c13.val=a
-    </exec>
-    <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
-    <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
-    <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
-    <row label="r4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
-    <row label="r5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
-    <row label="r6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
-    <row label="r7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
-    <row label="r8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
-    <row label="r9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
-    <row label="r10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
-    <row label="r11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
-    <row label="r12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
-    <col label="c1">QGOP_1</col>
-    <col label="c2">QGOP_2</col>
-    <col label="c3">QGOP_3</col>
-    <col label="c4">QGOP_4</col>
-    <col label="c5">QGOP_5</col>
-    <col label="c6">QGOP_6</col>
-    <col label="c7">QGOP_7</col>
-    <col label="c8">QGOP_8</col>
-    <col label="c9">QGOP_9</col>
-    <col label="c10">QGOP_10</col>
-    <col label="c11">QGOP_11</col>
-    <col label="c12">QGOP_12</col>
-    <col label="c13">Row Total</col>
-  </text>
-  <suspend/>
-
-
-  <note>===================== GOP Z-SCORING =====================</note>
-
-  <text
-   label="XGOP_SEG"
-   size="25"
-   where="execute,survey,report">
-    <title>HIDDEN: XGOP_SEG (Z-Scores)</title>
-    <exec>
-GOP_U = [0.22251, 0.034617, 0.476305, -0.07664, -0.98778, 0.026842, -0.37542, 0.619956, -0.85117, 0.776564, -0.39097, 0.525176]
-GOP_S = [1.788406, 1.540211, 1.862495, 1.702904, 2.127103, 1.901242, 1.907928, 1.787279, 1.775616, 1.828781, 1.902662, 1.797109]
-GOP_MAX_F = []
-
-for i in XGOP_SEG.rows:
-	i.c1.val=QMD3[i].c13.val
-	GOP_MAX_F.append(float(QMD3[i].c13.val))
-for i in range(12):
-	XGOP_SEG.rows[i].c2.val = GOP_U[i]
-for i in range(12):
-	XGOP_SEG.rows[i].c3.val = GOP_S[i]
-for i in range(12):
-	XGOP_SEG.rows[i].c4.val = (GOP_MAX_F[i] - GOP_U[i])/GOP_S[i]
-    </exec>
-    <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
-    <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
-    <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
-    <row label="r4">Small-town hospitals keep closing. Government must improve access to care for rural America.</row>
-    <row label="r5">Vaccines are unsafe, full stop. No one should be forced or pressured to take them.</row>
-    <row label="r6">My body, my choice&#x2014;whether mandates, supplements, or experimental drugs. Government should butt out.</row>
-    <row label="r7">Modern medicine ignores the whole person. Natural and alternative therapies deserve equal respect and coverage.</row>
-    <row label="r8">Clean, whole-food living&#x2014;not pills&#x2014;keeps us healthy. The system ignores it because there&#x2019;s no profit in it.</row>
-    <row label="r9">Human beings thrive on meat-heavy, low-carb diets. Government guidelines are junk science.</row>
-    <row label="r10">We must protect U.S. patients, workers, and supply chains first. Foreign competition and immigration come second.</row>
-    <row label="r11">Free markets work best, but I defer to FDA and CDC experts on safety and innovation.</row>
-    <row label="r12">Competition&#x2014;private insurance, transparent prices, fewer rules&#x2014;is the key to cheaper, better care.</row>
-    <col label="c1">PUNCH</col>
-    <col label="c2">Mean</col>
-    <col label="c3">Sigma</col>
-    <col label="c4">Z-Score</col>
-  </text>
-  <suspend/>
-
-
-  <note>===================== GOP CENTROID MODEL + SOFTMAX =====================</note>
-
-  <exec>
-import math
-
-def centroidDistance(resp_answers, segment_coeff):
-    return sum((a - c)**2 for a, c in zip(resp_answers, segment_coeff))
-
-def centroidAllSegments(answers, centroid_matrix):
-    num_segments = len(centroid_matrix[0])
-    d2_list = []
-    for c in range(num_segments):
-        segment_col = [row[c] for row in centroid_matrix]
-        d2_list.append(centroidDistance(answers, segment_col))
-    return d2_list
-
-p.gop_z = [float(x) for x in XGOP_SEG.c4.values]
-
-gop_centroids = [
-    [0.2, 0.0096, 0.9146, -0.1336, -0.6956, 0.5846, 0.4648, -0.2554, -0.739, -0.8787],
-    [-0.0608, 0.0308, -0.5647, 0.0053, 0.7257, -0.0362, 0.0185, -0.4401, 0.1704, 0.6758],
-    [-0.0633, 0.67, -0.4791, -0.3529, 0.712, -0.2058, -0.5104, -0.4564, 0.3953, 0.0561],
-    [0.8912, 0.4863, -0.2283, 0.1686, 0.9888, -0.7418, -0.9072, 0.1943, -0.1989, -0.4581],
-    [0.1561, -0.7521, -0.6867, 0.6036, -0.1513, -0.0754, 0.8258, 0.3333, -0.0793, 1.0337],
-    [-0.6021, 0.1277, -0.2994, 0.0551, 0.2664, -0.4837, -0.1493, 0.1478, 0.5757, 0.4379],
-    [-0.1778, -0.9908, -0.8135, 0.233, -0.1464, 0.0851, 0.236, 0.9657, 0.3877, 0.9297],
-    [-0.7705, -0.2343, -0.3477, -1.0279, -0.572, 0.6932, 0.1564, 0.2632, 0.5845, 0.5142],
-    [0.1964, -0.5763, 0.0446, 1.363, -0.0369, -0.4206, 0.9004, 0.2931, -0.5885, 0.1112],
-    [-0.3176, 0.7097, 0.4794, -0.8491, -0.2762, 0.4546, -0.4476, -0.8232, 0.3467, -0.4787],
-    [0.5922, 0.291, 1.1052, 0.6792, 0.0203, -0.5188, -0.4748, 0.0904, -0.7155, -1.192],
-    [-0.0166, 0.3879, 0.9236, -0.8652, -0.687, 0.6888, -0.2467, -0.4652, -0.1536, -0.8748]
-]
-
-p.gop_d2 = centroidAllSegments(p.gop_z, gop_centroids)
-
-p.gop_exp = [math.exp(-d/2.0) for d in p.gop_d2]
-gop_exp_sum = sum(p.gop_exp)
-p.gop_prob = [(e/gop_exp_sum)*100.0 for e in p.gop_exp]
-
-for i in range(10):
-    XGOP_SOFTMAX.rows[i].c1.val = round(p.gop_d2[i], 4)
-    XGOP_SOFTMAX.rows[i].c2.val = round(p.gop_exp[i], 6)
-    XGOP_SOFTMAX.rows[i].c3.val = round(p.gop_prob[i], 2)
-
-sorted_probs = sorted(enumerate(p.gop_prob), key=lambda x: -x[1])
-XGOP_SEG_FINAL_1.val = XGOP_SEG_FINAL_1.rows[sorted_probs[0][0]].index
-XGOP_SEG_FINAL_2.val = XGOP_SEG_FINAL_2.rows[sorted_probs[1][0]].index
-
-gap = sorted_probs[0][1] - sorted_probs[1][1]
-XGOP_CONFIDENCE.r1.val = round(sorted_probs[0][1], 2)
-XGOP_CONFIDENCE.r2.val = round(sorted_probs[1][1], 2)
-XGOP_CONFIDENCE.r3.val = round(gap, 2)
-entropy_val = -sum((pr/100.0)*math.log(pr/100.0+1e-12) for pr in p.gop_prob)
-XGOP_CONFIDENCE.r4.val = round(entropy_val, 4)
-  </exec>
-
-  <text
-   label="XGOP_SOFTMAX"
-   randomize="0"
-   size="40"
-   where="execute,survey,report">
-    <title>HIDDEN: GOP Softmax Probabilities</title>
-    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
-    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
-    <row label="r3">3. Traditional Conservatives (TC)</row>
-    <row label="r4">4. Health Futurist (HF)</row>
-    <row label="r5">5. Price Populists (PP)</row>
-    <row label="r6">6. Wellness Evangelists (WE)</row>
-    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
-    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
-    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
-    <row label="r10">10. Vaccine Skeptics (VS)</row>
-    <col label="c1">D-Squared</col>
-    <col label="c2">exp(-D2/2)</col>
-    <col label="c3">Probability %</col>
-  </text>
-  <suspend/>
-
-  <radio
-   label="XGOP_SEG_FINAL_1"
-   optional="1"
-   randomize="0"
-   where="execute,survey,report">
-    <title>CENTROID+SOFTMAX - GOP SEGMENTS - First Maximum</title>
-    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
-    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
-    <row label="r3">3. Traditional Conservatives (TC)</row>
-    <row label="r4">4. Health Futurist (HF)</row>
-    <row label="r5">5. Price Populists (PP)</row>
-    <row label="r6">6. Wellness Evangelists (WE)</row>
-    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
-    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
-    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
-    <row label="r10">10. Vaccine Skeptics (VS)</row>
-  </radio>
-  <suspend/>
-
-  <radio
-   label="XGOP_SEG_FINAL_2"
-   optional="1"
-   randomize="0"
-   where="execute,survey,report">
-    <title>CENTROID+SOFTMAX - GOP SEGMENTS - Second Maximum</title>
-    <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
-    <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
-    <row label="r3">3. Traditional Conservatives (TC)</row>
-    <row label="r4">4. Health Futurist (HF)</row>
-    <row label="r5">5. Price Populists (PP)</row>
-    <row label="r6">6. Wellness Evangelists (WE)</row>
-    <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
-    <row label="r8">8. Holistic Health Naturalists (HHN)</row>
-    <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
-    <row label="r10">10. Vaccine Skeptics (VS)</row>
-  </radio>
-  <suspend/>
-
-  <text
-   label="XGOP_CONFIDENCE"
-   size="20"
-   where="execute,survey,report">
-    <title>HIDDEN: GOP Confidence Metrics</title>
-    <row label="r1">Top Segment Probability %</row>
-    <row label="r2">Second Segment Probability %</row>
-    <row label="r3">Probability Gap (P1-P2)</row>
-    <row label="r4">Entropy</row>
-  </text>
-  <suspend/>
-
-  <note>MaxDiff Indices Template --End GOP--</note>
-</block>
-<suspend/>
-
-
-<note>===================== FINAL SEGMENT ASSIGNMENT =====================</note>
-
-<radio
-  label="XSEG_ASSIGNED"
-  optional="1"
-  where="execute,survey,report">
-  <title>Final Segment Assignment (1-16)</title>
-  <comment>GOP Segments (1-10), DEM Segments (11-16)</comment>
-  <exec>
-if XGOP_SEG_FINAL_1.any:
-    XSEG_ASSIGNED.val = XGOP_SEG_FINAL_1.val
-elif XDEM_SEG_FINAL_1.any:
-    XSEG_ASSIGNED.val = XDEM_SEG_FINAL_1.val + 10
-  </exec>
-  <row label="r1">1. Trust-the-Science Pragmatists (TSP)</row>
-  <row label="r2">2. Consumer Empowerment Champions (CEC)</row>
-  <row label="r3">3. Traditional Conservatives (TC)</row>
-  <row label="r4">4. Health Futurist (HF)</row>
-  <row label="r5">5. Price Populists (PP)</row>
-  <row label="r6">6. Wellness Evangelists (WE)</row>
-  <row label="r7">7. Paleo Freedom Fighters (PFF)</row>
-  <row label="r8">8. Holistic Health Naturalists (HHN)</row>
-  <row label="r9">9. Medical Freedom Libertarians (MFL)</row>
-  <row label="r10">10. Vaccine Skeptics (VS)</row>
-  <row label="r11">11. Universal Care Progressives (UCP)</row>
-  <row label="r12">12. Faith and Justice Progressives (FJP)</row>
-  <row label="r13">13. Health Care Protectionists (HCP)</row>
-  <row label="r14">14. Health Abundance Democrats (HAD)</row>
-  <row label="r15">15. Health Care Incrementalists (HCI)</row>
-  <row label="r16">16. Global Health Institutionalists (GHI)</row>
-</radio>
-<suspend/>
 
 
 </survey>
