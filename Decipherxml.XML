@@ -3704,17 +3704,10 @@ elif XDEM_SEG_FINAL_1.any:
 }
 .inf-btn-big {
     font-family: Inter, sans-serif;
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 800;
     color: #333;
-    line-height: 1.1;
-}
-.inf-btn-range {
-    font-family: Inter, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: #888;
-    margin-top: 4px;
+    line-height: 1.2;
 }
 
 /* --- Card-swipe UI (INF8 social media activity) --- */
@@ -4030,23 +4023,19 @@ elif XDEM_SEG_FINAL_1.any:
     <div class="inf-q-subtitle">Including from X/Twitter, Instagram, TikTok, Facebook pages, Substack, podcast, YouTube, etc.</div>
     <div class="inf-btn-grid" data-q="INF7">
       <div class="inf-btn-option" data-row="r1" data-val="1">
-        <span class="inf-btn-big">0</span>
-        <span class="inf-btn-range">None</span>
+        <span class="inf-btn-big">None</span>
       </div>
       <div class="inf-btn-option" data-row="r2" data-val="2">
-        <span class="inf-btn-big">&lt;500</span>
+        <span class="inf-btn-big">&lt; 500</span>
       </div>
       <div class="inf-btn-option" data-row="r3" data-val="3">
-        <span class="inf-btn-big">500</span>
-        <span class="inf-btn-range">to 2,000</span>
+        <span class="inf-btn-big">500 &ndash; 2K</span>
       </div>
       <div class="inf-btn-option" data-row="r4" data-val="4">
-        <span class="inf-btn-big">2,000</span>
-        <span class="inf-btn-range">to 10,000</span>
+        <span class="inf-btn-big">2K &ndash; 10K</span>
       </div>
       <div class="inf-btn-option" data-row="r5" data-val="5">
-        <span class="inf-btn-big">10,000</span>
-        <span class="inf-btn-range">to 50,000</span>
+        <span class="inf-btn-big">10K &ndash; 50K</span>
       </div>
       <div class="inf-btn-option" data-row="r6" data-val="6">
         <span class="inf-btn-big">50,000+</span>
