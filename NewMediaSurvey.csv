@@ -1,0 +1,642 @@
+﻿source_name,url,record_type,primary_topic,secondary_topic,targeting_type,follower_tier,content_style,mainstream_flag,pod,youtube,facebook,x,instagram,tiktok,substack,online,rumble,telegram,cable,radio,TSP,CEC,TC,WE,PP,HF,PFF,HHN,MFL,VS,UCP,FJP,HCP,HAD,HCI,GHI,reach_score,uniqueness_score,recognition_score,scale_fit_score,strategic_priority,field_eligible,field_eligible_relaxed,track
+Fox News,foxnews.com,source,Political news and commentary,,Broad,mega,activist,1,0,0,0,1,0,0,0,1,0,0,1,0,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,3,3,0,0,0,GOP
+MSNBC,msnbc.com,source,Political news and commentary,,Broad,mega,activist,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,3,2,0,0,0,DEM
+CNN,cnn.com,source,Political news and commentary,,Broad,mega,activist,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,1,3,2,0,0,0,DEM
+NPR,npr.org,source,Political news and commentary,,Broad,mega,activist,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,0,1,3,2,0,0,0,DEM
+New York Times,nytimes.com,source,Political news and commentary,,Addressable,mega,activist,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,3,1,3,2,9,0,0,DEM
+Washington Post,washingtonpost.com,source,Political news and commentary,,Addressable,mega,activist,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,3,1,3,2,9,0,0,DEM
+Wall Street Journal,wsj.com,source,Political news and commentary,,Addressable,mega,activist,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,3,3,11,0,0,GOP
+Joe Rogan Experience,spotify.com/jre,both,Political news and commentary,,Sponsorship,mega,entertainment,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,2,1,3,3,9,0,0,GOP
+USA Today,usatoday.com,source,Political news and commentary,,Addressable,mega,activist,1,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,2,3,3,11,0,0,BOTH
+National Review,nationalreview.com,source,Political news and commentary,,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+The Dispatch,thedispatch.com,source,Political news and commentary,Faith and values,Sponsorship,macro,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,2,2,3,9,1,1,BOTH
+The Bulwark,thebulwark.com,source,Political news and commentary,,Sponsorship,micro,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,3,9,0,1,GOP
+The Hill,thehill.com,source,Political news and commentary,Health policy,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+RealClearPolitics,realclearpolitics.com,source,Political news and commentary,,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+Washington Examiner,washingtonexaminer.com,source,Political news and commentary,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+Townhall,townhall.com,source,Political news and commentary,Faith and values,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+The Federalist,thefederalist.com,source,Political news and commentary,Faith and values,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+American Conservative,theamericanconservative.com,source,Political news and commentary,,Addressable,micro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,3,2,1,3,9,0,1,GOP
+Compact Magazine,compactmag.com,source,Political news and commentary,,Addressable,micro,entertainment,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+American Greatness,amgreatness.com,source,Political news and commentary,,Addressable,micro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,3,2,1,3,9,0,1,GOP
+The Daily Wire,dailywire.com,source,Political news and commentary,,Sponsorship,mega,activist,0,1,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,2,1,3,3,9,1,1,GOP
+The Dan Bongino Show,bongino.com,source,Political news and commentary,,Sponsorship,mega,activist,0,1,1,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,0,0,2,1,3,3,9,1,1,GOP
+Tucker Carlson Network,tuckercarlson.com,both,Political news and commentary,,Addressable,mega,activist,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,1,1,0,1,1,0,1,1,0,0,0,0,0,0,3,1,3,3,10,1,1,GOP
+War Room with Steve Bannon,warroom.org,source,Political news and commentary,Health policy,Sponsorship,mega,activist,0,1,0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,1,0,1,0,0,1,0,0,0,0,0,0,2,1,3,3,9,1,1,GOP
+Breitbart News,breitbart.com,source,Political news and commentary,,Addressable,mega,activist,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+The Epoch Times,theepochtimes.com,source,Political news and commentary,,Addressable,macro,activist,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+Glenn Beck  (Blaze Media),blazemedia.com,source,Political news and commentary,Faith and values,Sponsorship,mega,entertainment,0,1,1,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,2,2,3,3,10,1,1,GOP
+Turning Point USA ,charliekirk.com,both,Political news and commentary,,Sponsorship,mega,activist,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,2,2,3,3,10,1,1,GOP
+The Megyn Kelly Show,siriusxm.com/megyn-kelly,both,Political news and commentary,,Sponsorship,macro,entertainment,0,1,1,0,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0,0,0,0,0,0,2,2,3,3,10,1,1,GOP
+Real America's Voice,realamericasvoice.com,source,Political news and commentary,,Addressable,macro,activist,0,0,1,0,0,0,0,0,0,1,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+Newsmax,newsmax.com,source,Political news and commentary,,Broad,macro,activist,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,0,2,2,3,0,0,0,GOP
+Salem Radio Network,salemnetwork.com,source,Political news and commentary,Faith and values,Broad,macro,activist,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,3,0,0,0,GOP
+Hugh Hewitt Show,hughhewitt.com,source,Political news and commentary,,Broad,micro,activist,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,3,0,0,0,GOP
+Ben Shapiro Show,dailywire.com/ben-shapiro,both,Political news and commentary,,Sponsorship,mega,activist,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Reason Magazine,reason.com,source,Political news and commentary,Health policy,Addressable,macro,activist,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Ron Paul Liberty Report,ronpaulinstitute.org,source,Political news and commentary,,Addressable,micro,activist,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Racket News  (Matt Taibbi),racket.news,both,Political news and commentary,,Sponsorship,macro,entertainment,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,2,3,3,3,11,1,1,BOTH
+The Free Press  (Bari Weiss),thefp.com,both,Political news and commentary,,Sponsorship,macro,entertainment,0,1,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,0,2,2,3,3,10,1,1,BOTH
+Unherd,unherd.com,source,Political news and commentary,,Addressable,micro,entertainment,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,3,2,1,2,8,0,1,BOTH
+Cato Daily Podcast,cato.org,source,Political news and commentary,Health policy,Sponsorship,micro,activist,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,2,3,1,3,9,0,1,GOP
+Jordan Peterson Podcast,jordanpeterson.com,both,Political news and commentary,Faith and values,Sponsorship,mega,entertainment,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,2,2,3,3,10,1,1,GOP
+Pod Save America,crooked.com,source,Political news and commentary,Health policy,Sponsorship,mega,activist,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,2,3,3,3,11,1,1,DEM
+The Young Turks,tyt.com,source,Political news and commentary,,Addressable,mega,activist,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,3,12,1,1,DEM
+Democracy Now,democracynow.org,source,Political news and commentary,,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,2,3,11,1,1,DEM
+The Intercept,theintercept.com,source,Political news and commentary,,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,2,3,11,1,1,DEM
+Jacobin,jacobin.com,source,Political news and commentary,Worker and economic issues,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,2,3,11,1,1,DEM
+The Nation,thenation.com,source,Political news and commentary,Worker and economic issues,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,2,3,11,1,1,DEM
+Mehdi Hasan Show,mehdihasan.substack.com,source,Political news and commentary,,Sponsorship,,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,3,0,3,8,0,0,DEM
+Zeteo  (Mehdi Hasan),zeteo.com,source,Political news and commentary,,Sponsorship,macro,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,3,2,3,10,1,1,DEM
+Bad Faith Podcast,badfaithpodcast.com,source,Political news and commentary,Health policy,Sponsorship,,community,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,3,0,3,8,0,0,DEM
+American Prospect,prospect.org,source,Political news and commentary,Worker and economic issues,Addressable,micro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,1,3,10,0,1,DEM
+In These Times,inthesetimes.com,source,Political news and commentary,Worker and economic issues,Addressable,micro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,1,3,9,0,1,BOTH
+Politico,politico.com,source,Political news and commentary,Health policy,Addressable,,activist,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,1,0,3,7,0,0,BOTH
+Axios,axios.com,source,Political news and commentary,Health policy,Addressable,,activist,1,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,1,0,3,7,0,0,BOTH
+The Atlantic,theatlantic.com,source,Political news and commentary,,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,3,2,2,1,8,1,1,DEM
+Vox,vox.com,source,Political news and commentary,Health policy,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,3,2,2,2,9,1,1,DEM
+KFF Health News,kffhealthnews.org,source,Health policy,,Addressable,macro,educational,0,1,0,0,1,0,0,1,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,3,1,2,3,9,1,1,BOTH
+STAT News,statnews.com,source,Health policy,Science and medical research,Addressable,macro,educational,0,1,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,3,1,2,3,9,1,1,BOTH
+Health Affairs,healthaffairs.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,1,3,9,0,1,DEM
+Axios Health,axios.com/health,source,Health policy,,Addressable,macro,educational,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,1,2,3,9,1,1,BOTH
+Politico Health Care,politico.com/health-care,source,Health policy,,Addressable,macro,educational,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,1,2,3,9,1,1,BOTH
+The Commonwealth Fund,commonwealthfund.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+Health Care Dive,healthcaredive.com,source,Health policy,Health technology and innovation,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,1,3,9,0,1,DEM
+Modern Healthcare,modernhealthcare.com,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,1,3,9,0,1,BOTH
+Benefits Pro,benefitspro.com,source,Health policy,Worker and economic issues,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,2,1,3,9,0,1,BOTH
+Employee Benefit News,benefitnews.com,source,Health policy,Worker and economic issues,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,2,0,3,8,0,0,BOTH
+Peterson-KFF Health Tracker,healthsystemtracker.org,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,0,3,8,0,0,DEM
+Urban Institute Health Policy,urban.org/health,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,3,2,0,3,8,0,0,DEM
+Center on Budget and Policy,cbpp.org,source,Health policy,Worker and economic issues,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,3,2,0,3,8,0,0,DEM
+Families USA,familiesusa.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,3,2,1,3,9,0,1,DEM
+Heritage Foundation Health,heritage.org/health-care,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+American Enterprise Institute Health,aei.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Mercatus Center Health Policy,mercatus.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Health Care Blog,thehealthcareblog.com,source,Health policy,Health technology and innovation,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,3,2,1,3,9,0,1,BOTH
+Physicians for National Health,pnhp.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,1,3,10,0,1,DEM
+Community Catalyst,communitycatalyst.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,3,3,1,3,10,0,1,DEM
+Center for American Progress Health,americanprogress.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,3,2,1,3,9,0,1,DEM
+Brownstone Institute,brownstone.org,source,Health policy,Vaccines and immunization,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+AIER Health,aier.org/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Medicare Podcast,medicaremd.com,source,Medicare and senior health,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,2,1,1,6,0,1,BOTH
+Medicare Interactive,medicareinteractive.org,source,Medicare and senior health,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,1,2,9,0,1,DEM
+Senior Planet  (OATS),seniorplanet.org,source,Medicare and senior health,Health technology and innovation,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,1,3,10,0,1,DEM
+Sixty and Me,sixtyandme.com,source,Medicare and senior health,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,1,2,9,0,1,DEM
+National Council on Aging,ncoa.org,source,Medicare and senior health,Health policy,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,3,2,1,2,8,0,1,DEM
+LeadingAge,leadingage.org,source,Medicare and senior health,Health policy,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+Alliance for Retired Americans,retiredamericans.org,source,Medicare and senior health,Worker and economic issues,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,3,2,0,2,7,0,0,BOTH
+Gray Panthers,graypanthers.org,source,Medicare and senior health,Health policy,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+Caregiver Action Network,caregiveraction.org,source,Medicare and senior health,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,3,2,1,1,7,0,1,DEM
+The Senior List Podcast,theseniorlist.com,source,Medicare and senior health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,3,0,2,7,0,0,DEM
+Your Local Epidemiologist,yourlocalepidemiologist.substack.com,both,Vaccines and immunization,Science and medical research,Sponsorship,macro,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,2,2,3,3,10,1,1,DEM
+CHOP Vaccine Education Center,chop.edu/vaccine-education,source,Vaccines and immunization,Science and medical research,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,3,2,1,3,9,0,1,DEM
+Immunize.org,immunize.org,source,Vaccines and immunization,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,3,9,0,0,DEM
+Paul Offit ,chop.edu/paul-offit,source,Vaccines and immunization,Science and medical research,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,0,3,9,0,0,DEM
+Vax Populi Substack,vaxpopuli.substack.com,source,Vaccines and immunization,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,0,3,8,0,0,DEM
+CDC Vaccine Communications,cdc.gov/vaccines,source,Vaccines and immunization,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,2,3,11,1,1,BOTH
+The Highwire  (Del Bigtree),thehighwire.com,both,Vaccines and immunization,,Organic,macro,educational,0,1,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,2,3,3,9,1,1,GOP
+Children's Health Defense,childrenshealthdefense.org,source,Vaccines and immunization,,Organic,mega,educational,0,1,1,0,1,1,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,1,2,3,3,9,1,1,GOP
+Dr. Sherri Tenpenny,drtenpenny.com,source,Vaccines and immunization,,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+America's Frontline Doctors,aflds.org,source,Vaccines and immunization,,Organic,macro,educational,0,0,0,0,1,1,0,0,1,1,1,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,1,2,2,3,8,1,1,GOP
+Dr. Mercola,mercola.com,both,Vaccines and immunization,Natural and alternative health,Organic,macro,educational,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,3,3,3,10,1,1,GOP
+Steve Kirsch Substack,kirschsubstack.com,source,Vaccines and immunization,,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Epoch Health,theepochtimes.com/health,source,Vaccines and immunization,Natural and alternative health,Addressable,,educational,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,3,2,0,3,8,0,0,GOP
+Health Impact News,healthimpactnews.com,source,Vaccines and immunization,,Organic,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Informed Consent Action Network,icandecide.org,source,Vaccines and immunization,,Organic,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,3,2,3,9,1,1,GOP
+World Council for Health,worldcouncilforhealth.org,source,Vaccines and immunization,,Organic,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Dr. Paul Thomas  (Integrative Pediatrics),drpaulthomasmd.com,source,Vaccines and immunization,,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Vaccine Choice Canada ,vaccinechoicecanada.com,source,Vaccines and immunization,,Organic,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Mark Hyman  (Doctor's Farmacy),drhyman.com,both,Natural and alternative health,Nutrition and diet,Sponsorship,macro,lifestyle,0,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,2,2,3,2,9,1,1,BOTH
+Dr. Josh Axe,draxe.com,both,Natural and alternative health,Supplements and vitamins,Addressable,macro,lifestyle,0,0,1,0,1,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Wellness Mama,wellnessmama.com,both,Natural and alternative health,Nutrition and diet,Sponsorship,macro,lifestyle,0,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+mindbodygreen,mindbodygreen.com,source,Natural and alternative health,,Addressable,mega,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,3,3,3,2,11,1,1,BOTH
+Goop  (Gwyneth Paltrow),goop.com,source,Natural and alternative health,,Addressable,mega,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+The Model Health Show,themodelhealthshow.com,source,Natural and alternative health,Nutrition and diet,Sponsorship,macro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,2,2,2,3,9,1,1,GOP
+Functional Medicine for Life,ifm.org,source,Natural and alternative health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Natural Health 365,naturalhealth365.com,source,Natural and alternative health,Vaccines and immunization,Organic,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,3,1,3,8,0,1,GOP
+GreenMedInfo,greenmedinfo.com,source,Natural and alternative health,Vaccines and immunization,Organic,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,3,1,3,8,0,1,GOP
+Weston A. Price Foundation,westonaprice.org,source,Natural and alternative health,Nutrition and diet,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Anthony William  (Medical Medium),medicalmedium.com,source,Natural and alternative health,,Sponsorship,macro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,2,3,2,3,10,1,1,GOP
+Dr. Terry Wahls,terrywahls.com,source,Natural and alternative health,Nutrition and diet,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Chris Kresser,chriskresser.com,both,Natural and alternative health,Nutrition and diet,Sponsorship,macro,educational,0,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,2,2,3,3,10,1,1,GOP
+Dr. Will Cole,drwillcole.com,source,Natural and alternative health,Nutrition and diet,Sponsorship,macro,lifestyle,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,2,3,2,3,10,1,1,GOP
+Aviva Romm  (Natural MD Radio),avivaromm.com,source,Natural and alternative health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,2,3,0,2,7,0,0,BOTH
+Sacred Science,thesacredscience.com,source,Natural and alternative health,,Addressable,,educational,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+NaturalNews  (Mike Adams),naturalnews.com,source,Natural and alternative health,Vaccines and immunization,Organic,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Herbs & Oils World,herbsandoilsworld.com,source,Natural and alternative health,,Organic,,educational,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Oil Testimonials ,oiltestimonials.com,source,Natural and alternative health,,Organic,,educational,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Paul Saladino  (Carnivore MD),carnivoremd.com,both,Nutrition and diet,,Sponsorship,macro,lifestyle,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Shawn Baker  (Revero),revero.com,both,Nutrition and diet,Fitness and physical performance,Sponsorship,macro,lifestyle,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Mikhaila Peterson,mikhailapeterson.com,both,Nutrition and diet,,Sponsorship,macro,lifestyle,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Liver King  (Brian Johnson),youtube.com/@liverking,both,Nutrition and diet,Fitness and physical performance,Addressable,macro,lifestyle,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Diet Doctor,dietdoctor.com,source,Nutrition and diet,,Addressable,macro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,3,2,2,2,9,1,1,GOP
+Nutrition with Judy,nutritionwithjudy.com,source,Nutrition and diet,,Sponsorship,,lifestyle,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Thomas DeLauer,youtube.com/@ThomasDeLauer,both,Nutrition and diet,Fitness and physical performance,Addressable,macro,lifestyle,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,3,2,3,2,10,1,1,GOP
+What I've Learned,youtube.com/@WhatIveLearned,source,Nutrition and diet,Science and medical research,Addressable,,lifestyle,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,3,2,0,2,7,0,0,GOP
+Layne Norton  (BioLayne),biolayne.com,source,Nutrition and diet,Fitness and physical performance,Addressable,,educational,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,3,2,0,1,6,0,0,GOP
+Whole30  (Melissa Urban),whole30.com,source,Nutrition and diet,,Sponsorship,macro,lifestyle,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,2,3,2,3,10,1,1,GOP
+Dr. Gabrielle Lyon,drgabriellelyon.com,both,Nutrition and diet,Fitness and physical performance,Sponsorship,macro,lifestyle,0,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,2,2,3,2,9,1,1,GOP
+Nutrition Made Simple  (Gil Carvalho),youtube.com/@NutritionMadeSimple,source,Nutrition and diet,Science and medical research,Addressable,,educational,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,1,0,0,3,2,0,2,7,0,0,BOTH
+The Exam Room  (PCRM),pcrm.org/podcast,source,Nutrition and diet,Science and medical research,Sponsorship,,lifestyle,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,2,3,0,1,6,0,0,DEM
+Nourishing Traditions  (Sally Fallon),nourishingtraditions.com,source,Nutrition and diet,,Addressable,micro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Peak Human Podcast,peakhuman.co,source,Nutrition and diet,Fitness and physical performance,Sponsorship,,lifestyle,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Ancestral Health Society,ancestralhealth.org,source,Nutrition and diet,,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Huberman Lab,hubermanlab.com,both,Supplements and vitamins,Science and medical research,Sponsorship,mega,educational,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,1,0,0,0,0,1,0,0,2,1,3,2,8,1,1,BOTH
+Examine.com,examine.com,source,Supplements and vitamins,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,1,0,0,3,2,2,2,9,1,1,BOTH
+Nootropics Depot,nootropicsdepot.com,source,Supplements and vitamins,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,3,3,0,2,8,0,0,GOP
+Life Extension Foundation,lifeextension.com,source,Supplements and vitamins,Longevity and anti-aging,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+ConsumerLab,consumerlab.com,source,Supplements and vitamins,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,1,0,0,3,2,2,2,9,1,1,BOTH
+LabDoor,labdoor.com,source,Supplements and vitamins,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,3,3,0,2,8,0,0,GOP
+Tim Ferriss Show,tim.blog/podcast,source,Supplements and vitamins,Longevity and anti-aging,Sponsorship,mega,entertainment,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,2,2,3,2,9,1,1,BOTH
+The Supplement Review Podcast,supplementreview.com,source,Supplements and vitamins,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,2,2,0,2,6,0,0,GOP
+Designs for Health Podcast,designsforhealth.com,source,Supplements and vitamins,Natural and alternative health,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Fullscript Insights,fullscript.com/blog,source,Supplements and vitamins,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,3,2,0,2,7,0,0,BOTH
+Mark Bell's Power Project,youtube.com/@MarkBellSuperTraining,both,Fitness and physical performance,Nutrition and diet,Addressable,macro,lifestyle,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,3,3,3,2,11,1,1,GOP
+Ben Greenfield Life,bengreenfieldlife.com,both,Fitness and physical performance,Longevity and anti-aging,Sponsorship,macro,lifestyle,0,1,1,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,2,3,3,1,9,1,1,GOP
+Barbell Medicine,barbellmedicine.com,source,Fitness and physical performance,Science and medical research,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,2,2,1,2,7,0,1,GOP
+Jocko Podcast,jocko.com,both,Fitness and physical performance,,Sponsorship,macro,lifestyle,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,2,3,3,2,10,1,1,GOP
+Mike Israetel  (Renaissance Periodization),rpstrength.com,both,Fitness and physical performance,Science and medical research,Addressable,macro,lifestyle,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,3,2,3,2,10,1,1,GOP
+Mind Pump Podcast,mindpumpmedia.com,both,Fitness and physical performance,Nutrition and diet,Sponsorship,macro,lifestyle,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,2,2,3,2,9,1,1,GOP
+Starting Strength  (Mark Rippetoe),startingstrength.com,source,Fitness and physical performance,,Addressable,,lifestyle,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Functional Patterns,functionalpatterns.com,source,Fitness and physical performance,Natural and alternative health,Addressable,,lifestyle,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,3,3,0,2,8,0,0,GOP
+Garage Gym Reviews,garagegymreviews.com,source,Fitness and physical performance,,Addressable,,lifestyle,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,3,3,0,2,8,0,0,GOP
+NSCA  (Journal of Strength Research),nsca.com,source,Fitness and physical performance,Science and medical research,Addressable,,lifestyle,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,3,3,0,1,7,0,0,GOP
+Peter Attia  (The Drive),peterattiamd.com,both,Longevity and anti-aging,Science and medical research,Sponsorship,macro,educational,0,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,2,2,3,2,9,1,1,BOTH
+Bryan Johnson  (Blueprint),blueprint.bryanjohnson.co,both,Longevity and anti-aging,Health technology and innovation,Sponsorship,macro,lifestyle,0,0,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,3,3,11,1,1,BOTH
+David Sinclair  (Lifespan),lifespanbook.com,both,Longevity and anti-aging,Science and medical research,Sponsorship,macro,educational,0,1,1,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,3,3,11,1,1,BOTH
+Fight Aging,fightaging.org,source,Longevity and anti-aging,Science and medical research,Addressable,micro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,1,3,10,0,1,BOTH
+Lifespan.io,lifespan.io,source,Longevity and anti-aging,Science and medical research,Addressable,micro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,1,3,10,0,1,BOTH
+Longevity.Technology,longevity.technology,source,Longevity and anti-aging,Health technology and innovation,Addressable,micro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,1,3,10,0,1,BOTH
+Sergey Young  (Longevity Vision),longevityvisionfund.com,source,Longevity and anti-aging,Health technology and innovation,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+Nir Barzilai  (Age Later),agelessrx.com,source,Longevity and anti-aging,Science and medical research,Sponsorship,,lifestyle,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+Elysium Health Insights,elysiumhealth.com/blog,source,Longevity and anti-aging,Supplements and vitamins,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,0,3,9,0,0,BOTH
+Ground Truths  (Eric Topol),erictopol.substack.com,both,Science and medical research,Health policy,Sponsorship,macro,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,2,2,3,3,10,1,1,BOTH
+MedPage Today,medpagetoday.com,source,Science and medical research,,Addressable,macro,educational,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,2,2,3,10,1,1,BOTH
+Medscape,medscape.com,source,Science and medical research,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,2,2,3,10,1,1,BOTH
+Science Friday,sciencefriday.com,source,Science and medical research,,Sponsorship,macro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,2,3,2,3,10,1,1,DEM
+Endpoints News,endpts.com,source,Science and medical research,Health technology and innovation,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,1,3,10,0,1,DEM
+BioPharma Dive,biopharmadive.com,source,Science and medical research,Health technology and innovation,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+FierceBiotech,fiercebiotech.com,source,Science and medical research,Health technology and innovation,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+The Scientist,the-scientist.com,source,Science and medical research,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+New England Journal of Medicine (JAMA),nejm.org,source,Science and medical research,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+Ars Technica Health,arstechnica.com/science,source,Science and medical research,Health technology and innovation,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,3,2,2,3,10,1,1,BOTH
+Retraction Watch,retractionwatch.com,source,Science and medical research,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,3,2,0,3,8,0,0,BOTH
+The SGIM Forum,sgim.org,source,Science and medical research,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+The Offside  (Adam Cifu),adamscifu.substack.com,source,Science and medical research,Health policy,Sponsorship,,educational,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,2,3,0,3,8,0,0,DEM
+Nature Medicine ,nature.com/nm,source,Science and medical research,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+EWTN,ewtn.com,source,Faith and values,,Broad,mega,community,0,0,1,0,1,0,0,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,0,0,0,BOTH
+Focus on the Family Podcast,focusonthefamily.com,source,Faith and values,,Sponsorship,mega,community,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Christianity Today,christianitytoday.com,source,Faith and values,,Addressable,macro,community,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,BOTH
+The Gospel Coalition,thegospelcoalition.org,source,Faith and values,,Addressable,macro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,BOTH
+Relevant Podcast,relevantmagazine.com,source,Faith and values,,Sponsorship,macro,community,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,2,3,10,1,1,DEM
+Catholic Vote,catholicvote.org,source,Faith and values,Political news and commentary,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,BOTH
+The Catholic Thing,thecatholicthing.org,source,Faith and values,,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,BOTH
+Crisis Magazine,crisismagazine.com,source,Faith and values,Political news and commentary,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+First Things,firstthings.com,source,Faith and values,Political news and commentary,Addressable,macro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,BOTH
+Sojourners,sojo.net,source,Faith and values,Political news and commentary,Addressable,macro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+National Catholic Reporter,ncronline.org,source,Faith and values,Political news and commentary,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+America Magazine ,americamagazine.org,source,Faith and values,Political news and commentary,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+Religion News Service,religionnews.com,source,Faith and values,,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,BOTH
+CBN Health,cbn.com/health,source,Faith and values,Natural and alternative health,Addressable,macro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Christian Post,christianpost.com,source,Faith and values,Political news and commentary,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Black Christian News,blackchristiannews.com,source,Faith and values,,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+Word in Black,wordinblack.com,source,Faith and values,Political news and commentary,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+The Witness BCC,thewitnessbcc.com,source,Faith and values,Political news and commentary,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Working People Podcast,ilr.cornell.edu,source,Worker and economic issues,,Sponsorship,micro,educational,0,1,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,2,3,1,3,9,0,1,BOTH
+AFL-CIO Now,aflcio.org/now,source,Worker and economic issues,Health policy,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,2,3,11,1,1,BOTH
+Labor Notes,labornotes.org,source,Worker and economic issues,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,1,3,10,0,1,BOTH
+Economic Policy Institute,epi.org,source,Worker and economic issues,Health policy,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,1,3,9,0,1,BOTH
+Century Foundation,tcf.org,source,Worker and economic issues,Health policy,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+Teamster Nation,teamster.org/news,source,Worker and economic issues,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+National Nurses United,nationalnursesunited.org,source,Worker and economic issues,Health policy,Addressable,macro,educational,0,0,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,2,3,10,1,1,BOTH
+Solidarity  (DSA Labor),solidarity-us.org,source,Worker and economic issues,Political news and commentary,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+SEIU  (Service Workers),seiu.org/news,source,Worker and economic issues,Health policy,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,2,3,11,1,1,BOTH
+The Majority Report,majorityfm.com,source,Worker and economic issues,Political news and commentary,Sponsorship,macro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,2,3,2,3,10,1,1,DEM
+NEJM Catalyst,catalyst.nejm.org,source,Health technology and innovation,Health policy,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+Fierce Healthcare,fiercehealthcare.com,source,Health technology and innovation,Health policy,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,1,3,9,0,1,DEM
+Healthcare IT News,healthcareitnews.com,source,Health technology and innovation,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,1,2,8,0,1,DEM
+HIMSS Media,himss.org/news,source,Health technology and innovation,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,1,3,10,0,1,DEM
+Digital Health Today,digitalhealthtoday.com,source,Health technology and innovation,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,2,2,1,3,8,0,1,BOTH
+Becker's Health IT,beckershospitalreview.com,source,Health technology and innovation,Health policy,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,1,3,10,0,1,DEM
+Forbes Healthcare,forbes.com/healthcare,source,Health technology and innovation,Health policy,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,3,2,2,3,10,1,1,BOTH
+CB Insights Health,cbinsights.com/research/health,source,Health technology and innovation,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,0,3,9,0,0,BOTH
+A16z Health ,a16z.com/bio,source,Health technology and innovation,Longevity and anti-aging,Sponsorship,macro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,2,3,10,1,1,BOTH
+The Health Innovation Podcast,healthinnovation.org,source,Health technology and innovation,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,2,2,0,3,7,0,0,BOTH
+Omada Health Insights,omadahealth.com/blog,source,Health technology and innovation,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,3,0,3,9,0,0,DEM
+Aidoc AI Health,aidoc.com/blog,source,Health technology and innovation,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,0,3,9,0,0,DEM
+Grist,grist.org,source,Environmental and climate health,Political news and commentary,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,2,3,11,1,1,DEM
+Yale Climate Connections,yaleclimateconnections.org,source,Environmental and climate health,Science and medical research,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,1,3,10,0,1,DEM
+Environmental Health News,ehn.org,source,Environmental and climate health,Science and medical research,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,1,2,9,0,1,DEM
+Climate Now Podcast,climatenow.com,source,Environmental and climate health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,3,8,0,0,DEM
+Inside Climate News,insideclimatenews.org,source,Environmental and climate health,Political news and commentary,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,1,3,10,0,1,DEM
+Global Health Now  (JHSPH),globalhealthnow.org,source,Environmental and climate health,Science and medical research,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,3,9,0,0,DEM
+Lancet Countdown on Health & Climate,thelancet.com/climate,source,Environmental and climate health,Science and medical research,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,3,9,0,0,DEM
+NRDC Health ,nrdc.org/health,source,Environmental and climate health,Political news and commentary,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,2,3,11,1,1,DEM
+Sierra Club Health,sierraclub.org/health,source,Environmental and climate health,Political news and commentary,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,2,3,11,1,1,DEM
+Health and Environment Alliance,env-health.org,source,Environmental and climate health,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,3,9,0,0,DEM
+EWG  (Environmental Working Group),ewg.org,source,Environmental and climate health,Natural and alternative health,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,3,2,2,2,9,1,1,BOTH
+Safer Chemicals Healthy Families,saferchemicals.org,source,Environmental and climate health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,3,2,0,2,7,0,0,BOTH
+Climate and Health Council,climateandhealth.org,source,Environmental and climate health,Science and medical research,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,3,9,0,0,DEM
+Epoch TV,epochtv.com,source,Political news and commentary,,Addressable,,activist,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,3,2,0,3,8,0,0,GOP
+Crowder  (Louder with Crowder),rumble.com/c/LouderWithCrowder,source,Political news and commentary,,Organic,,entertainment,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+One America News ,oann.com,source,Political news and commentary,,Addressable,,activist,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,1,0,0,1,0,0,1,0,0,0,0,0,0,3,2,0,3,8,0,0,GOP
+Stew Peters Network Telegram,t.me/stewpeters,source,Vaccines and immunization,Political news and commentary,Organic,,activist,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Health Freedom Telegram,t.me/healthfreedom,source,Vaccines and immunization,,Organic,,educational,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Epoch Health Telegram,t.me/epochhealth,source,Natural and alternative health,Vaccines and immunization,Organic,,educational,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Rural Health Information Hub,ruralhealthinfo.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+The Rural Monitor  (NRHA),ruralhealthweb.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+National Rural Health Association,ruralhealthweb.org/news,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Rural Health Voices Podcast,ruralhealthvoices.org,source,Health policy,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Rural Health Quarterly,ruralhealthquarterly.com,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Chartis Center for Rural Health,chartis.com/rural-health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Flex Monitoring Team ,flexmonitoring.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+AgriTalk Radio,agritalk.com,source,Political news and commentary,,Broad,micro,activist,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,3,0,0,0,GOP
+Farm Bureau News  (AFBF),fb.org/news,source,Political news and commentary,Health policy,Addressable,macro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Brownfield Ag News,brownfieldagnews.com,source,Political news and commentary,,Broad,,activist,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,3,0,0,0,GOP
+Successful Farming,agriculture.com,source,Political news and commentary,,Addressable,,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Farm Journal ,agweb.com,source,Political news and commentary,,Addressable,micro,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Heartland Institute Health Care News,heartland.org/health-care,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Health Care News ,heartland.org/publications/health-care-news,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Pacific Research Institute Health,pacificresearch.org/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+NCPA Health Policy,ncpa.org/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Pioneer Institute Health,pioneerinstitute.org/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Right to Try Foundation,righttotry.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,2,1,2,8,0,1,GOP
+Alliance for Patient Access,allianceforpatientaccess.org,source,Health policy,Science and medical research,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Patient Rising Podcast,patientrising.org,source,Health policy,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+21st Century Cures Advocacy,curesadvocacy.org,source,Health policy,Science and medical research,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Sinclair Broadcast Health Coverage,sinclairnewsroom.com,source,Political news and commentary,,Broad,,educational,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,3,0,0,0,GOP
+Nexstar Media Health Coverage,nexstar.tv,source,Political news and commentary,,Broad,,activist,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,3,0,0,0,GOP
+Talk Radio ,talkers.com,source,Political news and commentary,,Broad,,activist,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,3,0,0,0,GOP
+FDA Voice ,fda.gov/news-events,source,Science and medical research,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+NIH News in Health,newsinhealth.nih.gov,source,Science and medical research,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,3,9,0,0,BOTH
+CDC Health Matters Podcast,cdc.gov/podcast,source,Science and medical research,Vaccines and immunization,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,3,8,0,0,BOTH
+Health Rosetta  (Dave Chase),healthrosetta.org,source,Health policy,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,3,9,0,1,GOP
+Catalyst for Payment Reform,catalyzepaymentreform.org,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Clear Health Costs,clearhealthcosts.com,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Healthcare Transparency Initiative,healthcaretransparency.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Reframe Health Lab,reframehealth.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Center for Health Care Strategies,chcs.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,BOTH
+DPC Frontier ,dpcfrontier.com,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Direct Primary Care Journal,dpcare.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+DPC Alliance Podcast,dpcare.org/podcast,source,Health policy,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Self-Insurance Institute of America,siia.org/news,source,Health policy,Worker and economic issues,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Employee Benefits Adviser,benefitspro.com/employee-benefits-adviser,source,Health policy,Worker and economic issues,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+HR Dive Health Benefits,hrdive.com/topic/benefits,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Business Group on Health,businessgrouphealth.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+ERIC ,eric.org,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Manhattan Institute Health,manhattan-institute.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Competitive Enterprise Institute,cei.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Texas Public Policy Foundation,texaspolicy.com/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Forbes Health,forbes.com/health,source,Health policy,Health technology and innovation,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,2,2,3,10,1,1,BOTH
+Health Affairs Forefront,healthaffairs.org/forefront,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,3,2,0,3,8,0,0,BOTH
+Second Opinion  (Lanhee Chen),secondopinionpodcast.com,source,Health policy,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,3,9,0,1,GOP
+The Gist  (Advisory Board),advisory.com/daily-briefing,source,Health policy,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,2,2,1,3,8,0,1,BOTH
+Consumer Reports Health,consumerreports.org/health,source,Health policy,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+PatientEngagementHIT,patientengagementhit.com,source,Health policy,Health technology and innovation,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,3,0,3,9,0,0,BOTH
+UFCW  (United Food Workers Health),ufcw.org/health-care,source,Worker and economic issues,Health policy,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,2,3,11,1,1,BOTH
+UAW Health and Benefits,uaw.org/health,source,Worker and economic issues,Health policy,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,2,3,11,1,1,BOTH
+IBEW Health Benefits,ibew.org/media-center/health,source,Worker and economic issues,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+USW  (United Steelworkers Health),usw.org/news/health,source,Worker and economic issues,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+AFSCME Healthcare Coverage,afscme.org/health,source,Worker and economic issues,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+Union Plus Benefits Podcast,unionplus.org,source,Worker and economic issues,Health policy,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,2,3,0,3,8,0,0,BOTH
+Capital and Main,capitalandmain.com,source,Worker and economic issues,Political news and commentary,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,1,3,9,0,1,BOTH
+Ohio Valley ReSource,ohiovalleyresource.org,source,Worker and economic issues,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+100 Days in Appalachia,100daysinappalachia.com,source,Political news and commentary,Worker and economic issues,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+The Dig Podcast,thedigradio.com,source,Political news and commentary,Worker and economic issues,Sponsorship,,activist,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,2,2,0,3,7,0,0,BOTH
+Heartland Signal,heartlandsignal.com,source,Political news and commentary,,Addressable,,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Progressive Magazine,progressive.org,source,Political news and commentary,Worker and economic issues,Addressable,,activist,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,0,3,8,0,0,BOTH
+Patients for Affordable Drugs,p4ad.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,1,3,9,0,1,BOTH
+AARP Drug Pricing Coverage,aarp.org/health/drugs,source,Health policy,Medicare and senior health,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,BOTH
+Prescription Justice,prescriptionjustice.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+Accountable.US Health,accountable.us/health,source,Health policy,Worker and economic issues,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,0,3,8,0,0,BOTH
+Public Citizen Health Research,citizen.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,1,3,9,0,1,BOTH
+Becker's Rural Health,beckershospitalreview.com/rural,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,2,0,3,8,0,0,BOTH
+Rural Hospital Closures Tracker,ruralhospitals.chqpr.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+National Black Church Initiative,naltblackchurch.com,source,Faith and values,Health policy,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+The Word Network Health Content,thewordnetwork.org,source,Faith and values,,Broad,,community,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,3,0,0,0,DEM
+Black Doctor  (BlackDoctor.org),blackdoctor.org,source,Health policy,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+Essence Health,essence.com/health,source,Health policy,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+The Root Health Coverage,theroot.com/health,source,Health policy,Political news and commentary,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+Black Women's Health Imperative,bwhi.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+Shondaland Health,shondaland.com/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Mogul Millennial Health,mogulmillennial.com/health,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Salud America,saludamerica.org,source,Health policy,Environmental and climate health,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+National Hispanic Medical Association,nhmamd.org/news,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Latino Health Access,latinohealthaccess.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Catholic Health Association,chausa.org/news,source,Faith and values,Health policy,Addressable,micro,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+Catholic Charities Health,catholiccharitiesusa.org/health,source,Faith and values,Health policy,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Ignatian Solidarity Network,ignatiansolidarity.net,source,Faith and values,Political news and commentary,Addressable,,community,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Interfaith Public Health Network,interfaithhealth.net,source,Faith and values,Health policy,Addressable,,community,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Health and Human Rights Journal,hhrjournal.org,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+Community Health Worker Network,nachw.org/news,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,3,3,0,3,9,0,0,DEM
+Trust for America's Health,tfah.org,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,3,2,1,3,9,0,1,DEM
+Robert Wood Johnson Foundation,rwjf.org/en/insights,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,3,2,1,3,9,0,1,DEM
+CommonHealth  (WBUR),wbur.org/commonhealth,source,Health policy,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,2,3,1,3,9,0,1,DEM
+The Dose Podcast  (Commonwealth Fund),commonwealthfund.org/podcast,source,Health policy,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,2,2,1,3,8,0,1,DEM
+Health Equity News,healthequitynews.com,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,0,3,9,0,0,DEM
+UnidosUS Health,unidosus.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+NAACP Health Program,naacp.org/know-issues/health,source,Health policy,Political news and commentary,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+National Urban League Health,nul.org/health,source,Health policy,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,1,3,10,0,1,DEM
+Medicare Advantage Oversight,medicarerights.org/ma,source,Health policy,Medicare and senior health,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,3,3,0,3,9,0,0,DEM
+Physicians for a National Health Program,pnhp.org/news,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+Health Care for America Now,hcan.org,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+Coalition Against Insurance Abuse,caia.com,source,Health policy,,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+National COSH ,coshnetwork.org,source,Worker and economic issues,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+Occupational Health & Safety News,ohsonline.com,source,Worker and economic issues,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+Jobs with Justice Health,jwj.org/health,source,Worker and economic issues,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+National Partnership Women Families,nationalpartnership.org,source,Worker and economic issues,Health policy,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,3,3,0,3,9,0,0,DEM
+Working Families Party Health,workingfamilies.org/health,source,Worker and economic issues,Political news and commentary,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,0,3,9,0,0,BOTH
+Catholic Health Association Community,chausa.org/community-benefit,source,Health policy,,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,3,3,0,3,9,0,0,DEM
+National Association of Community Health Centers,nachc.org/news,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,3,3,0,3,9,0,0,DEM
+Community Health Center Voices,nachc.org/podcast,source,Health policy,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,3,0,3,8,0,0,DEM
+The American Prospect Health,prospect.org/health,source,Health policy,Worker and economic issues,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+Portside Health Labor,portside.org/health,source,Worker and economic issues,Health policy,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,0,3,8,0,0,BOTH
+Truthout Health,truthout.org/health,source,Health policy,Political news and commentary,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,0,3,9,0,0,DEM
+Sixty and Me Podcast,sixtyandme.com/podcast,source,Medicare and senior health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,3,0,3,8,0,0,DEM
+Aging Today  (ASA),asaging.org/aging-today,source,Medicare and senior health,,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,1,2,9,0,1,DEM
+Generations Journal  (ASA),asaging.org/generations,source,Medicare and senior health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,2,8,0,0,DEM
+Elder Law Answers,elderlawanswers.com,source,Medicare and senior health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+SeniorLiving.org,seniorliving.org,source,Medicare and senior health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+The Senior Times,theseniortimes.com,source,Medicare and senior health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+AMAC  (Association Mature Americans),amac.us/newsline,source,Medicare and senior health,Political news and commentary,Addressable,micro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,1,3,10,0,1,DEM
+Kiplinger Retirement Health,kiplinger.com/retirement/health,source,Medicare and senior health,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,2,3,11,1,1,DEM
+MarketWatch Retirement Health,marketwatch.com/retirement,source,Medicare and senior health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+Forbes Retirement Health,forbes.com/retirement,source,Medicare and senior health,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+US News Best Medicare Plans,health.usnews.com/medicare,source,Medicare and senior health,Health policy,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,2,3,11,1,1,DEM
+Medicare Plan Finder  (CMS),medicare.gov,source,Medicare and senior health,,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,2,2,10,1,1,DEM
+Medicare Interactive Podcast,medicareinteractive.org/podcast,source,Medicare and senior health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,3,0,2,7,0,0,DEM
+Your Medicare Advisor,yourmedicareadvisor.com,source,Medicare and senior health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,3,0,3,8,0,0,DEM
+Medicare on Video,medicareonvideo.com,source,Medicare and senior health,,Addressable,,educational,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,3,3,0,3,9,0,0,DEM
+Boomer Benefits Podcast,boomerbenefits.com/podcast,source,Medicare and senior health,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,3,1,3,9,0,1,DEM
+Covering Health  (AHCJ Podcast),healthjournalism.org/podcast,source,Health policy,,Sponsorship,micro,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,1,3,8,0,1,DEM
+Health Policy Hub  (Brookings),brookings.edu/health-policy,source,Health policy,,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,0,3,8,0,0,DEM
+Alliance for Health Policy,allhealthpolicy.org,source,Health policy,,Sponsorship,,educational,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,0,3,7,0,0,DEM
+Prescription Drug Policy  (IHPI),ihpi.umich.edu,source,Health policy,Medicare and senior health,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+Health in Aging Foundation,healthinaging.org,source,Medicare and senior health,Science and medical research,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+American Geriatrics Society,americangeriatrics.org/news,source,Medicare and senior health,Science and medical research,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+Gerontological Society of America,geron.org/news,source,Medicare and senior health,Science and medical research,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+John A. Hartford Foundation,johnahartford.org/insights,source,Medicare and senior health,Health policy,Addressable,,educational,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,0,3,9,0,0,DEM
+LeadingAge Podcast,leadingage.org/podcast,source,Medicare and senior health,Health policy,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,3,0,3,8,0,0,DEM
+Make America Healthy Again ,mahamovement.com,source,Natural and alternative health,Political news and commentary,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,3,2,0,3,8,0,0,GOP
+Moms for America,momsforamerica.us,source,Political news and commentary,Faith and values,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Moms for Liberty,momsforliberty.org,source,Political news and commentary,Faith and values,Addressable,,community,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Wellness Mama Podcast,wellnessmama.com/podcast,source,Natural and alternative health,Nutrition and diet,Sponsorship,,lifestyle,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+MAHA Moms Facebook Community,facebook.com/groups/maha,source,Natural and alternative health,Political news and commentary,Organic,,educational,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Organic Consumers Association,organicconsumers.org,source,Natural and alternative health,Political news and commentary,Addressable,macro,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Food Democracy Now,fooddemocracynow.org,source,Nutrition and diet,Political news and commentary,Addressable,micro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+Sustainable Pulse,sustainablepulse.com,source,Nutrition and diet,Environmental and climate health,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Babes and Babies ,instagram.com/mahamoms,source,Natural and alternative health,,Addressable,,educational,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Fed Up with School Lunch,fedupmovie.com,source,Nutrition and diet,Political news and commentary,Organic,,lifestyle,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Homeschool Health Summit,homeschoolhealthsummit.com,source,Natural and alternative health,Faith and values,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Home School Mom ,thehomeschoolmom.com/health,source,Natural and alternative health,Faith and values,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Konos ,konos.com,source,Faith and values,Natural and alternative health,Organic,,community,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Wellness Wednesday Homeschool FB,facebook.com/groups/homeschoolwellness,source,Natural and alternative health,,Organic,,educational,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Generation Rescue  (Jenny McCarthy),generationrescue.org,source,Vaccines and immunization,Natural and alternative health,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,3,2,0,3,8,0,0,GOP
+Food Babe  (Vani Hari),foodbabe.com,both,Nutrition and diet,Natural and alternative health,Addressable,macro,lifestyle,0,0,0,1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+The Organic Authority,organicauthority.com,source,Nutrition and diet,Environmental and climate health,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Nourished Kitchen,nourishedkitchen.com,source,Nutrition and diet,Natural and alternative health,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Weston A. Price Foundation FB,facebook.com/WAPFoundation,source,Nutrition and diet,Natural and alternative health,Organic,,lifestyle,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,1,2,0,3,6,0,0,GOP
+Non-GMO Project,nongmoproject.org/blog,source,Nutrition and diet,Environmental and climate health,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Kitchen Stewardship,kitchenstewardship.com,source,Nutrition and diet,Faith and values,Addressable,,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+100 Days of Real Food,100daysofrealfood.com,source,Nutrition and diet,,Addressable,micro,lifestyle,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,1,3,10,0,1,GOP
+The Wellness Way  (Patrick Flynn),thewellnessway.com,source,Natural and alternative health,,Sponsorship,,educational,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Health Ranger Report  (Mike Adams),brighteon.com/healthranger,both,Natural and alternative health,Vaccines and immunization,Organic,macro,educational,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,3,3,3,10,1,1,GOP
+Brighteon ,brighteon.com,source,Natural and alternative health,Vaccines and immunization,Organic,,educational,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Real Food For Real Kids ,facebook.com/groups/realfoodforrealkids,source,Nutrition and diet,,Organic,,lifestyle,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Natural Living Family ,facebook.com/groups/naturallivingfamily,source,Natural and alternative health,,Organic,,educational,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Trim Healthy Mama,trimhealthymama.com,source,Nutrition and diet,Faith and values,Organic,,lifestyle,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Homesteading Family,homesteadingfamily.com,source,Nutrition and diet,Natural and alternative health,Addressable,,lifestyle,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Healthy Home Economist,thehealthyhomeeconomist.com,source,Natural and alternative health,Nutrition and diet,Addressable,,educational,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Ashley Evelyn ,instagram.com/ashleyevelyn,source,Natural and alternative health,Political news and commentary,Addressable,,educational,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Live Blessed or Stressed ,instagram.com/liveblessedorstressed,source,Natural and alternative health,Faith and values,Addressable,,educational,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+The Mamas Network ,instagram.com/themamasnetwork,source,Natural and alternative health,,Addressable,,educational,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Real Food RD  (Rylee Hackley),instagram.com/therealfoodrd,source,Nutrition and diet,,Addressable,,lifestyle,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,0,3,9,0,0,GOP
+Robert Malone  (Who is Robert Malone),rwmalonemd.substack.com,both,Vaccines and immunization,Political news and commentary,Organic,macro,educational,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1,0,0,0,0,0,0,1,1,3,3,8,1,1,GOP
+Alex Berenson  (Unreported Truths),alexberenson.substack.com,both,Vaccines and immunization,Political news and commentary,Sponsorship,macro,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,2,2,3,3,10,1,1,GOP
+Pierre Kory  (Fight the System),pierrekory.substack.com,both,Vaccines and immunization,Natural and alternative health,Organic,macro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,2,3,3,9,1,1,GOP
+Paul Marik  (FLCCC Alliance),paulmarik.substack.com,source,Vaccines and immunization,Natural and alternative health,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,2,0,3,6,0,0,GOP
+Jessica Rose  (Unacceptable Jessica),jessicar.substack.com,source,Vaccines and immunization,Science and medical research,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Igor Chudov  (Igor's Newsletter),igortchudov.substack.com,source,Vaccines and immunization,,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Naomi Wolf  (DailyClout),naomiwolf.substack.com,both,Vaccines and immunization,Political news and commentary,Sponsorship,macro,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Matthew Crawford  (Rounding the Earth),roundingtheearth.substack.com,source,Vaccines and immunization,Political news and commentary,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Emerald Robinson  (The Absolute Truth),emeraldrobin.substack.com,source,Political news and commentary,Vaccines and immunization,Sponsorship,,activist,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+David Zweig,davidzweig.substack.com,source,Vaccines and immunization,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Sage Hana,sagehana.substack.com,both,Vaccines and immunization,Natural and alternative health,Organic,micro,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,1,2,2,3,8,1,1,GOP
+A Midwestern Doctor,midwesterndoctor.substack.com,source,Natural and alternative health,Vaccines and immunization,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,2,0,3,6,0,0,GOP
+Courageous Discourse  (Bhattacharya),couragediscourse.substack.com,source,Vaccines and immunization,Health policy,Sponsorship,macro,educational,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,1,2,2,2,3,9,1,1,BOTH
+Karl Denninger  (Market Ticker Health),market-ticker.org,source,Vaccines and immunization,Political news and commentary,Organic,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,3,0,3,7,0,0,GOP
+Your Local Epidemiologist  (Jetelina),yourlocalepidemiologist.substack.com,source,Vaccines and immunization,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,0,3,8,0,0,DEM
+Stat of the Week  (Bob Wachter),bobwachter.substack.com,source,Science and medical research,Health policy,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,2,3,0,3,8,0,0,DEM
+Not Boring Health  (Packy McCormick),notboring.co,source,Health technology and innovation,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+Tomas Pueyo  (Uncharted Territories),tomaspueyo.substack.com,source,Science and medical research,Political news and commentary,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,2,2,0,3,7,0,0,BOTH
+Elemental Health  (Elad Gil),blog.eladgil.com,source,Health technology and innovation,Longevity and anti-aging,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+The Incubator  (Neonatal Research),theincubator.substack.com,source,Science and medical research,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,2,3,0,3,8,0,0,DEM
+Absolutely Maybe  (Lisa Bero),absolutelymaybe.substack.com,source,Science and medical research,Health policy,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,2,3,0,3,8,0,0,DEM
+Peter Attia  (Outlive),peterattiamd.substack.com,source,Longevity and anti-aging,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+Nir Eyal  (Indistractable Health),nireyal.substack.com,source,Longevity and anti-aging,,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+LifeOmic  (Longevity Science),lifeomics.substack.com,source,Longevity and anti-aging,Science and medical research,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+The Prism  (Health Innovation),theprism.substack.com,source,Health technology and innovation,Health policy,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,2,2,0,3,7,0,0,BOTH
+Heartbeat Health AI,heartbeathealth.substack.com,source,Health technology and innovation,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,3,0,3,8,0,0,BOTH
+Rock Health  (Weekly Briefing),rockhealth.substack.com,source,Health technology and innovation,Health policy,Sponsorship,macro,educational,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,2,2,2,3,9,1,1,BOTH
+Health Wonk Review,healthwonkreview.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,0,3,7,0,0,DEM
+Drew Altman  (KFF Perspective),drewaltman.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,0,3,7,0,0,DEM
+Margot Sanger-Katz  (NYT Health),sangerkatz.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,0,3,7,0,0,DEM
+Larry Levitt  (Health Policy Notes),larrylev.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,0,3,7,0,0,DEM
+Sarah Kliff  (Health Costs),sarahkliff.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,2,2,0,3,7,0,0,DEM
+Bob Herman  (Health Business),bobherman.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,2,2,0,3,7,0,0,BOTH
+Dylan Scott  (Vox Health),dylanscott.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,2,2,0,3,7,0,0,DEM
+Health Care Upside Down  (Uwe Reinhardt legacy),healthupside.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1,2,2,0,3,7,0,0,DEM
+The Health Care Blog  (Matthew Holt),thehealthcareblog.substack.com,source,Health policy,Health technology and innovation,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,2,2,0,3,7,0,0,BOTH
+Covering Health  (AHCJ),coveringhealth.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,0,3,7,0,0,DEM
+Reframe Health  (Dave Chase),davechase.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Public  (Michael Shellenberger),public.substack.com,source,Political news and commentary,Vaccines and immunization,Sponsorship,,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Dispatches from Exile  (Rod Dreher),roddreher.substack.com,source,Faith and values,Political news and commentary,Sponsorship,,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,0,3,8,0,0,BOTH
+The Dispatch Newsletter,thedispatch.substack.com,source,Political news and commentary,Faith and values,Sponsorship,,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Unherd  (Freddie deBoer),freddie.substack.com,source,Political news and commentary,,Sponsorship,,entertainment,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,2,2,0,2,6,0,0,BOTH
+Do No Harm  (Stanley Goldfarb),donoharmmedicine.substack.com,source,Health policy,,Sponsorship,micro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,1,3,9,0,1,GOP
+Nate Silver  (Silver Bulletin),natesilver.substack.com,source,Political news and commentary,,Sponsorship,,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,0,2,2,0,2,6,0,0,BOTH
+The Lever  (David Sirota),levernews.substack.com,source,Worker and economic issues,Political news and commentary,Sponsorship,macro,activist,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,2,2,2,3,9,1,1,BOTH
+The Daily Poster  (David Sirota),dailyposter.substack.com,source,Political news and commentary,Worker and economic issues,Sponsorship,macro,activist,0,1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,2,2,2,3,9,1,1,BOTH
+Bad Faith  (Briahna Joy Gray),badfaithpodcast.substack.com,source,Political news and commentary,Health policy,Sponsorship,macro,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,3,2,3,10,1,1,DEM
+More Perfect Union ,perfectunion.substack.com,source,Worker and economic issues,Political news and commentary,Sponsorship,macro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,2,2,2,3,9,1,1,BOTH
+Healthcare Worker Stories ,nationalnurses.substack.com,source,Worker and economic issues,Health policy,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,2,3,0,3,8,0,0,DEM
+People's Action Health,peoplesaction.substack.com,source,Health policy,Worker and economic issues,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,2,3,0,3,8,0,0,DEM
+Health Justice Monitor,healthjusticemonitor.substack.com,source,Health policy,,Sponsorship,micro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,2,2,1,3,8,0,1,DEM
+Physicians for Social Responsibility,psr.substack.com,source,Health policy,Environmental and climate health,Sponsorship,micro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,1,3,9,0,1,DEM
+Mere Orthodoxy,mereorthodoxy.substack.com,source,Faith and values,,Sponsorship,,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,0,3,8,0,0,BOTH
+The Pillar ,pillarcatholic.substack.com,source,Faith and values,Political news and commentary,Sponsorship,,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,0,3,8,0,0,BOTH
+Comment Magazine  (Cardus),cardus.substack.com,source,Faith and values,Political news and commentary,Sponsorship,,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,0,3,8,0,0,BOTH
+Plough Quarterly,plough.substack.com,source,Faith and values,Worker and economic issues,Sponsorship,,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,0,3,8,0,0,DEM
+Faithful Politics,faithfulpolitics.substack.com,source,Faith and values,Political news and commentary,Sponsorship,,community,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,3,0,3,8,0,0,BOTH
+Mark Hyman  (Food Fix),drhyman.substack.com,source,Natural and alternative health,Nutrition and diet,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,2,2,0,2,6,0,0,BOTH
+Dr. Will Cole  (Inflammation Fix),drwillcole.substack.com,source,Natural and alternative health,Nutrition and diet,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+The Nourished Child  (Jill Castle),thenourishedchild.substack.com,source,Nutrition and diet,,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Nutrition with Judy  (Judy Cho),judycho.substack.com,both,Nutrition and diet,,Sponsorship,macro,lifestyle,0,1,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,3,3,3,11,1,1,GOP
+Dr. Gabrielle Lyon  (Protein Matters),drgabriellelyon.substack.com,source,Nutrition and diet,Fitness and physical performance,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,2,2,0,1,5,0,0,GOP
+Food Politics  (Marion Nestle),foodpolitics.substack.com,source,Nutrition and diet,Political news and commentary,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,2,3,0,1,6,0,0,DEM
+Grain Brain  (David Perlmutter),davidperlmutter.substack.com,source,Nutrition and diet,Natural and alternative health,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Metabolic Mind  (Baszucki Group),metabolicmind.substack.com,source,Natural and alternative health,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,2,2,0,3,7,0,0,BOTH
+The Carnivore Bar ,carnivorebar.substack.com,source,Nutrition and diet,,Sponsorship,,lifestyle,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Hot Take  (Mary Heglar & Amy Westervelt),hottakepod.substack.com,source,Environmental and climate health,Political news and commentary,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,0,3,8,0,0,DEM
+Heated  (Emily Atkin),heated.world,source,Environmental and climate health,Political news and commentary,Sponsorship,micro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,1,3,9,0,1,DEM
+The Climate Crisis  (Bill McKibben),billmckibben.substack.com,source,Environmental and climate health,Political news and commentary,Sponsorship,macro,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,2,3,10,1,1,DEM
+Drilled  (Amy Westervelt),drilled.substack.com,source,Environmental and climate health,Political news and commentary,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,3,0,3,8,0,0,DEM
+Health & Climate  (Medical Society),healthclimate.substack.com,source,Environmental and climate health,Health policy,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,0,3,8,0,0,DEM
+Rural Health Beat,ruralhealthbeat.substack.com,source,Health policy,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+The Rural Blog ,theruralblog.substack.com,source,Political news and commentary,Health policy,Sponsorship,,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Farm Policy News,farmpolicynews.substack.com,source,Political news and commentary,,Sponsorship,,activist,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,3,8,0,0,GOP
+Medicare Decoded,medicaredecoded.substack.com,source,Medicare and senior health,,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,3,0,3,8,0,0,DEM
+The Senior Report,seniorReport.substack.com,source,Medicare and senior health,Health policy,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,3,0,3,8,0,0,DEM
+Aging Well  (Dr. Leslie Kernisan),leslieker.substack.com,source,Medicare and senior health,Science and medical research,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2,3,0,3,8,0,0,DEM
+Prescription Drug Watch,rxwatch.substack.com,source,Health policy,Medicare and senior health,Sponsorship,,educational,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1,2,2,0,3,7,0,0,BOTH
+Dr. CÃ©line Gounder ,x.com/celinegounder,influencer,Science and medical research,Health policy,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,BOTH
+Rural Health Voices ,instagram.com/nrha,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+American Farm Bureau ,instagram.com/americanfarmbureaufederation,influencer,Political news and commentary,,Addressable,macro,educational,0,0,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Dr. Howard Luks ,x.com/hjluks,influencer,Science and medical research,,Addressable,micro,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,2,10,1,1,GOP
+Dr. Danielle Jones  (Mama Doctor Jones),instagram.com/mamadoctorjones,influencer,Science and medical research,,Addressable,macro,educational,0,0,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Dave Chase  (Health Rosetta),x.com/chasedave,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Wendell Potter ,x.com/wendellpotter,influencer,Health policy,,Addressable,macro,activist,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,3,3,11,1,1,BOTH
+Marshall Allen  (ProPublica Health),x.com/marshall_allen,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Ge Bai  (Hopkins Health Economics),x.com/gebai_jhu,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,3,2,3,11,1,1,BOTH
+Marty Makary  (Johns Hopkins),x.com/martymakary,influencer,Health policy,Science and medical research,Addressable,macro,educational,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+Leah Binder  (Leapfrog Group),x.com/leahbinder,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Elisabeth Rosenthal ,x.com/erosenthal,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,3,2,3,11,1,1,BOTH
+Matt Walsh ,x.com/mattwalshblog,influencer,Political news and commentary,Faith and values,Addressable,mega,activist,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Lila Rose ,instagram.com/lilagracerose,influencer,Faith and values,Political news and commentary,Addressable,macro,activist,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Kirk Cameron ,instagram.com/kirkcameron,influencer,Faith and values,,Addressable,macro,lifestyle,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Dr. Sebastian Gorka ,x.com/sebgorka,influencer,Political news and commentary,,Addressable,macro,activist,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Allie Beth Stuckey ,instagram.com/alliebeths,influencer,Faith and values,Political news and commentary,Addressable,macro,activist,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Abby Johnson ,instagram.com/abbyjohnsonpro,influencer,Faith and values,Political news and commentary,Addressable,macro,activist,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Dr. Jeff Barke ,x.com/drjeffbarke,influencer,Health policy,Vaccines and immunization,Addressable,micro,activist,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+Kelly Brogan MD ,instagram.com/kellybroganmd,influencer,Natural and alternative health,Vaccines and immunization,Addressable,macro,activist,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+Mama Natural  (Genevieve Howland),instagram.com/mamanatural,influencer,Natural and alternative health,Nutrition and diet,Addressable,mega,lifestyle,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+The Feeding Doctor  (Katja Rowell),instagram.com/thefeedingdoctor,influencer,Nutrition and diet,,Addressable,micro,educational,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Feeding Littles ,instagram.com/feedinglittles,influencer,Nutrition and diet,,Addressable,macro,lifestyle,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Steph Gaudreau  (Harder to Kill),instagram.com/stephgaudreau,influencer,Fitness and physical performance,Nutrition and diet,Addressable,macro,lifestyle,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,2,11,1,1,GOP
+Lily Nichols  (Real Food for Pregnancy),instagram.com/lilynicholsrdn,influencer,Nutrition and diet,,Addressable,macro,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Clean Label Project ,instagram.com/cleanlabelproject,influencer,Nutrition and diet,Environmental and climate health,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Moms Across America  (Zen Honeycutt),instagram.com/momsacrossamerica,influencer,Natural and alternative health,Political news and commentary,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Robb Wolf ,instagram.com/dasrobbwolf,influencer,Nutrition and diet,Natural and alternative health,Addressable,macro,educational,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+Dr. Tenpenny ,instagram.com/drtenpenny,influencer,Vaccines and immunization,,Organic,macro,activist,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,3,3,3,10,1,1,GOP
+Naturally Nourished  (Ali Miller),instagram.com/aliMillerRD,influencer,Nutrition and diet,Natural and alternative health,Addressable,macro,lifestyle,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+MAHA Mom  (Rebecca Kleefisch),instagram.com/mahamom,influencer,Natural and alternative health,Political news and commentary,Addressable,micro,activist,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Balanced Bites  (Diane Sanfilippo),instagram.com/balancedbites,influencer,Nutrition and diet,,Addressable,macro,lifestyle,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Well Fed  (Melissa Joulwan),instagram.com/melicious,influencer,Nutrition and diet,Fitness and physical performance,Addressable,micro,lifestyle,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,0,0,0,3,2,2,3,10,1,1,GOP
+Homesteaders of America ,instagram.com/homesteadersofamerica,influencer,Natural and alternative health,,Addressable,macro,lifestyle,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+The Paleo Mom  (Sarah Ballantyne),instagram.com/thepaleomom,influencer,Nutrition and diet,Natural and alternative health,Addressable,macro,educational,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Katie Wells  (Wellness Mama),tiktok.com/@wellnessmama,influencer,Natural and alternative health,Nutrition and diet,Addressable,macro,lifestyle,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Robyn Openshaw  (Green Smoothie Girl),instagram.com/greensmoothiegirl,influencer,Natural and alternative health,,Addressable,macro,lifestyle,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Trina Holden  (Real Food Living),instagram.com/trinaholden,influencer,Nutrition and diet,Faith and values,Addressable,micro,lifestyle,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Alex Lawson  (Social Security Works),x.com/alexlawson,influencer,Health policy,Worker and economic issues,Addressable,micro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,3,2,2,3,10,1,1,BOTH
+Bernie Sanders ,instagram.com/berniesanders,influencer,Political news and commentary,Worker and economic issues,Addressable,mega,activist,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,3,3,11,1,1,BOTH
+Ro Khanna ,x.com/rokhanna,influencer,Health policy,Worker and economic issues,Addressable,macro,activist,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,3,3,11,1,1,BOTH
+AFSCME ,instagram.com/afscme,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+SEIU ,instagram.com/seiu,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Patient Rights Advocate ,x.com/patientadvocate,influencer,Health policy,,Addressable,micro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,3,2,2,3,10,1,1,BOTH
+Bryan Johnson ,x.com/bryan_johnson,influencer,Longevity and anti-aging,Health technology and innovation,Addressable,mega,lifestyle,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Balaji Srinivasan ,x.com/balajis,influencer,Health technology and innovation,Political news and commentary,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Michael Levin ,x.com/drmichaellevin,influencer,Science and medical research,Health technology and innovation,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,3,2,2,3,10,1,1,BOTH
+George Church ,x.com/geochurch,influencer,Science and medical research,Health technology and innovation,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,BOTH
+Aubrey de Grey ,x.com/aubreydegrey,influencer,Longevity and anti-aging,Science and medical research,Addressable,macro,educational,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Lex Fridman ,x.com/lexfridman,influencer,Health technology and innovation,Science and medical research,Addressable,mega,educational,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Sam Altman ,x.com/sama,influencer,Health technology and innovation,,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Vinod Khosla ,x.com/vkhosla,influencer,Health technology and innovation,Health policy,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Casey Means ,x.com/caseymeans,influencer,Longevity and anti-aging,Health technology and innovation,Addressable,macro,lifestyle,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Calley Means ,x.com/calleymeans,influencer,Health policy,Natural and alternative health,Addressable,macro,activist,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,3,2,3,1,9,1,1,GOP
+Marc Andreessen ,x.com/pmarca,influencer,Health technology and innovation,,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Garry Tan ,x.com/garrytan,influencer,Health technology and innovation,,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,3,3,12,1,1,BOTH
+Bart Kay ,x.com/bart_kay_nutrition,influencer,Nutrition and diet,Vaccines and immunization,Organic,micro,activist,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1,3,2,3,9,1,1,GOP
+Anthony Chaffee MD ,instagram.com/anthonychaffeemd,influencer,Nutrition and diet,,Addressable,macro,educational,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Carnivore Aurelius ,instagram.com/carnivoreaureli,influencer,Nutrition and diet,Fitness and physical performance,Addressable,macro,lifestyle,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Steak and Butter Gal ,instagram.com/steakandbuttergal,influencer,Nutrition and diet,,Addressable,macro,lifestyle,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Ken Berry MD  (Keep it Simple),instagram.com/kendberry.md,influencer,Nutrition and diet,Natural and alternative health,Addressable,mega,educational,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+Dr. Eric Berg ,tiktok.com/@drericberg,influencer,Nutrition and diet,Natural and alternative health,Addressable,mega,educational,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+Frank Tufano ,instagram.com/franktufano,influencer,Nutrition and diet,,Addressable,micro,lifestyle,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Dr. Amy Myers ,instagram.com/dramymyers,influencer,Natural and alternative health,,Addressable,macro,lifestyle,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Dr. Jolene Brighten  ,instagram.com/drjolenebrighten,influencer,Natural and alternative health,,Addressable,macro,educational,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Aviva Romm MD ,instagram.com/avivaromm,influencer,Natural and alternative health,,Addressable,macro,educational,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,3,3,3,2,11,1,1,BOTH
+The Holistic Psychologist  (Dr. Nicole LePera),instagram.com/the.holistic.psychologist,influencer,Natural and alternative health,,Addressable,mega,educational,0,0,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,3,2,3,2,10,1,1,BOTH
+MindBodyGreen ,instagram.com/mindbodygreen,influencer,Natural and alternative health,,Addressable,mega,lifestyle,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,3,3,3,2,11,1,1,BOTH
+Sakara Life ,instagram.com/sakaralife,influencer,Nutrition and diet,Natural and alternative health,Addressable,macro,lifestyle,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,3,3,3,2,11,1,1,BOTH
+Essential Oils ,instagram.com/doterra,influencer,Natural and alternative health,Supplements and vitamins,Addressable,mega,lifestyle,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Young Living ,instagram.com/youngliving,influencer,Natural and alternative health,Supplements and vitamins,Addressable,mega,lifestyle,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Herbal Academy ,instagram.com/theherbalacademy,influencer,Natural and alternative health,,Addressable,macro,educational,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Organic Olivia ,instagram.com/organicolivia,influencer,Natural and alternative health,Nutrition and diet,Addressable,macro,lifestyle,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Fully Raw Kristina ,instagram.com/fullyrawkristina,influencer,Nutrition and diet,Natural and alternative health,Addressable,macro,lifestyle,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Dr. Sebi Community ,instagram.com/drsebiofficial,influencer,Natural and alternative health,,Addressable,macro,community,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+The Herbal Spoon ,instagram.com/theherbalspoon,influencer,Natural and alternative health,,Addressable,micro,lifestyle,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Essentially Elana ,instagram.com/essentially_elana,influencer,Natural and alternative health,,Addressable,micro,lifestyle,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Plant Based News ,tiktok.com/@plantbasednews,influencer,Nutrition and diet,Environmental and climate health,Addressable,macro,activist,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,3,3,3,2,11,1,1,BOTH
+Dr. Zach Bush ,instagram.com/zachbushmd,influencer,Natural and alternative health,Environmental and climate health,Addressable,macro,educational,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Kitchen Witch ,tiktok.com/@kitchenwitch,influencer,Natural and alternative health,,Addressable,micro,lifestyle,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Aaron Siri  (ICAN),x.com/aaronsiri,influencer,Vaccines and immunization,,Addressable,macro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Mary Holland  (CHD),x.com/maryhollandlaw,influencer,Vaccines and immunization,Political news and commentary,Addressable,micro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Meryl Nass MD ,x.com/merylnass,influencer,Vaccines and immunization,,Addressable,macro,activist,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Harvey Risch ,x.com/HarveyRisch,influencer,Vaccines and immunization,Science and medical research,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Rand Paul ,x.com/randpaul,influencer,Political news and commentary,Health policy,Addressable,mega,activist,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Thomas Massie ,x.com/thomasmassie,influencer,Political news and commentary,Health policy,Addressable,macro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,3,3,3,3,12,1,1,GOP
+Dr. Sherri Tenpenny ,x.com/busydrtenpenny,influencer,Vaccines and immunization,,Organic,macro,activist,0,0,0,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,3,3,10,1,1,GOP
+Stephanie Seneff ,x.com/stephanieseneff,influencer,Vaccines and immunization,Science and medical research,Organic,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,2,3,9,1,1,GOP
+Dr. Carrie Madej ,x.com/dr_carrie_madej,influencer,Vaccines and immunization,,Organic,macro,activist,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,3,3,3,10,1,1,GOP
+Liz Wheeler ,x.com/lizwheeler,influencer,Political news and commentary,Vaccines and immunization,Addressable,macro,activist,0,0,0,0,1,0,1,0,0,1,0,0,0,0,0,1,1,0,0,1,0,0,1,0,0,0,0,0,0,3,2,3,3,11,1,1,GOP
+Health Freedom Defense Fund ,x.com/hfdf_org,influencer,Vaccines and immunization,,Addressable,micro,activist,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,3,3,2,3,11,1,1,GOP
+Vaccine Safety Research Foundation ,x.com/vsrf_official,influencer,Vaccines and immunization,,Organic,micro,activist,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,3,2,3,9,1,1,GOP
+Ady Barkan  (Be a Hero),x.com/adybarkan,influencer,Health policy,,Addressable,macro,activist,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,3,12,1,1,DEM
+Nina Turner ,x.com/ninaturner,influencer,Political news and commentary,Health policy,Addressable,macro,activist,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,3,12,1,1,DEM
+AOC ,instagram.com/ocasio2018,influencer,Political news and commentary,Health policy,Addressable,mega,activist,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,3,12,1,1,DEM
+Dr. Abdul El-Sayed ,x.com/abdulelsayed,influencer,Health policy,,Addressable,macro,educational,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,3,3,3,3,12,1,1,DEM
+Physicians for a National Health Program ,x.com/pnhpnews,influencer,Health policy,,Addressable,macro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,3,3,12,1,1,DEM
+Briahna Joy Gray ,x.com/brianajoy,influencer,Political news and commentary,Health policy,Addressable,macro,activist,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,3,12,1,1,DEM
+Ryan Grim  (The Intercept),x.com/ryangrim,influencer,Political news and commentary,Health policy,Addressable,macro,activist,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,3,3,3,12,1,1,DEM
+Healthcare-NOW ,x.com/healthcare_now,influencer,Health policy,,Addressable,micro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,3,2,3,11,1,1,DEM
+Rev. William Barber II ,instagram.com/revdrbarber,influencer,Faith and values,Political news and commentary,Addressable,mega,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Lisa Sharon Harper  (Freedom Road ),instagram.com/lisasharhar,influencer,Faith and values,Political news and commentary,Addressable,macro,activist,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Latasha Morrison (Be the Bridge),instagram.com/latashamorrison,influencer,Faith and values,,Addressable,macro,community,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Christina Edmondson  ,instagram.com/chris_edmondson,influencer,Faith and values,Political news and commentary,Addressable,macro,community,0,1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Jemar Tisby ,instagram.com/jemartisby,influencer,Faith and values,Political news and commentary,Addressable,macro,educational,0,0,0,0,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Black Girl Health ,instagram.com/blackgirlhealth,influencer,Health policy,,Addressable,macro,educational,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Dr. UchÃ© Blackstock ,instagram.com/ucheblackstock,influencer,Health policy,,Addressable,macro,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,3,3,3,3,12,1,1,DEM
+Dr. Oni Blackstock ,x.com/oniblackstock,influencer,Health policy,,Addressable,micro,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+Unwell Network ,tiktok.com/@unwellnetwork,influencer,Health policy,,Addressable,macro,educational,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Chika Stacy Oriuwa  ,instagram.com/chikaoriuwa,influencer,Health policy,,Addressable,macro,educational,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+The Movement for Black Lives Health,instagram.com/mvmt4bl,influencer,Health policy,Political news and commentary,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Bettina Judd  ,instagram.com/bettinajudd,influencer,Health policy,Faith and values,Addressable,micro,educational,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,2,3,11,1,1,DEM
+National Birth Equity Collaborative,instagram.com/birthequity,influencer,Health policy,,Addressable,macro,activist,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,3,3,3,12,1,1,DEM
+Sara Nelson (AFA Union),x.com/saranelsonafa,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Shawn Fain (UAW),x.com/shawnfain_uaw,influencer,Worker and economic issues,,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Liz Shuler (AFL-CIO),x.com/lizshuler,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Harold Schaitberger (IAFF),x.com/iaff,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+UFCW ,instagram.com/ufcw,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Teamsters ,instagram.com/teamsters,influencer,Worker and economic issues,,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Jobs with Justice ,x.com/jwjnational,influencer,Worker and economic issues,Health policy,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Working Families Party ,x.com/workingfamilies,influencer,Political news and commentary,Worker and economic issues,Addressable,macro,activist,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,3,3,3,3,12,1,1,BOTH
+Ashish Jha ,x.com/ashishkjha,influencer,Health policy,Science and medical research,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Bob Wachter ,x.com/bobwachter,influencer,Health policy,Science and medical research,Addressable,mega,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Vivek Murthy ,x.com/surgeon_general,influencer,Health policy,Science and medical research,Addressable,mega,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,3,2,3,3,11,1,1,DEM
+Mandy Cohen ,x.com/mandycohenmd,influencer,Health policy,Science and medical research,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Hala Mazur ,instagram.com/halamazur,influencer,Health technology and innovation,,Addressable,micro,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,3,3,2,3,11,1,1,BOTH
+Dr. Atul Gawande ,x.com/atulgawande,influencer,Health policy,Science and medical research,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Andy Slavitt ,x.com/aslavitt,influencer,Health policy,,Addressable,mega,educational,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,3,3,11,1,1,DEM
+Farzad Mostashari ,x.com/farzad_md,influencer,Health technology and innovation,Health policy,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Zeke Emanuel ,x.com/zekemanuel,influencer,Health policy,,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Dave deBronkart ,x.com/epatientdave,influencer,Health policy,Health technology and innovation,Addressable,micro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,3,2,3,11,1,1,BOTH
+AARP ,x.com/aarp,influencer,Medicare and senior health,Health policy,Addressable,mega,educational,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3,3,12,1,1,DEM
+Medicare Rights Center ,x.com/medicareRights,influencer,Medicare and senior health,Health policy,Addressable,macro,educational,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3,3,12,1,1,DEM
+Social Security Works ,x.com/ssworks,influencer,Medicare and senior health,Worker and economic issues,Addressable,macro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1,3,2,3,2,10,1,1,BOTH
+Nancy Altman ,x.com/nancyaltman,influencer,Medicare and senior health,Worker and economic issues,Addressable,macro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,3,2,3,2,10,1,1,BOTH
+Protect Our Care ,x.com/protectourcare,influencer,Health policy,,Addressable,macro,activist,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,3,2,3,3,11,1,1,DEM
+Dr. Howard Fillit ,x.com/howard_fillit,influencer,Medicare and senior health,Science and medical research,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,2,3,11,1,1,DEM
+Next Avenue ,x.com/nextavenue,influencer,Medicare and senior health,,Addressable,macro,educational,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,3,3,2,11,1,1,DEM
+Kaiser Health News ,x.com/khnews,influencer,Health policy,Medicare and senior health,Addressable,mega,educational,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,3,2,3,3,11,1,1,DEM
+Dr. Tedros (WHO),x.com/drtedros,influencer,Health policy,Environmental and climate health,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+"Dr. Tom Frieden (""Resolve to Save Lives"")",x.com/tomfrieden,influencer,Health policy,Science and medical research,Addressable,mega,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+Dr. Peter Hotez ,x.com/peterhotez,influencer,Science and medical research,Vaccines and immunization,Addressable,mega,educational,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+Dr. Richard Besser (Robert Wood Johnson Foundation),x.com/drrichardbesser,influencer,Health policy,,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,3,2,3,3,11,1,1,DEM
+Dr. Paul Farmer legacy ,x.com/pih,influencer,Health policy,Environmental and climate health,Addressable,mega,educational,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,3,3,3,3,12,1,1,DEM
+Laurie Garrett ,x.com/laurieinnyc,influencer,Science and medical research,Environmental and climate health,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+Seth Berkley ,x.com/sethberkley,influencer,Health policy,Vaccines and immunization,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+Bill Gates ,x.com/billgates,influencer,Health policy,Environmental and climate health,Addressable,mega,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,3,3,3,12,1,1,DEM
+Chelsea Clinton ,x.com/chelseaclinton,influencer,Health policy,Environmental and climate health,Addressable,mega,educational,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,3,2,3,3,11,1,1,DEM
+Gregg Gonsalves ,x.com/gregggonsalves,influencer,Health policy,Environmental and climate health,Addressable,macro,activist,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+Saad Omer ,x.com/saadomer,influencer,Science and medical research,Vaccines and immunization,Addressable,macro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,3,3,12,1,1,DEM
+Amy Maxmen ,x.com/amymaxmen,influencer,Science and medical research,Environmental and climate health,Addressable,micro,educational,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,2,3,11,1,1,DEM
