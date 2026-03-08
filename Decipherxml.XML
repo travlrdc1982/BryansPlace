@@ -667,7 +667,7 @@ body, .survey-body, .main-content {
   flex-wrap: wrap; margin-bottom: 4px;
 }
 .nm-freq-btn-v2 {
-  flex: 1 1 auto; min-width: 0;
+  flex: 1 1 0; min-width: 0;
   padding: 14px 6px; border: 2px solid transparent; border-radius: 20px;
   font-family: Inter, sans-serif;
   font-size: 12px; font-weight: 600; color: #444;
@@ -675,8 +675,8 @@ body, .survey-body, .main-content {
   transition: border-color .15s, filter .15s, transform .1s;
   user-select: none; line-height: 1.3;
 }
-.nm-freq-btn-v2[data-col="c1"] { background: #E8E5E0; color: #666; }
-.nm-freq-btn-v2[data-col="c2"] { background: #DDDAD4; color: #555; }
+.nm-freq-btn-v2[data-col="c1"] { background: #DDDAD4; color: #555; }
+.nm-freq-btn-v2[data-col="c2"] { background: #E8E5E0; color: #666; }
 .nm-freq-btn-v2[data-col="c3"] { background: #E2E8B8; color: #555; }
 .nm-freq-btn-v2[data-col="c4"] { background: #C8DEAA; color: #444; }
 .nm-freq-btn-v2[data-col="c5"] { background: #9DC47E; color: #fff; }
@@ -5490,24 +5490,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Political news and commentary</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -5658,8 +5654,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -5676,11 +5670,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -5698,13 +5690,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -6117,24 +6109,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Health policy (insurance, drug prices, Medicare reform)</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -6285,8 +6273,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -6303,11 +6289,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -6325,13 +6309,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -6747,24 +6731,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Medicare and senior health issues</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -6915,8 +6895,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -6933,11 +6911,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -6955,13 +6931,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -7353,24 +7329,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Natural and alternative health</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -7521,8 +7493,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -7539,11 +7509,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -7561,13 +7529,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -7975,24 +7943,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Nutrition and diet</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -8143,8 +8107,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -8161,11 +8123,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -8183,13 +8143,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -8733,18 +8693,8 @@ function nmGetRows(qLabel){
 (function(){
   var qLabel = 'NM_SRC_T6';
   var oeLabel = 'NM_SRC_T6_OE';
-  var items = [
-    {r:'r1', name:'Huberman Lab'},
-    {r:'r2', name:'Examine.com'},
-    {r:'r3', name:'Nootropics Depot'},
-    {r:'r4', name:'Life Extension Foundation'},
-    {r:'r5', name:'ConsumerLab'},
-    {r:'r6', name:'LabDoor'},
-    {r:'r7', name:'Tim Ferriss Show'},
-    {r:'r8', name:'The Supplement Review Podcast'},
-    {r:'r9', name:'Designs for Health Podcast'},
-    {r:'r10', name:'Fullscript Insights'}
-  ];
+  var items = nmGetRows(qLabel);
+  if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
   var freqBtns = document.getElementById('nm-freq-btns');
@@ -9167,24 +9117,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Vaccines and immunization</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -9335,8 +9281,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -9353,11 +9297,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -9375,13 +9317,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -9754,24 +9696,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Fitness and physical performance</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -9922,8 +9860,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -9940,11 +9876,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -9962,13 +9896,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -10332,24 +10266,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Longevity and anti-aging</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -10500,8 +10430,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -10518,11 +10446,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -10540,13 +10466,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -10913,24 +10839,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Science and medical research</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -11081,8 +11003,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -11099,11 +11019,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -11121,13 +11039,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -11512,24 +11430,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Faith and values</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -11680,8 +11594,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -11698,11 +11610,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -11720,13 +11630,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -12105,24 +12015,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Worker and economic issues</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -12273,8 +12179,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -12291,11 +12195,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -12313,13 +12215,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -12687,24 +12589,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Health technology and innovation</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -12855,8 +12753,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -12873,11 +12769,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -12895,13 +12789,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
@@ -13269,24 +13163,20 @@ function nmGetRows(qLabel){
   </div>
   <div class="nm-card">
     <div class="nm-topic-badge">Environmental and climate health</div>
-    <div class="nm-q-title">When was the last time you used this source?</div>
-    <div class="nm-q-subtitle">One at a time &mdash; tap your answer and the next card appears automatically.</div>
+    <div class="nm-q-title">When was the last time you used this source for news and information on this topic?</div>
+    <div class="nm-q-subtitle">If you&#x2019;ve never heard of it below, don&#x2019;t worry &#x2014; you&#x2019;re definitely not alone. The next source slides in as soon as you answer. No time to waste &#x2014; keep swiping!</div>
     <div class="nm-swipe-wrap" id="nm-swipe-wrap">
       <div class="nm-swipe-counter" id="nm-swipe-counter"></div>
-      <div class="nm-swipe-peek">
-        <span class="nm-swipe-peek-left" id="nm-peek-left"></span>
-        <span class="nm-swipe-peek-right" id="nm-peek-right"></span>
-      </div>
       <div class="nm-swipe-card-area">
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
-      <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
+      <div class="nm-freq-grid" id="nm-freq-btns">
+        <button type="button" class="nm-freq-btn-v2" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn-v2" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
@@ -13437,8 +13327,6 @@ function nmGetRows(qLabel){
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
-  var peekLeft = document.getElementById('nm-peek-left');
-  var peekRight = document.getElementById('nm-peek-right');
   var freqBtns = document.getElementById('nm-freq-btns');
   var dotsEl = document.getElementById('nm-dots');
   var counterEl = document.getElementById('nm-swipe-counter');
@@ -13455,11 +13343,9 @@ function nmGetRows(qLabel){
     if(!cardText) return;
     cardText.textContent = items[swipeIdx].name;
     if(counterEl) counterEl.textContent = (swipeIdx+1)+' of '+items.length;
-    if(peekLeft) peekLeft.textContent = swipeIdx > 0 ? items[swipeIdx-1].name : '';
-    if(peekRight) peekRight.textContent = swipeIdx < items.length-1 ? items[swipeIdx+1].name : '';
     if(freqBtns){
       var cur = swipeAnswers[items[swipeIdx].r];
-      freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){
+      freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){
         b.classList.remove('nm-flash');
         b.classList.toggle('nm-sel', b.getAttribute('data-col') === cur);
       });
@@ -13477,13 +13363,13 @@ function nmGetRows(qLabel){
     if(allRated && oeWrap) oeWrap.style.display = '';
   }
   if(freqBtns){
-    freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(btn){
+    freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(btn){
       btn.addEventListener('click', function(){
         var col = btn.getAttribute('data-col');
         var val = btn.getAttribute('data-val');
         swipeAnswers[items[swipeIdx].r] = col;
         nmSyncRating(qLabel, items[swipeIdx].r, val);
-        freqBtns.querySelectorAll('.nm-freq-btn').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
+        freqBtns.querySelectorAll('.nm-freq-btn-v2').forEach(function(b){ b.classList.remove('nm-sel','nm-flash'); });
         btn.classList.add('nm-flash');
         setTimeout(function(){
           btn.classList.remove('nm-flash');
