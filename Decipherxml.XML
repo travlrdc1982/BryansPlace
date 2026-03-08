@@ -5326,9 +5326,6 @@ elif TYPING_MODULE.r3:
 <note>NM TOPIC BLOCKS -- AUTO-GENERATED from NewMediaSurvey.csv via build_nm_section.py</note>
 
 
-<note>NM TOPIC BLOCKS -- AUTO-GENERATED from NewMediaSurvey.csv via build_nm_section.py. Global filters: none. To regenerate: python build_nm_section.py --apply</note>
-
-
 <block label="nm_src_t1" cond="NM_TOPICS.r1">
 <radio
   label="NM_SRC_T1"
