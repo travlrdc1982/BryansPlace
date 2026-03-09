@@ -600,6 +600,17 @@ INF_JS_IIFE = """
   var qLabel = '__Q_LABEL__';
   var oeLabel = '__OE_LABEL__';
   var items = nmGetRows(qLabel);
+  /* Filter items against inputs that actually exist in the hidden question */
+  var _box = nmFindQ(qLabel);
+  if(_box){
+    var _avail = {};
+    _box.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
+      var _m = (cb.name||'').match(/_(r\d+)$/);
+      if(_m) _avail[_m[1]] = true;
+      if(cb.value) _avail[cb.value] = true;
+    });
+    items = items.filter(function(item){ return item.r === 'r99' || _avail[item.r]; });
+  }
   if(items.length === 0) return;
   var checks = {}, noneActive = false, oeNotSure = false;
   var grid = document.getElementById('nm-inf-grid');
