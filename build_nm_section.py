@@ -498,6 +498,18 @@ SRC_JS_IIFE = """
   var qLabel = '__Q_LABEL__';
   var oeLabel = '__OE_LABEL__';
   var items = nmGetRows(qLabel);
+  /* Filter items against inputs that actually exist in the hidden question */
+  var _box = nmFindQ(qLabel);
+  if(_box){
+    var _avail = {};
+    _box.querySelectorAll('select, input[type="radio"]').forEach(function(el){
+      var _m = (el.name||'').match(/_(r\d+)/);
+      if(_m) _avail[_m[1]] = true;
+    });
+    if(Object.keys(_avail).length > 0){
+      items = items.filter(function(item){ return _avail[item.r]; });
+    }
+  }
   if(items.length === 0) return;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
   var cardText = document.getElementById('nm-card-text');
