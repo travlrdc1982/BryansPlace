@@ -502,8 +502,9 @@ SRC_JS_IIFE = """
   var _box = nmFindQ(qLabel);
   if(_box){
     var _avail = {};
-    _box.querySelectorAll('select, input[type="radio"]').forEach(function(el){
-      var _m = (el.name||'').match(/_(r\d+)/);
+    _box.querySelectorAll('input, select').forEach(function(el){
+      var n = el.name || el.id || '';
+      var _m = n.match(/_(r\d+)/);
       if(_m) _avail[_m[1]] = true;
     });
     if(Object.keys(_avail).length > 0){
