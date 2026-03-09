@@ -439,10 +439,21 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var q = nmFindQ(qLabel); if(!q) return;
     var rd = q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"][value="'+colVal+'"]');
+    if(!rd) rd = q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"][value="c'+colVal+'"]');
     if(!rd) rd = q.querySelector('[id*="_'+rowLabel+'"] input[value="'+colVal+'"]');
     if(rd){
         rd.checked = true;
         try{ jQuery(rd).trigger('click').trigger('change'); }catch(e){}
+        return;
+    }
+    /* Fallback: select dropdowns (Decipher may render hidden rating Qs as selects) */
+    var sel = q.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+    if(!sel) sel = q.querySelector('select[name*="_'+rowLabel+'"]');
+    if(sel){
+        sel.value = colVal;
+        if(sel.value !== colVal) sel.value = 'c'+colVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
     }
 }
 function nmSyncText(qLabel, val){

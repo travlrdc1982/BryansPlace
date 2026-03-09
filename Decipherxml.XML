@@ -4993,6 +4993,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -5000,6 +5001,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -5009,6 +5011,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -5025,6 +5028,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -5260,6 +5292,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -5267,6 +5300,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -5276,6 +5310,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -5292,6 +5327,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -5600,6 +5664,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -5607,6 +5672,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -5616,6 +5682,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -5632,6 +5699,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -5964,6 +6060,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -5971,6 +6068,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -5980,6 +6078,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -5996,6 +6095,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -6325,6 +6453,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -6332,6 +6461,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -6341,6 +6471,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -6357,6 +6488,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -6717,6 +6877,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -6724,6 +6885,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -6733,6 +6895,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -6749,6 +6912,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -7081,6 +7273,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -7088,6 +7281,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -7097,6 +7291,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -7113,6 +7308,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -7415,6 +7639,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -7422,6 +7647,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -7431,6 +7657,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -7447,6 +7674,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -7755,6 +8011,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -7762,6 +8019,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -7771,6 +8029,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -7787,6 +8046,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -8122,6 +8410,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -8129,6 +8418,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -8138,6 +8428,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -8154,6 +8445,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -8478,6 +8798,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -8485,6 +8806,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -8494,6 +8816,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -8510,6 +8833,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -8843,6 +9195,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -8850,6 +9203,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -8859,6 +9213,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -8875,6 +9230,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -9175,6 +9559,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -9182,6 +9567,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -9191,6 +9577,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -9207,6 +9594,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -9487,6 +9903,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -9494,6 +9911,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -9503,6 +9921,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -9519,6 +9938,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -9813,6 +10261,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -9820,6 +10269,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -9829,6 +10279,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -9845,6 +10296,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -10163,6 +10643,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -10170,6 +10651,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -10179,6 +10661,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -10195,6 +10678,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -10484,6 +10996,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -10491,6 +11004,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -10500,6 +11014,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -10516,6 +11031,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -10800,6 +11344,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -10807,6 +11352,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -10816,6 +11362,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -10832,6 +11379,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -11112,6 +11688,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -11119,6 +11696,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -11128,6 +11706,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -11144,6 +11723,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -11431,6 +12039,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -11438,6 +12047,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -11447,6 +12057,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -11463,6 +12074,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -11746,6 +12386,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -11753,6 +12394,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -11762,6 +12404,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -11778,6 +12421,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -12072,6 +12744,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -12079,6 +12752,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -12088,6 +12762,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -12104,6 +12779,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -12405,6 +13109,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -12412,6 +13117,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -12421,6 +13127,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -12437,6 +13144,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -12744,6 +13480,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -12751,6 +13488,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -12760,6 +13498,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -12776,6 +13515,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -13071,6 +13839,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -13078,6 +13847,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -13087,6 +13857,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -13103,6 +13874,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -13405,6 +14205,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -13412,6 +14213,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -13421,6 +14223,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -13437,6 +14240,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -13721,6 +14553,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -13728,6 +14561,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -13737,6 +14571,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -13753,6 +14588,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -14043,6 +14907,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -14050,6 +14915,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -14059,6 +14925,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -14075,6 +14942,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
@@ -14359,6 +15255,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
 function nmSyncRating(qLabel, rowLabel, colVal){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncRating] '+qLabel+' NOT FOUND'); return; }
+    /* Strategy 1: radio inputs by name+value */
     var all = box.querySelectorAll('input[type="radio"]');
     var inp = null;
     for(var i=0; i<all.length; i++){
@@ -14366,6 +15263,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       var v = all[i].value;
       if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
+    /* Strategy 2: row-element search */
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
       for(var r=0; r<rowEls.length && !inp; r++){
@@ -14375,6 +15273,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         }
       }
     }
+    /* Strategy 3: position-based radio grouping */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -14391,6 +15290,35 @@ function nmSyncRating(qLabel, rowLabel, colVal){
         if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
           inp = rowGroup[cIdx];
         }
+      }
+    }
+    /* Strategy 4: select dropdowns (Decipher renders hidden rating Qs as selects) */
+    if(!inp){
+      var sel = box.querySelector('select[name="'+qLabel+'_'+rowLabel+'"]');
+      if(!sel) sel = box.querySelector('select[name*="_'+rowLabel+'"]');
+      if(!sel){
+        var allSel = box.querySelectorAll('select');
+        var rm = rowLabel.match(/^r(\d+)$/);
+        if(rm){
+          var ri = parseInt(rm[1],10) - 1;
+          if(ri >= 0 && ri < allSel.length) sel = allSel[ri];
+        }
+      }
+      if(sel){
+        var optVal = colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')) optVal = 'c'+colVal;
+        if(!sel.querySelector('option[value="'+optVal+'"]')){
+          var cm = colVal.match ? colVal.match(/^(\d+)$/) : null;
+          if(cm){
+            var opts = sel.querySelectorAll('option');
+            var ci = parseInt(cm[1],10);
+            if(ci >= 0 && ci < opts.length) optVal = opts[ci].value;
+          }
+        }
+        sel.value = optVal;
+        sel.dispatchEvent(new Event('change', {bubbles:true}));
+        try{ jQuery(sel).trigger('change'); }catch(e){}
+        return;
       }
     }
     if(inp){
