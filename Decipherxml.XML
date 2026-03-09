@@ -3612,10 +3612,7 @@ elif XDEM_SEG_FINAL_1.any:
 
     if(inp){
       console.log('[syncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+' type='+inp.type+')');
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND in #'+box.id);
     }
@@ -4418,8 +4415,9 @@ elif XDEM_SEG_FINAL_1.any:
     if(!box){ console.warn('[syncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
 
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -4445,10 +4443,7 @@ elif XDEM_SEG_FINAL_1.any:
 
     if(inp){
       console.log('[syncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[syncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -4964,8 +4959,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -4989,10 +4985,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -5131,7 +5124,7 @@ function nmGetRows(qLabel){
         list.querySelectorAll('.nm-check-row').forEach(function(row){ row.classList.remove('nm-checked'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
       updateContinue();
@@ -5233,8 +5226,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -5258,10 +5252,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -5400,7 +5391,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
       updateContinue();
@@ -5575,8 +5566,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -5600,10 +5592,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -5939,8 +5928,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -5964,10 +5954,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -6129,7 +6116,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -6302,8 +6289,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -6327,10 +6315,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -6694,8 +6679,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -6719,10 +6705,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -6908,7 +6891,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -7060,8 +7043,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -7085,10 +7069,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -7394,8 +7375,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -7419,10 +7401,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -7571,7 +7550,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -7736,8 +7715,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -7761,10 +7741,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -8103,8 +8080,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -8128,10 +8106,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -8300,7 +8275,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -8461,8 +8436,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -8486,10 +8462,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -8826,8 +8799,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -8851,10 +8825,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -9025,7 +8996,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -9160,8 +9131,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -9185,10 +9157,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -9472,8 +9441,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -9497,10 +9467,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -9644,7 +9611,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -9800,8 +9767,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -9825,10 +9793,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -10150,8 +10115,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -10175,10 +10141,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -10339,7 +10302,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -10473,8 +10436,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -10498,10 +10462,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -10789,8 +10750,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -10814,10 +10776,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -10966,7 +10925,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -11103,8 +11062,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -11128,10 +11088,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -11422,8 +11379,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -11447,10 +11405,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -11599,7 +11554,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -11739,8 +11694,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -11764,10 +11720,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -12065,8 +12018,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -12090,10 +12044,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -12246,7 +12197,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -12400,8 +12351,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -12425,10 +12377,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -12739,8 +12688,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -12764,10 +12714,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -12919,7 +12866,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -13068,8 +13015,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -13093,10 +13041,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -13402,8 +13347,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -13427,10 +13373,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -13582,7 +13525,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -13720,8 +13663,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -13745,10 +13689,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -14042,8 +13983,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -14067,10 +14009,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
@@ -14221,7 +14160,7 @@ function nmGetRows(qLabel){
         grid.querySelectorAll('.nm-inf-chip').forEach(function(c){ c.classList.remove('nm-sel'); });
         var q = nmFindQ(qLabel);
         if(q) q.querySelectorAll('input[type="checkbox"]').forEach(function(cb){
-          if(cb.name && cb.name.indexOf('r99') === -1){ cb.checked = false; try{jQuery(cb).trigger('change');}catch(e){} }
+          if(cb.name && cb.name.indexOf('r99') === -1 && cb.checked){ cb.click(); }
         });
       }
     });
@@ -14360,8 +14299,9 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
     var box = nmFindQ(qLabel);
     if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
     var inp = null;
-    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
-    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    inp = box.querySelector('input[type="checkbox"][name="'+qLabel+'_'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name$="_'+rowLabel+'"]');
     if(!inp){
       var m = rowLabel.match(/^r(\d+)$/);
       if(m){
@@ -14385,10 +14325,7 @@ function nmSyncCheckbox(qLabel, rowLabel, checked){
       }
     }
     if(inp){
-      inp.checked = checked;
-      inp.click();
-      inp.dispatchEvent(new Event('change', {bubbles:true}));
-      try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
+      if(inp.checked !== checked) inp.click();
     } else {
       console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
