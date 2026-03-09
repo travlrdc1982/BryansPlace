@@ -5498,12 +5498,12 @@ function nmGetRows(qLabel){
   <row label="r42" cond="NM_TRACK.r1">Farm Journal</row>
   <row label="r43" cond="NM_TRACK.any">The Daily Poster  (David Sirota)</row>
   <row label="r44" cond="NM_TRACK.r2">Bad Faith  (Briahna Joy Gray)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -6221,12 +6221,12 @@ function nmGetRows(qLabel){
   <row label="r46" cond="NM_TRACK.r1">Do No Harm  (Stanley Goldfarb)</row>
   <row label="r47" cond="NM_TRACK.r2">Health Justice Monitor</row>
   <row label="r48" cond="NM_TRACK.r2">Physicians for Social Responsibility</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -6975,12 +6975,12 @@ function nmGetRows(qLabel){
   <row label="r25" cond="NM_TRACK.r2">Medicare Decoded</row>
   <row label="r26" cond="NM_TRACK.r2">The Senior Report</row>
   <row label="r27" cond="NM_TRACK.r2">Aging Well  (Dr. Leslie Kernisan)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -7647,12 +7647,12 @@ function nmGetRows(qLabel){
   <row label="r38" cond="NM_TRACK.any">Mark Hyman  (Food Fix)</row>
   <row label="r39" cond="NM_TRACK.r1">Dr. Will Cole  (Inflammation Fix)</row>
   <row label="r40" cond="NM_TRACK.any">Metabolic Mind  (Baszucki Group)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -8368,12 +8368,12 @@ function nmGetRows(qLabel){
   <row label="r34" cond="NM_TRACK.r2">Food Politics  (Marion Nestle)</row>
   <row label="r35" cond="NM_TRACK.r1">Grain Brain  (David Perlmutter)</row>
   <row label="r36" cond="NM_TRACK.r1">The Carnivore Bar</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -9063,12 +9063,12 @@ function nmGetRows(qLabel){
   <row label="r8" cond="NM_TRACK.r1">The Supplement Review Podcast</row>
   <row label="r9" cond="NM_TRACK.r1">Designs for Health Podcast</row>
   <row label="r10" cond="NM_TRACK.any">Fullscript Insights</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -9699,12 +9699,12 @@ function nmGetRows(qLabel){
   <row label="r29" cond="NM_TRACK.any">Courageous Discourse  (Bhattacharya)</row>
   <row label="r30" cond="NM_TRACK.r1">Karl Denninger  (Market Ticker Health)</row>
   <row label="r31" cond="NM_TRACK.r2">Your Local Epidemiologist  (Jetelina)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -10368,12 +10368,12 @@ function nmGetRows(qLabel){
   <row label="r7" cond="NM_TRACK.r1">Starting Strength  (Mark Rippetoe)</row>
   <row label="r8" cond="NM_TRACK.r1">Functional Patterns</row>
   <row label="r9" cond="NM_TRACK.r1">Garage Gym Reviews</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -10994,12 +10994,12 @@ function nmGetRows(qLabel){
   <row label="r10" cond="NM_TRACK.any">Peter Attia  (Outlive)</row>
   <row label="r11" cond="NM_TRACK.any">Nir Eyal  (Indistractable Health)</row>
   <row label="r12" cond="NM_TRACK.any">LifeOmic  (Longevity Science)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -11626,12 +11626,12 @@ function nmGetRows(qLabel){
   <row label="r13" cond="NM_TRACK.any">Tomas Pueyo  (Uncharted Territories)</row>
   <row label="r14" cond="NM_TRACK.r2">The Incubator  (Neonatal Research)</row>
   <row label="r15" cond="NM_TRACK.r2">Absolutely Maybe  (Lisa Bero)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -12283,12 +12283,12 @@ function nmGetRows(qLabel){
   <row label="r27" cond="NM_TRACK.any">Comment Magazine  (Cardus)</row>
   <row label="r28" cond="NM_TRACK.r2">Plough Quarterly</row>
   <row label="r29" cond="NM_TRACK.any">Faithful Politics</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -12947,12 +12947,12 @@ function nmGetRows(qLabel){
   <row label="r22" cond="NM_TRACK.any">The Lever  (David Sirota)</row>
   <row label="r23" cond="NM_TRACK.any">More Perfect Union</row>
   <row label="r24" cond="NM_TRACK.r2">Healthcare Worker Stories</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -13595,12 +13595,12 @@ function nmGetRows(qLabel){
   <row label="r11" cond="NM_TRACK.any">The Prism  (Health Innovation)</row>
   <row label="r12" cond="NM_TRACK.any">Heartbeat Health AI</row>
   <row label="r13" cond="NM_TRACK.any">Rock Health  (Weekly Briefing)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">
@@ -14231,12 +14231,12 @@ function nmGetRows(qLabel){
   <row label="r12" cond="NM_TRACK.r2">The Climate Crisis  (Bill McKibben)</row>
   <row label="r13" cond="NM_TRACK.r2">Drilled  (Amy Westervelt)</row>
   <row label="r14" cond="NM_TRACK.r2">Health &amp; Climate  (Medical Society)</row>
-  <col label="c1" value="0">Never heard of it</col>
-  <col label="c2" value="1">Never used it</col>
-  <col label="c3" value="2">Over a year ago</col>
-  <col label="c4" value="3">Past year</col>
-  <col label="c5" value="4">Past month</col>
-  <col label="c6" value="5">Past week</col>
+  <col label="c1" value="1">Never heard of it</col>
+  <col label="c2" value="2">Never used it</col>
+  <col label="c3" value="3">Over a year ago</col>
+  <col label="c4" value="4">Past year</col>
+  <col label="c5" value="5">Past month</col>
+  <col label="c6" value="6">Past week</col>
 
   <style mode="before" name="question.header"><![CDATA[
 <div id="nm-root">

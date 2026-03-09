@@ -246,12 +246,12 @@ def gen_src_block(tidx, csv_topic, display_title, rows_list):
         <div class="nm-swipe-card" id="nm-card-text"></div>
       </div>
       <div class="nm-freq-btns" id="nm-freq-btns">
-        <button type="button" class="nm-freq-btn" data-col="c1" data-val="0">Never heard<br>of it</button>
-        <button type="button" class="nm-freq-btn" data-col="c2" data-val="1">Never<br>used it</button>
-        <button type="button" class="nm-freq-btn" data-col="c3" data-val="2">Over a<br>year ago</button>
-        <button type="button" class="nm-freq-btn" data-col="c4" data-val="3">Past<br>year</button>
-        <button type="button" class="nm-freq-btn" data-col="c5" data-val="4">Past<br>month</button>
-        <button type="button" class="nm-freq-btn" data-col="c6" data-val="5">Past<br>week</button>
+        <button type="button" class="nm-freq-btn" data-col="c1" data-val="1">Never heard<br>of it</button>
+        <button type="button" class="nm-freq-btn" data-col="c2" data-val="2">Never<br>used it</button>
+        <button type="button" class="nm-freq-btn" data-col="c3" data-val="3">Over a<br>year ago</button>
+        <button type="button" class="nm-freq-btn" data-col="c4" data-val="4">Past<br>year</button>
+        <button type="button" class="nm-freq-btn" data-col="c5" data-val="5">Past<br>month</button>
+        <button type="button" class="nm-freq-btn" data-col="c6" data-val="6">Past<br>week</button>
       </div>
       <div class="nm-swipe-dots" id="nm-dots"></div>
     </div>
