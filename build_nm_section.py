@@ -383,19 +383,57 @@ def gen_inf_block(tidx, csv_topic, display_title, rows_list):
 # Uses __Q_LABEL__ and __OE_LABEL__ placeholders (simple .replace()).
 JS_HELPERS = """
 function nmFindQ(q){
-    var el = document.getElementById('v_'+q);
-    if(!el) el = document.querySelector('.question[data-questionid="'+q+'"]');
-    if(!el) el = document.querySelector('[id*="'+q+'"]');
+    var el = document.getElementById('q_'+q)
+        || document.getElementById('question_'+q)
+        || document.getElementById(q)
+        || document.querySelector('[id$="_'+q+'"]');
+    if(el && el.closest && !el.classList.contains('question')){
+      var par = el.closest('.question');
+      if(par) el = par;
+    }
     return el;
 }
 function nmSyncCheckbox(qLabel, rowLabel, checked){
-    var q = nmFindQ(qLabel); if(!q) return;
-    var cb = q.querySelector('#'+qLabel+'_'+rowLabel)
-          || q.querySelector('input[name="'+qLabel+'_'+rowLabel+'"]')
-          || q.querySelector('[id*="_'+rowLabel+'"] input[type="checkbox"]');
-    if(cb){
-        cb.checked = checked;
-        try{ jQuery(cb).trigger('click').trigger('change'); }catch(e){}
+    var box = nmFindQ(qLabel);
+    if(!box){ console.warn('[nmSyncCB] '+qLabel+' NOT FOUND'); return; }
+    var inp = null;
+    /* Strategy 1: value matches row label (e.g. value="r1") */
+    inp = box.querySelector('input[type="checkbox"][value="'+rowLabel+'"]');
+    /* Strategy 2: name contains row label */
+    if(!inp) inp = box.querySelector('input[type="checkbox"][name*="'+rowLabel+'"]');
+    /* Strategy 3: 0-based value (Decipher records r1=0, r2=1, ...) */
+    if(!inp){
+      var m = rowLabel.match(/^r(\d+)$/);
+      if(m){
+        var idx = parseInt(m[1], 10);
+        if(idx === 99){
+          var allCB = box.querySelectorAll('input[type="checkbox"]');
+          for(var k=0; k<allCB.length; k++){
+            var nm = (allCB[k].name||'')+(allCB[k].className||'');
+            if(nm.indexOf('noanswer')!==-1||nm.indexOf('exclusive')!==-1){inp=allCB[k]; break;}
+          }
+          if(!inp && allCB.length>0) inp = allCB[allCB.length-1];
+        } else {
+          inp = box.querySelector('input[type="checkbox"][value="'+(idx-1)+'"]');
+        }
+      }
+    }
+    /* Strategy 4: position-based fallback */
+    if(!inp){
+      var m2 = rowLabel.match(/^r(\d+)$/);
+      if(m2){
+        var idx2 = parseInt(m2[1], 10);
+        var allCB2 = box.querySelectorAll('input[type="checkbox"]');
+        if(idx2 !== 99 && idx2 > 0 && idx2 <= allCB2.length){
+          inp = allCB2[idx2-1];
+        }
+      }
+    }
+    if(inp){
+      console.log('[nmSyncCB] '+qLabel+'.'+rowLabel+' checked='+checked+' (name='+inp.name+' val='+inp.value+')');
+      if(inp.checked !== checked) inp.click();
+    } else {
+      console.warn('[nmSyncCB] '+qLabel+'.'+rowLabel+' NO INPUT FOUND');
     }
 }
 function nmSyncRating(qLabel, rowLabel, colVal){
