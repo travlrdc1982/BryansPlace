@@ -4817,6 +4817,117 @@ elif XDEM_SEG_FINAL_1.any:
 
 
 <!-- ===================== NEW MEDIA SECTION ===================== -->
+<!--
+  ==========================================================================
+  DEVELOPER NOTES -- NEW MEDIA CUSTOM UI SYNC
+  ==========================================================================
+
+  ARCHITECTURE
+  ------------
+  The New Media section (NM_PLAT, NM_TOPICS, NM_SRC_T1-T14, NM_INF_T1-T14)
+  uses a custom UI overlay that hides Decipher's native form inputs with the
+  .nm_hidden CSS class (display: none !important) and replaces them with
+  styled chips, check-rows, and swipe cards.
+
+  Because users interact with the custom UI (not the native inputs), every
+  click/tap must be "synced back" to the hidden Decipher inputs so the form
+  submission captures the data. This is handled by three helper functions
+  defined in each <style mode="after"> block:
+
+    nmSyncCheckbox(qLabel, rowLabel, checked)  -- for checkbox questions
+    nmSyncRating(qLabel, rowLabel, colVal)      -- for rating/radio questions
+    nmSyncText(qLabel, val)                     -- for open-end text boxes
+
+  WHY THE SCREENER DOESN'T NEED SYNC
+  -----------------------------------
+  The screener section (INF1, INF2, etc.) also has custom UI overlays with
+  its own syncCheckbox/syncRadio/syncRating helpers. Those work because the
+  screener questions have NO shuffle="rows", so DOM order = definition order,
+  and position-based matching (r1 = 1st checkbox, r2 = 2nd, etc.) succeeds.
+
+  DECIPHER INPUT NAMING CONVENTION
+  ---------------------------------
+  Decipher does NOT use the XML question label in input names. Instead:
+
+    Checkboxes:  name="ans{questionId}.0.{rowDefIndex}"  value="1"
+    Radios:      name="ans{questionId}.{rowDefIndex}"    value="c{colNum}"
+    Selects:     name="ans{questionId}.{rowDefIndex}"    (option values: c1, c2, ...)
+
+  Where:
+    - {questionId} is Decipher's internal numeric ID (e.g., 2071), NOT the
+      XML label (e.g., NM_PLAT). This ID is assigned by Decipher at save
+      time and cannot be predicted from the XML.
+    - {rowDefIndex} is the 0-based position of the row in the XML definition
+      order (r1=0, r2=1, ..., r12=11, r99=12 for a question with 13 rows).
+    - For checkboxes, there is an extra ".0." segment (group index).
+    - Column values use a "c" prefix: c1, c2, c3, c4, c5, c6.
+
+  Examples for NM_PLAT (13 rows: r1-r12, r99):
+    r1  (Podcasts)    -> ans2071.0.0   value="1"
+    r3  (Facebook)    -> ans2071.0.2   value="1"
+    r99 (None)        -> ans2071.0.12  value="1"
+
+  Examples for NM_SRC_T1 (rating grid, 44 rows, 6 columns):
+    r4 col 6 (Past week) -> radio name="ans3456.3" value="c6"
+    r12 col 6            -> radio name="ans3456.11" value="c6"
+
+  SYNC STRATEGY (DEFINITION-INDEX APPROACH)
+  ------------------------------------------
+  Since we can't predict the questionId, the sync functions:
+
+  1. Find all inputs in the question container (via nmFindQ)
+  2. Extract the name prefix from any input (everything up to the last ".")
+     e.g., "ans2071.0." from "ans2071.0.11"
+  3. For row label rN, compute definition index = N - 1
+  4. Construct expected name = prefix + defIndex
+  5. querySelector for that exact name
+
+  For r99 (always the last defined row), find the highest suffix among
+  all inputs in the container.
+
+  This works regardless of shuffle="rows" because it searches by NAME,
+  not by DOM position.
+
+  CONDITIONED ROWS AND THE NM_SRC FILTER
+  ----------------------------------------
+  NM_SRC questions have rows with cond="NM_TRACK.r1" (GOP-only),
+  cond="NM_TRACK.r2" (DEM-only), or cond="NM_TRACK.any" (both tracks).
+  Decipher removes conditioned-out rows server-side, so their inputs
+  don't exist in the DOM.
+
+  The filter in each NM_SRC IIFE detects available rows by:
+  1. Querying all input/select elements in the question container
+  2. Extracting unique numeric suffixes from element names
+  3. Filtering the items array: keep items[i] only if suffix i exists
+
+  This assumes Decipher PRESERVES original row indices (not re-indexing).
+  If r5 is conditioned out, suffix 4 simply doesn't exist -- r6 keeps
+  suffix 5 regardless.
+
+  KNOWN ISSUE: For NM_SRC_T1, 2 out of 25 source cards (r38, r41) fail
+  to sync. This may be caused by Decipher re-indexing surviving rows in
+  some edge cases, causing a mismatch between the items array index and
+  the actual suffix. This affects < 8% of cards on one topic page only;
+  all other topic pages (T2, T6, etc.) have 100% sync success.
+
+  CACHING
+  -------
+  nmSyncCheckbox caches successful input lookups in window._nmCBCache
+  keyed by qLabel + rowLabel. Subsequent calls for the same row skip
+  the DOM search entirely. Cache is per-page (cleared on navigation).
+
+  RESULTS (as of 2026-03-09)
+  ---------------------------
+  NM_PLAT checkboxes:  Working (NM_SRC topic pages appear, confirming
+                       server-side condition evaluation passed)
+  NM_TOPICS checkboxes: Working (T1, T2, T6 pages appeared = r1, r2, r6)
+  NM_SRC_T1 ratings:   23/25 synced (r38, r41 failed)
+  NM_SRC_T2 ratings:   25/25 synced, zero errors
+  NM_SRC_T6 ratings:   10/10 synced, zero errors
+  NM_INF_T1 checkboxes: Working (r12 Rand Paul = 1 confirmed)
+
+  ==========================================================================
+-->
 <note>===================== SECTION 5 -- NEW MEDIA ECOSYSTEMS =====================</note>
 
 <radio
