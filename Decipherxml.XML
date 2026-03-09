@@ -4487,7 +4487,7 @@ elif XDEM_SEG_FINAL_1.any:
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       /* Try: find row container, then radio by value */
@@ -5005,7 +5005,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -5274,7 +5274,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -5616,7 +5616,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -5980,7 +5980,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -6343,7 +6343,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -6735,7 +6735,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -7101,7 +7101,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -7435,7 +7435,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -7777,7 +7777,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -8144,7 +8144,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -8502,7 +8502,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -8867,7 +8867,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -9201,7 +9201,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -9513,7 +9513,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -9841,7 +9841,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -10191,7 +10191,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -10514,7 +10514,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -10830,7 +10830,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -11144,7 +11144,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -11463,7 +11463,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -11780,7 +11780,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -12106,7 +12106,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -12441,7 +12441,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -12780,7 +12780,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -13109,7 +13109,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -13443,7 +13443,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -13761,7 +13761,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -14083,7 +14083,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
@@ -14401,7 +14401,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
     for(var i=0; i<all.length; i++){
       var name = all[i].name || '';
       var v = all[i].value;
-      if(name.indexOf(rowLabel) !== -1 && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
+      if(name === qLabel+'_'+rowLabel && (v === colVal || v === 'c'+colVal)){ inp = all[i]; break; }
     }
     if(!inp){
       var rowEls = box.querySelectorAll('[class*="'+rowLabel+'"], [data-row="'+rowLabel+'"], tr[id*="'+rowLabel+'"]');
