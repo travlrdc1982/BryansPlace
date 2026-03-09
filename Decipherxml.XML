@@ -5740,6 +5740,8 @@ function nmGetRows(qLabel){
     {r:'r44', name:'Bad Faith  (Briahna Joy Gray)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -6467,6 +6469,8 @@ function nmGetRows(qLabel){
     {r:'r48', name:'Physicians for Social Responsibility'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -7200,6 +7204,8 @@ function nmGetRows(qLabel){
     {r:'r27', name:'Aging Well  (Dr. Leslie Kernisan)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -7885,6 +7891,8 @@ function nmGetRows(qLabel){
     {r:'r40', name:'Metabolic Mind  (Baszucki Group)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -8602,6 +8610,8 @@ function nmGetRows(qLabel){
     {r:'r36', name:'The Carnivore Bar'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -9271,6 +9281,8 @@ function nmGetRows(qLabel){
     {r:'r10', name:'Fullscript Insights'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -9928,6 +9940,8 @@ function nmGetRows(qLabel){
     {r:'r31', name:'Your Local Epidemiologist  (Jetelina)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -10575,6 +10589,8 @@ function nmGetRows(qLabel){
     {r:'r9', name:'Garage Gym Reviews'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -11204,6 +11220,8 @@ function nmGetRows(qLabel){
     {r:'r12', name:'LifeOmic  (Longevity Science)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -11839,6 +11857,8 @@ function nmGetRows(qLabel){
     {r:'r15', name:'Absolutely Maybe  (Lisa Bero)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -12510,6 +12530,8 @@ function nmGetRows(qLabel){
     {r:'r29', name:'Faithful Politics'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -13169,6 +13191,8 @@ function nmGetRows(qLabel){
     {r:'r24', name:'Healthcare Worker Stories'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -13806,6 +13830,8 @@ function nmGetRows(qLabel){
     {r:'r13', name:'Rock Health  (Weekly Briefing)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
@@ -14443,6 +14469,8 @@ function nmGetRows(qLabel){
     {r:'r14', name:'Health &amp; Climate  (Medical Society)'}
   ];
   if(items.length === 0) return;
+  var _qBox = nmFindQ(qLabel);
+  if(_qBox){var _av={};_qBox.querySelectorAll('input,select').forEach(function(el){var _m=(el.name||el.id||'').match(/_(r\d+)/);if(_m)_av[_m[1]]=true;});if(Object.keys(_av).length>0){items=items.filter(function(it){return _av[it.r];});}}
   for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
   if(items.length>25)items.length=25;
   var swipeIdx = 0, swipeAnswers = {}, oeNotSure = false;
