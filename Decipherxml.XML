@@ -815,10 +815,11 @@ body, .survey-body, .main-content {
 </style>
 ]]></style>
 
-<style mode="after" name="respview.client.css" with="cm1,QMD4,QMD4x99,QMD6,QMD7,QMD88,QMD89,QMD90,MAHA1,MAHA1x99,MAHA2,MAHA3,MAHA4,MAHA4x99,cm2,ETHNIC,ETHNICx99,RACE,VET,VETx99,UNION,UNIONx99,EDUCATION,REL,RELx99,REL2,HHI,HHIX99,cm3,HHIX100,HHIX101,HHIX102,HHIX103,HHIX103x99,HHIX104"><![CDATA[
+<style mode="after" name="respview.client.css" with="inf_intro,INF1,INF2,INF3,INF4,INF5,INF6,INF7,INF8"><![CDATA[
 <style>
-h1#question_text_QMD4x99, h1#question_text_MAHA1x99, h1#question_text_ETHNICx99, h1#question_text_VETx99, h1#question_text_UNIONx99, h1#question_text_EDUCATIONx99, h1#question_text_RELx99, h1#question_text_HHIX99, h1#question_text_HHIX103x99, h1#question_text_MAHA4x99 {
-    display: none;
+/* --- page background --- */
+body, .survey-body, .main-content {
+    background: #F5F2ED !important;
 }
 .survey-header {
     margin-bottom: unset;
