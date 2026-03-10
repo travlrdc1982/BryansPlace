@@ -37,6 +37,52 @@
   </samplesource>
 </samplesources>
 
+<themevars>
+  <!-- PRISM Design System -->
+  <themevar name="background-color">#F5F2ED</themevar>
+  <themevar name="foreground-color">#FFFFFF</themevar>
+  <themevar name="text-color">#333333</themevar>
+  <themevar name="border-color">#E0DCD6</themevar>
+  <themevar name="border-radius">16px</themevar>
+  <!-- Fonts -->
+  <themevar name="webfont">//fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Fraunces:wght@600;700</themevar>
+  <themevar name="primary-font-family">'Fraunces', serif</themevar>
+  <themevar name="secondary-font-family">'Inter', sans-serif</themevar>
+  <!-- DQ Buttons (ATM1D, cardrating, button-select) -->
+  <themevar name="dq-button-bg-color">#F5F2ED</themevar>
+  <themevar name="dq-button-bg-color-hover">#E8E5E0</themevar>
+  <themevar name="dq-button-bg-selected">#6B7F4E</themevar>
+  <themevar name="dq-button-text-color">#333333</themevar>
+  <themevar name="dq-button-text-color-hover">#333333</themevar>
+  <themevar name="dq-button-text-color-selected">#FFFFFF</themevar>
+  <themevar name="dq-button-border-color">#E0DCD6</themevar>
+  <themevar name="dq-button-border-color-hover">#6B7F4E</themevar>
+  <themevar name="dq-button-border-color-selected">#6B7F4E</themevar>
+  <themevar name="dq-button-border-radius">24px</themevar>
+  <!-- Continue/Submit button -->
+  <themevar name="primary-button-bg-color">#6B7F4E</themevar>
+  <themevar name="primary-button-bg-color-hover">#5A6B42</themevar>
+  <themevar name="primary-button-text-color">#FFFFFF</themevar>
+  <themevar name="primary-button-border-radius">24px</themevar>
+  <themevar name="primary-button-font-family">'Inter', sans-serif</themevar>
+  <!-- FIR checkboxes/radios -->
+  <themevar name="fir-border">#E0DCD6</themevar>
+  <themevar name="fir-border-selected">#6B7F4E</themevar>
+  <themevar name="fir-base-selected">#6B7F4E</themevar>
+  <themevar name="fir-inner-selected">#FFFFFF</themevar>
+  <!-- Question/Answer text -->
+  <themevar name="question-font-family">'Fraunces', serif</themevar>
+  <themevar name="answer-font-family">'Inter', sans-serif</themevar>
+  <themevar name="instruction-font-family">'Inter', sans-serif</themevar>
+  <themevar name="comment-font-family">'Inter', sans-serif</themevar>
+  <!-- Progress bar -->
+  <themevar name="progress-fill-color">#6B7F4E</themevar>
+  <themevar name="progress-empty-color">#E0DCD6</themevar>
+  <!-- Button Select specific -->
+  <themevar name="btn-select-border-radius">24px</themevar>
+  <themevar name="btn-select-spacing">6px</themevar>
+</themevars>
+
 <style name="respview.client.css" mode="after"><![CDATA[
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
