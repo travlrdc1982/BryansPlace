@@ -815,6 +815,178 @@ body, .survey-body, .main-content {
 </style>
 ]]></style>
 
+<style mode="after" name="respview.client.css" with="cm1,QMD4,QMD4x99,QMD6,QMD7,QMD88,QMD89,QMD90,MAHA1,MAHA1x99,MAHA2,MAHA3,MAHA4,MAHA4x99,cm2,ETHNIC,ETHNICx99,RACE,VET,VETx99,UNION,UNIONx99,EDUCATION,REL,RELx99,REL2,HHI,HHIX99,cm3,HHIX100,HHIX101,HHIX102,HHIX103,HHIX103x99,HHIX104"><![CDATA[
+<style>
+h1#question_text_QMD4x99, h1#question_text_MAHA1x99, h1#question_text_ETHNICx99, h1#question_text_VETx99, h1#question_text_UNIONx99, h1#question_text_EDUCATIONx99, h1#question_text_RELx99, h1#question_text_HHIX99, h1#question_text_HHIX103x99, h1#question_text_MAHA4x99 {
+    display: none;
+}
+.survey-header {
+    margin-bottom: unset;
+}
+.logo-middle {
+    display: inline;
+}
+.survey-body {
+    text-align: -webkit-center;
+}
+form#primary {
+    background-color: #FFFFFF;
+    width: 700px !important;
+    border-radius: 10px;
+    padding: 22px 24px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #E0DCD6;
+}
+.comment-text {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.42;
+    margin-bottom: 8px;
+    text-align: center;
+}
+.question-text {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.42;
+    margin-bottom: 8px;
+}
+.question-text, .instruction-text, .question-error, .answers.answers-list {
+    text-align: left;
+    max-width: 660px;
+    padding: 0 8px;
+}
+.indent-2 {
+    padding-left: unset;
+}
+fieldset.atm1d .answers>div>div {
+    border-radius: 7px;
+    border: 2px solid #E0DCD6;
+    display: flex;
+}
+fieldset.atm1d .answers>div input[type=checkbox]:checked~div>label, fieldset.atm1d .answers>div input[type=radio]:checked~div>label {
+    background-color: #555555;
+    border-color: transparent;
+    color: #fff !important;
+}
+.instruction-text {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+/* Check box */
+.fir-icon svg, .fir-icon i {
+    font-size: 2.5em !important;
+}
+.fir-icon.selected .rounded .fir-selected, .fir-icon.selected .square .fir-selected {
+    fill: #4CAF50;
+}
+/* Grid */
+.row-legend {
+    background-color: unset;
+}
+.grid {
+    font-size: 13px !important;
+}
+.answers.answers-list {
+    flex: 1;
+    font-family: Fraunces, Georgia, serif;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    text-align: left;
+    padding: 0 8px;
+}
+.sq-cardrating-card {
+    font-family: Fraunces, Georgia, serif;
+    background-color: #F5F2ED !important;
+    border-color: #E0DCD6;
+    border-width: 2px;
+    color: #454545;
+    font-size: 1.5rem;
+    overflow: hidden;
+    border-radius: 50px;
+}
+.sq-cardrating-button {
+    background-color: #FFF;
+    color: #000;
+    text-align: center;
+    border: 2px solid #E0DCD6;
+    border-radius: 10px;
+}
+.sq-cardrating-button[data-selected] {
+    background-color: #555555;
+    border-color: transparent;
+    color: #fff;
+}
+fieldset.atm1d .answers>div label {
+    background-color: #FFF;
+    color: #000 !important;
+}
+#md-enjoy-btn, #btn_continue {
+    background: rgb(107, 127, 78);
+    color: rgb(255, 255, 255);
+    border: medium;
+    border-radius: 24px;
+    padding: 14px 36px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+}
+#btn_randomize {
+    display: none;
+}
+.survey-buttons {
+    text-align: center;
+}
+.ParaText {
+    font-family: Fraunces, Georgia, serif;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.55;
+    margin: 0 0 16px;
+}
+.dv1 {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-top: 24px;
+    padding-right: 16px;
+    padding-left: 16px;
+    text-align: center;
+}
+.dv1x1 {
+    padding: 16px 0 24px;
+}
+.dv1x1xIMG {
+    height: 48px;
+    width: auto;
+}
+.dv1x2 {
+    background: #fff;
+    border: 1px solid #E0DCD6;
+    border-radius: 12px;
+    padding: 28px 24px 24px;
+    margin-bottom: 24px;
+}
+.sq-cardrating-prev, .sq-cardrating-next {
+    background: rgb(107, 127, 78);
+    color: rgb(255, 255, 255);
+    border-radius: 34px;
+    padding: 9px 14px;
+    opacity: 1;
+}
+</style>
+]]></style>
+
 <style name="respview.client.js" mode="after" wrap="ready"><![CDATA[
   /* Only run screener card JS if screener elements exist on this page */
   if(!document.getElementById('card-intro')){ return; }
