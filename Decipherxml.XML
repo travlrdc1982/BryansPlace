@@ -2341,7 +2341,7 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
    size="3"
    where="execute,survey,report">
     <title>Hidden: DEM MaxDiff B-W Matrix</title>
-    <exec>
+    <exec><![CDATA[
 if not hasattr(p, 'maxdiff1') or not p.maxdiff1:
     p.maxdiff1 = []
 p.sum=[]
@@ -2366,7 +2366,7 @@ for i in QMD1.rows:
 			a1=QMD1[i][j].val
 			a+=int(a1)
 	QMD1[i].c11.val=a
-    </exec>
+    ]]></exec>
     <row label="r1">Item-1</row>
     <row label="r2">Item-2</row>
     <row label="r3">Item-3</row>
@@ -2969,7 +2969,7 @@ QMD3_Timer.val = (timeSpent() - p.startTime) / 60.0
    size="3"
    where="execute,survey,report">
     <title>Hidden: GOP MaxDiff B-W Matrix</title>
-    <exec>
+    <exec><![CDATA[
 if not hasattr(p, 'maxdiff1') or not p.maxdiff1:
     p.maxdiff1 = []
 p.sum=[]
@@ -2994,7 +2994,7 @@ for i in QMD3.rows:
 			a1=QMD3[i][j].val
 			a+=int(a1)
 	QMD3[i].c13.val=a
-    </exec>
+    ]]></exec>
     <row label="r1">Government should stay small but defend marriage, family life, and personal responsibility.</row>
     <row label="r2">Big pharma and big agribusiness can&#x2019;t be trusted; local food and local control are healthier.</row>
     <row label="r3">Drug and hospital prices are crushing people. I don&#x2019;t care who fixes it&#x2014;just bring costs down.</row>
