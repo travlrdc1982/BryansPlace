@@ -1114,8 +1114,9 @@ body, .survey-body, .main-content {
       else console.log('  '+q+': (no selection)');
     });
     /* Override !important by adding inline style with !important via setAttribute */
-    var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(!nxt) nxt = document.querySelector('.button, input.button');
+    var nxt = document.querySelector('.nextPage, input[type="submit"], button[type="submit"]');
+    if(!nxt) nxt = document.querySelector('input.button, a.button, .button[type="submit"]');
+    if(!nxt) nxt = document.querySelector('[data-role="next"], .controlbarContainer input, .controlbarContainer button, .controlbarContainer a');
     if(nxt){
       nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
       console.log('[CONTINUE] native button found, clicking:', nxt.tagName, nxt.className);
@@ -2268,8 +2269,9 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
   var btn = document.getElementById('vec-continue-btn');
   if(btn){
     btn.addEventListener('click', function(){
-      var nxt = document.querySelector('.nextPage');
-      if(!nxt) nxt = document.querySelector('input.button');
+      var nxt = document.querySelector('.nextPage, input[type="submit"], button[type="submit"]');
+      if(!nxt) nxt = document.querySelector('input.button, a.button, .button[type="submit"]');
+      if(!nxt) nxt = document.querySelector('[data-role="next"], .controlbarContainer input, .controlbarContainer button, .controlbarContainer a');
       if(nxt){
         nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
         nxt.click();
@@ -3704,8 +3706,9 @@ elif XDEM_SEG_FINAL_1.any:
       }
     }
 
-    var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(!nxt) nxt = document.querySelector('.button, input.button');
+    var nxt = document.querySelector('.nextPage, input[type="submit"], button[type="submit"]');
+    if(!nxt) nxt = document.querySelector('input.button, a.button, .button[type="submit"]');
+    if(!nxt) nxt = document.querySelector('[data-role="next"], .controlbarContainer input, .controlbarContainer button, .controlbarContainer a');
     if(nxt){
       nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
       console.log('[INF1 SUBMIT] Clicking native button:', nxt.tagName, nxt.className);
@@ -5165,8 +5168,9 @@ function nmSyncText(qLabel, val){
 }
 
 function nmClickNext(){
-    var nxt = document.querySelector('.nextPage, .button[type="submit"], input[type="submit"]');
-    if(!nxt) nxt = document.querySelector('.button, input.button');
+    var nxt = document.querySelector('.nextPage, input[type="submit"], button[type="submit"]');
+    if(!nxt) nxt = document.querySelector('input.button, a.button, .button[type="submit"]');
+    if(!nxt) nxt = document.querySelector('[data-role="next"], .controlbarContainer input, .controlbarContainer button, .controlbarContainer a');
     if(nxt){
         nxt.setAttribute('style','display:block !important;visibility:hidden;position:absolute;left:-9999px;');
         nxt.click();
@@ -5174,6 +5178,16 @@ function nmClickNext(){
         var form = document.querySelector('form');
         if(form) form.submit();
     }
+}
+
+/* Hide native Decipher submit button on NM pages */
+function nmHideNativeBtn(){
+    var sels = ['.nextPage','input[type="submit"]','button[type="submit"]',
+                'input.button','a.button','.controlbarContainer'];
+    sels.forEach(function(s){
+        var els = document.querySelectorAll(s);
+        els.forEach(function(el){ el.style.cssText += ';display:none !important'; });
+    });
 }
 
 function nmGetRows(qLabel){
@@ -5228,6 +5242,7 @@ function nmFilterItems(qLabel, items){
 
 /* NM_SRC swipe card initializer (rating questions) */
 function nmInitSwipe(qLabel, oeLabel, items){
+    nmHideNativeBtn();
     items = nmFilterItems(qLabel, items);
     if(items.length === 0){ console.warn('[nmFilter] '+qLabel+' EMPTY after filter, skipping'); return; }
     for(var _i=items.length-1;_i>0;_i--){var _j=Math.floor(Math.random()*(_i+1));var _t=items[_i];items[_i]=items[_j];items[_j]=_t;}
@@ -5325,6 +5340,7 @@ function nmInitSwipe(qLabel, oeLabel, items){
 
 /* NM_INF chip grid initializer (checkbox questions) */
 function nmInitChipGrid(qLabel, oeLabel, items){
+    nmHideNativeBtn();
     var _r99 = null;
     for(var _i=items.length-1; _i>=0; _i--){
       if(items[_i].r === 'r99'){ _r99 = items.splice(_i,1)[0]; break; }
@@ -5527,6 +5543,7 @@ elif TYPING_MODULE.r3:
   <style mode="after" name="question.footer"><![CDATA[
 <script>
 (function(){
+  nmHideNativeBtn();
   /* Progress bar: page 1 of 3 = 33% */
   var pf = document.getElementById('nm-progress-fill');
   if(pf) pf.style.width = '33%';
@@ -5654,6 +5671,7 @@ elif TYPING_MODULE.r3:
   <style mode="after" name="question.footer"><![CDATA[
 <script>
 (function(){
+  nmHideNativeBtn();
   /* Progress bar: page 2 of 3 = 67% */
   var pf = document.getElementById('nm-progress-fill');
   if(pf) pf.style.width = '67%';
