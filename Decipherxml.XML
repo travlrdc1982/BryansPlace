@@ -4832,7 +4832,7 @@ elif XDEM_SEG_FINAL_1.any:
   Because users interact with the custom UI (not the native inputs), every
   click/tap must be "synced back" to the hidden Decipher inputs so the form
   submission captures the data. This is handled by shared helper functions
-  defined ONCE in a <style name="survey.respview"> block (loaded on every page):
+  defined ONCE in a <style name="respview.client.js"> block (loaded on every page):
 
     nmSyncCheckbox(qLabel, rowLabel, checked)  -- for checkbox questions
     nmSyncRating(qLabel, rowLabel, colVal)      -- for rating/radio questions
@@ -4955,12 +4955,12 @@ elif XDEM_SEG_FINAL_1.any:
   ==========================================================================
 -->
 
-<!-- Shared NM helpers: loaded on every page via survey.respview -->
-<style name="survey.respview" mode="after"><![CDATA[
+<!-- Shared NM helpers: loaded on every page via respview.client.js -->
+<style name="respview.client.js" mode="after"><![CDATA[
 <script>
 /* ================================================================
    NM SHARED HELPERS
-   Defined once here (survey.respview) instead of per-question.
+   Defined once here (respview.client.js) instead of per-question.
    Available on every page of the survey.
    ================================================================ */
 
