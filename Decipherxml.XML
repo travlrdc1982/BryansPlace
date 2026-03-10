@@ -44,9 +44,7 @@
   <themevar name="text-color">#333333</themevar>
   <themevar name="border-color">#E0DCD6</themevar>
   <themevar name="border-radius">16px</themevar>
-  <!-- Fonts -->
-  <!-- webfont left blank; fonts loaded via existing <link> in respview.client.css -->
-  <themevar name="webfont"></themevar>
+  <!-- Fonts (loaded via existing <link> in respview.client.css) -->
   <themevar name="primary-font-family">'Fraunces', serif</themevar>
   <themevar name="secondary-font-family">'Inter', sans-serif</themevar>
   <!-- DQ Buttons (ATM1D, cardrating, button-select) -->
