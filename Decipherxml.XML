@@ -2296,11 +2296,13 @@ QMD1_Timer.val = (timeSpent() - p.startTime) / 60.0
    where="execute,survey,report">
     <title>Hidden: DEM MaxDiff B-W Matrix</title>
     <exec>
+if not hasattr(p, 'maxdiff1') or not p.maxdiff1:
+    p.maxdiff1 = []
 p.sum=[]
 groupSize = 4
 groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
 for col in range(0, 10):
-    rowsForColumn = groups[col]
+    rowsForColumn = groups[col] if col < len(groups) else []
     for r in rowsForColumn:
         rowNum = int(r)-1
         QMD1.rows[rowNum][col].val=0
@@ -2922,11 +2924,13 @@ QMD3_Timer.val = (timeSpent() - p.startTime) / 60.0
    where="execute,survey,report">
     <title>Hidden: GOP MaxDiff B-W Matrix</title>
     <exec>
+if not hasattr(p, 'maxdiff1') or not p.maxdiff1:
+    p.maxdiff1 = []
 p.sum=[]
 groupSize = 4
 groups = [p.maxdiff1[i:i+groupSize] for i in range(0, len(p.maxdiff1), groupSize)]
 for col in range(0, 12):
-    rowsForColumn = groups[col]
+    rowsForColumn = groups[col] if col < len(groups) else []
     for r in rowsForColumn:
         rowNum = int(r)-1
         QMD3.rows[rowNum][col].val=0
