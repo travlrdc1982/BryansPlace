@@ -5108,16 +5108,28 @@ function nmSyncRating(qLabel, rowLabel, colVal){
               defIdx = maxR;
             }
             var targetName = rPrefix + defIdx;
+            /* 2a: exact name + exact value */
             for(var rj=0; rj<all.length; rj++){
               if(all[rj].name === targetName && (all[rj].value === colVal || all[rj].value === 'c'+colVal)){
                 inp = all[rj]; break;
+              }
+            }
+            /* 2b: exact name, select by column position (fallback for value mismatch) */
+            if(!inp){
+              var grp = [];
+              for(var rj2=0; rj2<all.length; rj2++){
+                if(all[rj2].name === targetName) grp.push(all[rj2]);
+              }
+              if(grp.length > 0){
+                var cPos = parseInt(colVal, 10) - 1;
+                if(cPos >= 0 && cPos < grp.length) inp = grp[cPos];
               }
             }
           }
         }
       }
     }
-    /* Strategy 3: position-based fallback (works when no shuffle) */
+    /* Strategy 3: find radio group by suffix match, then select by column position */
     if(!inp){
       var groups = {};
       for(var k=0; k<all.length; k++){
@@ -5127,12 +5139,16 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       }
       var gKeys = Object.keys(groups);
       var rowMatch = rowLabel.match(/^r(\d+)$/);
-      if(rowMatch && gKeys.length >= parseInt(rowMatch[1],10)){
-        var rowGroup = groups[gKeys[parseInt(rowMatch[1],10)-1]];
-        var colMatch = colVal.match ? colVal.match(/^(\d+)$/) : null;
-        var cIdx = colMatch ? parseInt(colMatch[1],10)-1 : parseInt(colVal,10)-1;
-        if(rowGroup && cIdx >= 0 && cIdx < rowGroup.length){
-          inp = rowGroup[cIdx];
+      if(rowMatch){
+        var targetSfx = '.' + (parseInt(rowMatch[1], 10) - 1);
+        for(var gi=0; gi<gKeys.length; gi++){
+          if(gKeys[gi].slice(-targetSfx.length) === targetSfx){
+            var rowGroup = groups[gKeys[gi]];
+            var colMatch = colVal.match ? colVal.match(/^(\d+)$/) : null;
+            var cIdx = colMatch ? parseInt(colMatch[1],10)-1 : parseInt(colVal,10)-1;
+            if(cIdx >= 0 && cIdx < rowGroup.length) inp = rowGroup[cIdx];
+            break;
+          }
         }
       }
     }
@@ -5154,7 +5170,7 @@ function nmSyncRating(qLabel, rowLabel, colVal){
       inp.dispatchEvent(new Event('change', {bubbles:true}));
       try{ jQuery(inp).trigger('click').trigger('change'); }catch(e){}
     } else {
-      var _dbg='[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' NOT FOUND.';var _dAll=box.querySelectorAll('input[type="radio"],select');var _dNames=[];for(var _di=0;_di<Math.min(_dAll.length,6);_di++)_dNames.push(_dAll[_di].name);_dbg+=' prefix-sample=['+_dNames.join(',')+']';var m3=rowLabel.match(/^r(\d+)$/);if(m3)_dbg+=' defIdx='+(parseInt(m3[1],10)-1);console.warn(_dbg);
+      var _dbg='[nmSyncRating] '+qLabel+' '+rowLabel+'='+colVal+' NOT FOUND.';var _dAll=box.querySelectorAll('input[type="radio"],select');var _dNames=[];for(var _di=0;_di<Math.min(_dAll.length,6);_di++)_dNames.push(_dAll[_di].name+'(v='+_dAll[_di].value+')');_dbg+=' sample=['+_dNames.join(',')+']';var m3=rowLabel.match(/^r(\d+)$/);if(m3){var _dx=parseInt(m3[1],10)-1;_dbg+=' defIdx='+_dx;var _pf='';for(var _pi=0;_pi<_dAll.length;_pi++){var _pn=_dAll[_pi].name||'';var _pd=_pn.lastIndexOf('.');if(_pd>0){_pf=_pn.substring(0,_pd+1);break;}}if(_pf){var _target=_pf+_dx;var _tg=[];for(var _ti=0;_ti<_dAll.length;_ti++){if(_dAll[_ti].name===_target)_tg.push(_dAll[_ti].value);}if(_tg.length)_dbg+=' groupVals=['+_tg.join(',')+']';else _dbg+=' targetName='+_target+' NO_MATCH';}}console.warn(_dbg);
     }
 }
 
