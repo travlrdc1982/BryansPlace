@@ -314,7 +314,8 @@ The error in Session 1 (`XSVJV` on `<text>` with `where="execute"`) may have bee
 ### Rule 9.1: Group questions sharing a custom UI on the same page
 **Error:** A `<suspend/>` between QS5 and QS5A/QS5B split a single interactive card across pages.
 **Fix:** No `<suspend/>` between questions managed by the same JS UI.
-**Session:** 1 | **Commit:** `f7e55e2`
+**Caution (from official docs):** Decipher's validation can **split same-page questions across screens** — if only some questions are answered, unanswered ones may appear alone on a follow-up screen. For dependent questions, the Survey Editor's "Keep With" option forces them to stay together during validation. In XML, this means dependent questions with shared JS/CSS should always be on the same page with no `<suspend/>` between them to avoid broken interactions when validation splits them.
+**Session:** 1 | **Commit:** `f7e55e2` | **Source:** Official Forsta "Keeping Questions Together" docs
 
 ### Rule 9.2: Add `<suspend/>` before `<exec>` blocks that reference prior answers
 **Error:** `<exec>` blocks need a server round-trip to access answer data from the previous page.
