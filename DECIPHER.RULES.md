@@ -2,7 +2,7 @@
 
 ## Decipher XML Programming Rules for the PRISM Survey
 
-> A comprehensive catalogue of errors encountered and corrections applied across **5 Claude Code sessions** and **4 branches** during the development of the PRISM survey in Decipher (compat="146"). These rules should be followed whenever generating or editing Decipher survey XML.
+> A comprehensive catalogue of errors encountered and corrections applied across **5 Claude Code sessions** and **4 branches** during the development of the PRISM survey in Decipher (compat="146"). Rules are derived from commit history AND cross-referenced against the [official Forsta XML Style System](https://support.focusvision.com/) and Survey Tag documentation. These rules should be followed whenever generating or editing Decipher survey XML.
 
 ### Sessions Covered
 
@@ -43,6 +43,7 @@
 24. [HTML Element Restrictions](#24-html-element-restrictions)
 25. [Style Block Naming](#25-style-block-naming)
 26. [Conditional Row Visibility](#26-conditional-row-visibility)
+27. [Official Forsta Reference Notes](#27-official-forsta-reference-notes)
 
 ---
 
@@ -402,7 +403,15 @@ jQuery(inp).trigger('change');            // jQuery
 
 ## 12. Native Input Interop — Checkboxes
 
-### Rule 12.1: NEVER use `.click()` after setting `.checked` on checkboxes
+### Rule 12.1: Decipher checkboxes always have `value="1"` — the `name` encodes the row
+**Per official Forsta docs**, the `el.checkbox` style renders:
+```html
+<input type="checkbox" name="$(name)" id="$(id)" value="1" class="input checkbox" />
+```
+ALL checkbox inputs have `value="1"`. The row identity is encoded in the `name` attribute, NOT the `value`. This means value-based matching (`input[value="r3"]`) will NEVER work for checkboxes.
+**Source:** Official Forsta `el.checkbox` style template
+
+### Rule 12.2: NEVER use `.click()` after setting `.checked` on checkboxes
 **Error:** Setting `inp.checked = true` then calling `inp.click()` toggled the checkbox BACK to false. Decipher saw no selections and blocked page advance. This was the single most repeated error across sessions 2, 3, and 4.
 **Fix:** Only call `.click()` when state needs to CHANGE:
 ```javascript
@@ -413,7 +422,7 @@ jQuery(inp).trigger('change');
 ```
 **Sessions:** 2, 4 | **Commits:** `0aa6c19`, `440e149`, `e25637c`, `45ee317`
 
-### Rule 12.2: Use `trigger('change')` NOT `trigger('click')` for checkbox sync
+### Rule 12.3: Use `trigger('change')` NOT `trigger('click')` for checkbox sync
 **Error:** `jQuery(cb).trigger('click').trigger('change')` inverted checkbox state. The `trigger('click')` toggles the checkbox.
 **Fix:** Use only `trigger('change')` after setting `.checked`:
 ```javascript
@@ -422,7 +431,7 @@ jQuery(cb).trigger('change');
 ```
 **Session:** 4 | **Commits:** `45ee317`, `440e149`
 
-### Rule 12.3: Name-based substring matching (`name*=`) causes cross-row collisions
+### Rule 12.4: Name-based substring matching (`name*=`) causes cross-row collisions
 **Error:** Searching for `input[name*="r1"]` matched r1, r10, r11, r12, r13, r14.
 **Fix:** Use exact match: `name === qLabel + '_' + rowLabel` or use the `ans{id}` prefix convention (see Rule 14).
 **Session:** 4 | **Commit:** `0aa6c19`
@@ -501,10 +510,14 @@ function findInput(qLabel, rowLabel) {
 
 ## 15. Form Submission & Navigation
 
-### Rule 15.1: `ss:enableNavigation="0"` removes submit infrastructure entirely
-**Error:** With navigation disabled, Decipher doesn't render any submit buttons in the DOM. `$('.nextPage').click()` found nothing.
-**Fix:** Use `ss:enableNavigation="1"` and hide native buttons with CSS. Custom buttons click the hidden native button.
-**Session:** 2 | **Commit:** `97dc987`
+### Rule 15.1: `ss:enableNavigation` controls the Back button — but may affect submit rendering
+**Per official Forsta docs**, `ss:enableNavigation="1"` "adds a Back button to the survey." The Continue button (`button.continue`) should render regardless. However, in practice (Session 2), setting `ss:enableNavigation="0"` appeared to prevent `$('.nextPage').click()` from finding anything.
+**Fix:** Use `ss:enableNavigation="1"` and hide the Back button with CSS if unwanted. The native Continue button (`id="btn_continue"`, `class="button continue"`) should always be present.
+**Note:** The official `button.continue` template renders as:
+```html
+<input type="submit" name="continue" id="btn_continue" class="button continue" value="..." />
+```
+**Session:** 2 | **Commit:** `97dc987` | **Source:** Official Forsta `button.continue` style template
 
 ### Rule 15.2: Do NOT use `document.forms[0].submit()` — it bypasses Decipher handlers
 **Error:** Direct form submission bypassed Decipher's validation, screening, and page-advance logic, causing JS error flashes and broken survey flow.
@@ -526,15 +539,17 @@ if (btn) btn.click();
 
 ### Rule 15.4: Broaden submit button selectors — Decipher renders them inconsistently
 **Error:** Decipher may render submit buttons as `<a class="button">`, `<button>`, `<input class="button">`, or inside `.controlbarContainer`.
-**Fix:** Use a fallback chain:
+**Fix:** Use a fallback chain (includes official `btn_continue` ID):
 ```javascript
-var btn = document.querySelector('.nextPage')
+var btn = document.getElementById('btn_continue')
+       || document.querySelector('.nextPage')
+       || document.querySelector('input.button.continue')
        || document.querySelector('input.button')
        || document.querySelector('a.button')
        || document.querySelector('button[type="submit"]')
        || document.querySelector('[data-role="next"]');
 ```
-**Session:** 4 | **Commit:** `c7ced29`
+**Session:** 4 | **Commit:** `c7ced29` | **Source:** Official Forsta `button.continue` template (`id="btn_continue"`)
 
 ### Rule 15.5: Hidden `display:none !important` buttons may not fire when clicked
 **Error:** Clicking a button hidden with `display:none !important` via inline CSS doesn't override the `!important` in the stylesheet.
@@ -587,9 +602,9 @@ var btn = document.querySelector('.nextPage')
 ## 18. CSS Content Restrictions
 
 ### Rule 18.1: No `@keyframes` in Decipher style blocks
-**Error:** `@` prefix interpreted as template directive (`@if`, `@for`), crashing the template engine.
+**Error:** `@` prefix interpreted as template directive (`@if`, `@for`), crashing the template engine. **Confirmed by official docs:** `\@if`, `\@else`, `\@endif`, `\@for`, `\@end` are documented flow control directives in style blocks.
 **Fix:** Use CSS `transition` properties instead.
-**Session:** 1 | **Commit:** `8411c7a`
+**Session:** 1 | **Commit:** `8411c7a` | **Confirmed:** Forsta XML Style System docs, Section 1
 
 ### Rule 18.2: No `@media` queries in global CSS CDATA blocks
 **Error:** `@media` rule caused NLPPL fatal error. Decipher's XML parser may not support it.
@@ -614,21 +629,22 @@ The `@` character is parsed by Decipher's template engine (CSS) and Less compile
 
 ## 19. DOM Element IDs
 
-### Rule 19.1: Decipher question container IDs are NOT consistent across contexts
-**Error:** The prefix changed between sessions:
-- Session 1 found IDs as `question_LABEL` (e.g., `question_QS1`)
-- Session 3 found IDs as `q_LABEL` (e.g., `q_QS1`)
-
-**Fix:** Auto-detect the prefix at runtime instead of hardcoding:
+### Rule 19.1: The official question container ID is `question_LABEL`
+**Per official Forsta docs**, the `question.header` style template renders:
+```html
+<div id="question_${this.label}" class="question ...">
+```
+So the canonical format is `question_LABEL` (e.g., `question_QS1`). However, Session 3 found `q_LABEL` on their instance — possibly due to a different theme, compat level, or DQ style override.
+**Fix:** Try the official format first, then fall back:
 ```javascript
 function findQ(label) {
-    return document.getElementById('q_' + label)
-        || document.getElementById('question_' + label)
+    return document.getElementById('question_' + label)
+        || document.getElementById('q_' + label)
         || document.getElementById(label)
         || document.querySelector('[id$="_' + label + '"]');
 }
 ```
-**Sessions:** 1, 3 | **Commits:** `8411c7a`, `b32bde8`, `eb036a7`
+**Sessions:** 1, 3 | **Commits:** `8411c7a`, `b32bde8`, `eb036a7` | **Source:** Official Forsta `question.header` style template
 
 ### Rule 19.2: `[rel ...]` pipe may not resolve inside `<html>` CDATA
 **Fix:** Use absolute URLs or inline content instead.
@@ -725,14 +741,77 @@ if not hasattr(p, 'maxdiff1'):
 
 ## 25. Style Block Naming
 
-### Rule 25.1: Valid `<style name="...">` values
-Only these style names are supported in Decipher:
-- `respview.client.css` — global CSS (injected into `<head>`)
-- `respview.client.js` — global JS (injected into `<head>`)
-- Question-specific overrides: `question.header`, `question.footer`, `question.row`, `question.top-legend`
+### Rule 25.1: Valid `<style name="...">` values — exhaustive list from official docs
 
-**NOT valid:** `survey.footer`, `survey.respview`, or any other arbitrary names.
-**Session:** 4 | **Commits:** `a22061b`, `63fdc4f`, `8c79241`
+**Page-level styles** (nest anywhere in `<survey>`, NOT inside questions):
+
+| Style Name | Purpose |
+|------------|---------|
+| `global.page.head` | Extra HTML in `<head>` globally |
+| `respview.client.meta` | Additional `<meta>` tags |
+| `respview.client.css` | Custom CSS after default CSS in `<head>` |
+| `respview.client.js` | Custom JS after default JS in `<head>` |
+| `survey.header` | Header before survey content and logo |
+| `survey.logo` | Survey logo display |
+| `buttons` | Button container at bottom of page |
+| `button.continue` | The "Continue" button |
+| `button.finish` | The "Finish" button (last page) |
+| `button.cancel` | Extra button (blank by default) |
+| `button.goback` | Back button (requires `ss:enableNavigation="1"`) |
+| `survey.completion` | Progress bar |
+| `survey.respview.footer` | Footer at end of survey page |
+| `survey.respview.footer.support` | Support links in footer |
+| `page.head` | Per-page `<head>` additions |
+
+**Question-level styles** (nest inside question tags):
+
+| Style Name | Purpose |
+|------------|---------|
+| `question.header` | Start of question (title, errors, instructions) |
+| `question.footer` | End of question |
+| `question.after` | Blank — use with `wrap="ready"` for JS after question |
+| `survey.question` | Question text display |
+| `survey.question.instructions` | Instruction text display |
+| `survey.question.answers.start` | Start of answer table |
+| `survey.question.answers.end` | End of answer table |
+| `question.row` | Row containing legend + input element |
+| `question.top-legend` | Column legend row (top) |
+| `question.top-legend-item` | Individual column legend cell |
+| `question.bottom-legend` | Column legend row (bottom) |
+| `question.bottom-legend-item` | Individual bottom legend cell |
+| `question.col-legend-row` | Repeated column legends |
+| `question.col-legend-row-item` | Individual repeated legend cell |
+| `question.left` | Left row legend text |
+| `question.right` | Right row legend text |
+| `question.left-blank-legend` | Blank cell left of top legend |
+| `question.right-blank-legend` | Blank cell right of top legend |
+| `question.group` | Row group heading (depth 1) |
+| `question.group-2` | Row group heading (depth 2) |
+| `question.group-3` | Row group heading (depth 3) |
+| `question.group-column` | Column group heading row |
+| `question.group-column-cell` | Individual column group cell |
+| `question.na.row` | Noanswer row |
+| `question.element` | Answer cell with input element |
+
+**Element-level styles** (input rendering):
+
+| Style Name | Purpose |
+|------------|---------|
+| `el.radio` | Single-select radio input |
+| `el.checkbox` | Multi-select checkbox input |
+| `el.select.header` | Start of dropdown |
+| `el.select.default` | Default "Select..." option |
+| `el.select.element` | Dropdown choice option |
+| `el.select.footer` | End of dropdown |
+| `el.text` | Text/number input field |
+| `el.textarea` | Multi-line text input |
+| `el.noanswer` | Noanswer checkbox |
+| `el.open` | Open-ended input in rows |
+| `el.image` | File upload input |
+
+**NOT valid:** `survey.footer`, `survey.respview`, or any arbitrary name not in the list above.
+
+**Session:** 4 | **Commits:** `a22061b`, `63fdc4f`, `8c79241` | **Source:** Official Forsta XML Style System documentation
 
 ---
 
@@ -918,8 +997,8 @@ If you must sync custom UI to native Decipher inputs, follow this priority order
   <style name="respview.client.js" mode="after"><![CDATA[
   <script>
   function findQ(label) {
-      return document.getElementById('q_' + label)
-          || document.getElementById('question_' + label)
+      return document.getElementById('question_' + label)  // official format per Forsta docs
+          || document.getElementById('q_' + label)          // alternate format seen in some instances
           || document.getElementById(label);
   }
   </script>
@@ -953,3 +1032,116 @@ If you must sync custom UI to native Decipher inputs, follow this priority order
 
 </survey>
 ```
+
+---
+
+## 27. Official Forsta Reference Notes
+
+> The following rules are derived from the official Forsta/Decipher documentation (Survey Tag attributes and XML Style System) and confirm, correct, or supplement the error-derived rules above.
+
+### Rule 27.1: The `@` character is a template engine directive — confirmed by docs
+The official docs confirm that style blocks support flow control via `\@if`, `\@else`, `\@endif`, `\@for`, `\@end`. This is why `@keyframes`, `@media`, and `@import` in CSS CDATA blocks crash the template engine — they are parsed as directives.
+**Confirms:** Rules 18.1, 18.2, 18.5
+
+### Rule 27.2: `[super]` inherits the default style in overrides
+When overriding a style, `[super]` inserts the default style code at that position. `mode="before"` implicitly adds `[super]` at the beginning; `mode="after"` adds it at the end; `mode="instead"` replaces completely (no `[super]`).
+**Note:** `[super]` is NOT the same as bracket variable substitution (Rule 4.1). It only works inside `<style>` blocks, not `<html>` CDATA.
+
+### Rule 27.3: `<style mode="...">` has three values
+| Mode | Behavior |
+|------|----------|
+| `instead` | Replaces the default style entirely |
+| `before` | Prepends new code before the default (implicit `[super]` at end) |
+| `after` | Appends new code after the default (implicit `[super]` at start) |
+
+If no `mode` is specified, `instead` is the default behavior.
+
+### Rule 27.4: `<style cond="...">` accepts Python conditions
+A `<style>` element can have a `cond` attribute with Python code, evaluated at runtime. Useful for device-specific styles:
+```xml
+<style name="question.row" cond="gv.survey.root.mobile == 'compat'">
+  <!-- mobile-specific row layout -->
+</style>
+```
+
+### Rule 27.5: `<style>` supports `rows` and `cols` for targeted overrides
+For question-level styles, `rows="r1,r3"` or `cols="c1,c2"` restricts the override to specific rows/columns. Only valid for certain style names (element-level styles within questions).
+
+### Rule 27.6: Style variables via `arg:XXX` attribute
+Custom style variables can be declared and referenced:
+```xml
+<style name="el.text" arg:before="$" mode="before">$(before)</style>
+```
+Variables are referenced as `$(var)` inside the style. When `copy`ing a style, supply new `arg:` values to override.
+
+### Rule 27.7: `[rel file.jpg]` resolves relative to the survey directory
+Official shortcut for static file references. Inserts a link relative to the current survey and routes through a caching proxy. The `[rel]` pipe works in `<style>` blocks and standard question text.
+**Supplements:** Rule 19.2 (may not work inside `<html>` CDATA due to variable substitution)
+
+### Rule 27.8: `${python code}` embeds Python expressions in style blocks
+Style blocks support inline Python via `${expression}` syntax. Common uses:
+- `${q3.r5.val}` — display a question value
+- `${p.pipe}` — display a persistent variable
+- `${v2_insertStyle('stylename')}` — insert another style block
+This is separate from `<exec>` Python (Rule 20) and only works inside `<style>` blocks.
+
+### Rule 27.9: `el.radio` renders `value="$(value)"` — confirming row value importance
+The official `el.radio` template:
+```html
+<input type="radio" name="$(name)" value="$(value)" id=$(id) class="input radio" />
+```
+The `$(value)` comes from the `value` attribute on the `<row>` or `<col>` element. This confirms Rule 8.3: always set explicit `value=` attributes on rows.
+**Confirms:** Rule 8.3
+
+### Rule 27.10: `el.checkbox` always renders `value="1"` — row identity is in the `name`
+The official `el.checkbox` template:
+```html
+<input type="checkbox" name="$(name)" id="$(id)" value="1" class="input checkbox" />
+```
+Unlike radios, checkboxes always have `value="1"`. The row is identified by the `name` attribute. This means:
+- `input[value="r3"]` will NEVER find a checkbox
+- Match by `name` attribute containing the row identifier
+**Confirms:** Rule 12.1
+
+### Rule 27.11: The `<survey>` tag supports `ss:customCSS` and `ss:customJS` for static files
+For loading CSS/JS from the `/static` directory:
+```xml
+<survey ss:customCSS="custom.css" ss:customJS="custom.js">
+```
+Multiple files can be loaded with `ss:includeCSS` and `ss:includeJS`.
+**Alternative to:** Rules 6.1, 7.1 — may avoid CDATA bracket/template issues entirely
+
+### Rule 27.12: `setup` attribute boilerplate values
+Per official docs, `setup` accepts: `time`, `quota`, `term`, `decLang` (comma-separated).
+- `term`: enables termination logic
+- `quota`: enables quota-based routing
+- `decLang`: enables language detection
+- `time`: enables timing capture
+**Confirms:** Rule 22.3
+
+### Rule 27.13: `delphi="1"` enables advanced features and changes defaults
+With `delphi="1"`:
+- `persistentExit` is ON by default
+- `autoRecover` is ON by default
+- `capturePreciseTime` is ON by default
+- `trackVars` is ON by default
+- Data encryption requires AWS database with encryption enabled
+- `allowDupe` is NOT usable
+- `sql` storage is NOT usable
+
+### Rule 27.14: `button.continue` has a known, stable ID
+The official template always renders the Continue button as:
+```html
+<input type="submit" name="continue" id="btn_continue" class="button continue" />
+```
+This means `document.getElementById('btn_continue')` is the most reliable selector.
+**Supplements:** Rule 15.4
+
+### Rule 27.15: `question.after` with `wrap="ready"` is the recommended way to add per-question JS
+```xml
+<style name="question.after" with="Q1" wrap="ready"><![CDATA[
+    $("#question_Q1").doSomething();
+]]></style>
+```
+This avoids all `<html>` CDATA bracket issues (Rule 4.1) and `<script>` tag issues (Rule 7.3).
+**Supplements:** Rules 7.1, 7.3, 24.1
