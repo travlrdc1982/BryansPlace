@@ -392,7 +392,17 @@ function setRadio(qId, val) {
 ```
 **Sessions:** 1, 3 | **Commits:** `a6d2017`, `7115912`
 
-### Rule 11.2: Always dispatch BOTH native and jQuery events
+### Rule 11.2: FIR (Form Image Replacement) replaces native radio/checkbox rendering
+**Per official Forsta docs**, when `fir="on"` is set (globally or per-question), standard `<input type="radio">` and `<input type="checkbox">` browser inputs are replaced with SVG graphics. The underlying `<input>` elements still exist in the DOM but are visually hidden. Custom JS sync should:
+- Still target the native `<input>` elements (they remain in the DOM)
+- Trigger both native and jQuery events so FIR's visual state updates
+- NOT rely on visible checkbox/radio appearance for state detection
+
+FIR styles: `rounded` (default), `square`, `scale`, `fontawesome`/`fa`.
+FIR can be disabled per-question with `fir="off"`.
+**Source:** Official Forsta "Modifying Form Buttons" documentation
+
+### Rule 11.3: Always dispatch BOTH native and jQuery events
 **Error:** Using only `jQuery.trigger('click')` fired jQuery handlers but not Decipher's native event listeners. Using only native `.click()` missed jQuery-bound handlers.
 **Fix:** Use both:
 ```javascript
@@ -402,7 +412,7 @@ jQuery(inp).trigger('change');            // jQuery
 ```
 **Sessions:** 3, 4 | **Commits:** `91d6d99`, `44ed2bb`
 
-### Rule 11.3: Watch for off-by-one between custom UI values and Decipher radio indices
+### Rule 11.4: Watch for off-by-one between custom UI values and Decipher radio indices
 **Error:** Custom UI `data-val="1"` meaning "first answer" but Decipher radios were 0-indexed. Value-matching selected the WRONG answer, causing incorrect terminations.
 **Fix:** Use position-based selection: `data-val="1"` → `radios[0]` (index 0).
 **Session:** 3 | **Commit:** `430e576`
@@ -595,12 +605,30 @@ var btn = document.getElementById('btn_continue')
 **Fix:** Remove the `theme` attribute if unavailable. Verified across multiple sessions.
 **Sessions:** 1, 3 | **Commits:** `1f77c24`, `9395da2`
 
-### Rule 17.2: Do NOT put `@`-containing URLs in `<themevars>`
+### Rule 17.2: FIR themevars provide native form input styling without custom CSS
+**Per official Forsta docs**, FIR (Form Image Replacement) can be styled via themevars, avoiding the need for custom CSS to style radio/checkbox inputs:
+```xml
+<themevars>
+  <themevar name="fir-border">#c7c7c7</themevar>
+  <themevar name="fir-inner">#FFFFFF</themevar>
+  <themevar name="fir-inner-hover">#8DDCDC</themevar>
+  <themevar name="fir-inner-selected">#1CBAB9</themevar>
+  <themevar name="fir-radio">circle-o</themevar>
+  <themevar name="fir-radio-selected">dot-circle-o</themevar>
+  <themevar name="fir-checkbox">square-o</themevar>
+  <themevar name="fir-checkbox-selected">check-square</themevar>
+</themevars>
+```
+Use `fir="on"` on the `<survey>` tag with `firStyle="rounded"`, `"square"`, `"scale"`, or `"fa"` (Font Awesome).
+**Note:** This is a safer alternative to custom CSS for styling form inputs (avoids `@keyframes`, `var()`, and other CDATA issues from Rules 18.1–18.5).
+**Source:** Official Forsta "Modifying Form Buttons" documentation
+
+### Rule 17.3: Do NOT put `@`-containing URLs in `<themevars>`
 **Error:** Google Fonts URL (`wght@400;500;600;700`) in a `webfont` themevar was parsed as Less variable references, causing a Less compile error.
 **Fix:** Load fonts via `<link>` tags in `respview.client.css` instead of themevars.
 **Session:** 4 | **Commit:** `887f9ec`
 
-### Rule 17.3: Do NOT leave themevars empty — remove them entirely
+### Rule 17.4: Do NOT leave themevars empty — remove them entirely
 **Error:** An empty `webfont` themevar caused `.webfontImport` mixin to fail with `@url undefined`.
 **Fix:** Remove the themevar entirely rather than setting it to blank.
 **Session:** 4 | **Commit:** `d720287`
@@ -653,6 +681,11 @@ function findQ(label) {
 }
 ```
 **Sessions:** 1, 3 | **Commits:** `8411c7a`, `b32bde8`, `eb036a7` | **Source:** Official Forsta `question.header` style template
+
+**Double confirmation:** The FIR docs also use `#question_QQQ` as the selector pattern:
+```javascript
+$("#question_QQQ .cell").addClass("no-uncheck");
+```
 
 ### Rule 19.2: `[rel ...]` pipe may not resolve inside `<html>` CDATA
 **Fix:** Use absolute URLs or inline content instead.
@@ -957,9 +990,9 @@ items = items.filter(function(item) {
 | 26 | Page progression blocked | Global CSS hiding native Continue buttons | 9.4 |
 | 27 | 15+ blank pages | Excessive `<suspend/>` tags | 9.5 |
 | 28 | setRadio selecting wrong input | Numeric value matched wrong radio | 11.1 |
-| 29 | jQuery events not reaching Decipher | `trigger('click')` only fires jQuery handlers | 11.2 |
+| 29 | jQuery events not reaching Decipher | `trigger('click')` only fires jQuery handlers | 11.3 |
 | 30 | Data capture failing | `question_` prefix vs actual `q_` prefix | 19.1 |
-| 31 | Off-by-one termination | `data-val="1"` matched 0-indexed radio value "1" (2nd answer) | 11.3 |
+| 31 | Off-by-one termination | `data-val="1"` matched 0-indexed radio value "1" (2nd answer) | 11.4 |
 | 32 | `<!-- -->` comments rejected | HTML comments not supported | 21.1 |
 | 33 | ASCII exec error | Non-ASCII chars in `<exec>` blocks | 3.2 |
 | 34 | Overquota termination | Quota sheets don't exist on server | 22.1 |
@@ -995,8 +1028,8 @@ items = items.filter(function(item) {
 | 59 | `&rsquo;` parse error | Named entities not safe in CDATA | 3.3 |
 | 60 | NLPPL fatal error | `@media` query in global CSS | 18.2 |
 | 61 | XML parse error at line 2350 | Bare `<` operator in `<exec>` | 1.3 |
-| 62 | Less `@url undefined` | `@` in Google Fonts URL parsed as Less variable | 17.2 |
-| 63 | Less mixin error | Empty webfont themevar | 17.3 |
+| 62 | Less `@url undefined` | `@` in Google Fonts URL parsed as Less variable | 17.3 |
+| 63 | Less mixin error | Empty webfont themevar | 17.4 |
 | 64 | `with=` styles not applying | Invalid question labels in `with=` attribute | 6.4 |
 | 65 | 6 reverts in one session | Custom JS too fragile — switched to native widgets | 24.2 |
 | 66 | Missing `<suspend/>` | NM_PLAT and NM_TOPICS on same page | 9.3 |
@@ -1044,6 +1077,8 @@ If you must sync custom UI to native Decipher inputs, follow this priority order
   delphi="1"
   state="testing"
   setup="term,decLang,quota,time"
+  fir="on"
+  firStyle="rounded"
   ss:enableNavigation="1"
   ss:hideProgressBar="1"
   html:showNumber="0"
@@ -1223,3 +1258,66 @@ This means `document.getElementById('btn_continue')` is the most reliable select
 ```
 This avoids all `<html>` CDATA bracket issues (Rule 4.1) and `<script>` tag issues (Rule 7.3).
 **Supplements:** Rules 7.1, 7.3, 24.1
+
+### Rule 27.16: FIR (Form Image Replacement) — replaces browser form inputs with SVG
+**Per official Forsta docs**, `fir="on"` replaces standard radio/checkbox browser inputs with scalable SVG graphics. Key behaviors:
+- **Only radio and checkbox** inputs are replaced — text, textarea, select are unaffected
+- **Underlying `<input>` elements remain in the DOM** — just visually hidden behind SVG
+- **FIR can be toggled per-question** with `fir="off"` to disable for specific questions
+- **compat 133+**: FIR allows radio DE-selection (click selected radio to uncheck). Add `$(".cell").addClass("no-uncheck")` via `respview.client.js` to disable this.
+- **FIR styles**: `rounded` (default), `square`, `scale`, `fontawesome`/`fa`
+- **Font Awesome icons** (compat 126+): Use `firStyle="fa"` with `firRadio`, `firRadioSelected`, `firCheckbox`, `firCheckboxSelected` attributes or equivalent themevars
+
+**Impact on custom JS sync:**
+- Native inputs still exist → custom JS can still target them
+- SVG state changes are driven by native input events → dispatching proper events (Rule 11.3) keeps FIR visuals in sync
+- If FIR is ON and custom JS changes `.checked` without events, the SVG graphic won't update
+
+**FIR themevars** (cleaner than custom CSS for form styling):
+```xml
+<themevars>
+  <themevar name="fir-border">#c7c7c7</themevar>
+  <themevar name="fir-inner">#FFFFFF</themevar>
+  <themevar name="fir-inner-hover">#8DDCDC</themevar>
+  <themevar name="fir-inner-selected">#1CBAB9</themevar>
+</themevars>
+```
+**Supplements:** Rules 11.2, 17.2, 24.2
+**Source:** Official Forsta "Modifying Form Buttons" documentation
+
+### Rule 27.17: `where="execute"` is valid on `<radio>` and `<checkbox>` — confirmed
+The official Exec Tag docs show `where="execute"` as the standard pattern for hidden computed questions:
+```xml
+<radio label="vAge" where="execute">
+  <exec>
+  for eachRow in vAge.rows:
+      if Q1.check(eachRow.o.alt):
+          vAge.val = eachRow.index
+          break
+  </exec>
+  <title>Age Group (Hidden)</title>
+  <row label="r1" alt="1-17">1-17</row>
+</radio>
+```
+Key API patterns from the docs:
+- `question.val` — get/set question value
+- `question.rows` — iterate over rows
+- `eachRow.index` — get 1-based row index
+- `eachRow.o.alt` — get row's `alt` attribute value
+- `question.check(range)` — check if value is in range string (e.g., `"18-24"`)
+- Nested `<exec>` inside `where="execute"` questions is the official pattern
+**Confirms:** Rule 8.1 correction, Rule 20.5
+
+### Rule 27.18: `<exec when="init">` supports `File()` and `Database()` for data loading
+Per official docs, `when="init"` is for initializing static data structures:
+```xml
+<exec when="init">
+myDatabase = File("dbfile.dat", "source")
+badZipCodes = ["93611", "93720", "90210"]
+</exec>
+```
+- `File("filename.dat", "key_column")` — loads tab-delimited file
+- `Database("filename.txt")` — loads a validation database
+- Variables declared in `when="init"` are available survey-wide
+- **CANNOT** access question data, participant info, or extra variables
+**Supplements:** Rules 20.2, 23.1
