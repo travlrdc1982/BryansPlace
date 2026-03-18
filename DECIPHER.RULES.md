@@ -610,7 +610,20 @@ var btn = document.getElementById('btn_continue')
 ### Rule 17.1: Only reference themes that exist on the target instance
 **Error:** `theme="frozen:user/116957/dpi_project_temp"` caused survey termination when theme didn't exist.
 **Fix:** Remove the `theme` attribute if unavailable. Verified across multiple sessions.
-**Sessions:** 1, 3 | **Commits:** `1f77c24`, `9395da2`
+
+**Per official Forsta docs**, the `theme` attribute on `<survey>` accepts these values:
+
+| Value | Type | Resolves To |
+|-------|------|-------------|
+| `system/[name]` | System theme | `/static/nthemes/system/themes/[name]/theme.less` |
+| `company/[name]` | Company theme | `[company-path]/themes/[name]/theme.less` |
+| `user/[id]/[name]` | User theme | `[company-path]/themes/users/[id]/[name]/theme.less` |
+| `survey` | Survey-specific | `[project-path]/static/theme.less` |
+| `frozen:[original]` | Frozen (live) | `[project-path]/static/theme.less` (copied from original) |
+
+**Important:** When a survey goes live, its theme is "frozen" — the `theme.less` file is copied into the project's `/static` directory. This prevents live surveys from being affected by theme updates.
+**Warning:** If using a custom `theme.less` file with `ss:includeLESS`, use `theme="survey"` or rename the file — otherwise going live will **overwrite** your custom `theme.less`.
+**Sessions:** 1, 3 | **Commits:** `1f77c24`, `9395da2` | **Source:** Official Forsta "Editing the Survey Theme" docs
 
 ### Rule 17.2: FIR themevars provide native form input styling without custom CSS
 **Per official Forsta docs**, FIR (Form Image Replacement) can be styled via themevars, avoiding the need for custom CSS to style radio/checkbox inputs:
@@ -639,6 +652,32 @@ Use `fir="on"` on the `<survey>` tag with `firStyle="rounded"`, `"square"`, `"sc
 **Error:** An empty `webfont` themevar caused `.webfontImport` mixin to fail with `@url undefined`.
 **Fix:** Remove the themevar entirely rather than setting it to blank.
 **Session:** 4 | **Commit:** `d720287`
+
+### Rule 17.5: Multiple themes per survey using `<themes>` (compat 137+)
+**Per official Forsta docs**, you can apply different themes conditionally using `<themes>` and `<theme>` tags:
+```xml
+<themes>
+  <theme cond="list == '1'" name="system/education"/>
+  <theme cond="list == '2'" name="company/company_theme"/>
+  <theme cond="list == '3'" name="user/1/user_generated_theme"/>
+  <theme cond="list == '4'" name="survey"/>
+</themes>
+```
+Requirements:
+- **Compat level 137+** required
+- `name` must reference theme names from the Theme Editor (NOT file paths)
+- `cond` uses standard Python condition syntax
+- Themes are applied when the `<themes>` tag is evaluated
+- Company/user themes require a `selfserve` directory
+- Survey-specific themes must also be in the `<survey>` tag
+
+**Tip:** Apply a theme via the Theme Editor first to get the correct `name` value, then copy it to the `<themes>` tag.
+**Source:** Official Forsta "Editing the Survey Theme" docs
+
+### Rule 17.6: Custom theme.less files can be exported, edited, and re-imported
+The Theme Editor supports exporting `theme.less` files for programmatic customization. After editing with a text editor (see "The Less Styles System" for syntax), re-import via the Theme Editor. The file is compiled on upload — Less syntax errors will prevent application and show an error message.
+**Naming:** Theme names inside the `.less` file must be alphanumeric — other characters are stripped on import.
+**Source:** Official Forsta "Editing the Survey Theme" docs
 
 ---
 
