@@ -250,15 +250,22 @@ Decipher bundles jQuery. Standard pattern: `jQuery(document).ready()`. Prefer jQ
 
 ## 8. Question Elements & Validation
 
-### Rule 8.1: Use `cond="0"` for hidden question variables
-**Error:** `where="execute"` on a `<text>` element caused fatal server error (XSVJV). Only valid on `<html>` elements.
-**Fix:**
+### Rule 8.1: `where="execute"` IS valid on `<radio>` and `<checkbox>` — but may fail on `<text>`
+**CORRECTION:** The original rule stated `where="execute"` is "only valid on `<html>` elements." **Per official Forsta docs**, `where="execute"` is the standard pattern for hidden computed questions:
 ```xml
-<text label="vscreenout" cond="0" size="10">
-  <title>Hidden screenout variable</title>
-</text>
+<radio label="vAge" where="execute">
+  <title>Age Group (Hidden Question)</title>
+  <row label="r1">18-24</row>
+</radio>
+<checkbox label="vOver18" atleast="0" where="execute">
+  <title>Over 18? (Hidden Question)</title>
+  <row label="yes">Yes</row>
+</checkbox>
 ```
-**Session:** 1 | **Commits:** `1653e66`, `535df34`
+The error in Session 1 (`XSVJV` on `<text>` with `where="execute"`) may have been specific to `<text>` elements or may have had a different root cause. Both `cond="0"` and `where="execute"` work for hiding questions:
+- `where="execute"`: Decipher processes the question server-side only (official pattern for computed variables)
+- `cond="0"`: Question is never shown but IS declared (alternative approach)
+**Session:** 1 | **Commits:** `1653e66`, `535df34` | **Corrected by:** Official Forsta Exec Tag docs
 
 ### Rule 8.2: Every variable referenced in `<exec>` must be declared
 **Error:** `<exec>` referenced `vscreenout.val` but no matching question element existed.
@@ -341,9 +348,9 @@ if QS1.r2 or QS1.r99:
 **Fix:** `<exit cond="qualified">`.
 **Session:** 1 | **Commit:** `1f77c24`
 
-### Rule 10.3: Consolidate `<exec>` blocks — avoid multiple conditioned execs
-**Error:** Multiple separate `<exec>` blocks with `cond=` attributes caused Decipher validation issues.
-**Fix:** Combine into a single `<exec>` with Python if-statements:
+### Rule 10.3: Consolidate `<exec>` blocks when practical
+**Error:** Multiple separate `<exec>` blocks with `cond=` attributes caused Decipher validation issues in Session 2.
+**Note:** Per official Forsta docs, `cond` IS a valid attribute on `<exec>` (see Rule 20.3). The validation issues may have been context-specific. However, consolidating into a single `<exec>` is still cleaner and avoids edge cases:
 ```xml
 <exec>
 if QS1.r2 or QS1.r99:
@@ -352,6 +359,7 @@ if QVOTE24.r4 or QVOTE24.r98:
     setMarker('Screened-QVOTE24')
 </exec>
 ```
+**Important:** `cond` is IGNORED when `when` is set to `started`, `finished`, `returning`, `submit`, or `verified` (see Rule 20.3).
 **Session:** 2 | **Commit:** `9ad77b8`
 
 ### Rule 10.4: Verify termination conditions don't terminate eligible respondents
@@ -661,19 +669,89 @@ function findQ(label) {
 if not hasattr(p, 'maxdiff1'):
     p.maxdiff1 = []
 ```
+**Tip (from official docs):** Use `when="flow"` to set default values for persistent variables that would cause errors in "One Page" test mode.
 **Session:** 4 | **Commit:** `773cd70`
 
-### Rule 20.2: Design file loading — use `when="init"` for `.dat` file parsing
-**Error:** Removing `when="init"` from design file loading execs (changed to runtime) broke the working version.
-**Fix:** Keep design file loading as init-time execs. They are cached at compilation and re-used per respondent.
-**Session:** 3 | **Commits:** `c5c788c`, `a042059`
+### Rule 20.2: `when="init"` CANNOT access question content or participant data
+**Per official Forsta docs:** "There is no participant information at this point, so you cannot access extra variables nor can you modify or access question content."
+`when="init"` is appropriate for:
+- Initializing databases (`File()`, `Database()`)
+- Defining global variables and lists
+- Creating functions to be used survey-wide
 
-### Rule 20.3: Skip header rows in `.dat` design files
+It is NOT appropriate for:
+- Setting question values (`Q1.val = ...`)
+- Modifying question titles (`Q1.title = "..."`)
+- Accessing extra variables
+
+**Fix for design file loading:** Keep as `when="init"` for `File()` calls (correct usage). But do not attempt to access `p.*` or question data.
+**Session:** 3 | **Commits:** `c5c788c`, `a042059` | **Confirmed by:** Official Forsta Exec Tag docs
+
+### Rule 20.3: The `<exec>` tag has 13 `when` values — use the right one
+
+| `when` Value | When It Runs | Can Access Questions? | `cond` Respected? |
+|---|---|---|---|
+| `survey` (default) | When participant reaches that location | Yes | Yes |
+| `started` | First time participant enters survey | Yes | **No** |
+| `init` | Once when survey is loaded | **No** | Yes |
+| `virtualInit` | When running reports for virtual questions | **No** | Yes |
+| `finished` | After submit, before results written | Yes | **No** |
+| `returning` | When participant returns from redirect | Yes | **No** |
+| `verified` | Each time participant submits valid data | Yes | **No** |
+| `virtual` | Once per participant for virtual questions | Yes | Yes |
+| `flow` | When "One Page" test mode is toggled | Yes | Yes |
+| `submit` | Each time Continue/Finish is clicked | Yes | **No** |
+| `sqlTransfer` | When copying SQL data to results.bin | Special | Yes |
+| `sqlTransferInit` | Initializes data for sqlTransfer | Special | Yes |
+| `autosaveRestored` | When participant re-enters after exit (delphi="1" only) | Yes | Yes |
+
+**Critical:** `cond` is IGNORED when `when` is set to `started`, `finished`, `returning`, `submit`, or `verified`.
+**Source:** Official Forsta Exec Tag documentation
+
+### Rule 20.4: Non-ASCII and special characters must be escaped in `<exec>` strings
+**Per official Forsta docs:** "Non-ASCII characters are not allowed in strings within an exec block. The following characters `<`, `>`, `[`, `]`, `"`, `&`, and `'` must be escaped in strings within an exec block."
+
+This means:
+- **No em dashes, smart quotes, or Unicode** in exec block strings (confirms Rule 3.2)
+- **Square brackets `[]` must be escaped** — even in Python strings inside exec blocks
+- **Angle brackets `<>` must be escaped** — use CDATA wrapping (Rule 1.3) or avoid in strings
+- **Ampersand `&` and quotes `"` `'` must be escaped**
+
+**Fix:** Use CDATA wrapping for exec blocks with comparison operators, and avoid special characters in string literals:
+```xml
+<exec><![CDATA[
+if col < len(groups):
+    msg = "value is less than expected"
+]]></exec>
+```
+**Sessions:** 1, 3 | **Commits:** `082b133`, `9fde39e` | **Confirmed by:** Official Forsta Exec Tag docs
+
+### Rule 20.5: `where="execute"` is the standard pattern for hidden computed questions
+**Per official Forsta docs**, hidden questions that compute values should use `where="execute"`:
+```xml
+<radio label="vAge" where="execute">
+  <exec>
+  for eachRow in vAge.rows:
+      age_range = eachRow.o.alt
+      if Q1.check(age_range):
+          vAge.val = eachRow.index
+          break
+  </exec>
+  <title>Age Group (Hidden)</title>
+  <row label="r1" alt="1-17">1-17</row>
+  <row label="r2" alt="18-24">18-24</row>
+</radio>
+```
+Note: An `<exec>` block can be nested INSIDE a question element with `where="execute"` to compute its value. The `.val` and `.index` properties are the standard way to set values.
+**Source:** Official Forsta Exec Tag documentation
+**See also:** Rule 8.1 (correction)
+
+### Rule 20.6: Skip header rows in `.dat` design files
 **Error:** First line of `.dat` files contained column names (Version, Set, Item1...) creating a junk dictionary key.
 **Fix:** Skip the header row when parsing.
 **Session:** 3 | **Commit:** `c5c788c`
 
-### Rule 20.4: Case-sensitive filenames matter
+### Rule 20.7: Case-sensitive filenames matter
 **Error:** `DEMDesign.dat` referenced in code but actual file was `DemDesign.dat`.
 **Fix:** Match exact case of uploaded filenames.
 **Session:** 3 | **Commit:** `9da8417`
@@ -887,8 +965,8 @@ items = items.filter(function(item) {
 | 34 | Overquota termination | Quota sheets don't exist on server | 22.1 |
 | 35 | "Name not defined" | Inline `<cell>` not valid for quotas | 22.2 |
 | 36 | xmlns preventing save | Namespace declarations rejected | 2.3 |
-| 37 | Design file empty dict | Header row parsed as data | 20.3 |
-| 38 | `v3_t1 not found` | Case mismatch: `DEMDesign.dat` vs `DemDesign.dat` | 20.4 |
+| 37 | Design file empty dict | Header row parsed as data | 20.6 |
+| 38 | `v3_t1 not found` | Case mismatch: `DEMDesign.dat` vs `DemDesign.dat` | 20.7 |
 | 39 | Intro pages blank | `where="execute"` on `<html>` elements | 8.7 |
 | 40 | ENJOY! button bypassed handlers | `type="submit" name="continue"` | 15.3 |
 | 41 | `[type=submit]` in CDATA | Brackets in onclick handler | 4.1 |
@@ -902,8 +980,8 @@ items = items.filter(function(item) {
 
 | # | Error / Symptom | Root Cause | Rule |
 |---|-----------------|------------|------|
-| 47 | Checkbox inversion | `trigger('click')` toggled state back | 12.1 |
-| 48 | Checkbox sync failure | `name*="r1"` matched r10–r14 | 12.3 |
+| 47 | Checkbox inversion | `trigger('click')` toggled state back | 12.2 |
+| 48 | Checkbox sync failure | `name*="r1"` matched r10–r14 | 12.4 |
 | 49 | Rating sync ALL failing | Decipher renders ratings as `<select>`, not radios | 13.1 |
 | 50 | Rating r1 matched r10 | `indexOf` substring match | 13.3 |
 | 51 | Ratings lost for high rows (r39) | Position fallback inadequate for high-numbered rows | 13.2 |
