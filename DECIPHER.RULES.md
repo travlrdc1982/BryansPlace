@@ -219,7 +219,13 @@ Ensure `with=` values match actual question labels in the survey.
 ]]></style>
 ```
 `wrap="ready"` auto-wraps in `<script>` + jQuery ready. Do NOT manually add `<script>` tags or jQuery wrappers.
-**Session:** 1 | **Commit:** `52ee305`
+**Per official Forsta docs:** Use the `with` argument to restrict JS to specific pages (comma-delimited question labels):
+```xml
+<style name="respview.client.js" wrap="ready" with="Q1,Q2"><![CDATA[
+// only runs on pages containing Q1 or Q2
+]]></style>
+```
+**Session:** 1 | **Commit:** `52ee305` | **Source:** Official Forsta "Including JavaScript in a Survey" docs
 
 ### Rule 7.2: For globally-scoped helper functions, omit `wrap="ready"`
 **Error:** Shared helper functions placed in `wrap="ready"` were scoped inside the jQuery ready closure and invisible to per-question scripts.
@@ -1217,12 +1223,18 @@ Unlike radios, checkboxes always have `value="1"`. The row is identified by the 
 **Confirms:** Rule 12.1
 
 ### Rule 27.11: The `<survey>` tag supports `ss:customCSS` and `ss:customJS` for static files
-For loading CSS/JS from the `/static` directory:
+**Per official Forsta docs**, for loading CSS/JS from the survey's `/static` directory:
 ```xml
-<survey ss:customCSS="custom.css" ss:customJS="custom.js">
+<survey ss:customCSS="customScript" ss:customJS="customScript">
 ```
-Multiple files can be loaded with `ss:includeCSS` and `ss:includeJS`.
-**Alternative to:** Rules 6.1, 7.1 — may avoid CDATA bracket/template issues entirely
+**IMPORTANT:** Specify filenames **WITHOUT file extensions** — Decipher appends `.css`/`.js` automatically. Using `ss:customJS="script.js"` would look for `script.js.js`.
+
+For multiple files or full paths (including external), use `ss:includeCSS` / `ss:includeJS` (comma-delimited, WITH extensions):
+```xml
+<survey ss:includeJS="/survey/selfserve/9d3/proj1234/script1.js, proj1234/script2.js">
+```
+**Alternative to:** Rules 6.1, 7.1 — avoids CDATA bracket/template issues entirely
+**Source:** Official Forsta "Including JavaScript in a Survey" and "Survey Style Attributes" docs
 
 ### Rule 27.12: `setup` attribute boilerplate values
 Per official docs, `setup` accepts: `time`, `quota`, `term`, `decLang` (comma-separated).
@@ -1321,3 +1333,73 @@ badZipCodes = ["93611", "93720", "90210"]
 - Variables declared in `when="init"` are available survey-wide
 - **CANNOT** access question data, participant info, or extra variables
 **Supplements:** Rules 20.2, 23.1
+
+### Rule 27.19: `jsexport()` returns a JSON object of question properties in `question.after` styles
+**Per official Forsta docs**, inside a `question.after` style block, `${jsexport()}` (Python interpolation) returns a JavaScript JSON object with the question's properties:
+```xml
+<style name="question.after" wrap="ready"><![CDATA[
+    var qn = ${jsexport()};
+    console.log(qn); // full question object: labels, rows, cols, values, etc.
+]]></style>
+```
+This is useful for dynamically inspecting question structure at runtime without hardcoding row labels.
+**Note:** Uses `${}` Python interpolation (Rule 3.1) — only works in style blocks, NOT in `<html>` CDATA.
+**Source:** Official Forsta "Including JavaScript in a Survey" docs
+
+### Rule 27.20: `Survey.setPersistent('client_name', value)` — JS-to-Python data bridge
+**Per official Forsta docs**, `Survey.setPersistent(name, value)` saves data from JavaScript to a Python persistent variable:
+```javascript
+Survey.setPersistent("client_timing", elapsedTime);
+```
+Constraints:
+- Variable name **MUST** start with `client_` prefix
+- Value can be **any JSON object** (string, number, object, array)
+- **Only ONE save per page** — multiple calls overwrite previous
+- Retrieved in Python via `p.client_timing` (persistent variable)
+- Requires a `<suspend/>` (page break) before the value is accessible in Python
+
+Example from docs:
+```xml
+<html label="h1"><![CDATA[
+<button onclick="Survey.setPersistent('client_data', {score: 42})">Save</button>
+]]></html>
+<suspend/>
+<html label="h2">Score was: ${p.client_data}</html>
+```
+**Supplements:** Rule 20.6 (persistent variables)
+**Source:** Official Forsta "Including JavaScript in a Survey" docs
+
+### Rule 27.21: Complete list of `ss:` survey-level style attributes
+**Per official Forsta "Survey Style Attributes" docs**, the following `ss:` attributes are valid on the `<survey>` tag:
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `ss:customCSS` | string | CSS filename (no `.css` extension) from `/static` |
+| `ss:customJS` | string | JS filename (no `.js` extension) from `/static` |
+| `ss:includeCSS` | string | Comma-separated CSS file paths (with extensions) |
+| `ss:includeJS` | string | Comma-separated JS file paths (with extensions) |
+| `ss:enableNavigation` | bool | Add Back button |
+| `ss:hideProgressBar` | bool | Hide progress bar |
+| `ss:disableBackButton` | bool | Disable browser back button |
+| `ss:disableOfflineDetection` | bool | Disable mobile connectivity warning |
+| `ss:logoFile` | string | Logo image path |
+| `ss:logoPosition` | string | Logo position |
+| `ss:logoAlt` | string | Logo alt text (compat 133+) |
+| `ss:colorScheme` | string | Survey color scheme |
+| `ss:listDisplay` | bool | Display 1-column questions as lists vs tables |
+| `ss:questionClassNames` | string | CSS classes on question container |
+| `ss:rowClassNames` | string | CSS classes on row `<td>` elements |
+| `ss:colClassNames` | string | CSS classes on col `<td>` elements |
+| `ss:groupClassNames` | string | CSS classes on group `<td>` elements |
+| `ss:choiceClassNames` | string | CSS classes on select `<option>` elements |
+| `ss:commentClassNames` | string | CSS classes on comment elements |
+| `ss:colWidth` | string | Column width |
+| `ss:colLegendHeight` | string | Column legend height |
+| `ss:legendColWidth` | string | Left/right legend width |
+| `surveyDisplay` | string | Layout: `"auto"`, `"mobile"`, `"desktop"` |
+| `html:showNumber` | bool | Show question numbers |
+| `cs:preText` / `ss:preText` | string | Text before text/number inputs |
+| `cs:postText` / `ss:postText` | string | Text after text/number inputs |
+
+**Note:** `ss:rowClassNames`, `ss:colClassNames`, etc. can also be applied per-question, not just globally.
+**Source:** Official Forsta "Survey Style Attributes" docs
