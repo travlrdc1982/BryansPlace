@@ -796,6 +796,83 @@ Note: An `<exec>` block can be nested INSIDE a question element with `where="exe
 **Fix:** Match exact case of uploaded filenames.
 **Session:** 3 | **Commit:** `9da8417`
 
+### Rule 20.8: Python question object API — complete attribute reference
+**Per official Forsta "Python Expressions" docs**, all question objects (elements with a `label`) support these attributes via the dot operator:
+
+**Question-level attributes:**
+| Attribute | Returns | Notes |
+|-----------|---------|-------|
+| `Q.label` | Question label string | `"Q10"` |
+| `Q.title` | Question title (settable) | Can be modified dynamically |
+| `Q.val` | Selected value or `None` | For single-value questions only |
+| `Q.ival` | Value or `0` (never `None`) | Best for `<number>`/`<float>` math |
+| `Q.unsafe_val` | Raw value without HTML encoding | **Never output to HTML** |
+| `Q.selected` | Selected row/col object or `None` | Equivalent to `Q.rows[Q.val]` |
+| `Q.rows` | List of row objects | Iterable: `for r in Q.rows:` |
+| `Q.cols` | List of col objects | Iterable: `for c in Q.cols:` |
+| `Q.choices` | List of choice objects | For `<select>` questions |
+| `Q.attr('r1')` | Access cell by label string | Equivalent to `Q.r1` |
+| `Q.map(r1=5, r2=10)` | Remap selected value | Returns mapped value |
+| `Q.disabled` | Hide question (settable) | `Q.disabled = True` |
+| `Q.displayed` | `True` if visible (not disabled, cond is True) | Read-only; ignores `where=` |
+| `Q.atleast` | Min selections (settable) | Dynamic validation |
+| `Q.atmost` | Max selections (settable) | Dynamic validation |
+| `Q.exactly` | Exact selections (settable) | Dynamic validation |
+| `Q.points` | Points total (settable) | For `<number>` questions |
+| `Q.amount` | Amount total (settable) | For `<number>` questions |
+| `Q._q` | Raw question object (read-only!) | **Not available in secure surveys** |
+| `Q.o` | Raw question object (read-only!) | Works in secure surveys |
+
+**Cell-level attributes** (rows, cols, choices):
+| Attribute | Returns | Notes |
+|-----------|---------|-------|
+| `Q.r1.label` | Cell label string | `"r1"` |
+| `Q.r1.index` | Cell index (0-based) | |
+| `Q.r1.text` | Cell text/title | |
+| `Q.r1.val` | Cell value or `None` (settable) | |
+| `Q.r1.ival` | Cell value or `0` (read-only) | Never assign to `.ival` |
+| `Q.r1.value` | Data file value (from `value="..."` attr) | |
+| `Q.r1.empty` | `True` if `None` or blank | |
+| `Q.r1.open` | Open-ended text (settable) | For `open="1"` rows |
+| `Q.r1.unsafe_open` | Raw open text without HTML encoding | **Never output to HTML** |
+| `Q.r1.disabled` | Hide cell (settable) | `Q.r1.disabled = True` |
+| `Q.r1.displayed` | `True` if visible | |
+| `Q.r1.inrange(min, max)` | `True` if value in range (inclusive) | |
+| `Q.r1.map(c1=5, c2=10)` | Remap 2D cell value | |
+| `Q.r1.group` | Cell's primary group object | `.group.label`, `.group.text` |
+| `Q.r1.c1` | 2D cell access | For grid questions |
+
+**Common patterns:**
+```python
+# Iterate rows and set values
+for eachRow in Q10.rows:
+    eachRow.val = eachRow.text
+
+# Dynamic validation
+Q10.exactly = 2
+
+# Remap values
+Q11.val = Q10.map(r1=1, r2=3, r3=5)
+
+# Check if answered
+if Q10.r1.empty:
+    pass  # no answer for r1
+
+# Access selected item
+if Q10.selected:
+    print Q10.selected.label  # e.g. "r2"
+    print Q10.selected.text   # e.g. "Item 2"
+
+# Range check
+if Q10.r1.inrange(1, 100):
+    pass  # value between 1 and 100
+
+# 2D grid access
+print Q10.r1.c1  # True/False for checkbox grid
+print Q10.r1.c2.val  # value for number grid
+```
+**Source:** Official Forsta "Python Expressions" documentation
+
 ---
 
 ## 21. Comments
